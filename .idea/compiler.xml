@@ -6,16 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="guli-mall" />
+        <module name="guli-product" />
+        <module name="guli-ware" />
+        <module name="guli-order" />
+        <module name="guli-coupon" />
+        <module name="guli-member" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="guli-mall" target="1.8" />
+      <module name="guli-coupon" target="1.8" />
+      <module name="guli-mall" target="1.5" />
+      <module name="guli-member" target="1.8" />
+      <module name="guli-order" target="1.8" />
+      <module name="guli-product" target="1.8" />
+      <module name="guli-ware" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="guli-mall" options="-parameters" />
+      <module name="guli-mall" options="" />
     </option>
   </component>
 </project>
