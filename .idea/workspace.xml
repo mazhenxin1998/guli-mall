@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1062397b-34ff-4e7f-9aef-8a505ea08d87" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/JamesUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Permission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/TestBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/ValueObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/listener/AuthIntercePter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/listener/LoginIntercePter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/controller/CeltController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/controller/PermissionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/dao/IJamesUserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/dao/IPermissionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/IMailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/IPermissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/impl/MailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/impl/PermissionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/timer/FinishWorkTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/mybatis/JamesUserDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/mybatis/PermissionDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/spring/spring-mail.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/spring/spring-timer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/cert/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/common/menu.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/img/img.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/permission/add.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/permission/edit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/permission/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/test/RandomTest.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/test/main.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/test/test.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/add.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/addRole.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/assignRole.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/edit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/role.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/roleAssingPermission.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/PermissionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/SpringEmail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/out/artifacts/file_formate_conversion_jar/file-formate-conversion.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/adapter/IPdfToWordAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/adapter/IWordToPdfAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/adapter/impl/IWordToPdfAdapterImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/adapter/impl/PdfToWordAdapterImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/constant/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/test/AdapterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/test/BatchFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/test/PdfToWord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/thread/OnePdfToOtherThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/thread/PdfToOtherThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/thread/WordToOtherThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/view/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/view/PdfToOtherView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/view/ShowResultView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/view/TimeDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/src/main/java/com/mzx/conversion/view/TimerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/adapter/IPdfToWordAdapter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/adapter/IWordToPdfAdapter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/adapter/impl/IWordToPdfAdapterImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/adapter/impl/PdfToWordAdapterImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/constant/Constant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/test/AdapterTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/test/BatchFile.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/test/PdfToWord.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/thread/OnePdfToOtherThread.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/thread/PdfToOtherThread.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/thread/WordToOtherThread.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/PdfToOtherView.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/ShowResultView.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimeDialog$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimeDialog.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/axis.log" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/axis.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/controller/DispatcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/controller/DispatcherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/listener/StartSystemLisener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/listener/StartSystemLisener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/manager/dao/IUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/service/impl/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/utils/AjaxResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/utils/AjaxResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/utils/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/utils/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/utils/MD5Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/utils/MD5Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/config/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/config/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/mybatis/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/mybatis/UserDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/spring/spring-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/spring/spring-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/spring/springmvc-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/resources/spring/springmvc-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/common/top.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/index2..jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/jsp/user/index2..jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/JavaText.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/JavaText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/MD5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/MD5Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/test/java/com/mzx/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw.war" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap-theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap-theme.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap-theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap-theme.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/css/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/bootstrap/js/npm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/META-INF/04MyprojectScw.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/controller/DispatcherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/controller/DispatcherController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/listener/StartSystemLisener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/listener/StartSystemLisener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/manager/dao/IUserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/manager/dao/IUserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/service/IUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/service/impl/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/service/impl/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/utils/AjaxResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/utils/AjaxResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/utils/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/com/mzx/utils/Const.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/config/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/config/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/mybatis/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/mybatis/UserDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/mybatis/mybatis-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/mybatis/mybatis-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/spring/spring-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/spring/spring-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/spring/springmvc-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/classes/spring/springmvc-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/css/carousel.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/css/doc.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/css/theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome4.2/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome4.2/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome4.2/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome4.2/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/fontawesome4.2/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/carousel-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/carousel-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/carousel-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/p1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/p2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/p3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/p3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/pic.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product-9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product_detail_body.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/product_detail_head.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/services-box1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/services-box2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/services-box3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/img/services-box4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jquery/jquery-2.1.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/common/top.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/reg.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/reg.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/success.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/jsp/success.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/lib/jackson-core-asl-1.9.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/lib/jackson-mapper-asl-1.9.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/script/back-to-top.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/script/docs.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/script/echarts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/1_close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/1_open.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/diy/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/line_conn.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/loading.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/zTreeStandard.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/img/zTreeStandard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/jquery.ztree.all-3.5.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/WEB-INF/ztree/zTreeStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/carousel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/doc.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/doc.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/css/theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/target/04MyprojectScw/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/META-INF/04MyprojectScw.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/bean/Menber.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/bean/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/controller/DispatcherController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/listener/StartSystemLisener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/manager/controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/manager/dao/IUserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/menber/IMenberDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/service/ITestService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/service/IUserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/service/impl/TestServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/service/impl/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/utils/AjaxResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/utils/Const.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/utils/DESUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/utils/MD5Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/com/mzx/utils/StringUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/config/jdbc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/mybatis/UserDao.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/mybatis/mybatis-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/rebel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/spring/spring-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/classes/spring/springmvc-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../Maven/apache-maven-3.5.2" />
+        <option name="userSettingsFile" value="D:\Maven\apache-maven-3.5.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1eRENksQWbrIP0G8mTF0dIfvvac" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1062397b-34ff-4e7f-9aef-8a505ea08d87" name="Default Changelist" comment="" />
+      <created>1594275966266</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594275966266</updated>
+      <workItem from="1594275977763" duration="49000" />
+      <workItem from="1594276035719" duration="904000" />
+      <workItem from="1594279459763" duration="1033000" />
+      <workItem from="1594281461677" duration="681000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1594276018598">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1594276018598" />
+    <state x="270" y="62" key="SettingsEditor" timestamp="1594282104138">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="270" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1594282104138" />
+  </component>
+</project>
