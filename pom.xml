@@ -14,6 +14,9 @@
         <module>guli-ware</module>
         <module>guli-member</module>
         <module>guli-coupon</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>guli-common</module>
     </modules>
 
     <name>guli-mall</name>
@@ -21,7 +24,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring.boot.version>2.1.8.RELEASE</spring.boot.version>
+        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
         <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
     </properties>

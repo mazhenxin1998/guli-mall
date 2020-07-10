@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      username: root
+      password: mzx123
+      url: jdbc:mysql://localhost:3306/gulimall_ums?useUnicode=true&characterEncoding=UTF-8
+      # 配置Druid连接池的属性.
+      # 初始化连接数.
+      initial-size: 5
+      # 定义最小空闲数.
+      min-idle: 5
+      # 定义最大连接数: 在高并发下的情况下该值应该尽量调大些,
+      max-active: 20
+      # 程序向Druid连接池请求数据库连接的超时时间,只要超过了该时间就认为该次请求失败,既认为连接池没有可用连接.
+      max-wait: 1000
+      # 回收连接时打印日志
+      log-abandoned: true
+      # 开启连接池回收.
+      # 要求程序从池中get到连接后, N 秒后必须close,否则druid 会强制回收该 应该和下面的配置是一样的.
+      remove-abandoned: true
+      # 2分钟足够. 超时连接时间单位秒.
+      remove-abandoned-timeout: 120
+      # 检测链接是否有效的SQL语句.
+      validation-query: SELECT 1
+      # 申请链接时，检测该链接是否有效，配置了会降低性能.
+      test-on-borrow: true
+      # 归还连接时,检测链接是否有效，配置了效率会降低.
+      test-on-return: false
+      # 议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，
+      # 执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      # 空闲链接检查时间间隔 单位毫秒. 配置的是一分钟.
+      time-between-eviction-runs-millis: 60000
+      # 连接保持空闲而不被驱逐的最小等待时间.
+      min-evictable-idle-time-millis: 30000
+
+# mybatis-plus的配置文件.
+# classpath* 表示的是不仅仅是
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  # 开启自动驼峰配置转换: 自动转换的意思是自动将A_COMMON转换成JavaBean的驼峰形式既: a_Common 类型的.
+  configuration:
+    map-underscore-to-camel-case: true
+  # 配置ID自增配置,改配置是全局配置.
+  global-config:
+    db-config:
+      id-type: auto
+# 配置显示SQL语句
+logging:
+  level:
+    com:
+      mzx:
+        gulimall:
+          order:
+            dao: debug

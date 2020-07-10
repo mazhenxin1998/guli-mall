@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/guli-common/guli-common.iml" filepath="$PROJECT_DIR$/guli-common/guli-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-coupon/guli-coupon.iml" filepath="$PROJECT_DIR$/guli-coupon/guli-coupon.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-mall.iml" filepath="$PROJECT_DIR$/guli-mall.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-member/guli-member.iml" filepath="$PROJECT_DIR$/guli-member/guli-member.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-order/guli-order.iml" filepath="$PROJECT_DIR$/guli-order/guli-order.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-product/guli-product.iml" filepath="$PROJECT_DIR$/guli-product/guli-product.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-ware/guli-ware.iml" filepath="$PROJECT_DIR$/guli-ware/guli-ware.iml" />
+      <module fileurl="file://$PROJECT_DIR$/renren-fast/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast/renren-fast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/renren-generator/renren-generator.iml" filepath="$PROJECT_DIR$/renren-generator/renren-generator.iml" />
     </modules>
   </component>
 </project>

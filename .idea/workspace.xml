@@ -76,6 +76,16 @@
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimeDialog.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-coupon/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-coupon/src/test/java/com/mzx/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-member/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-member/src/test/java/com/mzx/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-order/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-ware/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-ware/src/test/java/com/mzx/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/axis.log" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/axis.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" afterDir="false" />
@@ -241,6 +251,18 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/coupon/SpringApplicationCouponApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-member/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/member/SpringApplicationMemberApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/order/SpringApplicationOrderApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/test/java/com/mzx/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/product/SpringApplicationProductApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/test/java/com/mzx/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/ware/SpringApplicationWareApp.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -257,13 +279,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../Maven/apache-maven-3.5.2" />
+        <option name="mavenHome" value="D:/Maven/apache-maven-3.5.2" />
         <option name="userSettingsFile" value="D:\Maven\apache-maven-3.5.2\conf\settings.xml" />
       </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1eRENksQWbrIP0G8mTF0dIfvvac" />
@@ -272,18 +300,21 @@
   </component>
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/guli-ware/src/main/resources" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -293,6 +324,20 @@
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.mzx.gulimall.product" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.mzx.common.exception" />
+      <recent name="com.mzx.common.utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Study\Java\IDEACode\MyProject\guli-mall\guli-ware\src\main\resources" />
+      <recent name="D:\Study\Java\IDEACode\MyProject\guli-mall\guli-coupon\src\main\resources" />
+      <recent name="D:\Study\Java\IDEACode\MyProject\guli-mall\guli-common\src\main\java\com\mzx\common" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -300,7 +345,55 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.OrderApplication">
+  <component name="RunManager" selected="Spring Boot.SpringApplicationGuliWareApp">
+    <configuration name="BrandServiceTest.t1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="guli-product" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mzx.gulimall.product.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mzx.gulimall.product.server" />
+      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.product.server.BrandServiceTest" />
+      <option name="METHOD_NAME" value="t1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderItemTest.t1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="guli-order" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mzx.gulimall.order.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mzx.gulimall.order.server" />
+      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.order.server.OrderItemTest" />
+      <option name="METHOD_NAME" value="t1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test.t1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="guli-product" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mzx.gulimall.product.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mzx.product" />
+      <option name="MAIN_CLASS_NAME" value="com.mzx.product.Test" />
+      <option name="METHOD_NAME" value="t1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CouponApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="coupon" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.coupon.CouponApplication" />
@@ -329,6 +422,74 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RenrenApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="renren-generator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.renren.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.renren.RenrenApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenrenApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="renren-fast" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.renren.RenrenApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringApplicationCouponApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="guli-coupon" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.coupon.SpringApplicationCouponApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringApplicationGuliWareApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="guli-ware" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mzx.gulimall.ware.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.ware.SpringApplicationGuliWareApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringApplicationMemberApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="guli-member" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.member.SpringApplicationMemberApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringApplicationOrderApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="guli-order" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.order.SpringApplicationOrderApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringApplicationProductApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="guli-product" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.product.SpringApplicationProductApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringApplicationWareApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="guli-ware" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.ware.SpringApplicationWareApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WareApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ware" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.ware.WareApplication" />
@@ -336,6 +497,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.SpringApplicationGuliWareApp" />
+        <item itemvalue="Spring Boot.RenrenApplication (1)" />
+        <item itemvalue="JUnit.OrderItemTest.t1" />
+        <item itemvalue="JUnit.BrandServiceTest.t1" />
+        <item itemvalue="JUnit.Test.t1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.26775956" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -355,41 +553,91 @@
       <workItem from="1594284789826" duration="936000" />
       <workItem from="1594285733738" duration="183000" />
       <workItem from="1594285924723" duration="1112000" />
-      <workItem from="1594287046114" duration="339000" />
+      <workItem from="1594287046114" duration="2027000" />
+      <workItem from="1594290014160" duration="1139000" />
+      <workItem from="1594291211930" duration="4904000" />
+      <workItem from="1594354115268" duration="2011000" />
+      <workItem from="1594356256882" duration="578000" />
+      <workItem from="1594356852498" duration="5893000" />
+      <workItem from="1594366727765" duration="10677000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1594286175477">
+    <state x="346" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1594369989614">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1594286175477" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1594287037175">
+    <state x="346" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1594369989614" />
+    <state x="545" y="276" width="445" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1594370008080">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1594287037175" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1594287037174">
+    <state x="545" y="276" width="445" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1594370008080" />
+    <state x="545" y="297" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1594369925944">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1594287037174" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1594287037174">
+    <state x="545" y="297" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.834@0.0.1536.834" timestamp="1594369925944" />
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594358457883">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1594287037174" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1594287037175">
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1594358457883" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1594370088331">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1594287037175" />
-    <state x="270" y="0" key="SettingsEditor" timestamp="1594286727248">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1594370088331" />
+    <state width="1071" height="287" key="GridCell.Tab.0.bottom" timestamp="1594377914920">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="270" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1594286727248" />
-    <state x="178" y="78" key="new project wizard" timestamp="1594286507117">
+    <state width="1071" height="287" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1594377914920" />
+    <state width="1071" height="287" key="GridCell.Tab.0.center" timestamp="1594377914919">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="178" y="78" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1594286507117" />
+    <state width="1071" height="287" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1594377914919" />
+    <state width="1071" height="287" key="GridCell.Tab.0.left" timestamp="1594377914919">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1071" height="287" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1594377914919" />
+    <state width="1071" height="287" key="GridCell.Tab.0.right" timestamp="1594377914920">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1071" height="287" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1594377914920" />
+    <state width="1071" height="287" key="GridCell.Tab.1.bottom" timestamp="1594377914920">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1071" height="287" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1594377914920" />
+    <state width="1071" height="287" key="GridCell.Tab.1.center" timestamp="1594377914920">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1071" height="287" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1594377914920" />
+    <state width="1071" height="287" key="GridCell.Tab.1.left" timestamp="1594377914920">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1071" height="287" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1594377914920" />
+    <state width="1071" height="287" key="GridCell.Tab.1.right" timestamp="1594377914920">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1071" height="287" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1594377914920" />
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1594358808283">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" timestamp="1594358808283" />
+    <state x="429" y="121" key="NewModule_or_Project.wizard" timestamp="1594298602109">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="429" y="121" key="NewModule_or_Project.wizard/0.0.1536.834@0.0.1536.834" timestamp="1594298602109" />
+    <state x="429" y="0" key="SettingsEditor" timestamp="1594375471910">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="429" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1594375471910" />
+    <state x="563" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594287624222">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="563" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1594287624222" />
+    <state x="207" y="156" key="new project wizard" timestamp="1594355587105">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="207" y="156" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1594355587105" />
   </component>
 </project>

@@ -24,6 +24,11 @@
     <dependencies>
 
         <!--引入自定义依赖-->
+        <dependency>
+            <groupId>com.mzx</groupId>
+            <artifactId>guli-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!--SpringBoot依赖-->
         <dependency>
