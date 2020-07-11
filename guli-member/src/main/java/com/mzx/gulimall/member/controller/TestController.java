@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/7/10 17:32
  */
 @RestController
+@RequestMapping(value = "test1/tt")
 public class TestController {
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/t1")
     public String t1(){
-        return "com.mzx.gulimall.member is success";
+        return "@RequestMapping(value = \"test/test\")注解标注的Controller";
     }
 
 }

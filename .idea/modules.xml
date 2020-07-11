@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/guli-common/guli-common.iml" filepath="$PROJECT_DIR$/guli-common/guli-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-coupon/guli-coupon.iml" filepath="$PROJECT_DIR$/guli-coupon/guli-coupon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guli-gateway/guli-gateway.iml" filepath="$PROJECT_DIR$/guli-gateway/guli-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-mall.iml" filepath="$PROJECT_DIR$/guli-mall.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-member/guli-member.iml" filepath="$PROJECT_DIR$/guli-member/guli-member.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-order/guli-order.iml" filepath="$PROJECT_DIR$/guli-order/guli-order.iml" />

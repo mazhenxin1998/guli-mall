@@ -13,20 +13,22 @@
         <module name="guli-member" />
         <module name="guli-order" />
         <module name="renren-fast" />
+        <module name="guli-gateway" />
         <module name="guli-product" />
         <module name="guli-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="guli-common" target="1.8" />
+      <module name="guli-common" target="8" />
       <module name="guli-coupon" target="1.8" />
-      <module name="guli-mall" target="1.5" />
+      <module name="guli-gateway" target="8" />
+      <module name="guli-mall" target="8" />
       <module name="guli-member" target="1.8" />
       <module name="guli-order" target="1.8" />
       <module name="guli-product" target="1.8" />
       <module name="guli-ware" target="1.8" />
-      <module name="renren-fast" target="1.8" />
-      <module name="renren-generator" target="1.8" />
+      <module name="renren-fast" target="1.5" />
+      <module name="renren-generator" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

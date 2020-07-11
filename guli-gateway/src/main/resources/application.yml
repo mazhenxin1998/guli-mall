@@ -1,0 +1,8 @@
+# 配置Nacos服务中心
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.144.198.148:8848
+        # 位于哪个名称空间.
+        namespace: 5c61d448-0508-4f68-8f45-8c5380d7219d
