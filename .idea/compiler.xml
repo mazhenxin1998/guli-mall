@@ -20,7 +20,7 @@
     <bytecodeTargetLevel>
       <module name="guli-common" target="1.8" />
       <module name="guli-coupon" target="1.8" />
-      <module name="guli-mall" target="1.8" />
+      <module name="guli-mall" target="1.5" />
       <module name="guli-member" target="1.8" />
       <module name="guli-order" target="1.8" />
       <module name="guli-product" target="1.8" />
