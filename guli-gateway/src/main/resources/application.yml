@@ -1,8 +1,36 @@
+# Gateway网关配置细节:
+# 网关配置存在包含关系 例如通过路径断言: /api/** 会包含 /api/product/**
+# 而Gateway会根据配置的网关先后顺序进行路由.
+# 所以说，我们应该将比较精确的路由配置放在位置靠前的位置.
+# 这样的话Gateway将会优先匹配先配置的路由.
+
 # 配置Nacos服务中心
 spring:
   cloud:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
-        # 位于哪个名称空间.
-        namespace: 5c61d448-0508-4f68-8f45-8c5380d7219d
+    gateway:
+      routes:
+        # 配置商品服务系统.
+        - id: nacos-gulimall-product
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/product/(?<segment>/?.*),/product/$\{segment}
+        # 配置第三方服务的路由.
+        - id: nacos-gulimall-three-server
+          uri: lb://gulimall-three-server
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>/?.*),/thirdparty/$\{segment}
+        - id: nacos-renren-fast-sys
+          uri: lb://gulimall-admin
+          # 配置renren后台系统网关.
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}   # 这里就相当于将api给去掉
+

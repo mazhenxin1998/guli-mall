@@ -1,0 +1,15 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: gulimall-three-server       # 第三方服务.
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.144.198.148:8848
+    alicloud:
+      access-key: LTAI4G1Uta2HrL4Jda6hkNa8
+      secret-key: Fl6dveHH5CFlLw6zPRL5sg9DENdhOD
+      bucket: gulimall-mzx
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com

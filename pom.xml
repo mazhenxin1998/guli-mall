@@ -18,6 +18,7 @@
         <module>renren-generator</module>
         <module>guli-common</module>
         <module>guli-gateway</module>
+        <module>guli-three-server</module>
     </modules>
 
     <name>guli-mall</name>

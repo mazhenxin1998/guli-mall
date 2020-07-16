@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/guli-member/guli-member.iml" filepath="$PROJECT_DIR$/guli-member/guli-member.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-order/guli-order.iml" filepath="$PROJECT_DIR$/guli-order/guli-order.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-product/guli-product.iml" filepath="$PROJECT_DIR$/guli-product/guli-product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guli-three-server/guli-three-server.iml" filepath="$PROJECT_DIR$/guli-three-server/guli-three-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-ware/guli-ware.iml" filepath="$PROJECT_DIR$/guli-ware/guli-ware.iml" />
       <module fileurl="file://$PROJECT_DIR$/renren-fast/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast/renren-fast.iml" />
       <module fileurl="file://$PROJECT_DIR$/renren-generator/renren-generator.iml" filepath="$PROJECT_DIR$/renren-generator/renren-generator.iml" />

@@ -1,9 +1,12 @@
 package com.mzx.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -37,8 +40,9 @@ public class CategoryEntity implements Serializable {
 	 */
 	private Integer catLevel;
 	/**
-	 * 
+	 * 1表示不删除,0表示删除.
 	 */
+	@TableLogic(value = "1",delval = "0")
 	private Integer showStatus;
 	/**
 	 * 
@@ -56,5 +60,12 @@ public class CategoryEntity implements Serializable {
 	 * 
 	 */
 	private Integer productCount;
+
+	/**
+	 * 所以该分类下的子菜单.
+	 * 该注解表示该字段不是其表中必须的字段.
+	 */
+	@TableField(exist = false)
+	private List<CategoryEntity> children;
 
 }

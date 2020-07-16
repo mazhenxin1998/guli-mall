@@ -3,6 +3,7 @@ package com.mzx.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,9 @@ import com.mzx.gulimall.common.utils.R;
  */
 @RestController
 @RequestMapping("product/attr")
+@Api(value = "商品属性后台接口")
 public class AttrController {
+
     @Autowired
     private AttrService attrService;
 

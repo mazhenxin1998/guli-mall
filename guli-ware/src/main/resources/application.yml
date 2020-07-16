@@ -35,7 +35,10 @@ spring:
       time-between-eviction-runs-millis: 60000
       # 连接保持空闲而不被驱逐的最小等待时间.
       min-evictable-idle-time-millis: 30000
-
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.144.198.148:8848
 # mybatis-plus的配置文件.
 # classpath* 表示的是不仅仅是
 mybatis-plus:
