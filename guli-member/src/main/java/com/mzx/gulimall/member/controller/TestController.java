@@ -13,6 +13,8 @@ public class TestController {
 
     @RequestMapping(value = "/t1")
     public String t1(){
+        // 会抛出异常.
+        int i = 10 / 0;
         return "@RequestMapping(value = \"test/test\")注解标注的Controller";
     }
 

@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
- *
  * @author ZhenXinMa
  * @email 2280480546@qq.com
  * @date 2020-07-10 12:26:27
@@ -29,14 +27,23 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * 根据SQL查询出三级分类,但是这里使用了,join关键字进行查询》
+     *
      * @return
      */
     List<CategoryEntity> listBySQL();
 
     /**
      * 自定义的批量删除.
+     *
      * @param catIds
      */
     void removeMenus(List<Long> catIds);
+
+    /**
+     * 当在分类管理列表对分类进行修改的时候，如果修改的是名字选项，还应该对分类和品牌关联的表中的分类名字也进行修改.
+     *
+     * @param category
+     */
+    void updateDetail(CategoryEntity category);
 }
 

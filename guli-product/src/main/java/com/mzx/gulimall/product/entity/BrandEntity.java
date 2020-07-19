@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

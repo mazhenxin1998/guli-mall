@@ -20,5 +20,11 @@ public interface BrandService extends IService<BrandEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
 
+    /**
+     * 在修改品牌信息的时候，如果其修改的字段是name，那么应该需要将分类与品牌的中间表的信息也同时进行修改.
+     *
+     * @param brand
+     */
+    void updateDetail(BrandEntity brand);
 }
 

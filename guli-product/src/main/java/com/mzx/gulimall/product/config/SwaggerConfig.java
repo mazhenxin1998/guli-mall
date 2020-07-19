@@ -24,6 +24,7 @@ public class SwaggerConfig {
     public Docket createRestApi() {
 
         return new Docket(DocumentationType.SWAGGER_2)
+                .pathMapping("/")
                 .apiInfo(this.apiInfo())
                 .select()
                 // apis配置的扫描当前服务下的那个包下的接口.

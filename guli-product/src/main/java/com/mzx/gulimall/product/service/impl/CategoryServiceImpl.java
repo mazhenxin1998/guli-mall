@@ -1,5 +1,8 @@
 package com.mzx.gulimall.product.service.impl;
 
+import com.mzx.gulimall.product.dao.CategoryBrandRelationDao;
+import com.mzx.gulimall.product.entity.CategoryBrandRelationEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -16,10 +19,16 @@ import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.product.dao.CategoryDao;
 import com.mzx.gulimall.product.entity.CategoryEntity;
 import com.mzx.gulimall.product.service.CategoryService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    @Autowired
+    private CategoryBrandRelationDao categoryBrandRelationDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -47,6 +56,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         List<CategoryEntity> list = baseMapper.get().stream().filter(entity -> {
 
             // 先获取以及目录.
+            // 返回false 则将其过滤掉.
             return entity.getParentCid() == 0;
         }).map(item -> {
 
@@ -75,6 +85,28 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         // TODO 删除之前应该校验表单是否被其他表单引用.
         baseMapper.deleteBatchIds(catIds);
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void updateDetail(CategoryEntity category) {
+
+        String categoryName = category.getName();
+        if (!StringUtils.isEmpty(categoryName)) {
+
+            // 如果修改的是categoryName则会中间表进行修改.
+            baseMapper.updateById(category);
+            // 额外的增加对中间表的修改操作，但是此操作会设计的事务的处理.
+            CategoryBrandRelationEntity relationEntity = new CategoryBrandRelationEntity();
+            relationEntity.setCatelogId(category.getCatId());
+            relationEntity.setCatelogName(categoryName);
+            categoryBrandRelationDao.updateByCategoryId(relationEntity);
+        } else {
+
+            // 如果修改的不包含三级分类的名字,那么正常修改即可.
+            baseMapper.updateById(category);
+        }
 
     }
 

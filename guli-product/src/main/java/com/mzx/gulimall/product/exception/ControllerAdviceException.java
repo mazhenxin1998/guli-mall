@@ -1,12 +1,15 @@
 package com.mzx.gulimall.product.exception;
 
 import com.mzx.gulimall.common.utils.R;
+import com.mzx.gulimall.product.utils.ExceptionUtils;
+import jdk.nashorn.internal.ir.ReturnNode;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +55,16 @@ public class ControllerAdviceException {
         return R.error().put("data", resultMap);
     }
 
+    @ExceptionHandler(value = {CustomException.class})
+    public R customExceptionHandler(CustomException e) {
+
+        ResultCode resultCode = e.getResultCode();
+        // time是ResultCode默认实现的方法.
+        R r = ExceptionUtils.transformRByResultCode(resultCode);
+        // 需要将所有参数放到R里面进行结果显示.
+        return r;
+    }
+
     /**
      * 针对一些处理不到异常进行处理.
      *
@@ -61,6 +74,14 @@ public class ControllerAdviceException {
     @ExceptionHandler(value = {Exception.class})
     public R handler(Throwable throwable) {
 
+        // 这里出错了.
+        try {
+
+            throw throwable;
+        } catch (Throwable e) {
+
+            e.printStackTrace();
+        }
         return R.error();
     }
 

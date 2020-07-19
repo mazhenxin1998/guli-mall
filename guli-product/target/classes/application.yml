@@ -65,4 +65,3 @@ logging:
         gulimall:
           product:
             dao: debug
-

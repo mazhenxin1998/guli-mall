@@ -27,10 +27,10 @@
       <module name="guli-member" target="1.8" />
       <module name="guli-order" target="1.8" />
       <module name="guli-product" target="1.8" />
-      <module name="guli-three-server" target="1.5" />
+      <module name="guli-three-server" target="8" />
       <module name="guli-ware" target="1.8" />
-      <module name="renren-fast" target="1.5" />
-      <module name="renren-generator" target="1.5" />
+      <module name="renren-fast" target="8" />
+      <module name="renren-generator" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

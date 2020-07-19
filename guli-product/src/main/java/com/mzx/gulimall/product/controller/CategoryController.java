@@ -30,6 +30,7 @@ public class CategoryController {
      */
     @RequestMapping("/list/tree")
     public R list() {
+
         long start = System.currentTimeMillis();
         List<CategoryEntity> list = categoryService.listWithTree();
         long end = System.currentTimeMillis();
@@ -42,6 +43,13 @@ public class CategoryController {
         List<CategoryEntity> list = categoryService.listBySQL();
         long end = System.currentTimeMillis();
         return R.ok().put("data", list).put("time", end - start);
+    }
+
+    @RequestMapping(value = "/list")
+    public PageUtils listPageUtils(@RequestParam Map<String, Object> params) {
+
+        PageUtils pageUtils = categoryService.queryPage(params);
+        return pageUtils;
     }
 
     /**
@@ -65,20 +73,34 @@ public class CategoryController {
 
     /**
      * 修改三级分类,上传的时候表单上传. POST.
+     * 修改的时候也应该将分类与品牌的关系里面的信息修改掉.
+     * 但是这个情况只有修改分类名字的时候才会进行对中间表的分类名字进行修改.
      */
     @PostMapping(value = "/update", consumes = {"application/json"})
     public R update(@RequestBody CategoryEntity category) {
 
         System.out.println("修改方法进行了...");
-        categoryService.updateById(category);
+        // 两种方法必须只能存一个.
+//        categoryService.updateById(category); 该方法是正确的.
+        categoryService.updateDetail(category);
         return R.ok();
     }
 
+    /**
+     * 批量修改的时候也应该同时修改对应的中间表的信息.
+     *
+     * @param entities
+     * @return
+     */
     @PostMapping(value = "/update/sort", consumes = {"application/json"})
     public R updateSort(@RequestBody CategoryEntity[] entities) {
 
         System.out.println("Update Sort方法发生了");
-        categoryService.updateBatchById(Arrays.asList(entities));
+//        categoryService.updateBatchById(Arrays.asList(entities));
+        for (CategoryEntity entity : entities) {
+
+            categoryService.updateDetail(entity);
+        }
         return R.ok();
     }
 

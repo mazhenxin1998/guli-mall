@@ -33,4 +33,3 @@ spring:
             - Path=/api/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}   # 这里就相当于将api给去掉
-

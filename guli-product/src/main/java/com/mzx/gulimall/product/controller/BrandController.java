@@ -75,8 +75,10 @@ public class BrandController {
     @RequestMapping("/update")
     @ApiOperation(value = "品牌内容更新接口")
     public R update(@RequestBody BrandEntity brand) {
-        brandService.updateById(brand);
 
+        // 修改的同时需要将分类与品牌的中间表中的品牌的名字进行同步更新.
+//        brandService.updateById(brand);
+        brandService.updateDetail(brand);
         return R.ok();
     }
 
