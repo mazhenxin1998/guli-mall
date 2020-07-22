@@ -9,6 +9,10 @@ import com.mzx.gulimall.product.exception.AttrErrorCode;
 import com.mzx.gulimall.product.exception.CustomException;
 import com.mzx.gulimall.product.service.AttrAttrgroupRelationService;
 import com.mzx.gulimall.product.service.AttrService;
+import com.mzx.gulimall.product.valid.AttrGroupRelation;
+import com.mzx.gulimall.product.vo.AttrGroupWithAttrVo;
+import com.mzx.gulimall.product.vo.AttrRelationVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -287,6 +291,66 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         System.out.println(pageAttr.getRecords().toString());
 
         return new PageUtils(pageAttr);
+    }
+
+    @Override
+    public R saveAttrGroupRelation(List<AttrRelationVo> vos) {
+
+        /*实现将属性和属性分组进行中间表的关联.*/
+        List<AttrAttrgroupRelationEntity> entities = vos.stream().map(item -> {
+
+            AttrAttrgroupRelationEntity entity = new AttrAttrgroupRelationEntity();
+            entity.setAttrGroupId(item.getAttrGroupId());
+            entity.setAttrId(item.getAttrId());
+            return entity;
+        }).collect(Collectors.toList());
+
+        entities.forEach(obj -> {
+
+            // 进行批量插入.
+            attrAttrgroupRelationDao.insert(obj);
+        });
+
+
+        return R.ok();
+    }
+
+    @Override
+    public List<AttrGroupWithAttrVo> getGroupAndAttr(Long catelogId) {
+
+        if (catelogId == null || catelogId <= 0) {
+
+            // 抛出自定义异常.
+            throw new CustomException(AttrErrorCode.ATTR_GROUP_ID_IS_NULL);
+        }
+
+        /*根据分类ID查询出该分类下的所有分组以及所有属性.*/
+        // 先查询出该分类下的所有分组.
+        List<AttrGroupEntity> groupEntities = baseMapper.selectList(new QueryWrapper<AttrGroupEntity>()
+                .eq("catelog_id", catelogId));
+
+        List<AttrGroupWithAttrVo> response = groupEntities.stream().map(item -> {
+
+            AttrGroupWithAttrVo vo = new AttrGroupWithAttrVo();
+            BeanUtils.copyProperties(item, vo);
+            // 单独设置attrs.
+            // 通过分组ID查询该分组下所有关联的属性ID.
+            List<AttrAttrgroupRelationEntity> relationEntities = attrAttrgroupRelationDao.selectList(new QueryWrapper<AttrAttrgroupRelationEntity>()
+                    .eq("attr_group_id", item.getAttrGroupId()));
+            // 通过该中间表查询出该分组所关联的所有属性
+            List<AttrEntity> attrEntities = relationEntities.stream().map(obj -> {
+
+                Long attrId = obj.getAttrId();
+                AttrEntity attrEntity = attrDao.selectById(attrId);
+                return attrEntity;
+            }).collect(Collectors.toList());
+
+            vo.setAttrs(attrEntities);
+            return vo;
+
+        }).collect(Collectors.toList());
+
+        return response;
     }
 
 }

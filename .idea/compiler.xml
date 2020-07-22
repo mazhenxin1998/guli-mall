@@ -10,10 +10,10 @@
         <module name="guli-coupon" />
         <module name="renren-generator" />
         <module name="guli-ware" />
-        <module name="guli-member" />
+        <module name="renren-fast" />
         <module name="guli-three-server" />
         <module name="guli-order" />
-        <module name="renren-fast" />
+        <module name="guli-member" />
         <module name="guli-gateway" />
         <module name="guli-product" />
         <module name="guli-common" />

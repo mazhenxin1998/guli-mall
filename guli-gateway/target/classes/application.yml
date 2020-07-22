@@ -26,9 +26,15 @@ spring:
             - Path=/api/thirdparty/**
           filters:
             - RewritePath=/api/thirdparty/(?<segment>/?.*),/thirdparty/$\{segment}
+        - id: nacos-gulimall-member
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+        # 配置renren后台系统网关.
         - id: nacos-renren-fast-sys
           uri: lb://gulimall-admin
-          # 配置renren后台系统网关.
           predicates:
             - Path=/api/**
           filters:

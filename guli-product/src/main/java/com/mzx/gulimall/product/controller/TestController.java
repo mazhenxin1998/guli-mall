@@ -4,9 +4,11 @@ import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.product.dao.CategoryDao;
 import com.mzx.gulimall.product.entity.BrandEntity;
 import com.mzx.gulimall.product.entity.CategoryEntity;
+import com.mzx.gulimall.product.entity.SmsMemberPriceEntity;
+import com.mzx.gulimall.product.entity.SmsSpuBoundsEntity;
+import com.mzx.gulimall.product.feign.ICouponServiceFeign;
 import com.mzx.gulimall.product.valid.Select;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -15,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.BindException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,9 @@ public class TestController {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private ICouponServiceFeign iCouponServiceFeign;
 
 
     @RequestMapping(value = "/")
@@ -80,6 +85,38 @@ public class TestController {
 
         // 如果这个方法进行参数校验出现错误.
         return R.ok();
+    }
+
+    @PostMapping(value = "/test/fegin")
+    public void testFeign() {
+
+        SmsSpuBoundsEntity entity = new SmsSpuBoundsEntity();
+        entity.setBuyBounds(new BigDecimal(10));
+        entity.setGrowBounds(new BigDecimal(20));
+        entity.setId(1111L);
+        entity.setSpuId(1111L);
+        entity.setWork(5);
+        iCouponServiceFeign.save(entity);
+
+    }
+
+    @RequestMapping(value = "/test/coupon/member")
+    public void testFeignCouponMember() {
+
+        List<SmsMemberPriceEntity> list = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+
+            SmsMemberPriceEntity entity = new SmsMemberPriceEntity();
+            entity.setAddOther(10);
+            entity.setMemberLevelId(10L);
+            entity.setMemberLevelName("XXX");
+            entity.setMemberPrice(new BigDecimal(10));
+            entity.setSkuId(10L);
+            list.add(entity);
+        }
+
+        iCouponServiceFeign.saveMemberPriceBatch(list);
+
     }
 
 }

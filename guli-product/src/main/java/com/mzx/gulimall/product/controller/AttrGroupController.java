@@ -1,15 +1,14 @@
 package com.mzx.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.mzx.gulimall.product.vo.AttrGroupWithAttrVo;
+import com.mzx.gulimall.product.vo.AttrRelationVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.mzx.gulimall.product.entity.AttrGroupEntity;
 import com.mzx.gulimall.product.service.AttrGroupService;
@@ -60,6 +59,7 @@ public class AttrGroupController {
 
     /**
      * 查出该分类下关联的属性.
+     *
      * @param params
      * @return
      */
@@ -67,9 +67,9 @@ public class AttrGroupController {
     public R listAttrRelation(@RequestParam Map<String, Object> params,
                               @PathVariable Long attrgroupId) {
 
-        PageUtils pageUtils = attrGroupService.getRelationAttr(params,attrgroupId);
+        PageUtils pageUtils = attrGroupService.getRelationAttr(params, attrgroupId);
 
-        return R.ok().put("data",pageUtils);
+        return R.ok().put("data", pageUtils);
     }
 
     /**
@@ -80,6 +80,29 @@ public class AttrGroupController {
         AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
 
         return R.ok().put("attrGroup", attrGroup);
+    }
+
+    @PostMapping(value = "/attr/relation")
+    public R attrRelation(@RequestBody List<AttrRelationVo> vos) {
+
+        /*这里将属性和分组进行关联,不过这里有可能一次关联多个，所以是批量保存.*/
+        return attrGroupService.saveAttrGroupRelation(vos);
+    }
+
+    /**
+     * 获取分类下所有分组&关联属性.
+     *
+     * @param catelogId
+     * @param params
+     * @return
+     */
+    @GetMapping(value = "/{catelogId}/withattr")
+    public R attrGroupWithAttr(@PathVariable Long catelogId, @RequestParam Map<String, Object> params) {
+
+        // 获取该分类下所有的分组以及该分组所关联的对象.
+        List<AttrGroupWithAttrVo> vos = attrGroupService.getGroupAndAttr(catelogId);
+
+        return R.ok().put("data", vos);
     }
 
     /**

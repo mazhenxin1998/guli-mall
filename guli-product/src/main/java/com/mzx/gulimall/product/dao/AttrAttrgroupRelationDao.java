@@ -2,7 +2,9 @@ package com.mzx.gulimall.product.dao;
 
 import com.mzx.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mzx.gulimall.product.vo.AttrRelationVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,5 +23,6 @@ public interface AttrAttrgroupRelationDao extends BaseMapper<AttrAttrgroupRelati
      * @return
      */
     List<Long> selectAttrIds(Long groupId);
+
 
 }

@@ -14,6 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class GuliMallThreeServerApplication {
     public static void main(String[] args) {
 
+        //  com.mzx.gulimall.product.vo
         SpringApplication.run(GuliMallThreeServerApplication.class, args);
     }
 }

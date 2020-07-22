@@ -2,8 +2,10 @@ package com.mzx.gulimall.product.controller;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
+import com.mzx.gulimall.product.vo.CategoryBrandRelationVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,11 +48,21 @@ public class CategoryBrandRelationController {
         return R.ok().put("page", page).put("time", new Date());
     }
 
+    /**
+     * 获取当前分类下的所有品牌. 前提是当前分类是第三级分类.
+     *
+     * @param params
+     * @return
+     */
     @GetMapping(value = "/brands/list")
     public R categoryBrandList(@RequestParam Map<String, Object> params) {
 
         // TODO 平台属性 规格参数 新增未完善.
-        return R.ok();
+        Object catId = params.get("catId");
+        long l = Long.parseLong(catId.toString());
+        List<CategoryBrandRelationVo> vos = categoryBrandRelationService.getBrandsByCategoryId(l);
+        // 返回的data应该是一个CategoryBrandRelationVo的一个数组.
+        return R.ok().put("data", vos);
     }
 
     /**

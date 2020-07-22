@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.product.entity.AttrGroupEntity;
+import com.mzx.gulimall.product.vo.AttrGroupWithAttrVo;
+import com.mzx.gulimall.product.vo.AttrRelationVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,5 +56,22 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
      * @return
      */
     PageUtils getRelationAttr(Map<String, Object> params, Long attrgroupId);
+
+    /**
+     * 调用attrGroupRelationDao进行属性和分组之间的关联.
+     * <p>
+     * 该接口是批量接口.
+     *
+     * @param vos
+     * @return
+     */
+    R saveAttrGroupRelation(List<AttrRelationVo> vos);
+
+    /**
+     * 查询该分类下的所有分组以及该分组下的属性.
+     *
+     * @return
+     */
+    List<AttrGroupWithAttrVo> getGroupAndAttr(Long catelogId);
 }
 
