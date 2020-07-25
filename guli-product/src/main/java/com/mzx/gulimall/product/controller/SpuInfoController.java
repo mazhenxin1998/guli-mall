@@ -1,20 +1,15 @@
 package com.mzx.gulimall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import com.mzx.gulimall.product.vo.SpuSaveVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.mzx.gulimall.product.entity.SpuInfoEntity;
-import com.mzx.gulimall.product.service.SpuInfoService;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.R;
+import com.mzx.gulimall.product.entity.SpuInfoEntity;
+import com.mzx.gulimall.product.service.SpuInfoService;
+import com.mzx.gulimall.product.vo.SpuSaveVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -31,12 +26,12 @@ public class SpuInfoController {
     private SpuInfoService spuInfoService;
 
     /**
-     * 列表
+     * 根据给定的条件进行模糊查询和精确查询.
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = spuInfoService.queryPage(params);
 
+        PageUtils page = spuInfoService.queryPageDetails(params);
         return R.ok().put("page", page);
     }
 

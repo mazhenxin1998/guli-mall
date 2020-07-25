@@ -50,6 +50,12 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     @Transactional(propagation = Propagation.REQUIRED)
     public void saveSkuBaseInfo(Long spuId, SpuSaveVo vo) {
 
+        /*
+         * --------------------------------------------------------
+         * 商品上架接口.
+         * --------------------------------------------------------
+         * */
+
         SkuInfoEntity entity = new SkuInfoEntity();
         entity.setSpuId(spuId);
         // skuID是自增的.
@@ -141,6 +147,76 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
 
         });
 
+    }
+
+    @Override
+    public PageUtils queryPageDetails(Map<String, Object> params) {
+
+        QueryWrapper<SkuInfoEntity> wrapper = this.getWrapper(params);
+
+        IPage<SkuInfoEntity> page = this.page(
+                new Query<SkuInfoEntity>().getPage(params),
+                wrapper
+        );
+        PageUtils pageUtils = new PageUtils(page);
+        Integer count = baseMapper.selectCount(wrapper);
+        pageUtils.setTotalCount(count);
+
+        return pageUtils;
+    }
+
+    private QueryWrapper<SkuInfoEntity> getWrapper(Map<String, Object> params) {
+
+        /*
+         * --------------------------------------------------------
+         * String类型不能转换为Long类型.
+         * --------------------------------------------------------
+         * */
+
+        String key = (String) params.get("key");
+        QueryWrapper<SkuInfoEntity> wrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(key)) {
+
+            wrapper.and(w -> {
+
+                w.eq("sku_id", key).or().like("sku_name", key);
+            });
+        }
+
+        Object catelogId = params.get("catelogId");
+        if (!StringUtils.isEmpty(catelogId.toString())) {
+
+            // 如果只是用条件大于0进行判断，
+            // long的默认值为0.
+            long cate_id = Long.parseLong(catelogId.toString());
+            if (cate_id > 0) {
+
+                wrapper.and(w -> {
+
+                    w.eq("catalog_id", cate_id);
+                });
+            }
+
+        }
+
+        Object brandId = params.get("brandId");
+        if (!StringUtils.isEmpty(brandId.toString())) {
+
+            long brand_id = Long.parseLong(brandId.toString());
+            if (brand_id > 0) {
+
+                wrapper.and(w -> {
+
+                    w.eq("brand_id", brand_id);
+                });
+            }
+
+        }
+
+        // TODO 价格区间查找暂时未实现.
+        // 每一个SKU查询的时候都有价格区间的.
+
+        return wrapper;
     }
 
 

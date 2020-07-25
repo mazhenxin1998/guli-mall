@@ -25,5 +25,13 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
      * @param vo
      */
     void saveSkuBaseInfo(Long spuId, SpuSaveVo vo);
+
+    /**
+     * 当查询参数里面的查询匹配的值是空的时候查询所有，如果不是空则根据查询条件查询.
+     *
+     * @param params
+     * @return
+     */
+    PageUtils queryPageDetails(Map<String, Object> params);
 }
 

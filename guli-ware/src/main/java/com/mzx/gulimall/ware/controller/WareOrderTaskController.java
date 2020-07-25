@@ -22,11 +22,12 @@ import com.mzx.gulimall.common.utils.R;
  *
  * @author ZhenXinMa
  * @email 2280480546@qq.com
- * @date 2020-07-10 18:22:49
+ * @date 2020-07-25 14:15:39
  */
 @RestController
 @RequestMapping("ware/wareordertask")
 public class WareOrderTaskController {
+
     @Autowired
     private WareOrderTaskService wareOrderTaskService;
 
@@ -35,7 +36,9 @@ public class WareOrderTaskController {
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = wareOrderTaskService.queryPage(params);
+
+//        PageUtils page = wareOrderTaskService.queryPage(params);
+        PageUtils page = wareOrderTaskService.queryPageDetails(params);
 
         return R.ok().put("page", page);
     }

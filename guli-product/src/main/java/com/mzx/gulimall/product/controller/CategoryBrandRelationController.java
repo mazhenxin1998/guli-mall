@@ -1,18 +1,18 @@
 package com.mzx.gulimall.product.controller;
 
+import com.mzx.gulimall.common.utils.PageUtils;
+import com.mzx.gulimall.common.utils.R;
+import com.mzx.gulimall.product.entity.CategoryBrandRelationEntity;
+import com.mzx.gulimall.product.service.CategoryBrandRelationService;
+import com.mzx.gulimall.product.vo.CategoryBrandRelationVo;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import com.mzx.gulimall.product.vo.CategoryBrandRelationVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import com.mzx.gulimall.product.entity.CategoryBrandRelationEntity;
-import com.mzx.gulimall.product.service.CategoryBrandRelationService;
-import com.mzx.gulimall.common.utils.PageUtils;
-import com.mzx.gulimall.common.utils.R;
 
 
 /**
@@ -57,9 +57,25 @@ public class CategoryBrandRelationController {
     @GetMapping(value = "/brands/list")
     public R categoryBrandList(@RequestParam Map<String, Object> params) {
 
+        /*
+         * --------------------------------------------------------
+         * 在接受前台传过来的数据的时候,一定要注意String和其他类型的转换，
+         * 每次转换的时候都用类型的parse方法进行类型转换.
+         * --------------------------------------------------------
+         * */
+        
         // TODO 平台属性 规格参数 新增未完善.
+        if (params.size() == 1) {
+
+            return R.ok().put("data", null);
+        }
+        
         Object catId = params.get("catId");
-        long l = Long.parseLong(catId.toString());
+        long l = 0;
+        if (!StringUtils.isEmpty(catId.toString())) {
+
+            l = Long.parseLong(catId.toString());
+        }
         List<CategoryBrandRelationVo> vos = categoryBrandRelationService.getBrandsByCategoryId(l);
         // 返回的data应该是一个CategoryBrandRelationVo的一个数组.
         return R.ok().put("data", vos);

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.Map;
@@ -82,6 +83,108 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         // 6.4 sku的优惠券 满减等信息  跨服务进行保存.
         // 积分和优惠券需要跨服务进行保存.
         return R.ok();
+    }
+
+    @Override
+    public PageUtils queryPageDetails(Map<String, Object> params) {
+
+        /*
+         * --------------------------------------------------------
+         * 从数据库查询的时候不用放在事务里面。.
+         * --------------------------------------------------------
+         * */
+
+        // 构造查询条件
+        QueryWrapper<SpuInfoEntity> wrapper = this.getWrapper(params);
+
+        IPage<SpuInfoEntity> page = this.page(
+                new Query<SpuInfoEntity>().getPage(params),
+                wrapper
+        );
+        //  还需要查出该总的数目.
+        Integer count = baseMapper.selectCount(wrapper);
+        PageUtils pageUtils = new PageUtils(page);
+        pageUtils.setTotalCount(count);
+
+        return pageUtils;
+    }
+
+
+    private QueryWrapper<SpuInfoEntity> getWrapper(Map<String, Object> params) {
+
+        /*
+         * --------------------------------------------------------
+         * 需要注意的是如果params里面只有三个参数则表示的是查询所有.
+         * --------------------------------------------------------
+         * */
+
+        QueryWrapper<SpuInfoEntity> wrapper = new QueryWrapper<>();
+        if (params.size() == 3) {
+
+            // 查询的是所有 返回一个空的查询条件即可.
+            return wrapper;
+        }
+
+        /*
+         * --------------------------------------------------------
+         * String类型不能转换为Integer类型..
+         * --------------------------------------------------------
+         * */
+        // 应该先判断下》
+        if (!StringUtils.isEmpty(params.get("status").toString())) {
+
+            int status = Integer.parseInt(params.get("status").toString());
+            if (status > 0) {
+
+                // 各个分支条件应该用and连接.
+                wrapper.and(w -> {
+
+                    w.eq("publish_status", status);
+                });
+            }
+
+        }
+
+        // String类型转换为Long 应该会报错.
+        Object brandId = params.get("brandId");
+        if (!StringUtils.isEmpty(brandId.toString())) {
+
+            long brand_id = Long.parseLong(brandId.toString());
+            if (brand_id > 0) {
+
+                wrapper.and(w -> {
+
+                    w.eq("brand_id", brand_id);
+                });
+            }
+
+        }
+
+        if (!StringUtils.isEmpty(params.get("catelogId").toString())) {
+
+            long catelogId = Long.parseLong(params.get("catelogId").toString());
+            if (catelogId > 0) {
+
+                wrapper.and(w -> {
+
+                    w.eq("catalog_id", catelogId);
+                });
+            }
+
+        }
+
+        // Key所对应的字段为SPU的ID或者为SPU的name
+        String key = (String) params.get("key");
+
+        if (!StringUtils.isEmpty(key)) {
+
+            wrapper.and(w -> {
+
+                w.eq("id", key).or().like("spu_name", key);
+            });
+        }
+
+        return wrapper;
     }
 
 

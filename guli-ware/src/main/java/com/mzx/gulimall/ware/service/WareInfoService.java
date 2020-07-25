@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author ZhenXinMa
  * @email 2280480546@qq.com
- * @date 2020-07-10 18:22:49
+ * @date 2020-07-25 14:15:39
  */
 public interface WareInfoService extends IService<WareInfoEntity> {
 

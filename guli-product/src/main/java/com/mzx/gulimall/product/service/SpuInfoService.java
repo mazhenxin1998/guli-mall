@@ -21,9 +21,18 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     /**
      * 商品SPU的详细增加功能.
+     *
      * @param vo
      * @return
      */
     R saveSpuDetails(SpuSaveVo vo);
+
+    /**
+     * param里面包含了按分类查询的分类ID和品牌ID以及状态和检索的关键字进行模糊查询.
+     *
+     * @param params
+     * @return
+     */
+    PageUtils queryPageDetails(Map<String, Object> params);
 }
 

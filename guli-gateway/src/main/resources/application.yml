@@ -26,6 +26,13 @@ spring:
             - Path=/api/thirdparty/**
           filters:
             - RewritePath=/api/thirdparty/(?<segment>/?.*),/thirdparty/$\{segment}
+        - id: nacos-gulimall-ware
+          uri: lb://gulimall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+        # 配置会员系统
         - id: nacos-gulimall-member
           uri: lb://gulimall-member
           predicates:

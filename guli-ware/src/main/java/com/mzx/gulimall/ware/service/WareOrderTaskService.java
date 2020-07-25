@@ -11,10 +11,18 @@ import java.util.Map;
  *
  * @author ZhenXinMa
  * @email 2280480546@qq.com
- * @date 2020-07-10 18:22:49
+ * @date 2020-07-25 14:15:39
  */
 public interface WareOrderTaskService extends IService<WareOrderTaskEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 查询的时候带上条件查询.
+     *
+     * @param params
+     * @return
+     */
+    PageUtils queryPageDetails(Map<String, Object> params);
 }
 

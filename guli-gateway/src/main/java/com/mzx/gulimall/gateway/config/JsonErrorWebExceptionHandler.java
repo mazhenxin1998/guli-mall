@@ -17,10 +17,17 @@ import java.util.Map;
  */
 public class JsonErrorWebExceptionHandler extends DefaultErrorWebExceptionHandler {
 
+
+    /**
+     * 基于响应式编程风格.
+     * @param errorAttributes
+     * @return
+     */
     @Override
     protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
 
         // 将相应信息切换成JSON
+        // 方法引用.
         return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
     }
 

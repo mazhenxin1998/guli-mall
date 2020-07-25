@@ -27,18 +27,21 @@ import com.mzx.gulimall.common.utils.R;
 @RestController
 @RequestMapping("product/skuinfo")
 public class SkuInfoController {
+
+
     @Autowired
     private SkuInfoService skuInfoService;
 
     /**
-     * 列表
+     * 对SKU的查询，params里面查询参数都不带的时候查询的是全部,
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = skuInfoService.queryPage(params);
 
+        PageUtils page = skuInfoService.queryPageDetails(params);
         return R.ok().put("page", page);
     }
+
 
 
     /**

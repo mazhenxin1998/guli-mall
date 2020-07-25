@@ -11,10 +11,18 @@ import java.util.Map;
  *
  * @author ZhenXinMa
  * @email 2280480546@qq.com
- * @date 2020-07-10 18:22:49
+ * @date 2020-07-25 14:15:39
  */
 public interface WareSkuService extends IService<WareSkuEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 对商品库存的条件查询.
+     *
+     * @param params
+     * @return
+     */
+    PageUtils queryPageDetails(Map<String, Object> params);
 }
 
