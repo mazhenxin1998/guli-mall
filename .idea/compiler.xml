@@ -8,14 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="guli-coupon" />
+        <module name="guli-three-server" />
+        <module name="guli-searcher" />
+        <module name="guli-member" />
+        <module name="guli-order" />
+        <module name="guli-product" />
+        <module name="renren-fast" />
+        <module name="guli-gateway" />
         <module name="renren-generator" />
         <module name="guli-ware" />
-        <module name="renren-fast" />
-        <module name="guli-three-server" />
-        <module name="guli-order" />
-        <module name="guli-member" />
-        <module name="guli-gateway" />
-        <module name="guli-product" />
         <module name="guli-common" />
       </profile>
     </annotationProcessing>
@@ -27,6 +28,7 @@
       <module name="guli-member" target="1.8" />
       <module name="guli-order" target="1.8" />
       <module name="guli-product" target="1.8" />
+      <module name="guli-searcher" target="8" />
       <module name="guli-three-server" target="8" />
       <module name="guli-ware" target="1.8" />
       <module name="renren-fast" target="8" />

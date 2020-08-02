@@ -63,7 +63,7 @@ public class AttrGroupController {
      * @param params
      * @return
      */
-    @RequestMapping(value = "/{attrgroupId}/attr/relation")
+    @PostMapping(value = "/{attrgroupId}/attr/relation")
     public R listAttrRelation(@RequestParam Map<String, Object> params,
                               @PathVariable Long attrgroupId) {
 

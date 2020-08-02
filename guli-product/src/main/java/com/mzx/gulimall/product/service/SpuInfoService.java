@@ -34,5 +34,14 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
      * @return
      */
     PageUtils queryPageDetails(Map<String, Object> params);
+
+    /**
+     * 根据SPU的ID将该SPU的信息进行上架.
+     * <p>
+     * 而进行上架的核心就是通过SPU的ID从数据库中查出该SPU相关信息，然后组装成SkuEsModel然后保存在ES中以进行检索.
+     *
+     * @param spuId
+     */
+    void up(Long spuId);
 }
 

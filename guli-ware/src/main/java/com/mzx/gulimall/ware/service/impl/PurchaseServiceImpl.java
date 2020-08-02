@@ -9,23 +9,38 @@ import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.dao.PurchaseDao;
 import com.mzx.gulimall.ware.entity.PurchaseDetailEntity;
 import com.mzx.gulimall.ware.entity.PurchaseEntity;
+import com.mzx.gulimall.ware.entity.SkuInfoEntity;
+import com.mzx.gulimall.ware.entity.WareSkuEntity;
+import com.mzx.gulimall.ware.feign.ProductServiceFeign;
 import com.mzx.gulimall.ware.service.PurchaseDetailService;
 import com.mzx.gulimall.ware.service.PurchaseService;
+import com.mzx.gulimall.ware.service.WareSkuService;
 import com.mzx.gulimall.ware.vo.PurchaseMergeVo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-
+@Slf4j
 @Service("purchaseService")
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity> implements PurchaseService {
 
     @Autowired
     private PurchaseDetailService purchaseDetailService;
+
+    @Autowired
+    private ProductServiceFeign productServiceFeign;
+
+    @Autowired
+    private WareSkuService wareSkuService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -110,13 +125,45 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
         return R.ok();
     }
 
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public R stockSaveDetails(Long id) {
+
+        // 1. 更新采购单的状态为已经完成.
+        // 完成状态吗为4
+        PurchaseEntity entity = new PurchaseEntity();
+        entity.setId(id);
+        entity.setStatus(3);
+        baseMapper.updateById(entity);
+        // 2. 然后根据ID从数据库查询出该采购单所关联的所有采购需求.
+        List<PurchaseDetailEntity> purchaseDetailEntities = purchaseDetailService.findPurchaseDetailsByPurchaseId(id);
+        // 3. 更新库存量.
+        List<WareSkuEntity> collect = purchaseDetailEntities.stream().map(item -> {
+
+            WareSkuEntity skuEntity = new WareSkuEntity();
+            BeanUtils.copyProperties(item, skuEntity);
+            // stock skuName stockLocked(默认值即可)
+            skuEntity.setStock(item.getSkuNum());
+            // 远程调用服务,来通过SKU的ID获取到该SKU的名字.
+            SkuInfoEntity skuInfoEntity = productServiceFeign.getSkuName(item.getSkuId());
+            log.info("Feign远程调用获取SKU的详细信息: {}", skuInfoEntity.toString());
+            skuEntity.setSkuName(skuInfoEntity.getSkuName());
+            skuEntity.setStockLocked(0);
+            return skuEntity;
+        }).collect(Collectors.toList());
+
+        wareSkuService.saveBatch(collect);
+        return R.ok();
+    }
+
     private QueryWrapper<PurchaseEntity> getNewAndNotQueryWrapper(Map<String, Object> params) {
 
         QueryWrapper<PurchaseEntity> wrapper = new QueryWrapper<>();
 
         // 只查询新建状态或者已经完成的.
         // 新建的状态为0
-        wrapper.eq("status", "0").or().eq("status","1");
+        wrapper.eq("status", "0").or().eq("status", "1");
 
         return wrapper;
 

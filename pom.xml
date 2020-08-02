@@ -19,6 +19,7 @@
         <module>guli-common</module>
         <module>guli-gateway</module>
         <module>guli-three-server</module>
+        <module>guli-searcher</module>
     </modules>
 
     <name>guli-mall</name>

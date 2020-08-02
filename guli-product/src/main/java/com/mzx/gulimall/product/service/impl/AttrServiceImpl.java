@@ -1,33 +1,31 @@
 package com.mzx.gulimall.product.service.impl;
 
-import com.mzx.gulimall.product.dao.AttrAttrgroupRelationDao;
-import com.mzx.gulimall.product.dao.AttrGroupDao;
-import com.mzx.gulimall.product.dao.CategoryDao;
-import com.mzx.gulimall.product.entity.AttrAttrgroupRelationEntity;
-import com.mzx.gulimall.product.entity.AttrGroupEntity;
-import com.mzx.gulimall.product.entity.CategoryEntity;
-import com.mzx.gulimall.product.vo.AttrResponseVo;
-import com.mzx.gulimall.product.vo.AttrVo;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
-
+import com.mzx.gulimall.product.dao.AttrAttrgroupRelationDao;
 import com.mzx.gulimall.product.dao.AttrDao;
+import com.mzx.gulimall.product.dao.AttrGroupDao;
+import com.mzx.gulimall.product.dao.CategoryDao;
+import com.mzx.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import com.mzx.gulimall.product.entity.AttrEntity;
+import com.mzx.gulimall.product.entity.AttrGroupEntity;
+import com.mzx.gulimall.product.entity.CategoryEntity;
 import com.mzx.gulimall.product.service.AttrService;
+import com.mzx.gulimall.product.vo.AttrResponseVo;
+import com.mzx.gulimall.product.vo.AttrVo;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -72,6 +70,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         relationEntity.setAttrId(attrEntity.getAttrId());
         relationEntity.setAttrGroupId(attr.getAttrGroupId());
         attrAttrgroupRelationDao.insert(relationEntity);
+        // TODO 这里有问题.
     }
 
     @Override
@@ -132,7 +131,10 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 
                     Long attrGroupId = relationEntity.getAttrGroupId();
                     AttrGroupEntity attrGroupEntity = attrGroupDao.selectById(attrGroupId);
-                    attrResponseVo.setGroupName(attrGroupEntity.getAttrGroupName());
+                    if (attrGroupEntity != null && attrGroupEntity.getAttrGroupName() != null) {
+
+                        attrResponseVo.setGroupName(attrGroupEntity.getAttrGroupName());
+                    }
                 }
             }
 

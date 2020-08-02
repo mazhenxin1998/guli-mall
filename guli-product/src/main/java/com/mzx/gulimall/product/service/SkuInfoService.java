@@ -5,6 +5,7 @@ import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.product.entity.SkuInfoEntity;
 import com.mzx.gulimall.product.vo.SpuSaveVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,5 +34,21 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
      * @return
      */
     PageUtils queryPageDetails(Map<String, Object> params);
+
+    /**
+     * 通过SKU的ID获取到该SKU的名字.
+     *
+     * @param id
+     * @return
+     */
+    SkuInfoEntity getSkuName(Long id);
+
+    /**
+     * 通过SPU找出其下面的所有SKU.
+     *
+     * @param spuId
+     * @return
+     */
+    List<SkuInfoEntity> findAllBySpuId(Long spuId);
 }
 

@@ -11,6 +11,7 @@ import com.mzx.gulimall.ware.service.PurchaseDetailService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -41,6 +42,18 @@ public class PurchaseDetailServiceImpl extends ServiceImpl<PurchaseDetailDao, Pu
         pageUtils.setTotalCount(count);
 
         return pageUtils;
+    }
+
+    @Override
+    public List<PurchaseDetailEntity> findPurchaseDetailsByPurchaseId(Long id) {
+
+        if (id > 0) {
+
+            return baseMapper.selectList(
+                    new QueryWrapper<PurchaseDetailEntity>().eq("purchase_id", id));
+        }
+
+        return null;
     }
 
 

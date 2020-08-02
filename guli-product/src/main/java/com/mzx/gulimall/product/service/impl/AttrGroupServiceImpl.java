@@ -1,36 +1,34 @@
 package com.mzx.gulimall.product.service.impl;
 
-import com.mzx.gulimall.common.utils.R;
-import com.mzx.gulimall.product.dao.AttrAttrgroupRelationDao;
-import com.mzx.gulimall.product.dao.AttrDao;
-import com.mzx.gulimall.product.entity.AttrAttrgroupRelationEntity;
-import com.mzx.gulimall.product.entity.AttrEntity;
-import com.mzx.gulimall.product.exception.AttrErrorCode;
-import com.mzx.gulimall.product.exception.CustomException;
-import com.mzx.gulimall.product.service.AttrAttrgroupRelationService;
-import com.mzx.gulimall.product.service.AttrService;
-import com.mzx.gulimall.product.valid.AttrGroupRelation;
-import com.mzx.gulimall.product.vo.AttrGroupWithAttrVo;
-import com.mzx.gulimall.product.vo.AttrRelationVo;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
-
+import com.mzx.gulimall.common.utils.R;
+import com.mzx.gulimall.product.dao.AttrAttrgroupRelationDao;
+import com.mzx.gulimall.product.dao.AttrDao;
 import com.mzx.gulimall.product.dao.AttrGroupDao;
+import com.mzx.gulimall.product.entity.AttrAttrgroupRelationEntity;
+import com.mzx.gulimall.product.entity.AttrEntity;
 import com.mzx.gulimall.product.entity.AttrGroupEntity;
+import com.mzx.gulimall.product.exception.AttrErrorCode;
+import com.mzx.gulimall.product.exception.CustomException;
+import com.mzx.gulimall.product.service.AttrAttrgroupRelationService;
 import com.mzx.gulimall.product.service.AttrGroupService;
+import com.mzx.gulimall.product.service.AttrService;
+import com.mzx.gulimall.product.vo.AttrGroupWithAttrVo;
+import com.mzx.gulimall.product.vo.AttrRelationVo;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 
 @Service("attrGroupService")
@@ -101,7 +99,6 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     @Override
     public R queryAttrDetail(Map<String, Object> params, Long attrgroupId) {
 
-
         if (attrgroupId <= 0) {
 
             // 表示参数错误抛出异常即可.
@@ -121,8 +118,17 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         Long catelogId = attrGroupEntity.getCatelogId();
         // 当前分组只能关联到别的分组中没有引用到的属性.
         // 1. 当前分类下的其他分组. 这里应该从attr属性表中查询 不是attrGroup属性表中查询.
-        List<AttrGroupEntity> groupEntities = baseMapper.selectList(new QueryWrapper<AttrGroupEntity>()
-                .eq("catelog_id", catelogId).ne("attr_group_id", attrgroupId));
+        QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<>();
+        wrapper.and(w -> {
+
+            w.eq("catelog_id", catelogId);
+        });
+        wrapper.and(w -> {
+
+            w.ne("attr_group_id", attrgroupId);
+        });
+
+        List<AttrGroupEntity> groupEntities = baseMapper.selectList(wrapper);
         // 2. 这些分组关联的属性. 增加和删除 这里用LinkedList和ArrayList都差不多吧.
         // 返回的属性就是该分类下所有分组所关联的属性.
         List<List<AttrEntity>> attrEntities = groupEntities.stream().map(item -> {
@@ -131,8 +137,9 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             // 现在我要将该分组下的所有属性查询出来.
             // 通过分组ID查询出该分组关联的所有属性.
             // 一个分组ID对应着多个属性.
-            List<AttrAttrgroupRelationEntity> attrgroupRelationEntities = attrAttrgroupRelationDao.selectList(new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_group_id",
-                    item.getAttrGroupId()));
+            List<AttrAttrgroupRelationEntity> attrgroupRelationEntities = attrAttrgroupRelationDao.selectList(
+                    new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_group_id",
+                            item.getAttrGroupId()));
             // attrgroupRelationEntities 集合里面包含的就是item分组所关联的属性ID.
             // 返回的一个entities表示的是一个分组下的相关属性.
             List<AttrEntity> entities = attrgroupRelationEntities.stream().map(obj -> {
@@ -140,13 +147,17 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
                 // 从中间表中获取到属性ID.
                 // 这里的属性表示的是中间表的数据.
                 Long attrId = obj.getAttrId();
+                // 这里需要对查询条件进行增加： 就是这里查询到的都是规格参数属性.
+                // 0是销售属性.
+//                return attrDao.selectOne(
+//                        new QueryWrapper<AttrEntity>().eq("attr_id", attrId).eq("attr_type", 1));
                 AttrEntity entity = attrDao.selectById(attrId);
                 return entity;
             }).collect(Collectors.toList());
 
             return entities;
-
         }).collect(Collectors.toList());
+
         // 3. 从当前分类属性中移除这些属性.
         // 通过分类ID查出该分类下的所有属性，然后将上面查出的属性进行过滤.
         List<AttrEntity> attrs = attrDao.selectList(new QueryWrapper<AttrEntity>().eq("catelog_id", catelogId));
@@ -258,11 +269,11 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         // 查询该属性组下所关联的所有属性进行展示.
 
         // 查询该分类下所有属性的ID.
-        List<AttrAttrgroupRelationEntity> attrId = attrAttrgroupRelationDao.selectList(new QueryWrapper<AttrAttrgroupRelationEntity>().
-                eq("attr_group_id", attrgroupId));
-
+        // 这里查询的是规格参数 销售属性是0
+        List<AttrAttrgroupRelationEntity> attrId = attrAttrgroupRelationDao.selectList(
+                new QueryWrapper<AttrAttrgroupRelationEntity>().
+                        eq("attr_group_id", attrgroupId));
         System.out.println("该分组下的属性集合1: " + attrId.toString());
-
         List<Long> attrIds = attrId.stream().map(item -> {
 
             return item.getAttrId();
@@ -270,6 +281,10 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         System.out.println("该分组下属性ID的集合: " + attrIds.toString());
         // 前提是attrIds 不为空
         QueryWrapper<AttrEntity> queryWrapper1 = new QueryWrapper<AttrEntity>();
+        queryWrapper1.and(w -> {
+
+            w.eq("attr_type", 1);
+        });
 
         if (attrIds != null && attrIds.size() > 0) {
 
@@ -342,13 +357,33 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
                 Long attrId = obj.getAttrId();
                 AttrEntity attrEntity = attrDao.selectById(attrId);
-                return attrEntity;
+                if (attrEntity != null) {
+                    return attrEntity;
+                }
+                return null;
             }).collect(Collectors.toList());
 
-            vo.setAttrs(attrEntities);
+            ArrayList<AttrEntity> arrayList = new ArrayList<>();
+            relationEntities.forEach(obj -> {
+
+                if (obj.getAttrId() != null) {
+
+                    AttrEntity attrEntity = attrDao.selectById(obj.getAttrId());
+                    if (attrEntity != null) {
+
+                        arrayList.add(attrEntity);
+                    }
+                }
+
+            });
+
+
+            vo.setAttrs(arrayList);
             return vo;
 
         }).collect(Collectors.toList());
+
+        System.out.println("1");
 
         return response;
     }

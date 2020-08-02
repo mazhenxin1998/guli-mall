@@ -7,12 +7,14 @@ import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.product.dao.SpuInfoDao;
-import com.mzx.gulimall.product.entity.SmsSpuBoundsEntity;
-import com.mzx.gulimall.product.entity.SpuInfoEntity;
+import com.mzx.gulimall.product.entity.*;
 import com.mzx.gulimall.product.feign.ICouponServiceFeign;
+import com.mzx.gulimall.product.feign.ISearchServiceFeign;
+import com.mzx.gulimall.product.feign.IWareServiceFeign;
 import com.mzx.gulimall.product.service.*;
 import com.mzx.gulimall.product.vo.Bounds;
 import com.mzx.gulimall.product.vo.SpuSaveVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +23,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-
+@Slf4j
 @Service("spuInfoService")
 public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> implements SpuInfoService {
 
@@ -42,6 +46,18 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @Autowired
     private SkuImagesService skuImagesService;
+
+    @Autowired
+    private IWareServiceFeign iWareServiceFeign;
+
+    @Autowired
+    private BrandService brandService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private ISearchServiceFeign iSearchServiceFeign;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -72,13 +88,13 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         // 就是第一步里面的金币和成长值.
         // 5. 跨服务保存SPU的积分信，就是Bounds的信息进行保存.
         this.saveSpuBounds(spuId, vo);
-
         // 6. 保存当前spu对应的所有SKU信息
         // 6.1 sku的基本信息  pms_sku_info
         skuInfoService.saveSkuBaseInfo(spuId, vo);
         // 6.2 sku的图片信息  pms_sku_images
         // 再上一步就完成了.
         // 6.3 sku的销售属性   pms_sku_salel_attr_value
+        // 规格属性保存了吗？
         // 上上一步就完成了.
         // 6.4 sku的优惠券 满减等信息  跨服务进行保存.
         // 积分和优惠券需要跨服务进行保存.
@@ -107,6 +123,65 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         pageUtils.setTotalCount(count);
 
         return pageUtils;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void up(Long spuId) {
+
+        /*SPU上架.*/
+        // ES索引库中每一行就是一个SKU.
+        // TODO 在写这个项目的时候查询不用根据规格参数进行查询,但是EsModel暂时没有删除List属性，先就暂时存着吧.
+        SpuInfoEntity spuInfoEntity = baseMapper.selectById(spuId);
+        List<SkuInfoEntity> skus = skuInfoService.findAllBySpuId(spuId);
+        List<SkuEsModel> esModels = skus.stream().map(sku -> {
+
+            SkuEsModel model = new SkuEsModel();
+            model.setSpuId(spuId);
+            model.setSpuName(spuInfoEntity.getSpuName());
+            model.setSkuId(sku.getSkuId());
+            model.setSkuTitle(sku.getSkuTitle());
+            model.setSkuPrice(sku.getPrice());
+            model.setSkuImg(sku.getSkuDefaultImg());
+            // 刚上架默认为0.
+            model.setSaleCount(0L);
+            // 当前仓库是否还有货.
+            model.setHasStock(iWareServiceFeign.getStock(sku.getSkuId()));
+            model.setHotScore(99L);
+
+            // 查询品牌ID,品牌名字，品牌图片，
+            BrandEntity brandEntity = brandService.getById(sku.getBrandId());
+            model.setBrandId(sku.getBrandId());
+            model.setBrandName(brandEntity.getName());
+            model.setBrandImg(brandEntity.getLogo());
+
+            // 设置分类ID，分类名字.
+            CategoryEntity categoryEntity = categoryService.getById(sku.getCatalogId());
+            model.setCatalogId(sku.getCatalogId());
+            model.setCatalogName(categoryEntity.getName());
+
+            return model;
+        }).collect(Collectors.toList());
+
+        // 将esModels调用远程search服务保存至ES服务中.
+        R r = iSearchServiceFeign.saveProduct(esModels);
+        // 远程调用ES服务成功之后才修改状态码.
+        if (r.getCode() == 0) {
+
+            // 说明调用ES服务成功增加了.
+            // 保存之后,还需要修改数据库SPU的发布状态
+            log.info("成功从ES服务中返回...");
+            SpuInfoEntity infoEntity = new SpuInfoEntity();
+            infoEntity.setId(spuId);
+            // 将其设置为发布状态.
+            infoEntity.setPublishStatus(1);
+            baseMapper.updateById(infoEntity);
+            log.info("商品SPU{}上架成功", spuId);
+        } else {
+
+            log.error("SPU{} 上架失败由于调用ES服务出现错误", spuId);
+        }
+
     }
 
 

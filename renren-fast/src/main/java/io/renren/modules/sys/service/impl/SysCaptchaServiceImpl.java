@@ -31,6 +31,10 @@ import java.util.Date;
  */
 @Service("sysCaptchaService")
 public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptchaEntity> implements SysCaptchaService {
+
+    /**
+     * 谷歌.
+     */
     @Autowired
     private Producer producer;
 

@@ -40,5 +40,12 @@ public interface PurchaseService extends IService<PurchaseEntity> {
      * @return
      */
     R saveMerge(PurchaseMergeVo vo);
+
+    /**
+     * 采购人员完成采购.
+     * @param id
+     * @return
+     */
+    R stockSaveDetails(Long id);
 }
 

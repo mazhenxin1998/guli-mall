@@ -65,7 +65,6 @@ public class PurchaseController {
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
         PurchaseEntity purchase = purchaseService.getById(id);
-
         return R.ok().put("purchase", purchase);
     }
 
@@ -80,6 +79,12 @@ public class PurchaseController {
         purchaseService.save(purchase);
 
         return R.ok();
+    }
+
+    @GetMapping(value = "/stock/save/{id}")
+    public R stockSave(@PathVariable Long id) {
+
+        return  purchaseService.stockSaveDetails(id);
     }
 
     /**

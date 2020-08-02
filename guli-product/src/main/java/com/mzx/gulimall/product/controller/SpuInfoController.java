@@ -22,6 +22,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("product/spuinfo")
 public class SpuInfoController {
+
     @Autowired
     private SpuInfoService spuInfoService;
 
@@ -47,7 +48,22 @@ public class SpuInfoController {
     }
 
     /**
-     * 保存
+     * 根据上传进来的SPU的ID进行商品发布.
+     *
+     * @param spuId
+     * @return
+     */
+    @PostMapping(value = "/{spuId}/up")
+    public R up(@PathVariable Long spuId) {
+
+        System.out.println("要上架的商品的ID: " + spuId);
+        spuInfoService.up(spuId);
+
+        return R.ok();
+    }
+
+    /**
+     * SPU新增.
      */
     @RequestMapping("/save")
     public R save(@RequestBody SpuSaveVo vo) {

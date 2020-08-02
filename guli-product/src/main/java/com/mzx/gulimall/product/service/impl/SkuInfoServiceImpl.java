@@ -165,6 +165,22 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         return pageUtils;
     }
 
+    @Override
+    public SkuInfoEntity getSkuName(Long id) {
+
+        SkuInfoEntity entity = baseMapper.selectById(id);
+        return entity;
+    }
+
+    @Override
+    public List<SkuInfoEntity> findAllBySpuId(Long spuId) {
+
+        List<SkuInfoEntity> infoEntityList = baseMapper.selectList(
+                new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId));
+
+        return infoEntityList;
+    }
+
     private QueryWrapper<SkuInfoEntity> getWrapper(Map<String, Object> params) {
 
         /*

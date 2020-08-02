@@ -24,5 +24,13 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * @return
      */
     PageUtils queryPageDetails(Map<String, Object> params);
+
+    /**
+     * 根据指定的SKUID查询出该ID是否有存货.
+     *
+     * @param skuId
+     * @return
+     */
+    boolean getStock(Long skuId);
 }
 

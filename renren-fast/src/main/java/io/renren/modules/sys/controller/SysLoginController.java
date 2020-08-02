@@ -57,6 +57,7 @@ public class SysLoginController extends AbstractController {
 		BufferedImage image = sysCaptchaService.getCaptcha(uuid);
 
 		ServletOutputStream out = response.getOutputStream();
+		// 将整个页面作业输出流进行显示.
 		ImageIO.write(image, "jpg", out);
 		IOUtils.closeQuietly(out);
 	}

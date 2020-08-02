@@ -55,4 +55,7 @@ public interface ICouponServiceFeign {
     R saveSkuLadder(@RequestBody SmsSkuLadderEntity smsSkuLadderEntity);
 
 
+    @RequestMapping(value = "/test/t1")
+    String t1();
+
 }
