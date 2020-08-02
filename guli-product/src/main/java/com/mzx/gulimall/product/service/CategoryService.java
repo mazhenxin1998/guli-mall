@@ -3,6 +3,7 @@ package com.mzx.gulimall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.product.entity.CategoryEntity;
+import com.mzx.gulimall.product.vo.web.Catalog2Vo;
 
 import java.util.List;
 import java.util.Map;
@@ -45,5 +46,19 @@ public interface CategoryService extends IService<CategoryEntity> {
      * @param category
      */
     void updateDetail(CategoryEntity category);
+
+    /**
+     * 返回值以一级分类的ID作为Key，其子分类作为其Key的值.
+     *
+     * @return
+     */
+    Map<String, List<Catalog2Vo>> findAllCatagory();
+
+    /**
+     * 查询出所有的以及分类.
+     *
+     * @return
+     */
+    List<CategoryEntity> findOneCategoryList();
 }
 

@@ -11,11 +11,11 @@
         <module name="guli-three-server" />
         <module name="guli-searcher" />
         <module name="guli-member" />
+        <module name="renren-generator" />
         <module name="guli-order" />
-        <module name="guli-product" />
         <module name="renren-fast" />
         <module name="guli-gateway" />
-        <module name="renren-generator" />
+        <module name="guli-product" />
         <module name="guli-ware" />
         <module name="guli-common" />
       </profile>
@@ -28,11 +28,11 @@
       <module name="guli-member" target="1.8" />
       <module name="guli-order" target="1.8" />
       <module name="guli-product" target="1.8" />
-      <module name="guli-searcher" target="8" />
-      <module name="guli-three-server" target="8" />
+      <module name="guli-searcher" target="1.5" />
+      <module name="guli-three-server" target="1.5" />
       <module name="guli-ware" target="1.8" />
-      <module name="renren-fast" target="8" />
-      <module name="renren-generator" target="8" />
+      <module name="renren-fast" target="1.5" />
+      <module name="renren-generator" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

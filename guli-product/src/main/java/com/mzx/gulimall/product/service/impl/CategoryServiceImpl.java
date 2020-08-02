@@ -1,27 +1,27 @@
 package com.mzx.gulimall.product.service.impl;
 
-import com.mzx.gulimall.product.dao.CategoryBrandRelationDao;
-import com.mzx.gulimall.product.entity.CategoryBrandRelationEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
-
+import com.mzx.gulimall.product.dao.CategoryBrandRelationDao;
 import com.mzx.gulimall.product.dao.CategoryDao;
+import com.mzx.gulimall.product.entity.CategoryBrandRelationEntity;
 import com.mzx.gulimall.product.entity.CategoryEntity;
 import com.mzx.gulimall.product.service.CategoryService;
+import com.mzx.gulimall.product.vo.web.Catalog2Vo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 
 @Service("categoryService")
@@ -89,7 +89,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void updateDetail(CategoryEntity category) {
 
         String categoryName = category.getName();
@@ -108,6 +108,69 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             baseMapper.updateById(category);
         }
 
+    }
+
+    @Override
+    public Map<String, List<Catalog2Vo>> findAllCatagory() {
+
+        /*
+         * --------------------------------------------------------
+         * 为了节省查询分类的时间,那么一次性从数据库查出所有的数据，通过JAVA，
+         * 来组装要返回的Map.
+         * --------------------------------------------------------
+         * */
+
+        //查询出的所有分类.
+        List<CategoryEntity> categoryEntities = baseMapper.selectList(null);
+        Map<String, List<Catalog2Vo>> models = new ConcurrentHashMap<>();
+        List<Catalog2Vo> list = new ArrayList<>();
+        categoryEntities.forEach(item -> {
+
+            // 遍历每一个分类,如果该分类是一级分类则
+            if (item.getParentCid() == 0) {
+
+                // 如果父分类ID是0 则表示该分类是一级分类.
+                // 再次进行遍历吗？
+                List<Catalog2Vo> catalog2Vos = new ArrayList<>();
+                categoryEntities.forEach(obj -> {
+
+                    if (obj.getParentCid().equals(item.getCatId())) {
+
+                        Catalog2Vo catalog2Vo = new Catalog2Vo(
+                                item.getCatId().toString(), null, obj.getCatId().toString(), obj.getName());
+                        List<Catalog2Vo.Catalog3Vo> catalog3Vos = new ArrayList<>();
+                        categoryEntities.forEach(o -> {
+
+                            if (o.getParentCid().equals(obj.getCatId())) {
+
+                                // 这里封装每一个二级分类的所有子分类.
+                                Catalog2Vo.Catalog3Vo catalog3Vo = new Catalog2Vo.Catalog3Vo(
+                                        obj.getCatId().toString(), o.getCatId().toString(), o.getName());
+                                catalog3Vos.add(catalog3Vo);
+
+                            }
+
+                        });
+
+                        // 这里为catalog2Vo设置List的值.
+                        catalog2Vo.setCatalog3List(catalog3Vos);
+                        catalog2Vos.add(catalog2Vo);
+                    }
+
+                });
+
+                models.put(item.getCatId().toString(), catalog2Vos);
+            }
+
+        });
+
+        return models;
+    }
+
+    @Override
+    public List<CategoryEntity> findOneCategoryList() {
+
+        return baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", "0"));
     }
 
     private List<CategoryEntity> getChildren(CategoryEntity root, List<CategoryEntity> all) {

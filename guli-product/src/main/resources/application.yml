@@ -49,6 +49,8 @@ spring:
 #        port: 8719
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
 management:
   endpoints:
     web:
