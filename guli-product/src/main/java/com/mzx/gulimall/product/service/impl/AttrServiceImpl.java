@@ -9,11 +9,9 @@ import com.mzx.gulimall.product.dao.AttrAttrgroupRelationDao;
 import com.mzx.gulimall.product.dao.AttrDao;
 import com.mzx.gulimall.product.dao.AttrGroupDao;
 import com.mzx.gulimall.product.dao.CategoryDao;
-import com.mzx.gulimall.product.entity.AttrAttrgroupRelationEntity;
-import com.mzx.gulimall.product.entity.AttrEntity;
-import com.mzx.gulimall.product.entity.AttrGroupEntity;
-import com.mzx.gulimall.product.entity.CategoryEntity;
+import com.mzx.gulimall.product.entity.*;
 import com.mzx.gulimall.product.service.AttrService;
+import com.mzx.gulimall.product.vo.Attr;
 import com.mzx.gulimall.product.vo.AttrResponseVo;
 import com.mzx.gulimall.product.vo.AttrVo;
 import org.springframework.beans.BeanUtils;
@@ -214,6 +212,13 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         pageUtils.setTotalCount(count);
         pageUtils.setList(attrResponseVos);
         return pageUtils;
+    }
+
+    @Override
+    public List<Attr> findAttrsByCatalogId(Long catalogId) {
+
+        List<Attr> list = baseMapper.findAttrsByCatalogId(catalogId);
+        return list;
     }
 
 }

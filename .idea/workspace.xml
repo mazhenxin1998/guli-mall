@@ -86,6 +86,83 @@
       <change afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/exception/ResultCode.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/utils/ExceptionUtils.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/src/main/resources/bootstrap.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/SpringApplicationProductApp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/AttrAttrgroupRelationController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/AttrController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/AttrGroupController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/BrandController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/CategoryBrandRelationController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/CategoryController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/CommentReplayController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/ProductAttrValueController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/SkuImagesController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/SkuInfoController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/SkuSaleAttrValueController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/SpuCommentController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/SpuImagesController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/SpuInfoController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/SpuInfoDescController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/AttrAttrgroupRelationDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/AttrDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/AttrGroupDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/BrandDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/CategoryBrandRelationDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/CategoryDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/CommentReplayDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/ProductAttrValueDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/SkuImagesDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/SkuInfoDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/SkuSaleAttrValueDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/SpuCommentDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/SpuImagesDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/SpuInfoDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/SpuInfoDescDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/AttrAttrgroupRelationEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/AttrEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/AttrGroupEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/BrandEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/CategoryBrandRelationEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/CategoryEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/CommentReplayEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/ProductAttrValueEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/SkuImagesEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/SkuInfoEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/SkuSaleAttrValueEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/SpuCommentEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/SpuImagesEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/SpuInfoDescEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/entity/SpuInfoEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/AttrAttrgroupRelationService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/AttrGroupService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/AttrService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/BrandService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/CategoryBrandRelationService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/CategoryService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/CommentReplayService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/ProductAttrValueService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SkuImagesService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SkuInfoService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SkuSaleAttrValueService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SpuCommentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SpuImagesService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SpuInfoDescService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SpuInfoService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrAttrgroupRelationServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrGroupServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/BrandServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/CategoryBrandRelationServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/CategoryServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/CommentReplayServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/ProductAttrValueServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SkuImagesServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SkuInfoServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SkuSaleAttrValueServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SpuCommentServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SpuImagesServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SpuInfoDescServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SpuInfoServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/AttrAttrgroupRelationDao.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/AttrDao.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/AttrGroupDao.xml" afterDir="false" />
@@ -101,6 +178,7 @@
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/SpuImagesDao.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/SpuInfoDao.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/SpuInfoDescDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/test-classes/com/mzx/gulimall/product/server/BrandServiceTest.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-ware/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-ware/src/test/java/com/mzx/AppTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
@@ -269,17 +347,46 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/R.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/R.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/SpringApplicationGuliCommonApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/exception/RRException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/Constant$CloudService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/Constant$MenuType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/Constant$ScheduleStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/Constant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/PageUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/Query.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/utils/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/xss/HTMLFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/xss/SQLFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-gateway/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-product/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/SpringApplicationProductApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/SpringApplicationProductApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/dao/AttrDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/dao/AttrDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/AttrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/AttrService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/AttrServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/AttrServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/SpuInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/SpuInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/web/WebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/web/WebController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/resources/mapper/product/AttrDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/resources/mapper/product/AttrDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/test/java/com/mzx/gulimall/product/server/BrandServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/test/java/com/mzx/gulimall/product/server/BrandServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-product/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/CategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/SpringApplicationProductApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/SpringApplicationProductApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/AttrDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/dao/AttrDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/AttrService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/AttrService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/CategoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/CategoryServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SpuInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/SpuInfoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/WebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/WebController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/AttrDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/mapper/product/AttrDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/test-classes/com/mzx/gulimall/product/server/BrandServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/test-classes/com/mzx/gulimall/product/server/BrandServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-searcher/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-searcher/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-searcher/src/test/java/com/mzx/gulimall/search/es/ElasticSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-searcher/src/test/java/com/mzx/gulimall/search/es/ElasticSearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-searcher/target/classes/com/mzx/gulimall/search/controller/SearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-searcher/target/classes/com/mzx/gulimall/search/controller/SearchController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-searcher/target/classes/com/mzx/gulimall/search/service/ISearchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-searcher/target/classes/com/mzx/gulimall/search/service/ISearchService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-searcher/target/classes/com/mzx/gulimall/search/service/impl/SearchServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-searcher/target/classes/com/mzx/gulimall/search/service/impl/SearchServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-searcher/target/test-classes/com/mzx/gulimall/search/es/ElasticSearchTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-searcher/target/test-classes/com/mzx/gulimall/search/es/ElasticSearchTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,7 +456,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SpringBoot/myboot07" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../XueChengZaiXian" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -386,7 +493,7 @@
     <treeState>
       <expand>
         <path>
-          <item name="Found 351 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="Found 361 services " type="fcff1e1b:RestServiceStructure$RootNode" />
         </path>
       </expand>
       <select />
@@ -399,34 +506,47 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringApplicationProductApp">
-    <configuration name="ElasticSearchTest.add" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="guli-searcher" />
+  <component name="RunManager" selected="Spring Boot.GuliMallSearchApplication">
+    <configuration name="CachingTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.product.web.CachingTest" />
+      <module name="guli-product" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.mzx.gulimall.search.es.*" />
+          <option name="PATTERN" value="com.mzx.gulimall.product.web.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.mzx.gulimall.search.es" />
-      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.search.es.ElasticSearchTest" />
-      <option name="METHOD_NAME" value="add" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AttrDaoTest.t1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="guli-product" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mzx.gulimall.product.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mzx.gulimall.product.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.product.dao.AttrDaoTest" />
+      <option name="METHOD_NAME" value="t1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElasticSearchTest.update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="guli-searcher" />
+    <configuration name="RedissonTest.t3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="guli-product" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.mzx.gulimall.search.es.*" />
+          <option name="PATTERN" value="com.mzx.gulimall.product.redisson.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.mzx.gulimall.search.es" />
-      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.search.es.ElasticSearchTest" />
-      <option name="METHOD_NAME" value="update" />
+      <option name="PACKAGE_NAME" value="com.mzx.gulimall.product.redisson" />
+      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.product.redisson.RedissonTest" />
+      <option name="METHOD_NAME" value="t3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -465,14 +585,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GuliMallWareApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="GuliMallWareApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="guli-ware" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.mzx.gulimall.ware.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.ware.GuliMallWareApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -524,25 +638,26 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ElasticSearchTest.update" />
-      <item itemvalue="JUnit.ElasticSearchTest.add" />
+      <item itemvalue="Application.CachingTest" />
+      <item itemvalue="JUnit.RedissonTest.t3" />
+      <item itemvalue="JUnit.AttrDaoTest.t1" />
       <item itemvalue="Spring Boot.RenrenApplication" />
       <item itemvalue="Spring Boot.SpringApplicationCouponApp" />
       <item itemvalue="Spring Boot.SpringApplicationMemberApp" />
       <item itemvalue="Spring Boot.SpringApplicationOrderApp" />
       <item itemvalue="Spring Boot.SpringApplicationProductApp" />
       <item itemvalue="Spring Boot.GuliMallThreeServerApplication" />
-      <item itemvalue="Spring Boot.GuliMallGatewayApplicationApp" />
       <item itemvalue="Spring Boot.GuliMallWareApplication" />
       <item itemvalue="Spring Boot.GuliMallSearchApplication" />
+      <item itemvalue="Spring Boot.GuliMallGatewayApplicationApp" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GuliMallSearchApplication" />
-        <item itemvalue="Spring Boot.GuliMallWareApplication" />
         <item itemvalue="Spring Boot.GuliMallGatewayApplicationApp" />
-        <item itemvalue="JUnit.ElasticSearchTest.add" />
-        <item itemvalue="JUnit.ElasticSearchTest.update" />
+        <item itemvalue="JUnit.AttrDaoTest.t1" />
+        <item itemvalue="Application.CachingTest" />
+        <item itemvalue="JUnit.RedissonTest.t3" />
       </list>
     </recent_temporary>
   </component>
@@ -639,7 +754,20 @@
       <workItem from="1596170312231" duration="12900000" />
       <workItem from="1596200980771" duration="602000" />
       <workItem from="1596258968889" duration="11470000" />
-      <workItem from="1596342160816" duration="9026000" />
+      <workItem from="1596342160816" duration="9773000" />
+      <workItem from="1596429886893" duration="1189000" />
+      <workItem from="1596514086364" duration="2314000" />
+      <workItem from="1596601687732" duration="14966000" />
+      <workItem from="1596688978663" duration="6954000" />
+      <workItem from="1596710242890" duration="5857000" />
+      <workItem from="1596772913938" duration="17386000" />
+      <workItem from="1596950790835" duration="5114000" />
+      <workItem from="1597036269013" duration="2302000" />
+      <workItem from="1597039564266" duration="2239000" />
+      <workItem from="1597124858646" duration="12975000" />
+      <workItem from="1597206628623" duration="9210000" />
+      <workItem from="1597224415793" duration="9153000" />
+      <workItem from="1597236981132" duration="584000" />
     </task>
     <servers />
   </component>
@@ -655,14 +783,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="76" key="#Notifications/0.0.1536.834@0.0.1536.834" timestamp="1595224486821" />
-    <state x="223" y="72" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596352788425">
+    <state x="296" y="0" width="957" height="834" key="#SpringApplicationProductApp_(1)" timestamp="1596690515652">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="223" y="72" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1596352788425" />
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1596270124919">
+    <state x="296" y="0" width="957" height="834" key="#SpringApplicationProductApp_(1)/0.0.1536.834@0.0.1536.834" timestamp="1596690515652" />
+    <state x="296" y="0" width="957" height="834" key="#SpringApplicationProductApp_-1_(1)" timestamp="1596690529987">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1596270124919" />
+    <state x="296" y="0" width="957" height="834" key="#SpringApplicationProductApp_-1_(1)/0.0.1536.834@0.0.1536.834" timestamp="1596690529987" />
+    <state x="223" y="72" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597234460144">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="223" y="72" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1597234460144" />
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1597222893085">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1597222893085" />
     <state x="346" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1594369989614">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -679,62 +815,62 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="256" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1595408932332" />
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594358457883">
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597040073988">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1594358457883" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1596345526828">
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1597040073988" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1597237249557">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1596345526828" />
-    <state width="1088" height="339" key="GridCell.Tab.0.bottom" timestamp="1596353962436">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1597237249557" />
+    <state width="1088" height="371" key="GridCell.Tab.0.bottom" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.0.center" timestamp="1596353962436">
+    <state width="1088" height="371" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="371" key="GridCell.Tab.0.center" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.0.left" timestamp="1596353962436">
+    <state width="1088" height="371" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="371" key="GridCell.Tab.0.left" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.0.right" timestamp="1596353962436">
+    <state width="1088" height="371" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="371" key="GridCell.Tab.0.right" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.1.bottom" timestamp="1596353962436">
+    <state width="1088" height="371" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="371" key="GridCell.Tab.1.bottom" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.1.center" timestamp="1596353962436">
+    <state width="1088" height="371" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="371" key="GridCell.Tab.1.center" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.1.left" timestamp="1596353962436">
+    <state width="1088" height="371" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="371" key="GridCell.Tab.1.left" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.1.right" timestamp="1596353962436">
+    <state width="1088" height="371" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="371" key="GridCell.Tab.1.right" timestamp="1597237232440">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1596353962436" />
-    <state width="1088" height="339" key="GridCell.Tab.2.bottom" timestamp="1596187267089">
+    <state width="1088" height="371" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1597237232440" />
+    <state width="1088" height="293" key="GridCell.Tab.2.bottom" timestamp="1596695181159">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1596187267089" />
-    <state width="1088" height="339" key="GridCell.Tab.2.center" timestamp="1596187267089">
+    <state width="1088" height="293" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1596695181159" />
+    <state width="1088" height="293" key="GridCell.Tab.2.center" timestamp="1596695181159">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1596187267089" />
-    <state width="1088" height="339" key="GridCell.Tab.2.left" timestamp="1596187267089">
+    <state width="1088" height="293" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1596695181159" />
+    <state width="1088" height="293" key="GridCell.Tab.2.left" timestamp="1596695181159">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1596187267089" />
-    <state width="1088" height="339" key="GridCell.Tab.2.right" timestamp="1596187267089">
+    <state width="1088" height="293" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1596695181159" />
+    <state width="1088" height="293" key="GridCell.Tab.2.right" timestamp="1596695181159">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1088" height="339" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1596187267089" />
+    <state width="1088" height="293" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1596695181159" />
     <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1596345206561">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -743,10 +879,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="429" y="121" key="NewModule_or_Project.wizard/0.0.1536.834@0.0.1536.834" timestamp="1594298602109" />
-    <state x="291" y="0" key="SettingsEditor" timestamp="1596345716281">
+    <state x="341" y="0" key="SettingsEditor" timestamp="1597237565920">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="291" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1596345716281" />
+    <state x="341" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1597237565920" />
+    <state width="1482" height="832" key="com.intellij.byteCodeViewer.ShowByteCodeAction" timestamp="1597037995268">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1482" height="832" key="com.intellij.byteCodeViewer.ShowByteCodeAction/0.0.1536.834@0.0.1536.834" timestamp="1597037995268" />
     <state x="563" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594287624222">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -759,9 +899,25 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="511" y="45" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1594903239674" />
-    <state x="430" y="215" width="672" height="817" key="search.everywhere.popup" timestamp="1596344811096">
+    <state x="430" y="215" width="672" height="817" key="search.everywhere.popup" timestamp="1597225716187">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="430" y="215" width="672" height="817" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1596344811096" />
+    <state x="430" y="215" width="672" height="817" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1597225716187" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/guli-product/src/test/java/com/mzx/gulimall/product/server/BrandServiceTest.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/guli_mall$RedissonTest_t3.ic" NAME="RedissonTest.t3 Coverage Results" MODIFIED="1597036851034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.mzx.gulimall.product.redisson.*</FILTER>
+    </SUITE>
   </component>
 </project>

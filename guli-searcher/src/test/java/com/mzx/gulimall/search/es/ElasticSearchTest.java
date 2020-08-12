@@ -92,7 +92,7 @@ public class ElasticSearchTest {
     @Test
     public void get(){
 
-        GetRequest request = new GetRequest("gulimall", "1");
+        GetRequest request = new GetRequest("gulimall","", "1");
         try {
 
             GetResponse response = client.get(request, RequestOptions.DEFAULT);

@@ -12,6 +12,11 @@ spring:
         server-addr: 192.144.198.148:8848
     gateway:
       routes:
+        # 测试
+        - id: nacos-test
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/product/**
         # 配置商品服务系统.
         - id: nacos-gulimall-product
           uri: lb://gulimall-product

@@ -12,6 +12,7 @@ import com.mzx.gulimall.product.feign.ICouponServiceFeign;
 import com.mzx.gulimall.product.feign.ISearchServiceFeign;
 import com.mzx.gulimall.product.feign.IWareServiceFeign;
 import com.mzx.gulimall.product.service.*;
+import com.mzx.gulimall.product.vo.Attr;
 import com.mzx.gulimall.product.vo.Bounds;
 import com.mzx.gulimall.product.vo.SpuSaveVo;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +60,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @Autowired
     private ISearchServiceFeign iSearchServiceFeign;
+
+    @Autowired
+    private AttrService attrService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -155,6 +160,13 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             model.setBrandName(brandEntity.getName());
             model.setBrandImg(brandEntity.getLogo());
 
+            // 这里就没有保存Attr属性.
+            // TODO: 通过分类ID查询出该分类下所关联的所有属性.
+            Long catalogId = sku.getCatalogId();
+            List<Attr> attrs = attrService.findAttrsByCatalogId(catalogId);
+            List<SkuEsModel.Attrs> attrsList = new ArrayList<>();
+            BeanUtils.copyProperties(attrs, attrsList);
+            model.setAttrs(attrsList);
             // 设置分类ID，分类名字.
             CategoryEntity categoryEntity = categoryService.getById(sku.getCatalogId());
             model.setCatalogId(sku.getCatalogId());

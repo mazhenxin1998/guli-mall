@@ -3,8 +3,11 @@ package com.mzx.gulimall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.product.entity.AttrEntity;
+import com.mzx.gulimall.product.entity.SkuEsModel;
+import com.mzx.gulimall.product.vo.Attr;
 import com.mzx.gulimall.product.vo.AttrVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,5 +52,12 @@ public interface AttrService extends IService<AttrEntity> {
      * @return
      */
     PageUtils queryPageDetail(Map<String, Object> params, Long catId);
+
+    /**
+     * 通过分类ID查询出该分类下所关联的所有属性应该是规格参数属性.)
+     * @param catalogId
+     * @return
+     */
+    List<Attr> findAttrsByCatalogId(Long catalogId);
 }
 

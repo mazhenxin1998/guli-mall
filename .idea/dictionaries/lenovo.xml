@@ -2,10 +2,12 @@
   <dictionary name="lenovo">
     <words>
       <w>alicloud</w>
+      <w>cacheable</w>
       <w>guli</w>
       <w>gulimall</w>
       <w>hoxton</w>
       <w>nacos</w>
+      <w>redisson</w>
       <w>renren</w>
       <w>springcloud</w>
       <w>zhen</w>
