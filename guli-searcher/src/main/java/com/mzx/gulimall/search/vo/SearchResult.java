@@ -37,7 +37,7 @@ public class SearchResult {
      */
     private List<BrandVo> brands;
     /**
-     * 当前所查询结果中所包含的所有属性.
+     * 当前所查询结果中所包含的所有属性. 不封装该属性了.
      */
     private List<AttrVo> attrs;
     /**

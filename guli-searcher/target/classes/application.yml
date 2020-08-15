@@ -7,3 +7,12 @@ spring:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
+  thymeleaf:
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /templates/
+      suffix: .html
+    servlet:
+      path: /

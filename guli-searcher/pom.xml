@@ -88,12 +88,11 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+        <!--        引入SpringBoot对事务的支持-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
         </dependency>
-
-        <!--        引入SpringBoot对事务的支持-->
 
 
     </dependencies>
