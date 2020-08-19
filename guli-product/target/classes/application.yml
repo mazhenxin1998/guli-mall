@@ -54,6 +54,14 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /templates/
+      suffix: .html
+    servlet:
+      path: /
+# 配置MVC
 management:
   endpoints:
     web:

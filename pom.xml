@@ -20,6 +20,7 @@
         <module>guli-gateway</module>
         <module>guli-three-server</module>
         <module>guli-searcher</module>
+        <module>guli-customer-ervice</module>
     </modules>
 
     <name>guli-mall</name>

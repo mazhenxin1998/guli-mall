@@ -87,6 +87,13 @@
         <!--            <artifactId>sentinel-datasource-nacos</artifactId>-->
         <!--        </dependency>-->
 
+        <!--        引入botostrap-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
