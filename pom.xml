@@ -21,6 +21,7 @@
         <module>guli-three-server</module>
         <module>guli-searcher</module>
         <module>guli-customer-ervice</module>
+        <module>guli-oauth</module>
     </modules>
 
     <name>guli-mall</name>
