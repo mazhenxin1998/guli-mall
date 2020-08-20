@@ -19,11 +19,13 @@ import com.mzx.gulimall.product.service.AttrGroupService;
 import com.mzx.gulimall.product.service.AttrService;
 import com.mzx.gulimall.product.vo.AttrGroupWithAttrVo;
 import com.mzx.gulimall.product.vo.AttrRelationVo;
+import com.mzx.gulimall.product.vo.web.SkuItemAttrGroupVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,9 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
     @Autowired
     private AttrService attrService;
+
+    @Resource
+    private AttrGroupDao attrGroupDao;
 
 
     @Override
@@ -386,6 +391,18 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         System.out.println("1");
 
         return response;
+    }
+
+    @Override
+    public List<SkuItemAttrGroupVo> getGroupAttr(Long spuId, Long catalogId) {
+
+        /*
+         * --------------------------------------------------------
+         * 只要方法执行到这里就说明参数中的值一定是在允许的范围之内的..
+         * --------------------------------------------------------
+         * */
+        return attrGroupDao.getGroupAttrs(spuId,catalogId);
+
     }
 
 }

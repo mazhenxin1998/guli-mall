@@ -8,24 +8,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="guli-coupon" />
-        <module name="guli-customer-ervice" />
         <module name="guli-three-server" />
-        <module name="guli-searcher" />
-        <module name="guli-member" />
+        <module name="guli-customer-ervice" />
+        <module name="renren-fast" />
         <module name="guli-order" />
         <module name="guli-product" />
-        <module name="renren-fast" />
+        <module name="guli-member" />
         <module name="guli-gateway" />
-        <module name="renren-generator" />
+        <module name="guli-searcher" />
         <module name="guli-ware" />
         <module name="guli-common" />
+        <module name="renren-generator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="guli-common" target="8" />
       <module name="guli-coupon" target="1.8" />
       <module name="guli-customer-ervice" target="1.8" />
-      <module name="guli-gateway" target="8" />
+      <module name="guli-gateway" target="1.5" />
       <module name="guli-mall" target="1.5" />
       <module name="guli-member" target="1.8" />
       <module name="guli-order" target="1.8" />
@@ -33,7 +33,7 @@
       <module name="guli-searcher" target="1.5" />
       <module name="guli-three-server" target="1.5" />
       <module name="guli-ware" target="1.8" />
-      <module name="renren-fast" target="8" />
+      <module name="renren-fast" target="1.5" />
       <module name="renren-generator" target="1.5" />
     </bytecodeTargetLevel>
   </component>

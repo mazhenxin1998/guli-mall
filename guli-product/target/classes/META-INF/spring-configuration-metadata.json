@@ -1,0 +1,36 @@
+{
+  "groups": [
+    {
+      "name": "guli.pool",
+      "type": "com.mzx.gulimall.product.config.ThreadPoolConfigProperties",
+      "sourceType": "com.mzx.gulimall.product.config.ThreadPoolConfigProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "guli.pool.cool-pool-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mzx.gulimall.product.config.ThreadPoolConfigProperties",
+      "defaultValue": 100
+    },
+    {
+      "name": "guli.pool.keep-live-time",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mzx.gulimall.product.config.ThreadPoolConfigProperties",
+      "defaultValue": 100
+    },
+    {
+      "name": "guli.pool.max-pool-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mzx.gulimall.product.config.ThreadPoolConfigProperties",
+      "defaultValue": 100
+    },
+    {
+      "name": "guli.pool.max-queue-task",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mzx.gulimall.product.config.ThreadPoolConfigProperties",
+      "defaultValue": 100
+    }
+  ],
+  "hints": []
+}

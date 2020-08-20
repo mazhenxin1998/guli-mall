@@ -1,16 +1,17 @@
 package com.mzx.gulimall.product.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
-
 import com.mzx.gulimall.product.dao.SkuImagesDao;
 import com.mzx.gulimall.product.entity.SkuImagesEntity;
 import com.mzx.gulimall.product.service.SkuImagesService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 
 @Service("skuImagesService")
@@ -24,6 +25,20 @@ public class SkuImagesServiceImpl extends ServiceImpl<SkuImagesDao, SkuImagesEnt
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<SkuImagesEntity> getSkuImages(Long skuId) {
+
+        if (skuId != null && skuId > 0) {
+
+            List<SkuImagesEntity> imagesEntities = baseMapper.selectList(
+                    new QueryWrapper<SkuImagesEntity>().eq("sku_id", skuId));
+            return imagesEntities;
+        } else {
+
+            return null;
+        }
     }
 
 }

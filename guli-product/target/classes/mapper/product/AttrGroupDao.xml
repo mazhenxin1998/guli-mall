@@ -13,5 +13,11 @@
         <result property="catelogId" column="catelog_id"/>
     </resultMap>
 
+    <select id="getGroupAttrs" resultType="com.mzx.gulimall.product.vo.web.SkuItemAttrGroupVo">
+
+
+
+    </select>
+
 
 </mapper>

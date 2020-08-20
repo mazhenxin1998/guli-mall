@@ -6,6 +6,7 @@ import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.product.entity.AttrGroupEntity;
 import com.mzx.gulimall.product.vo.AttrGroupWithAttrVo;
 import com.mzx.gulimall.product.vo.AttrRelationVo;
+import com.mzx.gulimall.product.vo.web.SkuItemAttrGroupVo;
 
 import java.util.List;
 import java.util.Map;
@@ -73,5 +74,13 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
      * @return
      */
     List<AttrGroupWithAttrVo> getGroupAndAttr(Long catelogId);
+
+    /**
+     * 通过分类ID和SPU的ID进行查询出SPU所关联的规格参数.
+     * @param spuId
+     * @param catalogId
+     * @return
+     */
+    List<SkuItemAttrGroupVo> getGroupAttr(Long spuId, Long catalogId);
 }
 

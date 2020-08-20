@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -40,11 +40,14 @@
                 <div class="row">
 
                     <div class="col-md-5" style="border: red solid 1px; height: 60px">
-                        <input id="sendMessage" class="form-control" type="text" style="height: 60px; width: 100%; border: chocolate solid 1px" >
+                        <input id="sendMessage" class="form-control" type="text"
+                               style="height: 60px; width: 100%; border: chocolate solid 1px">
                     </div>
 
-                    <div class="col-md-3" >
-                        <button id="sendMessageButton" class="btn btn-info" style=" height: 60px;width: 100%">我是发送消息的按钮</button>
+                    <div class="col-md-3">
+                        <button id="sendMessageButton" class="btn btn-info" style=" height: 60px;width: 100%">
+                            我是发送消息的按钮
+                        </button>
                     </div>
 
                 </div>
@@ -478,7 +481,7 @@
 
                 <div class="imgbox">
                     <div class="probox">
-                        <img class="img1" alt="" src="/static/shangpingxiangqing/img/59ded626N7c4cb0a3.jpg">
+                        <img class="img1" alt="" th:src="${item.getInfo().getSkuDefaultImg()}">
                         <div class="hoverbox"></div>
                     </div>
                     <div class="showbox">
@@ -490,15 +493,10 @@
 
                     <div class="box-lh-one">
                         <ul>
-                            <li><img src="/static/shangpingxiangqing/img/59ded62eN64a9784c.jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded626Ne3c69b70.jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded626N7c4cb0a3.jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded626Ne3c69b70.jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded62dN7e28abc5 (1).jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded62cN6e9ac17c.jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded620Nfc0ab489.jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded60eN3110f3a8.jpg"/></li>
-                            <li><img src="/static/shangpingxiangqing/img/59ded62dNfed003a8.jpg"/></li>
+                            <li th:each="img:${item.getImages()}">
+                                <!--这个URL很有可能是空的字符串-->
+                                <img th:if="${img.getImgUrl() != ''}" th:src="${img.getImgUrl()}"/>
+                            </li>
                         </ul>
                     </div>
                     <div id="left">
@@ -523,7 +521,8 @@
 										对比
 									</span>
                             <!--									-->
-                            <span>  <button onclick="connection()" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"> <img
+                            <span>  <button onclick="connection()" type="button" data-toggle="modal"
+                                            data-target=".bs-example-modal-lg"> <img
                                     style="width: 20px;height: 20px"
                                     src="/static/shangpingxiangqing/message/duihua.png" alt=""/> 客服 </button></span>
 
@@ -536,11 +535,10 @@
 
             </div>
             <div class="box-two">
-                <div class="box-name">
+                <div class="box-name" th:text="${item.getInfo().getSkuTitle()}">
                     华为 HUAWEI Mate 10 6GB+128GB 亮黑色 移动联通电信4G手机 双卡双待
                 </div>
-                <div class="box-hide">预订用户预计11月30日左右陆续发货！麒麟970芯片！AI智能拍照！
-                    <a href=""><u>华为 HUAWEI Mate 10 Pro 10:08 限时限量抢！</u></a>
+                <div class="box-hide" th:text="${item.getInfo().getSkuSubtitle()}">预订用户预计11月30日左右陆续发货！麒麟970芯片！AI智能拍照！
                 </div>
                 <div class="box-yuyue">
                     <div class="yuyue-one">
@@ -563,10 +561,10 @@
                 </div>
                 <div class="box-summary clear">
                     <ul>
-                        <li>京东价</li>
+                        <li>小苹果助手价</li>
                         <li>
                             <span>￥</span>
-                            <span>4499.00</span>
+                            <span th:text="${item.getInfo().getPrice()}">4499.00</span>
                         </li>
                         <li>
                             预约享资格
@@ -646,7 +644,7 @@
 
                         </li>
                         <li>
-                            <span>无货</span>， 此商品暂时售完
+                            <span>无货</span>
                         </li>
                     </ul>
                 </div>
@@ -654,59 +652,23 @@
                     <ul class="box-ul">
                         <li></li>
                         <li>
-                            由<span>京东</span> 发货，并提供售后服务
+                            由<span>小苹果助手</span> 发货，并提供售后服务
                         </li>
                     </ul>
                 </div>
                 <div class="box-attr-3">
-                    <div class="box-attr clear">
+                    <!---->
+                    <div class="box-attr clear" th:each=" type:${item.getSaleAttr()}">
                         <dl>
-                            <dt>选择颜色</dt>
-                            <dd>
-                                <a href="#">
-                                    <img src="/static/shangpingxiangqing/img/59ddfcb1Nc3edb8f1.jpg"/> 摩卡金
+                            <dt th:text="'选择' + ${type.getAttrName()}"></dt>
+                            <dd th:each="typeValue:${#strings.listSplit(type.getAttrValues(),',')}">
+                                <a href="#" th:text="${typeValue}">
+                                    <!--${#strings.listSplit(namesStr,',')}-->
                                 </a>
-                            </dd>
-                            <dd>
-                                <a href="#">
-                                    <img src="/static/shangpingxiangqing/img/59ded62eN64a9784c.jpg"/> 亮黑色
-                                </a>
-                            </dd>
-                            <dd>
-                                <a href="#">
-                                    <img src="/static/shangpingxiangqing/img/59ddfcb1Nc3edb8f1.jpg"/> 香槟金
-                                </a>
-                            </dd>
-                            <dd>
-                                <a href="#">
-                                    <img src="/static/shangpingxiangqing/img/59ded682N99d4efcc.jpg"/> 樱粉金
-                                </a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="box-attr-2 clear">
-                        <dl>
-                            <dt>选择版本</dt>
-                            <dd>
-                                <a href="#">标准版</a>
-                            </dd>
-                            <dd>
-                                <a href="#">套装版</a>
                             </dd>
                         </dl>
                     </div>
 
-                    <div class="box-attr-2 clear">
-                        <dl>
-                            <dt>选择内存</dt>
-                            <dd>
-                                <a href="#">64GB</a>
-                            </dd>
-                            <dd>
-                                <a href="#">128GB</a>
-                            </dd>
-                        </dl>
-                    </div>
                 </div>
 
                 <div class="box-btns clear">
@@ -1864,35 +1826,35 @@
     }
 
     // 只要用户进入到页面就建立连接.
-//     $(function () {
-//
-// // 获取websocket连接.
-//         let webSocket = new WebSocket("ws://localhost:23000/server");
-//
-//         webSocket.onopen = function () {
-//             // 连接建立触发的方法
-//             alert("websocket成功建立连接》 ");
-//         }
-//
-//         // 只要接受到消息  自动触发该消息.
-//         webSocket.onmessage = function (event) {
-//
-//
-//         }
-//
-//         webSocket.onclose = function () {
-//
-//             console.log("用户关闭了")
-//         }
-//
-//         webSocket.onerror = function () {
-//
-//             console.log("出现错误. ")
-//         }
-//
-//         // 发送数据 使用webSocket.send(JSON) 进行发送.
-//
-//     });
+    //     $(function () {
+    //
+    // // 获取websocket连接.
+    //         let webSocket = new WebSocket("ws://localhost:23000/server");
+    //
+    //         webSocket.onopen = function () {
+    //             // 连接建立触发的方法
+    //             alert("websocket成功建立连接》 ");
+    //         }
+    //
+    //         // 只要接受到消息  自动触发该消息.
+    //         webSocket.onmessage = function (event) {
+    //
+    //
+    //         }
+    //
+    //         webSocket.onclose = function () {
+    //
+    //             console.log("用户关闭了")
+    //         }
+    //
+    //         webSocket.onerror = function () {
+    //
+    //             console.log("出现错误. ")
+    //         }
+    //
+    //         // 发送数据 使用webSocket.send(JSON) 进行发送.
+    //
+    //     });
 
     function connection() {
 
@@ -1910,7 +1872,7 @@
             // 发送人:收件人:消息
             let data = JSON.parse(event.data);
             let showMessage = data.fromName + "  说: " + data.message;
-            let content = "<div id=\"content-left\" style=\"text-align: left\">"+showMessage+"</div>";
+            let content = "<div id=\"content-left\" style=\"text-align: left\">" + showMessage + "</div>";
             $("#showMessageBody").append(content);
 
         }
@@ -1933,15 +1895,15 @@
             // 现在假定用户都为张三 客服都为小丽
             //       messageText = "小丽:张三:" + messageText;
             let me = {
-                "toName" : "小丽",
-                "fromName" : "张三",
-                "message" : sendText
+                "toName": "小丽",
+                "fromName": "张三",
+                "message": sendText
             };
             webSocket.send(JSON.stringify(me));
-            console.log("发送消息成功: "+me);
+            console.log("发送消息成功: " + me);
             $("#sendMessage").val("");
             // 并且将自己发送的消息显示在右侧.
-            let content = "<div id=\"content-right\" style=\"text-align: right\">"+sendText+"</div>";
+            let content = "<div id=\"content-right\" style=\"text-align: right\">" + sendText + "</div>";
             $("#showMessageBody").append(content);
         });
 
