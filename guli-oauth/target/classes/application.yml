@@ -3,3 +3,20 @@ spring:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /templates/
+      suffix: .html
+    servlet:
+      path: /
+  thymeleaf:
+    cache: false
+# 配置Feign
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic

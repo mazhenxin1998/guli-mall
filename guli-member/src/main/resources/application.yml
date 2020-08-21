@@ -41,12 +41,6 @@ spring:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
-  mvc:
-    static-path-pattern: /static/**
-    servlet:
-      path: /
-  thymeleaf:
-    cache: false
 
 # mybatis-plus的配置文件.
 # classpath* 表示的是不仅仅是
