@@ -22,6 +22,9 @@
         <module>guli-searcher</module>
         <module>guli-customer-ervice</module>
         <module>guli-oauth</module>
+        <module>guli-util</module>
+        <module>guli-cart</module>
+
     </modules>
 
     <name>guli-mall</name>

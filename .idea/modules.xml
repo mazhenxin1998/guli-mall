@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/guli-cart/guli-cart.iml" filepath="$PROJECT_DIR$/guli-cart/guli-cart.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-common/guli-common.iml" filepath="$PROJECT_DIR$/guli-common/guli-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-coupon/guli-coupon.iml" filepath="$PROJECT_DIR$/guli-coupon/guli-coupon.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-customer-ervice/guli-customer-ervice.iml" filepath="$PROJECT_DIR$/guli-customer-ervice/guli-customer-ervice.iml" />
@@ -13,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/guli-product/guli-product.iml" filepath="$PROJECT_DIR$/guli-product/guli-product.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-searcher/guli-searcher.iml" filepath="$PROJECT_DIR$/guli-searcher/guli-searcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-three-server/guli-three-server.iml" filepath="$PROJECT_DIR$/guli-three-server/guli-three-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guli-util/guli-util.iml" filepath="$PROJECT_DIR$/guli-util/guli-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-ware/guli-ware.iml" filepath="$PROJECT_DIR$/guli-ware/guli-ware.iml" />
       <module fileurl="file://$PROJECT_DIR$/renren-fast/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast/renren-fast.iml" />
       <module fileurl="file://$PROJECT_DIR$/renren-generator/renren-generator.iml" filepath="$PROJECT_DIR$/renren-generator/renren-generator.iml" />

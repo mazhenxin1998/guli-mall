@@ -13,10 +13,12 @@
     <script src="/static/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
     <script src="/static/index/js/swiper-3.4.2.min.js"></script>
+    <link rel="stylesheet" href="/static/mouse/custome.min.css" type="text/css" />
 
 </head>
 
 <body>
+
 <div class="top_find">
     <div class="top_find_son">
         <img src="/static/index/img/top_find_logo.png" alt="">
@@ -43,7 +45,7 @@
 </ul>
 <header>
     <div class="head">
-<!--        第一个字符是/表示的是类路径  只有在静态文件里面采用.. 表示资源.-->
+        <!--        第一个字符是/表示的是类路径  只有在静态文件里面采用.. 表示资源.-->
         <a href="#"><img src="/static/index/img/img_01.png"/></a>
         <p>X</p>
     </div>
@@ -96,10 +98,11 @@
             </b>
             <ul>
                 <li>
-                    <a th:href="'http://127.0.0.1:20000/member/login.html'">你好，请登录</a>
+                    <a th:if="${session.user ==null }" th:href="'http://127.0.0.1:24000/oauth/login.html'">你好，请登录</a>
+                    <a th:if="${session.user !=null }" th:text=" '你好: ' + ${session.user.username}">你好，请登录</a>
                 </li>
                 <li>
-                    <a th:href="'http://127.0.0.1:20000/member/reg.html'" class="li_2">免费注册</a>
+                    <a th:if="${session.user == null}" th:href="'http://127.0.0.1:24000/oauth/reg.html'" class="li_2">免费注册</a>
                 </li>
                 <span>|</span>
                 <li>
@@ -121,7 +124,8 @@
         <div class="header_ico">
             <div class="header_gw">
                 <img src="/static/index/img/img_15.png"/>
-                <span><a href="/购物车\One_JDshop.html">我的购物车</a></span>
+<!--                该购物车商品列表应该是购物车列表. 具体到后台再做具体测试.-->
+                <span><a href="http://localhost:25000/cart/cartlist.html">我的购物车</a></span>
                 <span>0</span>
             </div>
             <div class="header_ko">
@@ -245,11 +249,16 @@
                             <a href="#"><img class="" src="/static/index/img/touxiang.png"></a>
                         </div>
                         <div class="user_info_show">
-                            <p class="">Hi, 欢迎来到!</p>
-                            <p>
+                            <p  class="">Hi, 欢迎来到!</p>
+                            <p th:if="${session.user != null}">
+                                <a href="#" class="" th:text="${session.user.getUsername()}">登录</a>
+                            </p>
+
+                            <p th:if="${session.user == null}">
                                 <a href="#" class="">登录</a>
                                 <a href="#" class="">注册</a>
                             </p>
+
                         </div>
                     </div>
                     <div class="user_info_hide">
@@ -611,6 +620,36 @@
 
 
 </body>
+<canvas class="fireworks"></canvas>
+<script src="/static/mouse/anime.min.js"></script>
+<script src="/static/mouse/cursor.js"></script>
+<!--右侧小人-->
+<script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+<script>
+    L2Dwidget.init({
+        "model": {
+            // 已下载.
+            //jsonpath控制显示那个小萝莉模型，下面这个就是我觉得最可爱的小萝莉模型，替换时后面名字也要替换掉
+            jsonPath: "https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json",
+            "scale": 1
+        },
+        "display": {
+            "position": "right", //看板娘的表现位置
+            "width": 100,  //小萝莉的宽度
+            "height": 200, //小萝莉的高度
+            "hOffset": 0,
+            "vOffset": -20
+        },
+        "mobile": {
+            "show": true,
+            "scale": 0.5
+        },
+        "react": {
+            "opacityDefault": 0.7,
+            "opacityOnHover": 0.2
+        }
+    });
+</script>
 <script type="text/javascript">
     function search() {
         var keyword = $("#searchText").val()

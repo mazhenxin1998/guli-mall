@@ -21,6 +21,7 @@ public class MemberVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
     /**
      * id
      */
@@ -100,5 +101,12 @@ public class MemberVo implements Serializable {
      * 上传进来的验证码.
      */
     private String oauthCode;
+
+    public MemberVo(String mobile,String username){
+
+        this.mobile = mobile;
+        this.username = username;
+    }
+
 
 }

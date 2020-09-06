@@ -174,10 +174,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             // 获取之后再从Redis缓存中获取.
             ops.set("catagoryJson", JSON.toJSONString(listMap));
             return listMap;
-
         }
-
-
     }
 
     public Map<String, List<Catalog2Vo>> findAllCatagoryDB() {
@@ -228,12 +225,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                     }
 
                 });
-
                 models.put(item.getCatId().toString(), catalog2Vos);
             }
 
         });
-
         // 存的时候存的是String类型的字符串.
         return models;
     }

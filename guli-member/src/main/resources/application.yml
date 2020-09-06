@@ -49,7 +49,7 @@ mybatis-plus:
   # 开启自动驼峰配置转换: 自动转换的意思是自动将A_COMMON转换成JavaBean的驼峰形式既: a_Common 类型的.
   configuration:
     map-underscore-to-camel-case: true
-  # 配置ID自增配置,改配置是全局配置.
+  # 配置ID自增配置,改配置是全局配置. 主键回填配置.
   global-config:
     db-config:
       id-type: auto

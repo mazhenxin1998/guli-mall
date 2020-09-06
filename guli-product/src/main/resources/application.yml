@@ -61,6 +61,8 @@ spring:
       suffix: .html
     servlet:
       path: /
+  session:
+    store-type: redis
 # 配置MVC
 management:
   endpoints:
@@ -94,5 +96,3 @@ logging:
         gulimall:
           product:
             dao: debug
-
-# 配置Redis

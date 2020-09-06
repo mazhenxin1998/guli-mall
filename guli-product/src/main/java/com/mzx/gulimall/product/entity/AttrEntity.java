@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
 import lombok.Data;
+import org.apache.ibatis.annotations.Delete;
 
 /**
  * @author ZhenXinMa

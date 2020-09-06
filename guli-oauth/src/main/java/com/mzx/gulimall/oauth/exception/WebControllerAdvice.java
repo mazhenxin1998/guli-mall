@@ -39,6 +39,8 @@ public class WebControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public R exceptionHandler(Exception e){
 
+        // 打印异常堆栈轨迹.
+        e.printStackTrace();
         System.out.println("认证服务全局异常捕获到异常: " + e.getMessage());
         return R.error(10010,e.getMessage());
     }

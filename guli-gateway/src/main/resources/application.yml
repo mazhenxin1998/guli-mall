@@ -12,6 +12,10 @@ spring:
         server-addr: 192.144.198.148:8848
     gateway:
       routes:
+        - id: test-session
+          uri: lb://gulimall-product 127.0.0.1:xxx
+          predicates:
+            - Path=/index.html
         # 测试
         - id: nacos-test
           uri: lb://gulimall-product

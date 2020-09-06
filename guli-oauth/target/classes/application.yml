@@ -12,6 +12,12 @@ spring:
       path: /
   thymeleaf:
     cache: false
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  # 配置SpringSession
+  session:
+    store-type: redis
 # 配置Feign
 feign:
   client:

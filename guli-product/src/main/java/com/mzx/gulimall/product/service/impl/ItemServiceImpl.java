@@ -152,7 +152,6 @@ public class ItemServiceImpl implements ItemService {
                 // 虽然说最终finally会执行,但是只要这里没有return那么就执行上面的return.
                 readLock.unlock();
             }
-
         } else {
 
             return null;
@@ -192,7 +191,6 @@ public class ItemServiceImpl implements ItemService {
             ops.set(RedisConstant.PRODUCT_CACHE_PREFIX + skuId.toString(),JSON.toJSONString(skuItemVo),
                     3, TimeUnit.DAYS);
             return skuItemVo;
-
         } catch (Exception e) {
 
             log.error("getSkuItemVoFromDB方法内发生了异常: {}",e.getMessage());
@@ -202,7 +200,6 @@ public class ItemServiceImpl implements ItemService {
             // 释放锁.
             lock.unlock();
         }
-
     }
 
     private SkuItemVo Db(Long skuId){
@@ -225,7 +222,6 @@ public class ItemServiceImpl implements ItemService {
             List<SkuImagesEntity> imagesEntities = skuImagesService.getSkuImages(skuId);
             itemVo.setImages(imagesEntities);
         }, executor);
-
 
         // 第三步设置 spu销售属性集合 是根据SPU来获取. 该异步需要在infoFuture的执行结果才能执行.
         // TODO:  学习该SQL.等以后学了SQL回头来看看该SQL.
