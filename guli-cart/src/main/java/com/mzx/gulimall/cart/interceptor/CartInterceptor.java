@@ -1,6 +1,5 @@
 package com.mzx.gulimall.cart.interceptor;
 
-import com.alibaba.fastjson.JSON;
 import com.mzx.gulimall.cart.constant.RedisSessionConstant;
 import com.mzx.gulimall.cart.constant.StringConstant;
 import com.mzx.gulimall.cart.vo.UserInfoTo;
@@ -27,6 +26,10 @@ public class CartInterceptor implements HandlerInterceptor {
 
     /**
      * 用户当前线程共享: 且存放在线程的工作内存空间之中, 各个线程之间互不干扰.
+     * 共享用户身份的线程本地变量.
+     * ThreadLocal需要掌握原理以及内存泄漏.
+     * 解决内存泄漏: 每次使用之后应该调用remove方法.
+     * 这里所说的使用应该是当前线程最后一次使用ThreadLocal对象.
      */
     public static volatile ThreadLocal<UserInfoTo> local = new ThreadLocal<>();
 
@@ -52,14 +55,27 @@ public class CartInterceptor implements HandlerInterceptor {
             // 这个时候就需要从cookie中查询了
             // 如果当前状态用户已经进行登录了,那么封装user-key
             // user是一个JSON对象: 属于com.mzx.gulimall.common.model.MemberResultVo
-            MemberResultVo memberResultVo = JSON.parseObject(user.toString(), MemberResultVo.class);
+            // 存储的时候没有存储为JSON格式.
+            MemberResultVo memberResultVo = (MemberResultVo) user;
+            userInfoTo.setUserId(memberResultVo.getId());
+
         }
 
+        // 不管用户是否登录,现在都需要将user-key存放在ThreadLocal中. 但是需要注意的是，这个userKey可能返回null
+        // 虽然几率很小,但是还是需要确定的.
         String userKey = this.getUserKeyFromCookie(request, response);
+        if (StringUtils.isEmpty(userKey)) {
+
+            // 如果下面向cookie中增加信息失败了,那么返回的值是null.
+            return false;
+
+        }
+
         userInfoTo.setUserKey(userKey);
+        // 共享变量.
+        local.set(userInfoTo);
+        return true;
 
-
-        return false;
     }
 
 
@@ -67,15 +83,20 @@ public class CartInterceptor implements HandlerInterceptor {
                                         HttpServletResponse response) {
 
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
 
-            // 找出cookie中的user-key
-            // user-key
-            if (StringConstant.USER_COOKIE.equals(cookie.getName())) {
+        if (cookies != null && cookies.length > 0) {
 
-                // 这个将该user-key放到线程共享的ThreadLocal线程本地变量中
-                // 这个userKey是一个UUID类型的字符串.
-                return cookie.getValue();
+            for (Cookie cookie : cookies) {
+
+                // 找出cookie中的user-key
+                // user-key
+                if (StringConstant.USER_COOKIE.equals(cookie.getName())) {
+
+                    // 这个将该user-key放到线程共享的ThreadLocal线程本地变量中
+                    // 这个userKey是一个UUID类型的字符串.
+                    return cookie.getValue();
+
+                }
 
             }
 
@@ -107,6 +128,5 @@ public class CartInterceptor implements HandlerInterceptor {
         }
 
     }
-
 
 }

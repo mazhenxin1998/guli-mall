@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>助手:详情页</title>
     <link rel="stylesheet" type="text/css" href="/static/shangpingxiangqing/scss/shop.css"/>
     <link rel="stylesheet" href="/static/shangpingxiangqing/scss/header.css"/>
     <link rel="stylesheet" type="text/css" href="/static/shangpingxiangqing/bootstrap/css/bootstrap.css"/>
@@ -673,7 +673,7 @@
 
                 <div class="box-btns clear">
                     <div class="box-btns-one">
-                        <input type="text" name="" id="" value="1"/>
+                        <input type="text" name="" id="product-count" value="1"/>
                         <div class="box-btns-one1">
 
                             <div>
@@ -690,8 +690,10 @@
                         </div>
                     </div>
                     <div class="box-btns-two">
-                        <a href="../商品分类\index.html">
-                            立即预约
+
+                        <!--加入购物车需要skuId和count,但是考虑到方便性,所以这里通过方法进行调用.http://localhost:25000/cart/add -->
+                        <a href="javascript:;" id="getSkuId" th:attr="skuId=${item.getInfo().getSkuId()}" onclick="addCart()">
+                            加入购物车
                         </a>
                     </div>
                     <div class="box-btns-three">
@@ -1821,7 +1823,15 @@
 <script src="/static/shangpingxiangqing/js/js.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
-    function sendMessage() {
+    function addCart() {
+
+        // 使用jquery吧.
+        let count = $("#product-count").val();
+        let skuId = $("#getSkuId").attr("skuId");
+        // 需要携带的属性是skuId和count.
+        // localhost:25000/add?skuId=11&count=20
+        // TODO: 这里是有毛病的.
+        window.location.href = "http://localhost:25000/to/success?skuId="+skuId + "&count=" + count;
 
     }
 

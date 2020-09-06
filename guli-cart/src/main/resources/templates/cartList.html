@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>购物车</title>
+		<title>小苹果:购物车</title>
 		<link rel="icon" href="/static/img/心04.png" type="/image/x-icon" />
 		<link rel="stylesheet" href="/static/css/One_bdyStyle.css">
 		<link rel="stylesheet" href="/static/css/index.css">
@@ -18,18 +18,25 @@
 					<ul class="header-left">
 						<li>
 
-							<a href="">首页</a>
+							<a href="http://localhost:10000">首页</a>
 						</li>
 
 					</ul>
-					<ul class="header-right">
-						<li><a href="/static/登录页面\index.html" style="color: red;">你好，请登录</a></li>
-						<li><a href="/static/注册页面\index.html">免费注册</a></li>
+					<ul class="header-right" th:if="${session.user == null}">
+						<li><a href="http://localhost:oauth/login.html" style="color: red;">你好，请登录</a></li>
+						<li><a href="http://localhost:oauth/reg.html">免费注册</a></li>
 						<li class="spacer"></li>
 						<li><a href="">我的订单</a></li>
 						<li class="spacer"></li>
-
 					</ul>
+
+					<ul class="header-right" th:if="${session.user != null}">
+						<li><a href=";javascript" style="color: red;">你好: <span th:text="${session.user.username}"></span></a></li>
+						<li class="spacer"></li>
+						<li><a href="">我的订单</a></li>
+						<li class="spacer"></li>
+					</ul>
+
 					<div style="clear: both;"></div>
 				</div>
 
@@ -49,7 +56,7 @@
 						<input type="button" value="搜索" class="one_right_btn">
 					</div>
 				</div>
-				<div class="one_search_load" th:if="${userId}==null">
+				<div class="one_search_load" th:if="${session.user}==null">
 					<img src="/static/img/shop_07.jpg" class="one_load_wraing">
 					<span>您还没有登录！登录后购物车的商品将保存到您账号中</span>
 					<a href="#"><input type="button" onclick="login()" value="立即登录" class="one_load_btn"></a>

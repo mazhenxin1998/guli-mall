@@ -8,4 +8,6 @@ public class StringConstant {
 
     public static final String USER_COOKIE = "user-key";
 
+    public static final String CART_PREFIX = "cart:";
+
 }

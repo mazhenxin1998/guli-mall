@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -56,6 +57,18 @@ public class BrandServiceTest {
         System.out.println("1");
 
     }
+
+
+    @Test
+    public void t4(){
+
+        // 一个用户对应着一个前缀.
+        BoundHashOperations<String, Object, Object> ops = stringRedisTemplate.boundHashOps("guli:cart:1");
+        ops.put("11","测试");
+
+
+    }
+
 
 
 }

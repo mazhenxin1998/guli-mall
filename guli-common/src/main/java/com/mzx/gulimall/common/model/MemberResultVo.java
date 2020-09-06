@@ -21,7 +21,7 @@ public class MemberResultVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
-     * id
+     * 用户的当前ID.
      */
     @TableId
     private Long id;

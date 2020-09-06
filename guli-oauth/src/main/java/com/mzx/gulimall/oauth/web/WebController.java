@@ -1,5 +1,6 @@
 package com.mzx.gulimall.oauth.web;
 
+import com.alibaba.fastjson.JSON;
 import com.mzx.gulimall.common.model.MemberResultVo;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.oauth.constant.RedisConstant;
@@ -81,10 +82,13 @@ public class WebController {
 
             // 校验失败 重新返回到当前登录页面.
             return "login";
+
         } else {
 
             System.out.println("user Login 方法发生了 页面参数为: " + resultVo.toString());
             // 校验成功: 将校验结果放到session域中.
+            // 这里就不存储JSON类型了,为了方便在页面中直接使用.
+            // 在使用的时候直接使用强制类型转换吧.
             session.setAttribute(RedisConstant.PUBLIC_USER,resultVo);
             System.out.println("SpringSession ...");
             // 重定向到首页

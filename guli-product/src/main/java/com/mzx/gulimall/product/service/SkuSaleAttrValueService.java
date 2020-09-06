@@ -2,9 +2,9 @@ package com.mzx.gulimall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
+import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.product.entity.SkuSaleAttrValueEntity;
 import com.mzx.gulimall.product.vo.web.SkuItemSaleAttrVo;
-import com.mzx.gulimall.product.vo.web.SkuItemVo;
 
 import java.util.List;
 import java.util.Map;
@@ -22,9 +22,18 @@ public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValueEntity
 
     /**
      * 根据SPU的ID查询出该SPU下所有关联的SKU的销售属性.
+     *
      * @param spuId
      * @return
      */
     List<SkuItemSaleAttrVo> getAttrs(Long spuId);
+
+    /**
+     * 根据SKU的ID查询出销售属性.
+     *
+     * @param id
+     * @return
+     */
+    R findSkuSaleAttr(Long id);
 }
 

@@ -49,12 +49,17 @@ public class LoginServiceImpl implements LoginService {
     private boolean isLogin(HttpServletRequest request) {
 
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
 
-            // 如果cookie中存放了user-key， 那么就返回true.
-            if ("user-key".equals(cookie.getName())) {
+        if (cookies != null && cookies.length > 0) {
 
-                return true;
+            for (Cookie cookie : cookies) {
+
+                // 如果cookie中存放了user-key， 那么就返回true.
+                if ("user-key".equals(cookie.getName())) {
+
+                    return true;
+
+                }
 
             }
 

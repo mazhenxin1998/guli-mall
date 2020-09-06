@@ -35,5 +35,12 @@ public class SkuSaleAttrValueDaoTest {
 
     }
 
+    @Test
+    public void t2(){
+
+        List<String> skuSaleAttr = skuSaleAttrValueDao.getSkuSaleAttr(14L);
+        System.out.println(1);
+    }
+
 
 }

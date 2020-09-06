@@ -1,14 +1,11 @@
 package com.mzx.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.mzx.gulimall.product.entity.SkuSaleAttrValueEntity;
 import com.mzx.gulimall.product.service.SkuSaleAttrValueService;
@@ -46,8 +43,8 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
-		SkuSaleAttrValueEntity skuSaleAttrValue = skuSaleAttrValueService.getById(id);
 
+		SkuSaleAttrValueEntity skuSaleAttrValue = skuSaleAttrValueService.getById(id);
         return R.ok().put("skuSaleAttrValue", skuSaleAttrValue);
     }
 
@@ -79,6 +76,13 @@ public class SkuSaleAttrValueController {
 		skuSaleAttrValueService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+    @GetMapping(value = "/find/{id}")
+    public R findSkuSaleAttr(@PathVariable(value = "id") Long id){
+
+        return skuSaleAttrValueService.findSkuSaleAttr(id);
+
     }
 
 }
