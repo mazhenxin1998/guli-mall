@@ -1,6 +1,7 @@
 package com.mzx.gulimall.im.server;
 
 import com.alibaba.fastjson.JSON;
+import com.mzx.gulimall.im.config.GetHttpSessionConfiguration;
 import com.mzx.gulimall.im.vo.MessageVo;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -14,11 +15,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 前台WebSocket链接入口.
+ * <p>
+ * 这里的session使用自定义的session.
  *
  * @author ZhenXinMa
  * @date 2020/8/18 22:10
  */
-@ServerEndpoint(value = "/server")
+@ServerEndpoint(value = "/server", configurator = GetHttpSessionConfiguration.class)
 @Component
 public class ChartEndpoint {
 
@@ -49,8 +52,18 @@ public class ChartEndpoint {
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
 
-        this.session = session;
+        /*
+         * --------------------------------------------------------
+         * 这里从config中获取到自己指定的session.
+         * 先测试下自己能不能获取到该session.
+         * --------------------------------------------------------
+         * */
 
+        this.session = session;
+        // 从session里面获取user应该是可以获取到的.
+        HttpSession httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
+        Object user = httpSession.getAttribute("user");
+        System.out.println("当前登录的用户是: "+user.toString());
         if (flag == 0) {
 
             // 表示第一个是用户张三

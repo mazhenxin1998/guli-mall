@@ -20,6 +20,9 @@ public class GetHttpSessionConfiguration extends ServerEndpointConfig.Configurat
          * 全局的Session.
          * --------------------------------------------------------
          * */
+        // 这个httpSession是获取不到的吗?
+        // 显示可以获取到值的.
+        // TODO: 但是这里有一点是需要确定的是: 如果用户未登录时不能进行访问的.
         HttpSession httpSession = (HttpSession) request.getHttpSession();
         sec.getUserProperties().put(HttpSession.class.getName(), httpSession);
     }

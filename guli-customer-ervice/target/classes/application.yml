@@ -5,3 +5,9 @@ spring:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
+  redis:
+    host: localhost
+    port: 6379
+# 配置SpringSession只需要配置下面这一项.
+  session:
+    store-type: redis
