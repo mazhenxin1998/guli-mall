@@ -51,22 +51,19 @@ public class Cart {
     public BigDecimal getTotalPrice() {
 
         // 应该遍历所有的item,然后将其所有的价格进行相加.
-        BigDecimal total = new BigDecimal(0);
         if (this.items != null && items.size() > 0) {
 
-            // 不需要收集.
-            items.stream().map(item -> {
+            BigDecimal total = new BigDecimal(0);
+            for (CartItem item : items) {
 
-                // 计算总价.
-                // 这里需要进行判断吗? 应该是不需要的.
-                // getTotalPrice要么返回0要么返回其总价.
-                total.add(item.getTotalPrice());
-                return item;
-            });
+                total = total.add(item.getTotalPrice());
+            }
 
+            System.out.println("测试:   "+total);
             // 将计算之后的结果赋值给当前Cart的总价格.
             // 应该将计算之后的总结果减去当前优惠价格.
             this.totalPrice = total.subtract(this.reduce);
+            System.out.println("当前购物车的总价格是: " + this.totalPrice);
 
         }
 

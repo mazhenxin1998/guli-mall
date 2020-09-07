@@ -7,6 +7,7 @@ import com.mzx.gulimall.cart.interceptor.CartInterceptor;
 import com.mzx.gulimall.cart.service.GuliWebCartService;
 import com.mzx.gulimall.cart.vo.CartParamVo;
 import com.mzx.gulimall.cart.vo.UserInfoTo;
+import com.mzx.gulimall.common.model.Cart;
 import com.mzx.gulimall.common.model.CartItem;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.util.CurrentStringUtils;
@@ -15,12 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.BoundHashOperations;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +33,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @author ZhenXinMa
@@ -58,20 +62,30 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
      * @param isLogin 表示当前是否登录: true表示登录状态.
      */
     @Override
-    public void cart(HttpServletRequest request, Model model, boolean isLogin) {
+    public Cart cart(HttpServletRequest request, Model model, boolean isLogin) {
 
         if (isLogin) {
 
-            this.loginTrue(request, model);
+            return this.loginTrue(request, model);
 
         } else {
 
-            this.loginFalse(request, model);
+            return this.loginFalse(request, model);
 
         }
 
     }
 
+    /**
+     * 目前增加还有一个BUG还有一个问题能解决.
+     * <p>
+     * 当更新商品数量的时候出现错误.
+     *
+     * @param request
+     * @param param
+     * @param model
+     * @return
+     */
     @Override
     public CartItem add(HttpServletRequest request, CartParamVo param, Model model) {
 
@@ -108,7 +122,8 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
             BoundHashOperations<String, Object, Object> ops = this.getBoundHash(userInfoTo.getUserKey());
             // 这里更新采用的是直接覆盖.
             // 存储的是JSON.
-            Object o = ops.get(item.getSkuId());
+            // Long类型不能转换为String类型. 需要使用String.valueof
+            Object o = ops.get(String.valueOf(item.getSkuId()));
             // 这里应该是不用做判断的,因为只要是代码能执行到了这里,就说明判断是没有必要的.
             CartItem cartItem = JSON.parseObject(o.toString(), CartItem.class);
             // 仅仅需要修改数量即可.
@@ -124,7 +139,7 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
             // 说明当前用户进行了登录.
             BoundHashOperations<String, Object, Object> ops = this.getBoundHash(userInfoTo.getUserId().toString());
-            Object o = ops.get(item.getSkuId());
+            Object o = ops.get(String.valueOf(item.getSkuId()));
             CartItem cartItem = JSON.parseObject(o.toString(), CartItem.class);
             // 修改其数量即可.
             cartItem.setCount(cartItem.getCount() + 1);
@@ -267,8 +282,9 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
      * @param request
      * @param model
      */
-    private void loginTrue(HttpServletRequest request, Model model) {
+    private Cart loginTrue(HttpServletRequest request, Model model) {
 
+        return null;
 
     }
 
@@ -278,8 +294,43 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
      * @param request
      * @param model
      */
-    private void loginFalse(HttpServletRequest request, Model model) {
+    private Cart loginFalse(HttpServletRequest request, Model model) {
 
+        // 现在是用户未进行登录状态的.
+        // 所以使用user-key来进行查询.
+        UserInfoTo userInfoTo = CartInterceptor.local.get();
+        // 现在要将该hashKey下的所有map查询出来.
+//        ops.multiGet()
+        // 现在是怎么进行查询.
+        // 现在需要将其封装成一个Cart.
+        Cart cart = new Cart();
+        List<CartItem> cartItemList = this.getAllCartItem(userInfoTo.getUserKey());
+        int count = 0;
+        //  计算所有个数.
+        // 顺便计算总价格.
+        BigDecimal bigDecimal = new BigDecimal(0);
+        for (CartItem item : cartItemList) {
+
+            count += item.getCount();
+            bigDecimal = bigDecimal.add(item.getTotalPrice());
+        }
+
+        System.out.println(bigDecimal+"------");
+        // 输出总价格.
+        // 现在我需要对其求和.
+
+        cart.setItems(cartItemList);
+        // 这个count需要的是所有商品的count来
+        // 这个值需要计算出来.
+        cart.setCount(count);
+        // 这个count设置的是上面的size.
+        cart.setCountType(cartItemList.size());
+        // 调用一下总价的get方法,来进行set.
+        // 看一下最后输出的总价.
+        // TODO: 现在是总价计算不出来.
+        cart.getTotalPrice();
+        cart.setTotalPrice(bigDecimal);
+        return cart;
 
     }
 
@@ -343,6 +394,28 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         stringRedisTemplate.expire(CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX, key),
                 DateTimeUtils.getOneMonthTimeSeconds(), TimeUnit.SECONDS);
         log.info("增加购物车成功: {}", jsonString);
+
+    }
+
+
+    private List<CartItem> getAllCartItem(@NotNull String key) {
+
+        HashOperations<String, Object, Object> ops = stringRedisTemplate.opsForHash();
+        String hk = CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX, key);
+        // 现在要将该hashKey下的所有map查询出来.
+        // 现在需要将其封装成一个Cart.
+        List<Object> values = ops.values(hk);
+        // 参数是hashKey的一个集合.
+        Integer count = 0;
+        List<CartItem> cartItemList = values.stream().map(item -> {
+
+            // 在这里需要将item转换成一个CartItem
+            CartItem cartItem = JSON.parseObject(item.toString(), CartItem.class);
+            // 累加所有count.
+            return cartItem;
+
+        }).collect(Collectors.toList());
+        return cartItemList;
 
     }
 

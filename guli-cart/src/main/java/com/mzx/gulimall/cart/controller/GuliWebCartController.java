@@ -4,6 +4,7 @@ import com.mzx.gulimall.cart.api.GuliWebCartControllerApi;
 import com.mzx.gulimall.cart.constant.RedisSessionConstant;
 import com.mzx.gulimall.cart.service.GuliWebCartService;
 import com.mzx.gulimall.cart.vo.CartParamVo;
+import com.mzx.gulimall.common.model.Cart;
 import com.mzx.gulimall.common.model.CartItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +62,8 @@ public class GuliWebCartController implements GuliWebCartControllerApi {
             // Java是值传递,但是对于对象来说,传递的是对象的地址的值.
             // 也就是说我这里将Model传进去,下面方法进行修改Model,那么修改后的值也能体现在该方法中.
             // TODO: 查询功能应该先等增加功能完成之后在进行实现.
-            guliWebCartService.cart(request, model, false);
+            Cart cart = guliWebCartService.cart(request, model, false);
+            model.addAttribute("cart",cart);
             return "cartList";
 
         }

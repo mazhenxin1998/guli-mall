@@ -14,6 +14,12 @@ public class GetHttpSessionConfiguration extends ServerEndpointConfig.Configurat
     @Override
     public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
 
+        /*
+         * --------------------------------------------------------
+         * 如果做了SpringSession的全局配置,那么这里获取到的Session就应该是
+         * 全局的Session.
+         * --------------------------------------------------------
+         * */
         HttpSession httpSession = (HttpSession) request.getHttpSession();
         sec.getUserProperties().put(HttpSession.class.getName(), httpSession);
     }

@@ -7,21 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="guli-util" />
-        <module name="renren-fast" />
-        <module name="renren-generator" />
+        <module name="guli-member" />
+        <module name="guli-customer-ervice" />
         <module name="guli-searcher" />
         <module name="guli-oauth" />
         <module name="guli-coupon" />
         <module name="guli-cart" />
         <module name="guli-gateway" />
-        <module name="guli-member" />
+        <module name="renren-generator" />
         <module name="guli-product" />
         <module name="guli-ware" />
         <module name="guli-common" />
+        <module name="renren-fast" />
         <module name="guli-three-server" />
         <module name="guli-order" />
-        <module name="guli-customer-ervice" />
+        <module name="guli-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

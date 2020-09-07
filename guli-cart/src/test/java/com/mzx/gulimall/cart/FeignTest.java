@@ -11,9 +11,10 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.sound.sampled.Line;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,23 +74,49 @@ public class FeignTest {
     }
 
     @Test
-    public void t3(){
+    public void t3() {
 
         // 测试是直接删除还是直接覆盖.
         HashOperations<String, Object, Object> ops = stringRedisTemplate.opsForHash();
         HashMap<String, String> map = new HashMap<>();
-        map.put("x","1110000");
-        ops.putAll("cart:50",map);
+        map.put("x", "1110000");
+        ops.putAll("cart:50", map);
 
     }
 
     @Test
-    public void t4(){
+    public void t4() {
 
         BoundHashOperations<String, Object, Object> ops = stringRedisTemplate.boundHashOps("cart:55");
         Object x = ops.get("x1");
         System.out.println(x.toString());
         System.out.println(1);
+
+    }
+
+    @Test
+    public void t5() {
+
+        String key = "cart:c3659490-179d-46f1-a316-45b07218a08b";
+        List<Object> values = stringRedisTemplate.opsForHash().values(key);
+        System.out.println(values);
+        System.out.println(1);
+
+    }
+
+    @Test
+    public void t6() {
+
+        // 测试B
+        BigDecimal bigDecimal = new BigDecimal(0);
+        for (int i = 0; i < 5; i++) {
+
+            BigDecimal b = new BigDecimal(i);
+            bigDecimal = bigDecimal.add(b);
+        }
+
+        System.out.println(bigDecimal);
+
 
     }
 
