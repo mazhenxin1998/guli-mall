@@ -1,17 +1,20 @@
 package com.mzx.gulimall.product.web;
 
+import com.mzx.gulimall.product.annotation.GuliMallCache;
+import com.mzx.gulimall.util.NumberUtils;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-
-import java.util.concurrent.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author ZhenXinMa
  * @date 2020/8/7 20:06
  */
-@Service
+@RestController
+@RequestMapping(value = "/cache/test")
 public class CachingTest {
-
 
 
     /**
@@ -34,6 +37,17 @@ public class CachingTest {
         return s;
     }
 
+    @GuliMallCache(prefix = "cache:", lock = "CACHE_LOCK", timeout = 100000, random = 10)
+    @GetMapping(value = "/t/{id}")
+    public String getInfo(@PathVariable(value = "id") Long id) {
 
+        // 这里应该从DB中查询.
+        // 因为如果缓存中有的话方法会直接执行,进而不会执行》
+        // 模拟从DB中查询数据.
+        System.out.println("从DB中查询了一次数据.");
+        Integer number = NumberUtils.getAppointRandomNumber(10);
+        return number.toString();
+
+    }
 
 }

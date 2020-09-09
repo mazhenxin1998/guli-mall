@@ -15,8 +15,14 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MessageVo {
 
-    private String toName;
+    private Long userID;
     private String fromName;
     private String message;
+    /**
+     * 表示当前是用户还是客服的标志位.
+     * true: 表示是客服.
+     * false: 表示是用户.
+     */
+    private boolean flag;
 
 }

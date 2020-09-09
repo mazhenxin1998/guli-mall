@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -63,14 +62,15 @@ public class GuliWebCartController implements GuliWebCartControllerApi {
             // 也就是说我这里将Model传进去,下面方法进行修改Model,那么修改后的值也能体现在该方法中.
             // TODO: 查询功能应该先等增加功能完成之后在进行实现.
             Cart cart = guliWebCartService.cart(request, model, false);
-            model.addAttribute("cart",cart);
+            model.addAttribute("cart", cart);
             return "cartList";
 
         }
 
+        // 针对用户登录之后进行处理.
+        Cart cart = guliWebCartService.cart(request, model, true);
+        model.addAttribute("cart", cart);
         // 正常处理: 用户登录状态下查询登录状态下的列表.
-
-
         // 应该将所有的操作放到底层service进行操作,Controller中应该尽可能保持简洁的操作.
         return "cartList";
     }

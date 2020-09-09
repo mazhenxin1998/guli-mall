@@ -278,11 +278,21 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
     /**
      * 针对用户登录状态进行查询.
+     * <p>
+     * 需要做的是将当前用户未登录状态的离线购物车合并到用户真实的购物车.
      *
      * @param request
      * @param model
      */
     private Cart loginTrue(HttpServletRequest request, Model model) {
+
+        // 先获取用户当前的购物车.
+        UserInfoTo userInfoTo = CartInterceptor.local.get();
+        List<CartItem> cartItem = this.getAllCartItem(userInfoTo.getUserId().toString());
+        // 还需要将当前用户未登录状态购物车的内容合并到用户的购物车.
+        List<CartItem> itemList = this.getAllCartItem(userInfoTo.getUserKey());
+        // 进行合并.
+
 
         return null;
 
@@ -315,7 +325,7 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
             bigDecimal = bigDecimal.add(item.getTotalPrice());
         }
 
-        System.out.println(bigDecimal+"------");
+        System.out.println(bigDecimal + "------");
         // 输出总价格.
         // 现在我需要对其求和.
 
@@ -353,14 +363,15 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         if (StringUtils.isEmpty(userInfoTo.getUserId())) {
 
             // 说明现在用户是未登录状态
+            // 用户未登录状态应该设置过期时间.
             // 那么传进去的key就是用户的user-key.
-            this.addCartToRedis(item, userInfoTo.getUserKey(), skuId);
+            this.addCartToRedis(item, userInfoTo.getUserKey(), skuId, true);
 
         } else {
 
             // 现在用户是登录状态.
             // 那么传进去的key是用户的ID.
-            this.addCartToRedis(item, userInfoTo.getUserId().toString(), skuId);
+            this.addCartToRedis(item, userInfoTo.getUserId().toString(), skuId, false);
 
         }
 
@@ -374,7 +385,7 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
      * @param key
      * @param skuId
      */
-    private void addCartToRedis(CartItem item, String key, Long skuId) {
+    private void addCartToRedis(CartItem item, String key, Long skuId, boolean expreise) {
 
         BoundHashOperations<String, Object, Object> ops = this.getBoundHash(key);
         String jsonString = JSON.toJSONString(item);
@@ -391,12 +402,17 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         // 这里的键是那个hash键.
         // TODO:  这个键一定是正确的吗？
         // 一定要保证这个key一定是正确的.
-        stringRedisTemplate.expire(CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX, key),
-                DateTimeUtils.getOneMonthTimeSeconds(), TimeUnit.SECONDS);
+        // TODO: 如果当前用户是登录状态那么就不应该设置过期时间.
+        if (expreise) {
+
+            stringRedisTemplate.expire(CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX, key),
+                    DateTimeUtils.getOneMonthTimeSeconds(), TimeUnit.SECONDS);
+
+        }
+
         log.info("增加购物车成功: {}", jsonString);
 
     }
-
 
     private List<CartItem> getAllCartItem(@NotNull String key) {
 
@@ -417,6 +433,34 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         }).collect(Collectors.toList());
         return cartItemList;
 
+    }
+
+    /**
+     * 将在线和不在线的购物车进行合并.
+     *
+     * @param onLines
+     * @param offLines
+     * @return
+     */
+    private Cart mergeCart(List<CartItem> onLines, List<CartItem> offLines) {
+
+        if (onLines != null && onLines.size() > 0) {
+
+            onLines.stream().map(item -> {
+
+                if (offLines.contains(item)) {
+
+                    // 如果offLine中包含了当前item那么更新.
+
+                }
+
+                return item;
+            });
+
+        }
+
+
+        return null;
     }
 
 

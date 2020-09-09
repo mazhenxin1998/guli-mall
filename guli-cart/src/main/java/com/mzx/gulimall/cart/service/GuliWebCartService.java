@@ -15,6 +15,8 @@ public interface GuliWebCartService {
 
     /**
      * 对购物车上的数据进行封装操作.
+     * <p>
+     * 如果用户没有进行登录,那就查询当前用户的临时购物车,如果用户当前登录了,那么就将临时购物车和当前的购物车进行合并.
      *
      * @param request
      * @param model
