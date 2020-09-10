@@ -1,5 +1,6 @@
 package com.mzx.gulimall.product.annotation;
 
+import javax.validation.constraints.NotNull;
 import java.lang.annotation.*;
 
 /**
@@ -15,11 +16,11 @@ import java.lang.annotation.*;
 public @interface GuliMallCache {
 
     /**
-     * 表示当前方法所属缓存前缀.
+     * 表示当前方法所属缓存前缀.这个不提供默认值.
      *
      * @return
      */
-    String prefix() default "";
+    @NotNull String prefix();
 
     /**
      * 为了保证缓存数据一致性,为该缓存添加一个过期时间.
@@ -43,5 +44,13 @@ public @interface GuliMallCache {
      * @return
      */
     String lock() default "";
+
+    /**
+     * 如果当前方法只缓存一个数据,那么就指定自己的key(该key是前缀在加上当前的key).
+     * 如果说当前缓存方法根据参数来缓存不同的数据,那么就使用前缀后面添加参数的第一个参数值来进行缓存.
+     *
+     * @return
+     */
+    String key() default "";
 
 }

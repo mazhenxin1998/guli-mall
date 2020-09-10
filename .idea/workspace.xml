@@ -97,6 +97,7 @@
       <change afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/exception/ResultCode.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/utils/ExceptionUtils.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/src/main/resources/bootstrap.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/application.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/SpringApplicationProductApp.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/AttrAttrgroupRelationController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/controller/AttrController.class" afterDir="false" />
@@ -160,6 +161,7 @@
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/SpuInfoService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrAttrgroupRelationServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrGroupServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/BrandServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/CategoryBrandRelationServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/CategoryServiceImpl.class" afterDir="false" />
@@ -356,21 +358,9 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebCartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/GuliWebCartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/GuliWebCartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-customer-ervice/src/main/java/com/mzx/gulimall/im/server/ChartEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-customer-ervice/src/main/java/com/mzx/gulimall/im/server/ChartEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-customer-ervice/src/main/java/com/mzx/gulimall/im/vo/MessageVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-customer-ervice/src/main/java/com/mzx/gulimall/im/vo/MessageVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-customer-ervice/src/test/java/com/mzx/gulimall/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-customer-ervice/src/test/java/com/mzx/gulimall/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-customer-ervice/target/classes/com/mzx/gulimall/im/config/GetHttpSessionConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-customer-ervice/target/classes/com/mzx/gulimall/im/config/GetHttpSessionConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-customer-ervice/target/classes/com/mzx/gulimall/im/server/ChartEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-customer-ervice/target/classes/com/mzx/gulimall/im/server/ChartEndpoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-customer-ervice/target/test-classes/com/mzx/gulimall/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-customer-ervice/target/test-classes/com/mzx/gulimall/AppTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/AttrServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/service/impl/AttrServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/annotation/GuliMallCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/annotation/GuliMallCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/web/CachingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/web/CachingTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/service/impl/AttrServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/CachingTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/CachingTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -675,6 +665,7 @@
     <list>
       <item itemvalue="Application.AppTest" />
       <item itemvalue="Application.NumberUtils" />
+      <item itemvalue="Application.CachingTest" />
       <item itemvalue="JUnit.FeignTest.t6" />
       <item itemvalue="Spring Boot.GuliMallThreeServerApplication" />
       <item itemvalue="Spring Boot.RenrenApplication" />
@@ -688,7 +679,6 @@
       <item itemvalue="Spring Boot.GuliMallSearchApplication" />
       <item itemvalue="Spring Boot.GuliMallOauthApplication" />
       <item itemvalue="Spring Boot.GuliMallCartApplication" />
-      <item itemvalue="Application.CachingTest" />
     </list>
     <recent_temporary>
       <list>
@@ -857,7 +847,9 @@
       <workItem from="1599494651161" duration="1173000" />
       <workItem from="1599531097063" duration="2375000" />
       <workItem from="1599559604802" duration="7978000" />
-      <workItem from="1599612885646" duration="8439000" />
+      <workItem from="1599612885646" duration="9949000" />
+      <workItem from="1599724937257" duration="734000" />
+      <workItem from="1599747070304" duration="2701000" />
     </task>
     <servers />
   </component>
@@ -929,54 +921,54 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1599494863373" />
-    <state width="1139" height="417" key="GridCell.Tab.0.bottom" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.0.bottom" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.0.center" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.0.center" timestamp="1599663337371">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.0.left" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1599663337371" />
+    <state width="1139" height="417" key="GridCell.Tab.0.left" timestamp="1599663337371">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.0.right" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1599663337371" />
+    <state width="1139" height="417" key="GridCell.Tab.0.right" timestamp="1599663337371">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.1.bottom" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1599663337371" />
+    <state width="1139" height="417" key="GridCell.Tab.1.bottom" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.1.center" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.1.center" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.1.left" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.1.left" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.1.right" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.1.right" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.2.bottom" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.2.bottom" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.2.center" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.2.center" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.2.left" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.2.left" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
-    <state width="1139" height="417" key="GridCell.Tab.2.right" timestamp="1599661235530">
+    <state width="1139" height="417" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1139" height="417" key="GridCell.Tab.2.right" timestamp="1599663337372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1599661235530" />
+    <state width="1139" height="417" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
     <state x="349" y="152" key="IDE.errors.dialog" timestamp="1598356704684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1029,25 +1021,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="511" y="45" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1594903239674" />
-    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup" timestamp="1599657429187">
+    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup" timestamp="1599662752132">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1599657429187" />
+    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1599662752132" />
     <state x="541" y="100" key="spring file set editor" timestamp="1599150732381">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="541" y="100" key="spring file set editor/0.0.1536.834@0.0.1536.834" timestamp="1599150732381" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/guli_mall$RedissonTest_t3.ic" NAME="RedissonTest.t3 Coverage Results" MODIFIED="1597036851034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

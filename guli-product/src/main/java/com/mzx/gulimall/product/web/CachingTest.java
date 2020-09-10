@@ -37,6 +37,12 @@ public class CachingTest {
         return s;
     }
 
+    /**
+     * 前缀不用添加: 自己处理的时候,如果没有添加:那么就默认添加: , 如果添加了那就不默认添加了.
+     *
+     * @param id
+     * @return
+     */
     @GuliMallCache(prefix = "cache:", lock = "CACHE_LOCK", timeout = 100000, random = 10)
     @GetMapping(value = "/t/{id}")
     public String getInfo(@PathVariable(value = "id") Long id) {
@@ -48,6 +54,13 @@ public class CachingTest {
         Integer number = NumberUtils.getAppointRandomNumber(10);
         return number.toString();
 
+    }
+
+
+    @GuliMallCache(prefix = "")
+    public String string() {
+
+        return "x";
     }
 
 }
