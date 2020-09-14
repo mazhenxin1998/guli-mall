@@ -358,13 +358,11 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebJumPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebJumPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/annotation/GuliMallCache.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/annotation/GuliMallCache.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/CachingTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/CachingTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/SpringApplicationOrderApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/test/java/com/mzx/gulimall/order/server/OrderItemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/test/java/com/mzx/gulimall/order/server/OrderItemTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -648,15 +646,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SpringApplicationOrderApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="guli-order" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.order.SpringApplicationOrderApp" />
-      <option name="VM_PARAMETERS" value="-Xmx100m -Xms100m" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SpringApplicationProductApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="guli-product" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mzx.gulimall.product.SpringApplicationProductApp" />
@@ -675,7 +664,6 @@
       <item itemvalue="Spring Boot.RenrenApplication" />
       <item itemvalue="Spring Boot.SpringApplicationCouponApp" />
       <item itemvalue="Spring Boot.SpringApplicationMemberApp" />
-      <item itemvalue="Spring Boot.SpringApplicationOrderApp" />
       <item itemvalue="Spring Boot.SpringApplicationProductApp" />
       <item itemvalue="Spring Boot.GuliMallWareApplication" />
       <item itemvalue="Spring Boot.GuliMallGatewayApplicationApp" />
@@ -704,11 +692,6 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -865,7 +848,7 @@
       <workItem from="1599989941047" duration="10255000" />
       <workItem from="1600058528627" duration="92000" />
       <workItem from="1600086354560" duration="340000" />
-      <workItem from="1600087056952" duration="2999000" />
+      <workItem from="1600087056952" duration="5507000" />
     </task>
     <servers />
   </component>
@@ -929,46 +912,46 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="256" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1595408932332" />
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599361924458">
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600092633944">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1599361924458" />
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1600092633944" />
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1599967145269">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1599967145269" />
-    <state width="1104" height="287" key="GridCell.Tab.0.bottom" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.0.bottom" timestamp="1600092679013">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
-    <state width="1104" height="287" key="GridCell.Tab.0.center" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600092679013" />
+    <state width="1104" height="287" key="GridCell.Tab.0.center" timestamp="1600092679013">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
-    <state width="1104" height="287" key="GridCell.Tab.0.left" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1600092679013" />
+    <state width="1104" height="287" key="GridCell.Tab.0.left" timestamp="1600092679012">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
-    <state width="1104" height="287" key="GridCell.Tab.0.right" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1600092679012" />
+    <state width="1104" height="287" key="GridCell.Tab.0.right" timestamp="1600092679013">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
-    <state width="1104" height="287" key="GridCell.Tab.1.bottom" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600092679013" />
+    <state width="1104" height="287" key="GridCell.Tab.1.bottom" timestamp="1600092679013">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
-    <state width="1104" height="287" key="GridCell.Tab.1.center" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600092679013" />
+    <state width="1104" height="287" key="GridCell.Tab.1.center" timestamp="1600092679013">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
-    <state width="1104" height="287" key="GridCell.Tab.1.left" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1600092679013" />
+    <state width="1104" height="287" key="GridCell.Tab.1.left" timestamp="1600092679013">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
-    <state width="1104" height="287" key="GridCell.Tab.1.right" timestamp="1600091606293">
+    <state width="1104" height="287" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1600092679013" />
+    <state width="1104" height="287" key="GridCell.Tab.1.right" timestamp="1600092679013">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1104" height="287" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1600092679013" />
     <state width="1104" height="287" key="GridCell.Tab.2.bottom" timestamp="1600091606226">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -997,10 +980,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="429" y="121" key="NewModule_or_Project.wizard/0.0.1536.834@0.0.1536.834" timestamp="1599175197578" />
-    <state x="423" y="0" key="SettingsEditor" timestamp="1600007880114">
+    <state x="423" y="0" key="SettingsEditor" timestamp="1600092736957">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="423" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600007880114" />
+    <state x="423" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600092736957" />
     <state x="515" y="114" key="SpringBootCustomization" timestamp="1599149822774">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1045,22 +1028,6 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="541" y="100" key="spring file set editor/0.0.1536.834@0.0.1536.834" timestamp="1599150732381" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java</url>
-          <line>293</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java</url>
-          <line>486</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/guli_mall$RedissonTest_t3.ic" NAME="RedissonTest.t3 Coverage Results" MODIFIED="1597036851034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

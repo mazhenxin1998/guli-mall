@@ -292,30 +292,60 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
     private Cart loginTrue(HttpServletRequest request, Model model) {
 
         UserInfoTo userInfoTo = CartInterceptor.local.get();
-        // 将离线购物车里面的内容添加到在线购物车. 该方法没有返回值.
-        this.mergeCart(userInfoTo);
-        // 合并之后应该进行移除离线购物车中当前用户存储的购物信息.
-        String userKey = CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX,
-                userInfoTo.getUserKey());
-        // 删除临时购物车根据默认生成的user-key
-        stringRedisTemplate.delete(userKey);
-        // 删除之后,从缓存中查询出当前用户购物车内的信息,并且返回给上一层.
-        // 这里重新从Redis中查询出来的时候合并之后的购物车.
-        List<CartItem> list = this.getAllCartItem(userInfoTo.getUserId().toString());
+        CompletableFuture<Void> mergeFuture = CompletableFuture.runAsync(() -> {
+
+            // 将离线购物车里面的内容添加到在线购物车. 该方法没有返回值.
+            this.mergeCart(userInfoTo);
+
+        }, executor);
+
+        CompletableFuture<Void> deleteFuture = CompletableFuture.runAsync(() -> {
+
+            // 合并之后应该进行移除离线购物车中当前用户存储的购物信息.
+            String userKey = CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX,
+                    userInfoTo.getUserKey());
+            // 删除临时购物车根据默认生成的user-key
+            stringRedisTemplate.delete(userKey);
+
+        }, executor);
+
         Cart cart = new Cart();
-        cart.setItems(list);
-        TotalCountTo totalCountTo = this.getTypeCountFromListCartItem(list);
-        // 设置类别的数量.
-        cart.setCountType(totalCountTo.getTypeCount());
-        // 设置总共的数量.
-        cart.setCount(totalCountTo.getCount());
-        if (totalCountTo.getTotalPrice() != null) {
+        CompletableFuture<Void> packageFuture = CompletableFuture.runAsync(() -> {
 
-            cart.setTotalPrice(totalCountTo.getTotalPrice());
+            // 删除之后,从缓存中查询出当前用户购物车内的信息,并且返回给上一层.
+            // 这里重新从Redis中查询出来的时候合并之后的购物车.
+            List<CartItem> list = this.getAllCartItem(userInfoTo.getUserId().toString());
+            cart.setItems(list);
+            TotalCountTo totalCountTo = this.getTypeCountFromListCartItem(list);
+            // 设置类别的数量.
+            cart.setCountType(totalCountTo.getTypeCount());
+            // 设置总共的数量.
+            cart.setCount(totalCountTo.getCount());
+            if (totalCountTo.getTotalPrice() != null) {
 
+                cart.setTotalPrice(totalCountTo.getTotalPrice());
+
+            }
+
+            log.info("合并成功了: {}",cart.toString());
+
+        }, executor);
+
+        // 现在需要做的就是保证上面三个任务都执行完毕之后,在对controller进行返回.
+        try {
+
+            // 等待上面三个任务执行完毕. 不需要返回值.
+            CompletableFuture.allOf(mergeFuture,deleteFuture,packageFuture).get();
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
+        } catch (ExecutionException e) {
+
+            e.printStackTrace();
         }
 
-        log.info("合并成功了: {}",cart.toString());
         return cart;
 
     }
@@ -466,7 +496,6 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
      */
     private void mergeCart(UserInfoTo userInfoTo) {
 
-        // TODO: 这里合并是有毛病的.
         // 先获取用户当前的购物车.
         List<CartItem> onLines = this.getAllCartItem(userInfoTo.getUserId().toString());
         // 还需要将当前用户未登录状态购物车的内容合并到用户的购物车.
@@ -486,7 +515,6 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
                 if (skus.contains(item.getSkuId())) {
 
-                    // 当前分支有问题.
                     // 这里仅仅修改数量.
                     // 1. 先获取离线购物车中的数量. 注意这里是JSON类型数据.
                     // 这里转换类型又TM出现错误了.

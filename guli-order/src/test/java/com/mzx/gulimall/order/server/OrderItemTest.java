@@ -1,6 +1,5 @@
 package com.mzx.gulimall.order.server;
 
-import com.mzx.gulimall.order.SpringApplicationOrderApp;
 import com.mzx.gulimall.order.entity.OrderItemEntity;
 import com.mzx.gulimall.order.service.OrderItemService;
 import org.junit.Test;
