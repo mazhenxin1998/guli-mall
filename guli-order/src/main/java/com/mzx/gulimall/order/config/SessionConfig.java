@@ -1,7 +1,11 @@
 package com.mzx.gulimall.order.config;
 
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
+import com.mzx.gulimall.common.constant.SpringSessionConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.session.web.http.CookieSerializer;
 import org.springframework.session.web.http.DefaultCookieSerializer;
 
@@ -24,14 +28,25 @@ public class SessionConfig {
     public CookieSerializer cookieSerializer() {
 
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-        serializer.setDomainName("localhost");
-        serializer.setCookiePath("/");
+        serializer.setDomainName(SpringSessionConstant.COOKIE_DO_MAIN_NAME);
+        serializer.setCookiePath(SpringSessionConstant.COOKIE_PATH);
         // 其实所有的字符串都不应该出现在业务逻辑中. 应该将其放在公共配置中.
-        serializer.setCookieName("GULIMALL-SESSION");
-
-
+        serializer.setCookieName(SpringSessionConstant.COOKIE_NAME);
         return serializer;
 
+    }
+
+    /**
+     * 对Redis进行序列化.
+     * <p>
+     * 使其存入的数据为JSON形式.
+     *
+     * @return 返回fastJson序列化器.
+     */
+    @Bean
+    public RedisSerializer<Object> redisSerializer() {
+
+        return new GenericFastJsonRedisSerializer();
     }
 
 

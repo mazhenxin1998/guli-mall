@@ -1,6 +1,7 @@
 package com.mzx.gulimall.product.config;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
+import com.mzx.gulimall.common.constant.SpringSessionConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -22,9 +23,9 @@ public class SpringSessionConfig {
         // 只要是访问该IP地址那么就共享.
         //  如果 127.0.0.1  不共享 那么就是用域名 + 子域名
         // 顶级域名: guli.com
-        serializer.setDomainName("localhost");
-        serializer.setCookieName("GULIMALL-SESSION");
-        serializer.setCookiePath("/");
+        serializer.setDomainName(SpringSessionConstant.COOKIE_DO_MAIN_NAME);
+        serializer.setCookieName(SpringSessionConstant.COOKIE_NAME);
+        serializer.setCookiePath(SpringSessionConstant.COOKIE_PATH);
         return serializer;
 
     }

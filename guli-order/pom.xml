@@ -34,7 +34,7 @@
             <artifactId>spring-web</artifactId>
         </dependency>
 
-<!--       Order还需要引入页面所需要的依赖-->
+        <!--       Order还需要引入页面所需要的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
@@ -57,10 +57,10 @@
             <optional>true</optional>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--        </dependency>-->
 
         <!--引入springboot的缓存.-->
         <dependency>
@@ -86,6 +86,11 @@
             <version>3.13.2</version>
         </dependency>
 
+        <!--引入MQ的依赖. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
 
     </dependencies>
 
