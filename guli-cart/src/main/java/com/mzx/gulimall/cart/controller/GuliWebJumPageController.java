@@ -29,13 +29,13 @@ public class GuliWebJumPageController implements GuliWebJumpPageControllerApi {
     @Autowired
     private GuliWebCartService guliWebCartService;
 
+
     @GetMapping(value = "/to/success")
     public String toSuccess(@Valid CartParamVo param,
                             HttpServletRequest request,
                             Model model) {
 
         System.out.println(param.toString());
-        // 添加了下面的代码之后将会出现错误.
         CartItem item = guliWebCartService.add(request, param, model);
         model.addAttribute("item", item);
 

@@ -6,6 +6,7 @@ import com.mzx.gulimall.cart.feign.ProductServiceFeign;
 import com.mzx.gulimall.cart.interceptor.CartInterceptor;
 import com.mzx.gulimall.cart.service.GuliWebCartService;
 import com.mzx.gulimall.cart.vo.CartParamVo;
+import com.mzx.gulimall.cart.vo.TotalCountTo;
 import com.mzx.gulimall.cart.vo.UserInfoTo;
 import com.mzx.gulimall.common.model.Cart;
 import com.mzx.gulimall.common.model.CartItem;
@@ -21,6 +22,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import rx.observables.SyncOnSubscribe;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
@@ -66,10 +68,13 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
         if (isLogin) {
 
+            // 用户登录状态的购物车列表.
+            // 该返回值可能返回空值.
             return this.loginTrue(request, model);
 
         } else {
 
+            // 用户未登录状态下的购物车.
             return this.loginFalse(request, model);
 
         }
@@ -286,15 +291,32 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
      */
     private Cart loginTrue(HttpServletRequest request, Model model) {
 
-        // 先获取用户当前的购物车.
         UserInfoTo userInfoTo = CartInterceptor.local.get();
-        List<CartItem> cartItem = this.getAllCartItem(userInfoTo.getUserId().toString());
-        // 还需要将当前用户未登录状态购物车的内容合并到用户的购物车.
-        List<CartItem> itemList = this.getAllCartItem(userInfoTo.getUserKey());
-        // 进行合并.
+        // 将离线购物车里面的内容添加到在线购物车. 该方法没有返回值.
+        this.mergeCart(userInfoTo);
+        // 合并之后应该进行移除离线购物车中当前用户存储的购物信息.
+        String userKey = CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX,
+                userInfoTo.getUserKey());
+        // 删除临时购物车根据默认生成的user-key
+        stringRedisTemplate.delete(userKey);
+        // 删除之后,从缓存中查询出当前用户购物车内的信息,并且返回给上一层.
+        // 这里重新从Redis中查询出来的时候合并之后的购物车.
+        List<CartItem> list = this.getAllCartItem(userInfoTo.getUserId().toString());
+        Cart cart = new Cart();
+        cart.setItems(list);
+        TotalCountTo totalCountTo = this.getTypeCountFromListCartItem(list);
+        // 设置类别的数量.
+        cart.setCountType(totalCountTo.getTypeCount());
+        // 设置总共的数量.
+        cart.setCount(totalCountTo.getCount());
+        if (totalCountTo.getTotalPrice() != null) {
 
+            cart.setTotalPrice(totalCountTo.getTotalPrice());
 
-        return null;
+        }
+
+        log.info("合并成功了: {}",cart.toString());
+        return cart;
 
     }
 
@@ -394,6 +416,7 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         // 这里为什么会失败啊?
         // 现在情况是如果想Redis中添加Hash类型数据,那么就会报错.
         HashMap<String, String> map = new HashMap<>();
+        // hashMap里面存放的是JSON.
         map.put(skuId.toString(), jsonString);
         // 使用 ops对其进行操作.
         ops.putAll(map);
@@ -438,29 +461,112 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
     /**
      * 将在线和不在线的购物车进行合并.
      *
-     * @param onLines
-     * @param offLines
+     * @param userInfoTo 当前用户的信息. 当前用户可能没有登录,可能登录.
      * @return
      */
-    private Cart mergeCart(List<CartItem> onLines, List<CartItem> offLines) {
+    private void mergeCart(UserInfoTo userInfoTo) {
 
-        if (onLines != null && onLines.size() > 0) {
+        // TODO: 这里合并是有毛病的.
+        // 先获取用户当前的购物车.
+        List<CartItem> onLines = this.getAllCartItem(userInfoTo.getUserId().toString());
+        // 还需要将当前用户未登录状态购物车的内容合并到用户的购物车.
+        List<CartItem> offLines = this.getAllCartItem(userInfoTo.getUserKey());
 
-            onLines.stream().map(item -> {
+        // 现在需要获取到,
+        BoundHashOperations<String, Object, Object> boundUserKeyHash = this.getBoundHash(userInfoTo.getUserKey());
 
-                if (offLines.contains(item)) {
+        BoundHashOperations<String, Object, Object> boundUserIdHash = this.getBoundHash(
+                userInfoTo.getUserId().toString());
+        if (offLines != null && offLines.size() > 0) {
 
-                    // 如果offLine中包含了当前item那么更新.
+            // 表示当前用户已经添加了购物项的购物车.
+            List<Long> skus = this.extractSkuIdFromCart(onLines);
+            // 对离线购物车进行遍历, 将之前存在的仅仅是添加与之对应的数量,否则这个都添加进去.
+            for (CartItem item : offLines) {
+
+                if (skus.contains(item.getSkuId())) {
+
+                    // 当前分支有问题.
+                    // 这里仅仅修改数量.
+                    // 1. 先获取离线购物车中的数量. 注意这里是JSON类型数据.
+                    // 这里转换类型又TM出现错误了.
+                    Object o = boundUserKeyHash.get(item.getSkuId().toString());
+                    // TODO: 不知道这里有问题没?
+                    CartItem cartItem = JSON.parseObject(o.toString(), CartItem.class);
+                    // 表示离线购物车当前商品添加的数量.
+                    Integer count = cartItem.getCount();
+                    // 2. 修改用户线上购物车. 直接覆盖即可.
+                    // 就算是需要直接覆盖,那么也需要先获取到原先的item.
+                    Object o1 = boundUserIdHash.get(item.getSkuId().toString());
+                    CartItem nowItem = JSON.parseObject(o1.toString(), CartItem.class);
+                    nowItem.setCount(nowItem.getCount() + count);
+                    // 覆盖.
+                    HashMap<String, String> map = new HashMap<>();
+                    String nowItemJson = JSON.toJSONString(nowItem);
+                    map.put(item.getSkuId().toString(), nowItemJson);
+                    // 应该将对应的CartItem数据再次存入Redis中.
+                    // TODO: 这里的idHashPut没有起到作用.
+                    System.out.println("修改Redis数据成功了");
+                    boundUserIdHash.putAll(map);
+
+                } else {
+
+                    // 当前分支没有问题的.
+                    // 如果自爱信啊购物车里不包含离线购物车内容, 那么就将当前item添加到在线购物车中.
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put(item.getSkuId().toString(), JSON.toJSONString(item));
+                    System.out.println("增加Redis数据成功了.");
+                    boundUserIdHash.putAll(map);
 
                 }
 
-                return item;
-            });
+            }
 
         }
 
+    }
 
-        return null;
+    private List<Long> extractSkuIdFromCart(List<CartItem> list) {
+
+        /*
+         * --------------------------------------------------------
+         * 将所有的skuID抽取成一个集合.
+         * --------------------------------------------------------
+         * */
+        List collect = null;
+        if (list != null) {
+            collect = list.stream().map(item -> {
+
+                return item.getSkuId();
+
+            }).collect(Collectors.toList());
+        }
+
+        return collect;
+
+    }
+
+
+    private TotalCountTo getTypeCountFromListCartItem(List<CartItem> items) {
+
+        if (items != null && items.size() > 0) {
+
+            TotalCountTo totalCountTo = new TotalCountTo();
+
+            items.stream().forEach(item -> {
+
+                // 遍历每一个元素并且找到总得类别和总的数量.
+                totalCountTo.setCount(totalCountTo.getCount() + item.getCount());
+                totalCountTo.setTotalPrice(totalCountTo.getTotalPrice().add(item.getTotalPrice()));
+
+            });
+
+            totalCountTo.setTypeCount(items.size());
+            return totalCountTo;
+
+        }
+
+        return new TotalCountTo();
     }
 
 

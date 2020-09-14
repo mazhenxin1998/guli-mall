@@ -358,9 +358,13 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/annotation/GuliMallCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/annotation/GuliMallCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/web/CachingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/web/CachingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebJumPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebJumPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/annotation/GuliMallCache.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/annotation/GuliMallCache.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/CachingTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/com/mzx/gulimall/product/web/CachingTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -682,10 +686,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.GuliMallCartApplication" />
         <item itemvalue="Application.CachingTest" />
         <item itemvalue="Application.NumberUtils" />
         <item itemvalue="Application.AppTest" />
-        <item itemvalue="Spring Boot.GuliMallCartApplication" />
         <item itemvalue="JUnit.FeignTest.t6" />
       </list>
     </recent_temporary>
@@ -694,12 +698,17 @@
     <option name="viewStates">
       <list>
         <serviceView>
-          <option name="contentProportion" value="0.22131148" />
+          <option name="contentProportion" value="0.24521858" />
           <treeState>
             <expand>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -849,7 +858,14 @@
       <workItem from="1599559604802" duration="7978000" />
       <workItem from="1599612885646" duration="9949000" />
       <workItem from="1599724937257" duration="734000" />
-      <workItem from="1599747070304" duration="2701000" />
+      <workItem from="1599747070304" duration="2928000" />
+      <workItem from="1599750569828" duration="296000" />
+      <workItem from="1599829065207" duration="21000" />
+      <workItem from="1599966585291" duration="4285000" />
+      <workItem from="1599989941047" duration="10255000" />
+      <workItem from="1600058528627" duration="92000" />
+      <workItem from="1600086354560" duration="340000" />
+      <workItem from="1600087056952" duration="2999000" />
     </task>
     <servers />
   </component>
@@ -885,10 +901,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="296" y="0" width="957" height="834" key="#SpringApplicationProductApp_-2/0.0.1536.834@0.0.1536.834" timestamp="1597930037690" />
-    <state x="223" y="72" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599359233074">
+    <state x="94" y="59" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600015148753">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="223" y="72" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1599359233074" />
+    <state x="94" y="59" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1600015148753" />
     <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1599614918453">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -917,58 +933,58 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1599361924458" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1599494863373">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1599967145269">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1599494863373" />
-    <state width="1139" height="417" key="GridCell.Tab.0.bottom" timestamp="1599663337372">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1599967145269" />
+    <state width="1104" height="287" key="GridCell.Tab.0.bottom" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.0.center" timestamp="1599663337371">
+    <state width="1104" height="287" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.0.center" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1599663337371" />
-    <state width="1139" height="417" key="GridCell.Tab.0.left" timestamp="1599663337371">
+    <state width="1104" height="287" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.0.left" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1599663337371" />
-    <state width="1139" height="417" key="GridCell.Tab.0.right" timestamp="1599663337371">
+    <state width="1104" height="287" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.0.right" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1599663337371" />
-    <state width="1139" height="417" key="GridCell.Tab.1.bottom" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.1.bottom" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.1.center" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.1.center" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.1.left" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.1.left" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.1.right" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.1.right" timestamp="1600091606293">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.2.bottom" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1600091606293" />
+    <state width="1104" height="287" key="GridCell.Tab.2.bottom" timestamp="1600091606226">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.2.center" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600091606226" />
+    <state width="1104" height="287" key="GridCell.Tab.2.center" timestamp="1600091606226">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.2.left" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1600091606226" />
+    <state width="1104" height="287" key="GridCell.Tab.2.left" timestamp="1600091606226">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
-    <state width="1139" height="417" key="GridCell.Tab.2.right" timestamp="1599663337372">
+    <state width="1104" height="287" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1600091606226" />
+    <state width="1104" height="287" key="GridCell.Tab.2.right" timestamp="1600091606226">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1139" height="417" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1599663337372" />
+    <state width="1104" height="287" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1600091606226" />
     <state x="349" y="152" key="IDE.errors.dialog" timestamp="1598356704684">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -981,10 +997,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="429" y="121" key="NewModule_or_Project.wizard/0.0.1536.834@0.0.1536.834" timestamp="1599175197578" />
-    <state x="240" y="0" key="SettingsEditor" timestamp="1599495657534">
+    <state x="423" y="0" key="SettingsEditor" timestamp="1600007880114">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="240" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1599495657534" />
+    <state x="423" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600007880114" />
     <state x="515" y="114" key="SpringBootCustomization" timestamp="1599149822774">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1013,10 +1029,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="207" y="156" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1599175183015" />
-    <state x="516" y="204" width="715" height="306" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1598966037775">
+    <state x="516" y="204" width="715" height="306" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1599967159904">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="516" y="204" width="715" height="306" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.834@0.0.1536.834" timestamp="1598966037775" />
+    <state x="516" y="204" width="715" height="306" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.834@0.0.1536.834" timestamp="1599967159904" />
     <state x="511" y="45" key="refactoring.ChangeSignatureDialog" timestamp="1594903239674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1029,6 +1045,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="541" y="100" key="spring file set editor/0.0.1536.834@0.0.1536.834" timestamp="1599150732381" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java</url>
+          <line>293</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java</url>
+          <line>486</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/guli_mall$RedissonTest_t3.ic" NAME="RedissonTest.t3 Coverage Results" MODIFIED="1597036851034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
