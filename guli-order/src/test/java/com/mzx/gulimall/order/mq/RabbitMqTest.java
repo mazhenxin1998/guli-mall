@@ -28,13 +28,28 @@ public class RabbitMqTest {
     public void sendMessage() {
 
         // 模拟发送消息.
-        // 现在发送的消息使用的是JDK序列化机制.
-        String m = "haha";
-        String uuid = UUID.randomUUID().toString();
-        CorrelationData data = new CorrelationData(uuid);
-        // 发送消息.
-        rabbitTemplate.convertAndSend(RabbitMQConstant.RABBIT_MQ_EXCHANGE,
-                RabbitMQConstant.RABBIT_MQ_ROUTING_KEY, m, data);
+        // 现在发送的消息使用的是JDK序列化机制
+        String m = "haha5";
+        for (int i = 0; i < 5; i++) {
+
+            String uuid = UUID.randomUUID().toString();
+            CorrelationData data = new CorrelationData(uuid);
+            // 发送消息.
+            rabbitTemplate.convertAndSend(RabbitMQConstant.RABBIT_MQ_EXCHANGE,
+                    RabbitMQConstant.RABBIT_MQ_ROUTING_KEY, m, data);
+
+        }
+
+        for (int i = 0; i < 5; i++) {
+
+            String uuid = UUID.randomUUID().toString();
+            CorrelationData data = new CorrelationData(uuid);
+            // 发送消息.
+            rabbitTemplate.convertAndSend(RabbitMQConstant.RABBIT_MQ_EXCHANGE,
+                    RabbitMQConstant.RABBIT_MQ_ROUTING_KEY, m + "aa", data);
+
+
+        }
 
     }
 

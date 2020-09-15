@@ -26,6 +26,9 @@ public class RabbitConfig {
     @Autowired
     private ReturnCallback returnCallback;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @Bean
     public RabbitListenerContainerFactory<?> rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
 
@@ -42,21 +45,31 @@ public class RabbitConfig {
      * */
 
     /**
+     * 消息确认机制和回退机制是在发送端进行可靠性传输的保障.
+     *
      * 注解@PostConstruct作用: 将会在当前类初始化构造器调用之后执行该方法.
      *
-     * @param connectionFactory
+     * @param
      */
-    @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+//    @Bean
+//    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+//
+//        // TODO: 在这里new出来的RabbitTemplate,以及在配置文件中配置的MQ配置信息是不是没有起作用.
+//        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+//        rabbitTemplate.setMandatory(true);
+//        System.out.println("为RabbitTemplate配置信息成功了.");
+//
+//        return rabbitTemplate;
+//
+//    }
 
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        System.out.println("为RabbitTemplate配置信息成功了.");
-        rabbitTemplate.setMandatory(true);
+    @PostConstruct
+    public void init(){
+
+        System.out.println("测试注解@PostConstruct是成功执行了. ");
         rabbitTemplate.setConfirmCallback(confirmCallback);
         rabbitTemplate.setReturnCallback(returnCallback);
-        return rabbitTemplate;
 
     }
-
 
 }

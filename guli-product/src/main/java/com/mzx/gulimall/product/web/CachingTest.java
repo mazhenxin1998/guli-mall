@@ -3,17 +3,16 @@ package com.mzx.gulimall.product.web;
 import com.mzx.gulimall.product.annotation.GuliMallCache;
 import com.mzx.gulimall.util.NumberUtils;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ZhenXinMa
  * @date 2020/8/7 20:06
  */
 @RestController
-@RequestMapping(value = "/cache/test")
+@RequestMapping(value = "/product/cache/test")
 public class CachingTest {
 
 
@@ -43,7 +42,7 @@ public class CachingTest {
      * @param id
      * @return
      */
-    @GuliMallCache(prefix = "cache:", lock = "CACHE_LOCK", timeout = 100000, random = 10)
+    @GuliMallCache(prefix = "cache:", lock = "CACHE_LOCK", timeout = 100000, random = 10,unit = TimeUnit.SECONDS)
     @GetMapping(value = "/t/{id}")
     public String getInfo(@PathVariable(value = "id") Long id) {
 
@@ -57,10 +56,28 @@ public class CachingTest {
     }
 
 
-    @GuliMallCache(prefix = "")
+    @GuliMallCache(prefix = "",unit = TimeUnit.SECONDS)
     public String string() {
 
         return "x";
     }
+
+    /**
+     * 如果注解有作用,那么缓存就应该其作用.
+     *
+     * 缓存和方法参数只能有一个.
+     *
+     * @param id
+     * @return
+     */
+    @GuliMallCache(prefix = "cache:",lock = "current-cache-lock", timeout = 100, random = 1, unit = TimeUnit.SECONDS)
+    @GetMapping(value = "/guli")
+    public Object testCache(@RequestParam(value = "id") Long id){
+
+        System.out.println("testCache方法发生了. ");
+        return "111";
+
+    }
+
 
 }

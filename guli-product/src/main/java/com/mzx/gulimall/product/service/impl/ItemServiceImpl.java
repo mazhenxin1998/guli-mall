@@ -110,7 +110,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public SkuItemVo item(Long skuId) {
 
-        System.out.println("有用户进来查询商品. 商品的ID为: " + skuId);
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
         if (skuId != null && skuId > 0) {
 
@@ -127,7 +126,6 @@ public class ItemServiceImpl implements ItemService {
                 String productCache = ops.get(RedisConstant.PRODUCT_CACHE_PREFIX + skuId.toString());
                 if (!StringUtils.isEmpty(productCache)) {
 
-                    System.out.println("缓存命中，直接从缓存中返回   不查询DB. ");
                     // 不等于空则说明该商品在缓存中存了值, 直接返回即可。
                     // 我们存的时候是以JSON存的,那么取出来的时候我们应该以JSON取出来.
                     SkuItemVo skuItemVo = JSON.parseObject(productCache, SkuItemVo.class);
@@ -161,7 +159,7 @@ public class ItemServiceImpl implements ItemService {
 
     private SkuItemVo getSkuItemVoFromDB(Long skuId) {
 
-        System.out.println("缓存为命中,从DB中查询数据 方法getSkuItemVoFromDB执行了》。。");
+        System.out.println("缓存未命中,从DB中查询数据 方法getSkuItemVoFromDB执行了。。。");
         // skuID不需要进行判断 上一步已经判断了出来.
         // TODO: 在这里我们需要解决的是缓存击穿问题 同一时刻大量用户来访问DB.
         // 我们对其添加分布式锁,本地锁仅仅能锁住当前进程锁不住其他进程.
@@ -191,6 +189,7 @@ public class ItemServiceImpl implements ItemService {
             ops.set(RedisConstant.PRODUCT_CACHE_PREFIX + skuId.toString(),JSON.toJSONString(skuItemVo),
                     3, TimeUnit.DAYS);
             return skuItemVo;
+
         } catch (Exception e) {
 
             log.error("getSkuItemVoFromDB方法内发生了异常: {}",e.getMessage());
@@ -200,6 +199,7 @@ public class ItemServiceImpl implements ItemService {
             // 释放锁.
             lock.unlock();
         }
+
     }
 
     private SkuItemVo Db(Long skuId){

@@ -2,9 +2,13 @@ package com.mzx.gulimall.product.annotation;
 
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 自定义缓存注解: 为什么要自定义一个缓存注解? SpringCache功能不能满足当前状况吗? 为什么不能满足?
+ *  SpringCache在分布式环境下是不能满足的,由于缓存击穿问题,所以说需要使用分布式锁对其进行同步控制.
+ * <p>
+ * 缓存的key默认是第一个参数.
  *
  * @author ZhenXinMa.
  * @slogan 滴水穿石, 不是力量大, 而是功夫深.
@@ -52,5 +56,7 @@ public @interface GuliMallCache {
      * @return
      */
     String key() default "";
+
+    TimeUnit unit();
 
 }

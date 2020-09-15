@@ -1,12 +1,17 @@
 package com.mzx.gulimall.order.controller;
 
+import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 /**
  * @author ZhenXinMa
@@ -26,13 +31,30 @@ public class TestController {
                     key = "${gulimall.order.rabbitmq.routingkey}"
             )
     })
-    public void mqTest(Message message) {
+    public void mqTest(Message message, Channel channel) {
+
+        // 好像是该方式是不能有返回值.
 
         // 接收到的消息.
         System.out.println("接受到消息了");
-        System.out.println("接受到的消息: " + new String(message.getBody()));
+        String s = new String(message.getBody());
+        System.out.println("接受到的消息: " + s);
         // TODO: 现在问题来了, 我还没有进行手动ack,队列中就已经没有了? 这个是什么鬼.
+        long tag = message.getMessageProperties().getDeliveryTag();
+        try {
 
+            if(s.length() == 5){
+
+                // 手动进行消息确认.
+                channel.basicAck(tag,false);
+
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
 
     }
 
