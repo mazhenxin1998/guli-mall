@@ -1,0 +1,9 @@
+server:
+  port: 27000
+spring:
+  application:
+    name: gulimall-payment
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.144.198.148:8848

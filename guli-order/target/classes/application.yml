@@ -52,39 +52,6 @@ spring:
   # 开发阶段关闭thymeleaf的缓存.
   thymeleaf:
     cache: false
-  # 开始配置RabbitMQ
-  rabbitmq:
-    # 这里配置的这个端口是通信端口, 不是web页面展示端口.
-    addresses: 192.144.198.148:5672
-    virtual-host: /
-    username: guest
-    password: guest
-    # 在缓存中配置的channel中的个数,
-    cache:
-      channel:
-        size: 100
-    # 当缓存个数被设置时,从缓存中取出一个channel的超时时间.
-    connection-timeout: 10000
-    # 开启return确认模式.
-    publisher-returns: true
-    # 开启消息确认机制
-    publisher-confirms: true
-    template:
-      mandatory: true
-    # listener简单的配置.
-    listener:
-      simple:
-        # 配置手工签收.
-        acknowledge-mode: manual
-        # 这俩配置不知道是什么意思? 暂且先配置上吧, 如果有机会希望可以回头来了解下该配置项.
-        concurrency: 1
-        max-concurrency: 10
-        # 配置重试, rabbitmq重试机制默认是关闭的. 暂且不知道开启改配置对数据一致性是否有影响.
-        retry:
-          enabled: true
-          max-attempts: 3
-          # 最大重试时间为10s.
-          max-interval: 10000
 # mybatis-plus的配置文件.
 # classpath* 表示的是不仅仅是
 mybatis-plus:

@@ -25,13 +25,15 @@ public class RabbitMqTest {
     private RabbitTemplate rabbitTemplate;
 
     @Test
-    public void sendMessage() {
+    public void send(){
 
-        // 模拟发送消息.
-        // 现在发送的消息使用的是JDK序列化机制
-        String m = "haha5";
-        for (int i = 0; i < 5; i++) {
+        // 线程会乱的问题: 导致server上的日志输出到测试上.
+        // 现在还是有一个问题: 没有ack的消息为什么会没有了?
+        for (int i = 0; i < 20; i++) {
 
+            System.out.println("这是第" + i + "次发送消息");
+            String m = "haha";
+            m += i;
             String uuid = UUID.randomUUID().toString();
             CorrelationData data = new CorrelationData(uuid);
             // 发送消息.
@@ -40,18 +42,6 @@ public class RabbitMqTest {
 
         }
 
-        for (int i = 0; i < 5; i++) {
-
-            String uuid = UUID.randomUUID().toString();
-            CorrelationData data = new CorrelationData(uuid);
-            // 发送消息.
-            rabbitTemplate.convertAndSend(RabbitMQConstant.RABBIT_MQ_EXCHANGE,
-                    RabbitMQConstant.RABBIT_MQ_ROUTING_KEY, m + "aa", data);
-
-
-        }
-
     }
-
 
 }

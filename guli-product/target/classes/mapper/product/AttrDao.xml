@@ -15,7 +15,7 @@
         <result property="catelogId" column="catelog_id"/>
         <result property="showDesc" column="show_desc"/>
     </resultMap>
-<!--attr_type 为1 表示为规格参数属性》-->
+    <!--attr_type 为1 表示为规格参数属性》-->
     <select id="findAttrsByCatalogId" resultType="com.mzx.gulimall.product.vo.Attr">
         select * from pms_attr where pms_attr.attr_type = "1" and pms_attr.catelog_id = #{catalogId};
     </select>

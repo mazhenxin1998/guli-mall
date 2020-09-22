@@ -9,6 +9,11 @@
     <script src="/static/js/jquery-3.1.1.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/static/css/One_mainFoot.css">
     <link rel="stylesheet" href="/static/css/font-awesome-4.7.0/css/font-awesome.css"/>
+    <style>
+        a:hover{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -23,8 +28,8 @@
 
             </ul>
             <ul class="header-right" th:if="${session.user == null}">
-                <li><a href="http://localhost:oauth/login.html" style="color: red;">你好，请登录</a></li>
-                <li><a href="http://localhost:oauth/reg.html">免费注册</a></li>
+                <li><a href="http://localhost:24000/oauth/login.html" style="color: red;">你好，请登录</a></li>
+                <li><a href="http://localhost:24000/oauth/reg.html">免费注册</a></li>
                 <li class="spacer"></li>
                 <li><a href="">我的订单</a></li>
                 <li class="spacer"></li>
@@ -98,11 +103,13 @@
                                 <dt><img th:src="${item.getImage()}" alt=""></dt>
                                 <dd>
                                     <p>
-
-                                        <span th:text="${item.getTitle()}">TCL 55A950C 55英寸32核</span>
-                                        <span th:text="${item.getSkuAttr().get(0)}">尺码: 55时 超薄曲面 人工智能</span>
+                                        <!--这里应该点击会进行跳转.-->
+                                        <a id="showColor" th:href="'http://localhost:10000/'+${item.getSkuId()}+'.html'">
+                                        <span th:text="${item.getTitle()}"></span>
+                                        </a>
+                                        <br>
+                                        <span th:text="${item.getSkuAttr().get(0)}"></span>
                                     </p>
-                                    <p>人工智能 HDR曲面超薄4K电视金属机</p>
 
                                 </dd>
                             </li>
@@ -118,7 +125,8 @@
                                 </p>
 
                             </li>
-                            <li style="font-weight:bold"><p class="zj" th:text="'￥'+${item.getTotalPrice()}">￥22995.00</p></li>
+                            <li style="font-weight:bold"><p class="zj" th:text="'￥'+${item.getTotalPrice()}">
+                                ￥22995.00</p></li>
                             <li>
                                 <p>删除</p>
 
@@ -149,7 +157,8 @@
             </div>
             <div>
                 <ol th:if="${cart != null}">
-                    <li>总价:<span style="color:#e64346;font-weight:bold;font-size:16px;" class="fnt" th:text="'￥'+${cart.getTotalPrice()}">￥0.00</span></li>
+                    <li>总价:<span style="color:#e64346;font-weight:bold;font-size:16px;" class="fnt"
+                                 th:text="'￥'+${cart.getTotalPrice()}">￥0.00</span></li>
 
                 </ol>
             </div>
@@ -774,4 +783,5 @@
         $(this).children("p").children("img").attr("src", "img/one_mian_gwc1.png")
     })
 </script>
+
 </html>

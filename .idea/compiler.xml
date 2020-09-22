@@ -7,24 +7,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="guli-util" />
-        <module name="renren-fast" />
-        <module name="renren-generator" />
-        <module name="guli-searcher" />
         <module name="guli-oauth" />
-        <module name="guli-coupon" />
-        <module name="guli-cart" />
-        <module name="guli-gateway" />
-        <module name="guli-member" />
-        <module name="guli-product" />
-        <module name="guli-ware" />
-        <module name="guli-common" />
-        <module name="guli-three-server" />
-        <module name="guli-order" />
         <module name="guli-customer-ervice" />
+        <module name="guli-coupon" />
+        <module name="guli-product" />
+        <module name="guli-cart" />
+        <module name="guli-common" />
+        <module name="guli-ware" />
+        <module name="renren-generator" />
+        <module name="guli-order" />
+        <module name="guli-three-server" />
+        <module name="guli-member" />
+        <module name="guli-searcher" />
+        <module name="guli-util" />
+        <module name="guli-payment" />
+        <module name="guli-gateway" />
+        <module name="renren-fast" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="guli-cart" target="8" />
       <module name="guli-common" target="8" />
       <module name="guli-coupon" target="1.8" />
@@ -34,6 +35,7 @@
       <module name="guli-member" target="1.8" />
       <module name="guli-oauth" target="1.8" />
       <module name="guli-order" target="1.8" />
+      <module name="guli-payment" target="1.8" />
       <module name="guli-product" target="1.8" />
       <module name="guli-searcher" target="8" />
       <module name="guli-three-server" target="8" />

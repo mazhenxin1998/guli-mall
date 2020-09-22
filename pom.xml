@@ -24,6 +24,7 @@
         <module>guli-oauth</module>
         <module>guli-util</module>
         <module>guli-cart</module>
+        <module>guli-payment</module>
 
     </modules>
 

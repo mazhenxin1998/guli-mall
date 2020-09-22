@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import sun.misc.Unsafe;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -37,14 +38,12 @@ public class FeignTest {
 
         R info = productServiceFeign.info(14L);
 
-
         Map<String, Object> o = (Map<String, Object>) info.get("skuInfo");
         String defaultImg = (String) o.get("skuDefaultImg");
         String skuName = (String) o.get("skuName");
         String skuTitle = (String) o.get("skuTitle");
         // double不能转换成String.
         Double price = (Double) o.get("price");
-
         System.out.println(1);
 
     }

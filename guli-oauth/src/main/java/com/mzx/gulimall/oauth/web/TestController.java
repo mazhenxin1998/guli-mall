@@ -29,5 +29,17 @@ public class TestController {
         return test.toString();
     }
 
+    @GetMapping(value = "/test")
+    public String getTest(){
+
+        // 测试100w进行对比.
+        // 这么慢的吗?
+        for (int i = 0; i < 10000; i++) {
+            System.out.println("输出");
+        }
+
+        return "你好,Java";
+
+    }
 
 }

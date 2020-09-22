@@ -14,6 +14,8 @@
     <file url="file://$PROJECT_DIR$/guli-oauth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/guli-order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/guli-order/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/guli-payment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/guli-payment/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/guli-product/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/guli-product/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/guli-searcher/src/main/java" charset="UTF-8" />
