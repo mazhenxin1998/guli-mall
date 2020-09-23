@@ -26,7 +26,6 @@ public class ReturnCallback implements RabbitTemplate.ReturnCallback {
     @Override
     public void returnedMessage(Message message, int i, String s, String s1, String s2) {
 
-        // TODO: 只要由交换机发送到队列的消息没有被队列接受到,那么就会触发当前消息回退机制.
         System.out.println("回退之后的消息: " + message);
         System.out.println("第二个参数 i " + i);
         System.out.println("第三个参数 s " + s);

@@ -51,10 +51,7 @@ public class CartInterceptor implements HandlerInterceptor {
         Object user = session.getAttribute(RedisSessionConstant.PUBLIC_USER);
         if (!StringUtils.isEmpty(user)) {
 
-            // 如果当前用户未登录,表示当前购物车状态是离线状态.
-            // 这个时候就需要从cookie中查询了
-            // 如果当前状态用户已经进行登录了,那么封装user-key
-            // user是一个JSON对象: 属于com.mzx.gulimall.common.model.MemberResultVo
+            // 如果当前状态用户已经进行登录了,那么也封装user-key
             // 存储的时候没有存储为JSON格式.
             MemberResultVo memberResultVo = (MemberResultVo) user;
             userInfoTo.setUserId(memberResultVo.getId());

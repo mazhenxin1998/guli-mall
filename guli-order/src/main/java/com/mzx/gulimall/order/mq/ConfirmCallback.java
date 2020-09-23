@@ -39,5 +39,4 @@ public class ConfirmCallback implements RabbitTemplate.ConfirmCallback {
 
     }
 
-
 }

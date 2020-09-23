@@ -49,9 +49,14 @@ spring:
   # 当遇到相同名字的时候允许进行覆盖.
   main:
     allow-bean-definition-overriding: true
-  # 开发阶段关闭thymeleaf的缓存.
+  # 开发阶段关闭thymeleaf的缓存. 我了个去: 在环没有引入thymeleaf依赖的时候就已经能写配置了...
   thymeleaf:
     cache: false
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /templates/
+      suffix: .html
 # mybatis-plus的配置文件.
 # classpath* 表示的是不仅仅是
 mybatis-plus:
