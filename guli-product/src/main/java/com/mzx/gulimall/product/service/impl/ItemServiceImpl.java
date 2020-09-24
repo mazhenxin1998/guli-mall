@@ -145,14 +145,18 @@ public class ItemServiceImpl implements ItemService {
                 // 出现异常也返回null。
                 log.error("在查询商品信息的时候出现了异常: {}", e.getMessage());
                 return null;
+
             } finally {
 
                 // 虽然说最终finally会执行,但是只要这里没有return那么就执行上面的return.
                 readLock.unlock();
+
             }
+
         } else {
 
             return null;
+
         }
 
     }
@@ -180,6 +184,7 @@ public class ItemServiceImpl implements ItemService {
                 // 直接返回.
                 SkuItemVo skuItemVo = JSON.parseObject(s, SkuItemVo.class);
                 return skuItemVo;
+
             }
 
             // 如果缓存里面没有则从DB中查询.
@@ -194,10 +199,12 @@ public class ItemServiceImpl implements ItemService {
 
             log.error("getSkuItemVoFromDB方法内发生了异常: {}",e.getMessage());
             return null;
+
         } finally {
 
             // 释放锁.
             lock.unlock();
+
         }
 
     }
@@ -214,6 +221,7 @@ public class ItemServiceImpl implements ItemService {
             SkuInfoEntity infoEntity = skuInfoService.getById(skuId);
             itemVo.setInfo(infoEntity);
             return infoEntity.getSpuId();
+
         }, executor);
 
         // 第二步设置 sku的图片集  该异步不需要第一步的执行结果.
@@ -221,6 +229,7 @@ public class ItemServiceImpl implements ItemService {
 
             List<SkuImagesEntity> imagesEntities = skuImagesService.getSkuImages(skuId);
             itemVo.setImages(imagesEntities);
+
         }, executor);
 
         // 第三步设置 spu销售属性集合 是根据SPU来获取. 该异步需要在infoFuture的执行结果才能执行.
@@ -231,6 +240,7 @@ public class ItemServiceImpl implements ItemService {
             // 这里的data就是上一步返回的SPU的ID.
             List<SkuItemSaleAttrVo> saleAttrVos = skuSaleAttrValueService.getAttrs(data);
             itemVo.setSaleAttr(saleAttrVos);
+
         }, executor);
 
         // return需要在      是哪个都执行完毕只有才能return.
@@ -238,16 +248,20 @@ public class ItemServiceImpl implements ItemService {
 
             // get操作是异步的操作, 在所有异步没有执行完毕之前这里是阻塞的.
             CompletableFuture.allOf(infoFuture,imgFuture,saleAttrFuture).get();
+
         } catch (InterruptedException e) {
 
             e.printStackTrace();
+
         } catch (ExecutionException e) {
 
             e.printStackTrace();
+
         }
 
         // 当所有的异步任务都结束之后在接着往下执行代码.
         return itemVo;
+
     }
 
 }

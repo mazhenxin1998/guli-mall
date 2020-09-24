@@ -4,7 +4,6 @@ import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
 
 /**
  * 注解@EnableRabbit 用于开启注解式的AMQP.//开启基于注解的RabbitMQ模式
@@ -16,9 +15,12 @@ import org.springframework.session.config.annotation.web.http.EnableSpringHttpSe
 @SpringBootApplication
 @EnableRabbit
 @EnableDiscoveryClient
-@EnableSpringHttpSession
 public class GuliMallOrderApplication {
+
     public static void main(String[] args) {
+
+        // TODO: 2020/9/23  分布式Session整合出现反序列化问题 明天接着弄吧.
         SpringApplication.run(GuliMallOrderApplication.class, args);
+
     }
 }

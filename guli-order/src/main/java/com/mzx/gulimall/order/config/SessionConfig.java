@@ -5,8 +5,7 @@ import com.mzx.gulimall.common.constant.SpringSessionConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.session.web.http.CookieSerializer;
-import org.springframework.session.web.http.DefaultCookieSerializer;
+
 
 /**
  * @author ZhenXinMa.
@@ -23,17 +22,18 @@ public class SessionConfig {
      *
      * @return 返回默认的CookieSerializer序列化器.
      */
-    @Bean
-    public CookieSerializer cookieSerializer() {
-
-        DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-        serializer.setDomainName(SpringSessionConstant.COOKIE_DO_MAIN_NAME);
-        serializer.setCookiePath(SpringSessionConstant.COOKIE_PATH);
-        // 其实所有的字符串都不应该出现在业务逻辑中. 应该将其放在公共配置中.
-        serializer.setCookieName(SpringSessionConstant.COOKIE_NAME);
-        return serializer;
-
-    }
+//    @Bean
+//    public CookieSerializer cookieSerializer() {
+//
+//        // TODO: 2020/9/23 整个所有的配置都一样,那么这里为什么会出现错误呢?
+//        DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+//        serializer.setDomainName(SpringSessionConstant.COOKIE_DO_MAIN_NAME);
+//        serializer.setCookiePath(SpringSessionConstant.COOKIE_PATH);
+//        // 其实所有的字符串都不应该出现在业务逻辑中. 应该将其放在公共配置中.
+//        serializer.setCookieName(SpringSessionConstant.COOKIE_NAME);
+//        return serializer;
+//
+//    }
 
     /**
      * 对Redis进行序列化.

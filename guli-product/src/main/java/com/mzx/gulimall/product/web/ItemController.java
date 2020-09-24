@@ -27,13 +27,16 @@ public class ItemController {
         SkuItemVo skuItemVo = itemService.item(skuId);
         model.addAttribute("item",skuItemVo);
         return "shangpinxiangqing";
+
     }
 
     @GetMapping(value = "/test/{skuId}.html")
     @ResponseBody
     public Object test(@PathVariable Long skuId){
+
         SkuItemVo skuItemVo = itemService.item(skuId);
         return skuItemVo;
+
     }
 
 }

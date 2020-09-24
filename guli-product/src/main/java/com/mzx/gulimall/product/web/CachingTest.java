@@ -34,6 +34,7 @@ public class CachingTest {
         String s = new String("我使用了SpringCache缓存组件");
         System.out.println("CachingTest 里面的方法t1执行了...缓存没有命中...");
         return s;
+
     }
 
     /**

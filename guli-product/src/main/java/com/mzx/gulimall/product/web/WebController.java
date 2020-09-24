@@ -33,11 +33,6 @@ public class WebController {
                         HttpServletRequest request,
                         Model model) {
 
-        /*
-         * --------------------------------------------------------
-         * 需要将所有的一级分类放到request域中.
-         * --------------------------------------------------------
-         * */
         List<CategoryEntity> categoryEntityList = categoryService.findOneCategoryList();
         model.addAttribute("categorys", categoryEntityList);
         // 不管用户是否进行登录, 这里应该给每个用户分配一个默认的user-key
@@ -45,17 +40,13 @@ public class WebController {
         // 添加的时候应该做下判断.
         loginService.addUserKey(request,response);
         return "index";
+
     }
 
     @GetMapping(value = "/web/index/json/catalog.json")
     @ResponseBody
     public Map<String, List<Catalog2Vo>> getCatalog() {
 
-        /*
-         * --------------------------------------------------------
-         * 返回值以一级分类的ID作为Key，其子分类作为其Key的值.
-         * --------------------------------------------------------
-         * */
         return categoryService.findAllCatagory();
     }
 
