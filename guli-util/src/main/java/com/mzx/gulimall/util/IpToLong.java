@@ -48,41 +48,17 @@ public class IpToLong {
         return sb.toString();
     }
 
+
+
     /**
      * @param args
      */
-    public static void main2(String[] args) {
-        String ipStr = "192.168.0.1";
+    public static void main(String[] args) {
+        // 127.0.0.1  -----> 2130706433
+        String ipStr = "192.168.1.5";
         long longIp = IpToLong.ipToLong(ipStr);
         System.out.println("192.168.0.1 的整数形式为：" + longIp);
-        System.out.println("整数" + longIp + "转化成字符串IP地址："
-                + IpToLong.longToIP(longIp));
-        //ip地址转化成二进制形式输出
-        System.out.println("192.168.0.1 的二进制形式为：" + Long.toBinaryString(longIp));
-    }
-
-    public static int t() {
-
-        try {
-
-            return 1;
-
-        } catch (Exception e) {
-            System.out.println(e);
-            return 3;
-        } finally {
-
-            return 2;
-        }
 
     }
-
-    public static void main(String[] args) {
-
-        System.out.println(IpToLong.t());
-
-
-    }
-
 
 }
