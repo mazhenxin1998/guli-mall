@@ -44,8 +44,8 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-#  session:
-#    store-type: redis
+  session:
+    store-type: redis
   # 当遇到相同名字的时候允许进行覆盖.
   main:
     allow-bean-definition-overriding: true
