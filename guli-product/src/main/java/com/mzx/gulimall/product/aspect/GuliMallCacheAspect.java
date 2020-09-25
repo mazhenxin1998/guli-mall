@@ -81,7 +81,6 @@ public class GuliMallCacheAspect {
     public Object around(ProceedingJoinPoint point) throws Throwable {
 
         System.out.println("@GuliMallCache 环绕通知执行了. ");
-        // TODO: 正在完成...
         // 从point获取必要的信息.
         // 要执行的切入点的参数,也就是要执行的方法的参数.
         // 1. 获取方法参数.

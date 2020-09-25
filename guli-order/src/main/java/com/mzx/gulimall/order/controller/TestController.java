@@ -1,5 +1,6 @@
 package com.mzx.gulimall.order.controller;
 
+import com.mzx.gulimall.order.annotation.AccessLimit;
 import com.mzx.gulimall.order.mq.SendMessageMQ;
 import com.mzx.gulimall.order.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,25 @@ public class TestController {
         // 111.164.195.166
         String ipAddr = IpUtil.getIpAddr(request);
         return ipAddr;
+
+    }
+
+    /**
+     * 5秒之内只允许一个请求进行访问.
+     * @return
+     */
+    @GetMapping(value = "/limit")
+    @AccessLimit(seconds = 50, maxCount = 1, needLogin = false)
+    public String testAccessLimit(){
+
+        return "OK";
+    }
+
+    @GetMapping(value = "/li")
+    @AccessLimit(seconds = 1, maxCount = 1, needLogin = false)
+    public String limit(){
+
+        return "OK";
 
     }
 

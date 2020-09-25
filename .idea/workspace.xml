@@ -269,10 +269,13 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/interceptor/PreventBrushInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/interceptor/PreventBrushInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/IAccessLimitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/IAccessLimitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/AccessLimitServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/AccessLimitServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/controller/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/controller/TestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-util/src/main/java/com/mzx/gulimall/util/CurrentStringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-util/src/main/java/com/mzx/gulimall/util/CurrentStringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-util/src/main/java/com/mzx/gulimall/util/IpToLong.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-util/src/main/java/com/mzx/gulimall/util/IpToLong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-util/target/classes/com/mzx/gulimall/util/IpToLong.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-util/target/classes/com/mzx/gulimall/util/IpToLong.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/interceptor/PreventBrushInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/interceptor/PreventBrushInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/AccessLimitServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/AccessLimitServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/java/com/mzx/gulimall/product/aspect/GuliMallCacheAspect.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,7 +312,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../Maven/apache-maven-3.5.2" />
+        <option name="mavenHome" value="D:\Maven\apache-maven-3.5.2" />
         <option name="userSettingsFile" value="D:\Maven\apache-maven-3.5.2\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -346,6 +349,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -430,15 +434,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -605,6 +607,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.IpToLong" />
       <item itemvalue="JUnit.RabbitMqTest.sendMessage" />
       <item itemvalue="JUnit.RabbitMqTest.send" />
       <item itemvalue="Spring Boot.GuliMallThreeServerApplication" />
@@ -620,7 +623,6 @@
       <item itemvalue="Spring Boot.GuliMallPaymentApplication" />
       <item itemvalue="Spring Boot.GuliMallCartApplication" />
       <item itemvalue="Spring Boot.GuliMallOrderApplication" />
-      <item itemvalue="Application.IpToLong" />
     </list>
     <recent_temporary>
       <list>
@@ -797,7 +799,8 @@
       <workItem from="1600854691141" duration="14459000" />
       <workItem from="1600873682087" duration="1672000" />
       <workItem from="1600956710806" duration="3931000" />
-      <workItem from="1600961955351" duration="3822000" />
+      <workItem from="1600961955351" duration="4630000" />
+      <workItem from="1601022436922" duration="3595000" />
     </task>
     <servers />
   </component>
@@ -861,10 +864,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="94" y="59" width="1176" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1600959332464" />
-    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1600962226900">
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1601022989642">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1600962226900" />
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1601022989641" />
     <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600762772068">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -893,54 +896,54 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600872571221" />
-    <state width="1162" height="366" key="GridCell.Tab.0.bottom" timestamp="1600965770912">
+    <state width="1162" height="317" key="GridCell.Tab.0.bottom" timestamp="1601025377507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600965770912" />
-    <state width="1162" height="366" key="GridCell.Tab.0.center" timestamp="1600965770912">
+    <state width="1162" height="317" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601025377507" />
+    <state width="1162" height="317" key="GridCell.Tab.0.center" timestamp="1601025377507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1600965770912" />
-    <state width="1162" height="366" key="GridCell.Tab.0.left" timestamp="1600965770911">
+    <state width="1162" height="317" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1601025377507" />
+    <state width="1162" height="317" key="GridCell.Tab.0.left" timestamp="1601025377507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1600965770911" />
-    <state width="1162" height="366" key="GridCell.Tab.0.right" timestamp="1600965770912">
+    <state width="1162" height="317" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1601025377507" />
+    <state width="1162" height="317" key="GridCell.Tab.0.right" timestamp="1601025377507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600965770912" />
-    <state width="1162" height="366" key="GridCell.Tab.1.bottom" timestamp="1600965770913">
+    <state width="1162" height="317" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1601025377507" />
+    <state width="1162" height="317" key="GridCell.Tab.1.bottom" timestamp="1601025377508">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600965770913" />
-    <state width="1162" height="366" key="GridCell.Tab.1.center" timestamp="1600965770912">
+    <state width="1162" height="317" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601025377508" />
+    <state width="1162" height="317" key="GridCell.Tab.1.center" timestamp="1601025377507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1600965770912" />
-    <state width="1162" height="366" key="GridCell.Tab.1.left" timestamp="1600965770912">
+    <state width="1162" height="317" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1601025377507" />
+    <state width="1162" height="317" key="GridCell.Tab.1.left" timestamp="1601025377507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1600965770912" />
-    <state width="1162" height="366" key="GridCell.Tab.1.right" timestamp="1600965770912">
+    <state width="1162" height="317" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1601025377507" />
+    <state width="1162" height="317" key="GridCell.Tab.1.right" timestamp="1601025377507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1162" height="366" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1600965770912" />
-    <state width="1080" height="320" key="GridCell.Tab.2.bottom" timestamp="1600777380307">
+    <state width="1162" height="317" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1601025377507" />
+    <state width="1162" height="317" key="GridCell.Tab.2.bottom" timestamp="1601025377508">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1080" height="320" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600777380307" />
-    <state width="1080" height="320" key="GridCell.Tab.2.center" timestamp="1600777380307">
+    <state width="1162" height="317" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601025377508" />
+    <state width="1162" height="317" key="GridCell.Tab.2.center" timestamp="1601025377508">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1080" height="320" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1600777380307" />
-    <state width="1080" height="320" key="GridCell.Tab.2.left" timestamp="1600777380307">
+    <state width="1162" height="317" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1601025377508" />
+    <state width="1162" height="317" key="GridCell.Tab.2.left" timestamp="1601025377508">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1080" height="320" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1600777380307" />
-    <state width="1080" height="320" key="GridCell.Tab.2.right" timestamp="1600777380307">
+    <state width="1162" height="317" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1601025377508" />
+    <state width="1162" height="317" key="GridCell.Tab.2.right" timestamp="1601025377508">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1080" height="320" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1600777380307" />
+    <state width="1162" height="317" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1601025377508" />
     <state x="349" y="152" key="IDE.errors.dialog" timestamp="1600870843165">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -969,10 +972,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="599" y="286" key="VCS.EditChangelistDialog/0.0.1536.834@0.0.1536.834" timestamp="1600956795100" />
-    <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1598017848099">
+    <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1601025375356">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="775" height="424" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1598017848099" />
+    <state width="775" height="424" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1601025375356" />
     <state width="1482" height="727" key="com.intellij.byteCodeViewer.ShowByteCodeAction" timestamp="1599180904984">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -985,6 +988,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="315" y="153" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.834@0.0.1536.834" timestamp="1599406402708" />
+    <state x="499" y="177" key="extract.method.dialog" timestamp="1600966155348">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="177" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1600966155348" />
     <state x="207" y="156" key="new project wizard" timestamp="1600174220923">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
