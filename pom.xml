@@ -25,6 +25,7 @@
         <module>guli-util</module>
         <module>guli-cart</module>
         <module>guli-payment</module>
+        <module>guli-annotation</module>
 
     </modules>
 

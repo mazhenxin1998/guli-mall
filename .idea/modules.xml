@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/guli-annotation/guli-annotation.iml" filepath="$PROJECT_DIR$/guli-annotation/guli-annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-cart/guli-cart.iml" filepath="$PROJECT_DIR$/guli-cart/guli-cart.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-common/guli-common.iml" filepath="$PROJECT_DIR$/guli-common/guli-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-coupon/guli-coupon.iml" filepath="$PROJECT_DIR$/guli-coupon/guli-coupon.iml" />

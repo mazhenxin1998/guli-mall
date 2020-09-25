@@ -23,9 +23,11 @@
         <module name="guli-payment" />
         <module name="guli-gateway" />
         <module name="renren-fast" />
+        <module name="guli-annotation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
+      <module name="guli-annotation" target="1.8" />
       <module name="guli-cart" target="1.8" />
       <module name="guli-common" target="1.8" />
       <module name="guli-coupon" target="1.8" />

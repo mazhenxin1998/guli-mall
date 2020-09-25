@@ -63,6 +63,8 @@ spring:
       path: /
   session:
     store-type: redis
+  main:
+    allow-bean-definition-overriding: true
 # 配置MVC
 management:
   endpoints:
