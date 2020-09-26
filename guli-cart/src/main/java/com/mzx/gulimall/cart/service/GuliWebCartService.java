@@ -3,9 +3,11 @@ package com.mzx.gulimall.cart.service;
 import com.mzx.gulimall.cart.vo.CartParamVo;
 import com.mzx.gulimall.common.model.Cart;
 import com.mzx.gulimall.common.model.CartItem;
+import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author ZhenXinMa
@@ -35,4 +37,19 @@ public interface GuliWebCartService {
      */
     CartItem add(HttpServletRequest request, CartParamVo param, Model model);
 
+    /**
+     * 根据参数中给定的SkuId进行删除.
+     *
+     * @param skuId
+     * @return
+     */
+    Map<String, Object> delete(Long skuId);
+
+    /**
+     * 根据指定的Key获取指定的Map类型的数据进行操作.
+     *
+     * @param key
+     * @return
+     */
+    BoundHashOperations<String, Object, Object> getBoundHash(String key);
 }

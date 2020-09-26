@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -89,14 +90,9 @@ public class GuliWebCartController implements GuliWebCartControllerApi {
                           @Valid CartParamVo param, BindingResult bindingResult,
                           Model model) throws ExecutionException, InterruptedException {
 
-        // 但是我们这里接受的数据,仅仅应该接受skuID和count.
-        // TODO: 这里问题.
-        // 目前可以接受到数据.
-        // add方法目的只是为了增加商品从购物车.
+
         CartItem item = guliWebCartService.add(request, param, model);
         model.addAttribute("item", item);
-        // TODO:暂时没有解决表单重复提交.
-        // 跳转也有问题.
         return "success";
 
     }
@@ -106,10 +102,6 @@ public class GuliWebCartController implements GuliWebCartControllerApi {
     @GetMapping(value = "/success")
     public String toCartSuccess(@RequestParam(value = "id") Long id, Model model) {
 
-        // 返回的时候带上其Model属性.
-        // Java中虽然是值传递,但是如果传递的是一个对象,那么传递的值是该对象在堆中的实际地址值.
-//        CartItem item = guliWebCartService.getCartItem(id, model);
-//        model.addAttribute("item", item);
         return "success";
 
     }
@@ -120,10 +112,20 @@ public class GuliWebCartController implements GuliWebCartControllerApi {
                           @Valid CartParamVo param, BindingResult bindingResult,
                           Model model) {
 
-
         return "success : " + param;
 
     }
 
 
+    @Override
+    @GetMapping(value = "/cart/item/delete")
+    @ResponseBody
+    public Object delete(@RequestParam(value = "skuId") Long skuId) {
+
+
+        Map<String,Object> map = guliWebCartService.delete(skuId);
+        System.out.println(1);
+        return map;
+
+    }
 }

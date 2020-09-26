@@ -1,7 +1,12 @@
 package com.mzx.gulimall.order.web.impl;
 
+import com.mzx.gulimall.order.feign.MemberServiceFeign;
+import com.mzx.gulimall.order.service.IOrderConfirmService;
+import com.mzx.gulimall.order.vo.OrderConfirmVo;
 import com.mzx.gulimall.order.web.IOrderWebController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -14,12 +19,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class OrderWebController implements IOrderWebController {
 
+    @Autowired
+    private IOrderConfirmService iOrderConfirmService;
 
     @Override
     @GetMapping(value = {"/", "/order.html", "/toTrade.html"})
-    public String order() {
+    public String order(Model model) {
 
+        OrderConfirmVo confirmVo = iOrderConfirmService.queryOrderConfirm();
+        model.addAttribute("confirm", confirmVo);
         return "order";
+
     }
 
 

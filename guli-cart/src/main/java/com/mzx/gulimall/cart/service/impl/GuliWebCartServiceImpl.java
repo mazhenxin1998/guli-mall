@@ -22,7 +22,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import rx.observables.SyncOnSubscribe;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
@@ -58,6 +57,20 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
     /**
      * 这里对Model的修改会映射到Controller中.
+     * <p>
+     * 使用三元运算符之前的代码.
+     * if (isLogin) {
+     * <p>
+     * // 用户登录状态的购物车列表.
+     * // 该返回值可能返回空值.
+     * return this.loginTrue(request, model);
+     * <p>
+     * } else {
+     * <p>
+     * // 用户未登录状态下的购物车.
+     * return this.loginFalse(request, model);
+     * <p>
+     * }
      *
      * @param request
      * @param model
@@ -66,18 +79,8 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
     @Override
     public Cart cart(HttpServletRequest request, Model model, boolean isLogin) {
 
-        if (isLogin) {
-
-            // 用户登录状态的购物车列表.
-            // 该返回值可能返回空值.
-            return this.loginTrue(request, model);
-
-        } else {
-
-            // 用户未登录状态下的购物车.
-            return this.loginFalse(request, model);
-
-        }
+        // 改用三元运算符.
+        return isLogin ? this.loginTrue(request, model) : this.loginFalse(request, model);
 
     }
 
@@ -116,6 +119,36 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         }
 
     }
+
+    @Override
+    public Map<String, Object> delete(Long skuId) {
+
+        UserInfoTo userInfoTo = CartInterceptor.local.get();
+        return (userInfoTo.getUserId() == null || userInfoTo.getUserId() <= 0) ?
+                this.deleteKey(skuId, userInfoTo.getUserKey()) :
+                this.deleteKey(skuId, userInfoTo.getUserId().toString());
+
+    }
+
+    private Map<String, Object> deleteKey(Long skuId, String key) {
+
+        BoundHashOperations<String, Object, Object> boundHash = this.getBoundHash(key);
+        Long delete = boundHash.delete(String.valueOf(skuId));
+        HashMap<String, Object> map = new HashMap<>();
+        if (delete == 1) {
+
+            map.put("code", 200);
+
+        } else {
+
+            map.put("code", 500);
+
+        }
+
+        return map;
+
+    }
+
 
     private CartItem updateRedisCartItem(CartItem item) {
 
@@ -167,10 +200,6 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
             // 当前状态是用户没有进行登录状态.
             ops = this.getBoundHash(userInfoTo.getUserKey());
-//            ops = stringRedisTemplate.boundHashOps("cart:" + userInfoTo.getUserKey());
-            // 获取数据出现错误.
-            // 这里查询出来的数据可能为空.
-            // 一查询就直接报错.
             // Long类型不能转换成String类型.
             Object o = ops.get(String.valueOf(param.getSkuId()));
             // o可能为空.
@@ -189,7 +218,6 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
             // 当前状态是用户已经进行登录状态了.
             ops = this.getBoundHash(userInfoTo.getUserId().toString());
-            // ops = stringRedisTemplate.boundHashOps("cart:" + userInfoTo.getUserId());
             Object o = ops.get(String.valueOf(param.getSkuId()));
             if (StringUtils.isEmpty(o)) {
 
@@ -327,7 +355,7 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
             }
 
-            log.info("合并成功了: {}",cart.toString());
+            log.info("合并成功了: {}", cart.toString());
 
         }, executor);
 
@@ -335,7 +363,7 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         try {
 
             // 等待上面三个任务执行完毕. 不需要返回值.
-            CompletableFuture.allOf(mergeFuture,deleteFuture,packageFuture).get();
+            CompletableFuture.allOf(mergeFuture, deleteFuture, packageFuture).get();
 
         } catch (InterruptedException e) {
 
@@ -396,12 +424,9 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
 
     }
 
-    private BoundHashOperations<String, Object, Object> getBoundHash(String key) {
+    @Override
+    public BoundHashOperations<String, Object, Object> getBoundHash(String key) {
 
-        // 这里使用之后 应该立马进行对其进行移除: 因为这里是最后一次使用这个ThreadLocal获取当前用户的信息.
-        // TODO: 考虑:这里可以进行删除吗？
-        // Tomcat是一个请求一个线程: 所以说这里是可以进行清除的.
-        UserInfoTo userInfoTo = CartInterceptor.local.get();
         BoundHashOperations<String, Object, Object> ops = stringRedisTemplate.boundHashOps(
                 CurrentStringUtils.append(new StringBuilder(), StringConstant.CART_PREFIX, key));
         return ops;
@@ -563,11 +588,13 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
          * */
         List collect = null;
         if (list != null) {
+
             collect = list.stream().map(item -> {
 
                 return item.getSkuId();
 
             }).collect(Collectors.toList());
+
         }
 
         return collect;
@@ -595,6 +622,7 @@ public class GuliWebCartServiceImpl implements GuliWebCartService {
         }
 
         return new TotalCountTo();
+
     }
 
 

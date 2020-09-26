@@ -1,10 +1,13 @@
 package com.mzx.gulimall.order.controller;
 
+import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.annotation.AccessLimit;
+import com.mzx.gulimall.order.feign.MemberServiceFeign;
 import com.mzx.gulimall.order.mq.SendMessageMQ;
 import com.mzx.gulimall.order.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +22,18 @@ public class TestController {
 
     @Autowired
     private SendMessageMQ sendMessageMQ;
+
+    @Autowired
+    private MemberServiceFeign memberServiceFeign;
+
+    @GetMapping(value = "/feign/{id}")
+    public Object testFeign(@PathVariable(value = "id") Long id) {
+
+        R addr = memberServiceFeign.getAddr(id);
+        return addr.get("data");
+
+    }
+
 
     @GetMapping(value = "/send")
     public String send() {
@@ -48,7 +63,7 @@ public class TestController {
     }
 
     @GetMapping(value = "/ip1")
-    public String testIp2(HttpServletRequest request){
+    public String testIp2(HttpServletRequest request) {
 
         // 111.164.195.166
         String ipAddr = IpUtil.getIpAddr(request);
@@ -58,18 +73,19 @@ public class TestController {
 
     /**
      * 5秒之内只允许一个请求进行访问.
+     *
      * @return
      */
     @GetMapping(value = "/limit")
     @AccessLimit(seconds = 50, maxCount = 1, needLogin = false)
-    public String testAccessLimit(){
+    public String testAccessLimit() {
 
         return "OK";
     }
 
     @GetMapping(value = "/li")
     @AccessLimit(seconds = 1, maxCount = 1, needLogin = false)
-    public String limit(){
+    public String limit() {
 
         return "OK";
 

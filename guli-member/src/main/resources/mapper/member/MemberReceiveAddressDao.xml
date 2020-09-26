@@ -3,7 +3,7 @@
 
 <mapper namespace="com.mzx.gulimall.member.dao.MemberReceiveAddressDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.mzx.gulimall.member.entity.MemberReceiveAddressEntity" id="memberReceiveAddressMap">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
@@ -17,6 +17,17 @@
         <result property="areacode" column="areacode"/>
         <result property="defaultStatus" column="default_status"/>
     </resultMap>
+    <select id="getArrrByMemberId" resultType="com.mzx.gulimall.member.entity.MemberReceiveAddressEntity">
+
+        SELECT address.`id` AS `id`, address.`member_id` AS memberId, address.`name` AS
+        `name`, address.`phone` AS  phone, address.`post_code` AS postCode,
+        address.`province` AS province, address.`city` AS city, address.`region` AS region,
+        address.`detail_address` AS detailAddress, address.`areacode` AS areacode ,
+        address.`default_status` AS defaultStatus
+        FROM `ums_member_receive_address` AS address
+        WHERE address.`member_id` = #{memberId};
+
+    </select>
 
 
 </mapper>

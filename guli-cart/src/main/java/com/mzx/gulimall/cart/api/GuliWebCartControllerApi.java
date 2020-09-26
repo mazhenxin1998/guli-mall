@@ -39,12 +39,20 @@ public interface GuliWebCartControllerApi {
 
     /**
      * 重定向解决表单重复提交.
-     *
+     * <p>
      * 参数是SKU的ID.
      *
      * @param id
      * @return
      */
-    String toCartSuccess(Long id,Model model);
+    String toCartSuccess(Long id, Model model);
+
+    /**
+     * 根据SkuId进行删除.
+     *
+     * @param skuId
+     * @return
+     */
+    Object delete(Long skuId);
 
 }

@@ -43,23 +43,26 @@ public class OrderInterceptor implements HandlerInterceptor {
         UserInfoTo userInfoTo = new UserInfoTo();
         Object o = request.getSession().getAttribute(SpringSessionConstant.PUBLIC_USER);
         // 感觉这个能自己进行封装.
-        if (StringUtils.isEmpty(o)) {
+        if (!StringUtils.isEmpty(o)) {
 
-            // 用户没有登录.
-            // 虽然增加了重试机制,但是userKey仍然可能为空.
-            String userKey = this.getUserKey(request, response);
-            if (StringUtils.isEmpty(userKey)) {
+            // 这个值可能为空.
+            MemberResultVo user = (MemberResultVo) o;
+            // 空值.
+            userInfoTo.setUserId(user.getId());
 
-                return false;
-
-            }
-
-            userInfoTo.setUserKey(userKey);
 
         }
 
-        MemberResultVo user = (MemberResultVo) o;
-        userInfoTo.setUserId(user.getId());
+        // 用户没有登录.
+        // 虽然增加了重试机制,但是userKey仍然可能为空.
+        String userKey = this.getUserKey(request, response);
+        if (StringUtils.isEmpty(userKey)) {
+
+            return false;
+
+        }
+
+        userInfoTo.setUserKey(userKey);
         // 封装当前请求共享数据.
         THREAD_LOCAL.set(userInfoTo);
         return true;

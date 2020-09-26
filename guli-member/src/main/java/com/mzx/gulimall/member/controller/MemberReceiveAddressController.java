@@ -1,14 +1,11 @@
 package com.mzx.gulimall.member.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.mzx.gulimall.member.entity.MemberReceiveAddressEntity;
 import com.mzx.gulimall.member.service.MemberReceiveAddressService;
@@ -27,6 +24,7 @@ import com.mzx.gulimall.common.utils.R;
 @RestController
 @RequestMapping("member/memberreceiveaddress")
 public class MemberReceiveAddressController {
+
     @Autowired
     private MemberReceiveAddressService memberReceiveAddressService;
 
@@ -35,9 +33,23 @@ public class MemberReceiveAddressController {
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = memberReceiveAddressService.queryPage(params);
 
+        PageUtils page = memberReceiveAddressService.queryPage(params);
         return R.ok().put("page", page);
+
+    }
+
+    /**
+     * /member/memberreceiveaddress/get/{memberId}
+     * @param memberId
+     * @return
+     */
+    @GetMapping(value = "/get/{memberId}")
+    public R getAddr(@PathVariable(value = "memberId") Long memberId){
+
+        List<MemberReceiveAddressEntity> entity = memberReceiveAddressService.getAddr(memberId);
+        return R.ok().put("data",entity);
+
     }
 
 

@@ -26,6 +26,7 @@ public class OrderConfirmVo implements Serializable {
     List<MemberAddressVo> address;
     /**
      * 封住了本次要提交订单的的货物.
+     * 直接查询购物车中被选中的数据.
      */
     List<OrderItemVo> items;
 

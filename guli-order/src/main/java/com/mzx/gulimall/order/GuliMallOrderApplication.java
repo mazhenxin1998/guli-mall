@@ -4,6 +4,7 @@ import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
@@ -15,13 +16,13 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  */
 @SpringBootApplication
 @EnableRabbit
+@EnableFeignClients
 @EnableDiscoveryClient
 @EnableRedisHttpSession
 public class GuliMallOrderApplication {
 
     public static void main(String[] args) {
 
-        // TODO: 2020/9/23  分布式Session整合出现反序列化问题 明天接着弄吧.
         SpringApplication.run(GuliMallOrderApplication.class, args);
 
     }

@@ -9,12 +9,14 @@ import org.springframework.session.web.http.CookieSerializer;
 import org.springframework.session.web.http.DefaultCookieSerializer;
 
 /**
- * @author ZhenXinMa
- * @date 2020/8/26 16:11
+ * 分布式Session序列化配置问题.
+ *
+ * @author ZhenXinMa.
+ * @slogan 脚踏实地向前看.
+ * @create 2020-09-25 22:48 周五.
  */
 @Configuration
 public class SpringSessionConfig {
-
 
     @Bean
     public CookieSerializer cookieSerializer(){
@@ -28,12 +30,10 @@ public class SpringSessionConfig {
         return serializer;
     }
 
-
     @Bean
     public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
 
         return new GenericFastJsonRedisSerializer();
     }
-
 
 }

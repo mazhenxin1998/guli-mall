@@ -76,6 +76,7 @@ logging:
         gulimall:
           order:
             dao: debug
+# 配置feign远程调用超时问题.
 
 
 # 自定义配置.
@@ -85,4 +86,16 @@ gulimall:
       exchange: gulimall-order
       queue: gulimall-order-queue-test
       routingkey: routingkey-order-test
+guli:
+  pool:
+    cool-pool-size: 13
+    max-pool-size: 200
+    keep-live-time: 25
+    max-queue-task: 10000
+feign:
+  client:
+    default:
+      connectTimeout: 10000
+      readTimeout: 10000
+      loggerLevel: basic
 

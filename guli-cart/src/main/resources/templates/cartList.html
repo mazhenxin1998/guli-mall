@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/css/One_mainFoot.css">
     <link rel="stylesheet" href="/static/css/font-awesome-4.7.0/css/font-awesome.css"/>
     <style>
-        a:hover{
+        a:hover {
             color: red;
         }
     </style>
@@ -104,8 +104,9 @@
                                 <dd>
                                     <p>
                                         <!--这里应该点击会进行跳转.-->
-                                        <a id="showColor" th:href="'http://localhost:10000/'+${item.getSkuId()}+'.html'">
-                                        <span th:text="${item.getTitle()}"></span>
+                                        <a id="showColor"
+                                           th:href="'http://localhost:10000/'+${item.getSkuId()}+'.html'">
+                                            <span th:text="${item.getTitle()}"></span>
                                         </a>
                                         <br>
                                         <span th:text="${item.getSkuAttr().get(0)}"></span>
@@ -128,7 +129,9 @@
                             <li style="font-weight:bold"><p class="zj" th:text="'￥'+${item.getTotalPrice()}">
                                 ￥22995.00</p></li>
                             <li>
-                                <p>删除</p>
+
+                                <!--删除. -->
+                                <p th:id=" ${item.getSkuId()}">删除</p>
 
                             </li>
                         </ol>
@@ -232,18 +235,20 @@
 <script src="/static/js/index.js" charset="utf-8"></script>
 <script type="text/javascript">
 
+
+
     // 去结算.
     function toTrade() {
+        // 需要带所有选中的skuID吗? ... 明天弄吧.
         window.location.href = "http://localhost:26000/toTrade.html";
     }
-
 
     function toItem(skuId) {
         window.location.href = "http://item.gmall.com:8084/" + skuId + ".html";
     }
 
     function login() {
-        var s = encodeURIComponent("http://cart.gmall.com:8087/cartList");
+        // var s = encodeURIComponent("http://cart.gmall.com:8087/cartList");
         // window.location.href = "http://passport.atguigu.com/index?originUrl=" + s;
         window.location.href = "http://localhost:24000/oauth/login.html";
     }
@@ -627,24 +632,42 @@
         $(".One_mb").show();
         $(".One_isDel").show();
         var that = $(this);
+        var skuId = this.id
         //确定删除
-        /*        $(".One_isDel>div:last-child button:first-child").click(function(){
-                    $(".One_mb").hide();
-                    $(".One_isDel").hide();
-                    that.parent().parent().parent().parent().remove();
-                    // 移除结账固定定位
-                    // if($(".check").length==1){
-                    // 	$(".fix").remove();
-                    // }
-                    if($(".fix").offset().top>$(".fix1").offset().top){
-                        $(".fix").hide();
-                    }
-                    if($(".check").length==0){
-                        $(".allCheck").prop("checked",false);
-                        $(".sumNum").html("0");
-                        $(".fnt").html("￥ 0.00");
-                    }
-                })*/
+        $(".One_isDel>div:last-child button:first-child").click(function () {
+
+            $.ajax({
+                type : "get",
+                data : {
+                    "skuId" : skuId
+                },
+                url : "http://localhost:25000/cart/item/delete",
+                beforeSend : function (){
+                    alert("开始发行消息. ")
+                },
+                success : function (result){
+
+                }
+
+            });
+
+            $(".One_mb").hide();
+            $(".One_isDel").hide();
+            that.parent().parent().parent().parent().remove();
+            // 移除结账固定定位
+            // if($(".check").length==1){
+            // 	$(".fix").remove();
+            // }
+            if ($(".fix").offset().top > $(".fix1").offset().top) {
+                $(".fix").hide();
+            }
+            if ($(".check").length == 0) {
+                $(".allCheck").prop("checked", false);
+                $(".sumNum").html("0");
+                $(".fnt").html("￥ 0.00");
+            }
+
+        })
     })
     /*    //页面滚动删除去结算固定定位隐藏
         $(document).scroll(function(){
