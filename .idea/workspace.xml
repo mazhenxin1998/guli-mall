@@ -103,7 +103,6 @@
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimeDialog.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guli-annotation/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/axis.log" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/axis.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" afterDir="false" />
@@ -269,42 +268,6 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-annotation/target/classes/com/mzx/gulimall/annotation/aspect/CurrentCacheAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-annotation/target/classes/com/mzx/gulimall/annotation/aspect/CurrentCacheAspect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/api/GuliWebCartControllerApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/api/GuliWebCartControllerApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/controller/GuliWebCartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/GuliWebCartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/GuliWebCartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliWebCartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/resources/templates/cartList.html" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/resources/templates/cartList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/SpringApplicationMemberApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/SpringApplicationMemberApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/controller/MemberReceiveAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/controller/MemberReceiveAddressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/dao/MemberReceiveAddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/dao/MemberReceiveAddressDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/service/MemberReceiveAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/service/MemberReceiveAddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/service/impl/MemberReceiveAddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/src/main/java/com/mzx/gulimall/member/service/impl/MemberReceiveAddressServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/src/main/resources/mapper/member/MemberReceiveAddressDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/src/main/resources/mapper/member/MemberReceiveAddressDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/SpringApplicationMemberApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/SpringApplicationMemberApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/controller/MemberReceiveAddressController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/controller/MemberReceiveAddressController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/dao/MemberReceiveAddressDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/dao/MemberReceiveAddressDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/service/MemberReceiveAddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/service/MemberReceiveAddressService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/service/impl/MemberReceiveAddressServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/target/classes/com/mzx/gulimall/member/service/impl/MemberReceiveAddressServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-member/target/classes/mapper/member/MemberReceiveAddressDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-member/target/classes/mapper/member/MemberReceiveAddressDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/GuliMallOrderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/GuliMallOrderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/config/SpringSessionConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/interceptor/OrderInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/interceptor/OrderInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/vo/OrderConfirmVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/vo/OrderConfirmVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/web/IOrderWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/web/IOrderWebController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/web/impl/OrderWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/web/impl/OrderWebController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/GuliMallOrderApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/GuliMallOrderApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/SpringSessionConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/SpringSessionConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/WebMvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/controller/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/controller/TestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/interceptor/OrderInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/interceptor/OrderInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/vo/OrderConfirmVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/vo/OrderConfirmVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/web/IOrderWebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/web/IOrderWebController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/web/impl/OrderWebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/web/impl/OrderWebController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,7 +348,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -837,7 +800,7 @@
       <workItem from="1601022436922" duration="12424000" />
       <workItem from="1601046629393" duration="34000" />
       <workItem from="1601085555616" duration="3168000" />
-      <workItem from="1601108035124" duration="14493000" />
+      <workItem from="1601108035124" duration="16027000" />
     </task>
     <servers />
   </component>
@@ -993,10 +956,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="429" y="121" key="NewModule_or_Project.wizard/0.0.1536.834@0.0.1536.834" timestamp="1599175197578" />
-    <state x="275" y="124" key="SettingsEditor" timestamp="1601045049645">
+    <state x="230" y="102" key="SettingsEditor" timestamp="1601134548511">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="275" y="124" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1601045049645" />
+    <state x="230" y="102" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1601134548511" />
     <state x="515" y="114" key="SpringBootCustomization" timestamp="1599149822774">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1041,10 +1004,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="511" y="45" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1594903239674" />
-    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup" timestamp="1601044369104">
+    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup" timestamp="1601134520400">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1601044369104" />
+    <state x="578" y="178" width="672" height="817" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1601134520400" />
     <state x="541" y="100" key="spring file set editor" timestamp="1599150732381">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
