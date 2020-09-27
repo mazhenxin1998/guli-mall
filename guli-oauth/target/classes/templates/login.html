@@ -58,7 +58,8 @@
                 请输入账户名和密码
             </div>
             <ul>
-                <form action="http://localhost:24000/oauth/user/login" method="post">
+<!--                -->
+                <form action="http://localhost:24000/oauth/user/login?origin_url=http://localhost:26000/toTrade.html" method="post" >
                     <li class="top_1">
                         <img src="/static/JD_img/user_03.png" class="err_img1"/>
                         <input id="phone" name="phone" type="text" placeholder=" 邮箱/用户名/已验证手机" class="user"/>
@@ -134,38 +135,35 @@
 
 <script>
 
+    // ajax有回调方法.
     function login() {
 
         let phone = $("#phone").val();
         let password = $("#password").val();
+        // 获取原始地址  http://localhost:26000/toTrade.html.
+        let url = window.location.href
+        let origin_Url = url.split("?origin_url=")[1]
         // 发到后台进行校验.
         $.ajax({
             type: "post",
             data: {
                 "phone": phone,
-                "password": password
+                "password": password,
+                "origin_url" : origin_Url
             },
             url: "http://127.0.0.1:24000/oauth/user/login",
-            beforeSend: function () {
+            success : function (result){
 
-            },
-            success: function (data) {
+                if(result == "login"){
 
-                let result = data.member;
-                let code = data.code;
-                if (code == 0) {
+                }else{
 
-                	// 登录成功:
-					// 暂时不考虑用户问题: 留到分布式session问题的时候解决
-                    // 尝试从网关进行调用访问.
-					window.location.href = "http://localhost:88/index.html";
+                    alert(origin_Url)
+                    window.open = origin_Url
+
                 }
 
-                console.log(result);
             },
-            error: function () {
-
-            }
 
         });
 

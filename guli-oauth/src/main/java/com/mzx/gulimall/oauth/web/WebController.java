@@ -1,6 +1,5 @@
 package com.mzx.gulimall.oauth.web;
 
-import com.alibaba.fastjson.JSON;
 import com.mzx.gulimall.common.model.MemberResultVo;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.oauth.constant.RedisConstant;
@@ -34,7 +33,9 @@ public class WebController {
 
     @GetMapping(value = "/login.html")
     public String toLoginPage() {
+
         return "login";
+
     }
 
     @GetMapping(value = "/reg.html")
@@ -66,14 +67,13 @@ public class WebController {
     }
 
     /**
-     * 进行登录》
+     * 进行登录.
      *
      * @param vo
      * @return
      */
     @PostMapping(value = "/user/login")
-    public String login(LoginVo vo,
-                   HttpServletRequest request) {
+    public String login(LoginVo vo, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         System.out.println(1);
@@ -88,14 +88,12 @@ public class WebController {
             System.out.println("user Login 方法发生了 页面参数为: " + resultVo.toString());
             // 校验成功: 将校验结果放到session域中.
             // 这里就不存储JSON类型了,为了方便在页面中直接使用.
-            // 在使用的时候直接使用强制类型转换吧.
-            session.setAttribute(RedisConstant.PUBLIC_USER,resultVo);
-            System.out.println("SpringSession ...");
-            // 重定向到首页
-            System.out.println("开始重定向: 如果页面未变化 那么就说明 return出现错误. ");
+            session.setAttribute(RedisConstant.PUBLIC_USER, resultVo);
             // redirect重定向会带上cookie进行重定向.
-            // TODO:  为什么在页面中用window.location进行跳转获取session失败.
-            return "redirect:http://localhost:10000/index.html";
+            // 重定向到原始地址. 不再是固定的首页地址.
+            // TODO 重定向问题到底由谁来做.
+            return (vo.getOrigin_url() == null || vo.getOrigin_url() == "") ? "login"
+                    : "redirect:" + vo.getOrigin_url();
 
         }
 
@@ -103,17 +101,17 @@ public class WebController {
 
     @GetMapping(value = "/t")
     @ResponseBody
-    public String testSpringSession(HttpServletRequest request){
+    public String testSpringSession(HttpServletRequest request) {
 
 
         HttpSession session = request.getSession();
-        session.setAttribute("test","1111111111111");
+        session.setAttribute("test", "1111111111111");
         return "增加成功";
     }
 
     @GetMapping(value = "/get")
     @ResponseBody
-    public String testSpring(HttpServletRequest request){
+    public String testSpring(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         Object test = session.getAttribute("test");

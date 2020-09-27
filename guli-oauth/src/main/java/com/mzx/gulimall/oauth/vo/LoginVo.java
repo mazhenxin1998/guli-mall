@@ -20,7 +20,12 @@ public class LoginVo {
 
     @NotNull
     private String phone;
+
     @NotEmpty
     private String password;
+
+
+    private String origin_url;
+
 
 }

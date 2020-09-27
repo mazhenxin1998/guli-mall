@@ -2,6 +2,8 @@ package com.mzx.gulimall.order.web;
 
 import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author ZhenXinMa.
  * @slogan 浮生若梦, 若梦非梦, 浮生何梦?如梦之梦.
@@ -17,8 +19,8 @@ public interface IOrderWebController {
      * <p>
      * 生成订单的详细信息等.
      *
-     * @return
+     * @return 返回订单页面.
      */
-    String order(Model model);
+    String order(HttpServletRequest request, Model model);
 
 }

@@ -34,6 +34,12 @@ public class OrderConfirmVo implements Serializable {
      * 优惠功能暂时不做了.
      */
     private Integer integration;
+
+    /**
+     * 订单幂等验证属性.
+     */
+    private String token;
+
     /**
      * 没有抵消优惠券的前提下.
      */
@@ -42,6 +48,14 @@ public class OrderConfirmVo implements Serializable {
      * 抵消了优惠券情况下的实际支付的价格.
      */
     private BigDecimal payPrice = new BigDecimal(0);
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     /**
      * 重新计算应该支付的钱.
