@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 解决Feign远程调用丢失请求头问题.
  * 只需要将其加入到IOC容器中,Feign在构造请求的时候，就自动将当前项目中的请求拦截器进行拦截,并且循环调用apply方法.
- *
+ * Calculation period
  * @author ZhenXinMa.
  * @slogan 脚踏实地向前看.
  * @create 2020-09-27 15:41 周日.

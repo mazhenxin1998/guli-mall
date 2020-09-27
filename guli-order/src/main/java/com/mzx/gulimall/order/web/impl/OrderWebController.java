@@ -27,7 +27,6 @@ public class OrderWebController implements IOrderWebController {
     @GetMapping(value = {"/", "/order.html", "/toTrade.html"})
     public String order(Model model) {
 
-//        OrderConfirmVo confirmVo = iOrderConfirmService.queryOrderConfirm();
         long start = System.currentTimeMillis();
         OrderConfirmVo confirmVo = iOrderConfirmService.queryOrderConfirmSyn();
         long end = System.currentTimeMillis();

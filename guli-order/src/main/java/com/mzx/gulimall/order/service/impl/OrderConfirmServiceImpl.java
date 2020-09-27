@@ -41,18 +41,6 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
     @Qualifier(value = "threadPoolExecutor")
     private ThreadPoolExecutor executor;
 
-    public static final ThreadLocal<ServletRequestAttributes> ATTRIBUTES_THREAD_LOCAL = new
-            ThreadLocal<ServletRequestAttributes>() {
-
-                @Override
-                protected ServletRequestAttributes initialValue() {
-
-                    return (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
-                }
-
-            };
-
 
     @Override
     public OrderConfirmVo queryOrderConfirm() {

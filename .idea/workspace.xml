@@ -268,14 +268,15 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliCartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliCartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/IOrderConfirmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/IOrderConfirmService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-annotation/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/guli-annotation/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/GuliMallCartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/GuliMallCartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/GuliMallOrderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/GuliMallOrderApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/interceptor/FeignRequestInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/interceptor/FeignRequestInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/OrderConfirmServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/OrderConfirmServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/vo/OrderConfirmVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/vo/OrderConfirmVo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/web/impl/OrderWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/web/impl/OrderWebController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/IOrderConfirmService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/IOrderConfirmService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/GuliMallOrderApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/GuliMallOrderApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/OrderConfirmServiceImpl$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/OrderConfirmServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/OrderConfirmServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/vo/OrderConfirmVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/vo/OrderConfirmVo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/web/impl/OrderWebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/web/impl/OrderWebController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -293,8 +294,8 @@
         <option value="Enum" />
         <option value="HTML File" />
         <option value="Mybatis Mapper" />
-        <option value="AnnotationType" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -421,7 +422,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CartFeignServiceTest.t1">
+  <component name="RunManager" selected="Spring Boot.GuliMallCartApplication">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -630,8 +631,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GuliMallOrderApplication" />
         <item itemvalue="Spring Boot.GuliMallCartApplication" />
+        <item itemvalue="Spring Boot.GuliMallOrderApplication" />
         <item itemvalue="JUnit.CartFeignServiceTest.t1" />
         <item itemvalue="JUnit.MemberFeignTest.t1" />
         <item itemvalue="JUnit.RedisTest.t1" />
@@ -809,7 +810,7 @@
       <workItem from="1601085555616" duration="3168000" />
       <workItem from="1601108035124" duration="16678000" />
       <workItem from="1601135224733" duration="2000" />
-      <workItem from="1601189688395" duration="11233000" />
+      <workItem from="1601189688395" duration="13946000" />
     </task>
     <servers />
   </component>
@@ -905,54 +906,54 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600872571221" />
-    <state width="1124" height="350" key="GridCell.Tab.0.bottom" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.0.bottom" timestamp="1601208768437">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.0.center" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601208768437" />
+    <state width="1124" height="350" key="GridCell.Tab.0.center" timestamp="1601208768437">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.0.left" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1601208768437" />
+    <state width="1124" height="350" key="GridCell.Tab.0.left" timestamp="1601208768437">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.0.right" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1601208768437" />
+    <state width="1124" height="350" key="GridCell.Tab.0.right" timestamp="1601208768437">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.1.bottom" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1601208768437" />
+    <state width="1124" height="350" key="GridCell.Tab.1.bottom" timestamp="1601208768438">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.1.center" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601208768438" />
+    <state width="1124" height="350" key="GridCell.Tab.1.center" timestamp="1601208768437">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.1.left" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1601208768437" />
+    <state width="1124" height="350" key="GridCell.Tab.1.left" timestamp="1601208768437">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.1.right" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1601208768437" />
+    <state width="1124" height="350" key="GridCell.Tab.1.right" timestamp="1601208768438">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.2.bottom" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1601208768438" />
+    <state width="1124" height="350" key="GridCell.Tab.2.bottom" timestamp="1601207961419">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.2.center" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1601207961419" />
+    <state width="1124" height="350" key="GridCell.Tab.2.center" timestamp="1601207961419">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.2.left" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1601207961419" />
+    <state width="1124" height="350" key="GridCell.Tab.2.left" timestamp="1601207961419">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
-    <state width="1124" height="350" key="GridCell.Tab.2.right" timestamp="1601201383301">
+    <state width="1124" height="350" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1601207961419" />
+    <state width="1124" height="350" key="GridCell.Tab.2.right" timestamp="1601207961419">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1124" height="350" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1601201383301" />
+    <state width="1124" height="350" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1601207961419" />
     <state x="349" y="152" key="IDE.errors.dialog" timestamp="1600870843165">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1039,11 +1040,6 @@
           <url>jar://$PROJECT_DIR$/../../../../../StudyInstrument/MavenWareHouse/maven_repository/io/github/openfeign/feign-core/10.2.3/feign-core-10.2.3-sources.jar!/feign/SynchronousMethodHandler.java</url>
           <line>77</line>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/OrderConfirmServiceImpl.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
