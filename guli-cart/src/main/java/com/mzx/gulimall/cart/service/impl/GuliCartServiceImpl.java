@@ -1,5 +1,6 @@
 package com.mzx.gulimall.cart.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.mzx.gulimall.cart.constant.StringConstant;
 import com.mzx.gulimall.cart.interceptor.CartInterceptor;
 import com.mzx.gulimall.cart.service.IGuliCartService;
@@ -12,8 +13,8 @@ import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author ZhenXinMa.
@@ -35,15 +36,19 @@ public class GuliCartServiceImpl implements IGuliCartService {
                 this.getBoundHash(userInfoTo.getUserKey()) : this.getBoundHash(userInfoTo.getUserId().toString());
         // items当前状态下
         List<Object> items = ops.values();
-        // 强制转换.
-        List<Object> list = items.stream().filter(item -> {
+        List<CartItem> list = new ArrayList<>();
+        items.forEach(item -> {
 
-            CartItem cartItem = (CartItem) item;
-            // 返回true表示保留.
-            return cartItem.isCheck() ? true : false;
+            CartItem cartItem = JSON.parseObject(item.toString(), CartItem.class);
+            if (cartItem.isCheck()) {
 
-        }).collect(Collectors.toList());
-        return R.ok().put("data",list);
+                list.add(cartItem);
+
+            }
+
+        });
+
+        return R.ok().put("data", list);
 
     }
 

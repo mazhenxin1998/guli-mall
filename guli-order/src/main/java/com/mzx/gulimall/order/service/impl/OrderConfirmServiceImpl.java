@@ -1,6 +1,5 @@
 package com.mzx.gulimall.order.service.impl;
 
-import com.mzx.gulimall.common.model.CartItem;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.feign.CartServiceFeign;
 import com.mzx.gulimall.order.feign.MemberServiceFeign;
@@ -13,9 +12,14 @@ import com.mzx.gulimall.order.vo.UserInfoTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 
@@ -37,56 +41,93 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
     @Qualifier(value = "threadPoolExecutor")
     private ThreadPoolExecutor executor;
 
+    public static final ThreadLocal<ServletRequestAttributes> ATTRIBUTES_THREAD_LOCAL = new
+            ThreadLocal<ServletRequestAttributes>() {
+
+                @Override
+                protected ServletRequestAttributes initialValue() {
+
+                    return (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+
+                }
+
+            };
+
+
     @Override
     public OrderConfirmVo queryOrderConfirm() {
 
         OrderConfirmVo confirmVo = new OrderConfirmVo();
         // OrderInterceptor为什么是空啊?
         UserInfoTo userInfoTo = OrderInterceptor.THREAD_LOCAL.get();
-        // TODO: 2020/9/26 通过Feign远程调用服务,如果路径参数上的值是null,将会触发feign的404错误.
-        // TODO: 2020/9/26 下面的代码就已经触发了这个错误条件.明天修正.
-        if (userInfoTo.getUserId() == null && userInfoTo.getUserId() <= 0) {
+        if (userInfoTo.getUserId() == null || userInfoTo.getUserId() <= 0) {
 
             // 用户没有登录状态.
             return null;
 
-        }else{
+        } else {
 
             R addr = memberServiceFeign.getAddr(userInfoTo.getUserId());
             List<MemberAddressVo> listAddr = (List<MemberAddressVo>) addr.get("data");
             confirmVo.setAddress(listAddr);
-
             R checkedCartItems = cartServiceFeign.getCheckedCartItems();
-            List<CartItem> items = (List<CartItem>) checkedCartItems.get("data");
-            // feign远程调用将会出现请求头丢失问题.
-            List<OrderItemVo> orderItemVos = items.stream().map(item -> {
+            // getData返回的应该是一个LinkedListMap
+            List<Map<String, Object>> items = (List<Map<String, Object>>) checkedCartItems.get("data");
+            List<OrderItemVo> itemVos = items.stream().map(item -> {
 
-                OrderItemVo orderItemVo = new OrderItemVo();
-                orderItemVo.setSkuId(item.getSkuId());
-                orderItemVo.setTitle(item.getTitle());
-                orderItemVo.getTotalPrice();
-                orderItemVo.setImage(item.getImage());
-                orderItemVo.setPrice(item.getPrice());
-                orderItemVo.setCount(item.getCount());
-                return orderItemVo;
+                OrderItemVo itemVo = new OrderItemVo();
+                itemVo.setSkuId(Long.valueOf(item.get("skuId").toString()));
+                itemVo.setTitle(item.get("title").toString());
+                itemVo.setImage(item.get("image").toString());
+                itemVo.setCount(Integer.valueOf(item.get("count").toString()));
+                itemVo.setPrice(new BigDecimal(item.get("price").toString()));
+                List<String> list = (List<String>) item.get("skuAttr");
+                itemVo.setSkuAttr(list);
+                itemVo.setTotalPrice(new BigDecimal(item.get("totalPrice").toString()));
+                return itemVo;
 
             }).collect(Collectors.toList());
-            confirmVo.setItems(orderItemVos);
-
+            confirmVo.setItems(itemVos);
             return confirmVo;
 
         }
 
     }
 
+    @Override
     public OrderConfirmVo queryOrderConfirmSyn() {
 
         // 用户能执行到这里就说明一定是登录状态的.
         OrderConfirmVo confirmVo = new OrderConfirmVo();
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         UserInfoTo userInfoTo = OrderInterceptor.THREAD_LOCAL.get();
+        if (userInfoTo.getUserId() == null || userInfoTo.getUserId() <= 0) {
+
+            // TODO: 2020/9/27 这种情况应该是不会出现的.
+            return null;
+
+        }
+
+        // Java中是值传递,而confirmVo是一个对象的引用,其在方法之间传递,传递的是confirmVo对象地址的值,方法中对confirmVo做的修改能同步到当前
+        // 方法中.
+        this.remoteQuery(confirmVo, attributes, userInfoTo);
+        // 优惠额度暂时没有写.
+        confirmVo.setIntegration(0);
+        confirmVo.setTotal();
+        System.out.println(1);
+        return confirmVo;
+
+    }
+
+    private void remoteQuery(OrderConfirmVo confirmVo, ServletRequestAttributes attributes,
+                             UserInfoTo userInfoTo) {
+
+        long start = System.currentTimeMillis();
         // 1. 远程查询订单确认页面需要的收货地址.
         CompletableFuture<Void> addressFuture = CompletableFuture.runAsync(() -> {
 
+            RequestContextHolder.setRequestAttributes(attributes);
+            System.out.println("addressFuture" + Thread.currentThread().getId());
             R addr = memberServiceFeign.getAddr(userInfoTo.getUserId());
             List<MemberAddressVo> listAddr = (List<MemberAddressVo>) addr.get("data");
             confirmVo.setAddress(listAddr);
@@ -94,11 +135,56 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
         }, executor);
         CompletableFuture<Void> itemFuture = CompletableFuture.runAsync(() -> {
 
+            RequestContextHolder.setRequestAttributes(attributes);
             // 远程查询购物车中选中的数据.
+            R checkedCartItems = cartServiceFeign.getCheckedCartItems();
+            // getData返回的应该是一个LinkedListMap
+            List<Map<String, Object>> items = (List<Map<String, Object>>) checkedCartItems.get("data");
+            List<OrderItemVo> itemVos = items.stream().map(item -> {
+
+                // TODO: 2020/9/27 思考为什么异步线程能访问this.convert(Map)方法?
+                /*
+                 * ？？？？
+                 * */
+
+                return this.convert(item);
+
+            }).collect(Collectors.toList());
+            confirmVo.setItems(itemVos);
 
         }, executor);
+        try {
 
+            // 只要上面两个异步任务完成,那么当前方法就执行完毕.
+            CompletableFuture.allOf(addressFuture, itemFuture).get();
+            long end = System.currentTimeMillis();
+            System.out.println("两次远程调用花费时间: " + (end - start) + "毫秒. ");
 
-        return null;
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
+        } catch (ExecutionException e) {
+
+            e.printStackTrace();
+
+        }
+
     }
+
+    private OrderItemVo convert(Map<String, Object> item) {
+
+        OrderItemVo itemVo = new OrderItemVo();
+        itemVo.setSkuId(Long.valueOf(item.get("skuId").toString()));
+        itemVo.setTitle(item.get("title").toString());
+        itemVo.setImage(item.get("image").toString());
+        itemVo.setCount(Integer.valueOf(item.get("count").toString()));
+        itemVo.setPrice(new BigDecimal(item.get("price").toString()));
+        List<String> list = (List<String>) item.get("skuAttr");
+        itemVo.setSkuAttr(list);
+        itemVo.setTotalPrice(new BigDecimal(item.get("totalPrice").toString()));
+        return itemVo;
+
+    }
+
 }

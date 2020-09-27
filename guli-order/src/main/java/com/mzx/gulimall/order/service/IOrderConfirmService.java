@@ -14,4 +14,10 @@ public interface IOrderConfirmService {
      * @return
      */
     OrderConfirmVo queryOrderConfirm();
+
+    /**
+     * 异步查询当前用户订单结算页面.
+     * @return
+     */
+    OrderConfirmVo queryOrderConfirmSyn();
 }
