@@ -2,6 +2,7 @@ package com.mzx.gulimall.cart.controller;
 
 import com.mzx.gulimall.cart.annotation.CalculationPeriod;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.TimeUnit;
 
@@ -14,8 +15,8 @@ import java.util.concurrent.TimeUnit;
 public class TestController {
 
     @CalculationPeriod
-    @GetMapping(value = "/t")
-    public String t1(){
+    @GetMapping(value = "/t/{id}")
+    public String t1(@PathVariable(value = "id") String id){
 
         try {
 
@@ -27,7 +28,7 @@ public class TestController {
 
         }
 
-        return "OK";
+        return id;
 
     }
 
