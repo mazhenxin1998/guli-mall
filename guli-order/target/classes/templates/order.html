@@ -445,7 +445,9 @@
                         <span th:text="${item.skuAttr[0]}"></span>
                         <span th:text="'x' + ${item.count}"> x1 </span>
 <!--                        该标签展示当前库存. 需要锁库存吧. -->
-                        <span>库存剩余: 999</span>
+
+                        <span th:if="${item.repertory <= 0}">库存剩余:&nbsp;&nbsp; <b>无货</b></span>
+                        <span th:if="${item.repertory > 0}">库存剩余:&nbsp;&nbsp; <b th:text="${item.repertory}">无货</b></span>
                     </p>
 <!--                   应该将Attr转换成一个字符串. -->
                 <p class="tui-1"><img src="/static/img/i_07.png"/>支持7天无理由退货

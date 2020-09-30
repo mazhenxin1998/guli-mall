@@ -36,6 +36,9 @@ public class OrderItemVo implements Serializable {
      */
     BigDecimal price;
     Integer count;
+    /**
+     * 当前没有锁定的库存.
+     */
     Integer repertory;
     /**
      * 计算当前商品的总价,这个对应一件商品我可以一次购买多件,也就是对应的购买数量.
@@ -47,6 +50,14 @@ public class OrderItemVo implements Serializable {
 
         this.skuAttr = list;
 
+    }
+
+    public Integer getRepertory() {
+        return repertory;
+    }
+
+    public void setRepertory(Integer repertory) {
+        this.repertory = repertory;
     }
 
     /**

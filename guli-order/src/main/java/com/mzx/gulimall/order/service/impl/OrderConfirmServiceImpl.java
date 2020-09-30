@@ -3,19 +3,20 @@ package com.mzx.gulimall.order.service.impl;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.feign.CartServiceFeign;
 import com.mzx.gulimall.order.feign.MemberServiceFeign;
+import com.mzx.gulimall.order.feign.WareServiceFeign;
 import com.mzx.gulimall.order.interceptor.OrderInterceptor;
 import com.mzx.gulimall.order.service.IOrderConfirmService;
-import com.mzx.gulimall.order.vo.MemberAddressVo;
-import com.mzx.gulimall.order.vo.OrderConfirmVo;
-import com.mzx.gulimall.order.vo.OrderItemVo;
-import com.mzx.gulimall.order.vo.UserInfoTo;
+import com.mzx.gulimall.order.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -36,6 +37,9 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
 
     @Autowired
     private CartServiceFeign cartServiceFeign;
+
+    @Autowired
+    private WareServiceFeign wareServiceFeign;
 
     @Autowired
     @Qualifier(value = "threadPoolExecutor")
@@ -86,13 +90,13 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
     @Override
     public OrderConfirmVo queryOrderConfirmSyn() {
 
-        // 用户能执行到这里就说明一定是登录状态的.
         OrderConfirmVo confirmVo = new OrderConfirmVo();
+        // 当前请求(从浏览器中发送的请求.)
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         UserInfoTo userInfoTo = OrderInterceptor.THREAD_LOCAL.get();
+        // 避免用户未登录状态.
         if (userInfoTo.getUserId() == null || userInfoTo.getUserId() <= 0) {
 
-            // TODO: 2020/9/27 这种情况应该是不会出现的.
             return null;
 
         }
@@ -110,41 +114,13 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
     private void remoteQuery(OrderConfirmVo confirmVo, ServletRequestAttributes attributes,
                              UserInfoTo userInfoTo) {
 
+
         long start = System.currentTimeMillis();
-        // 1. 远程查询订单确认页面需要的收货地址.
-        CompletableFuture<Void> addressFuture = CompletableFuture.runAsync(() -> {
 
-            // 解决Feign异步丢失请求头的问题.
-            // 在当前线程中进行ThreadLocal的重新设置,这样每个异步请求线程中的ThreadLocal都会有一个RequestContextHolder中的一副本.
-            RequestContextHolder.setRequestAttributes(attributes);
-            R addr = memberServiceFeign.getAddr(userInfoTo.getUserId());
-            List<MemberAddressVo> listAddr = (List<MemberAddressVo>) addr.get("data");
-            confirmVo.setAddress(listAddr);
-
-        }, executor);
-        CompletableFuture<Void> itemFuture = CompletableFuture.runAsync(() -> {
-
-            RequestContextHolder.setRequestAttributes(attributes);
-            // 远程查询购物车中选中的数据.
-            R checkedCartItems = cartServiceFeign.getCheckedCartItems();
-            // getData返回的应该是一个LinkedListMap
-            List<Map<String, Object>> items = (List<Map<String, Object>>) checkedCartItems.get("data");
-            List<OrderItemVo> itemVos = items.stream().map(item -> {
-
-                // TODO: 2020/9/27 思考为什么异步线程能访问this.convert(Map)方法?
-                /*
-                 * ？？？？
-                 * */
-                return this.convert(item);
-
-            }).collect(Collectors.toList());
-            confirmVo.setItems(itemVos);
-
-        }, executor);
-
-        // 异步查询库存服务.
-
-
+        // 远程查询住址.
+        CompletableFuture<Void> addressFuture = this.getAddressFuture(confirmVo, attributes, userInfoTo);
+        // 远程查询购物车和库存服务.
+        CompletableFuture<List<Long>> itemFuture = this.getItemFuture(confirmVo, attributes, userInfoTo);
         try {
 
             // 只要上面两个异步任务完成,那么当前方法就执行完毕.
@@ -161,6 +137,151 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
             e.printStackTrace();
 
         }
+
+    }
+
+    /**
+     * 远程查询订单确认页面需要的收货地址.
+     *
+     * @param confirmVo
+     * @param attributes
+     * @param userInfoTo
+     * @return
+     */
+    private CompletableFuture<Void> getAddressFuture(OrderConfirmVo confirmVo, ServletRequestAttributes attributes,
+                                                     UserInfoTo userInfoTo) {
+
+        return CompletableFuture.runAsync(() -> {
+
+            // 解决Feign异步丢失请求头的问题.
+            // 在当前线程中进行ThreadLocal的重新设置,这样每个异步请求线程中的ThreadLocal都会有一个RequestContextHolder中的一副本.
+            RequestContextHolder.setRequestAttributes(attributes);
+            R addr = memberServiceFeign.getAddr(userInfoTo.getUserId());
+            List<MemberAddressVo> listAddr = (List<MemberAddressVo>) addr.get("data");
+            confirmVo.setAddress(listAddr);
+
+        }, executor);
+
+    }
+
+    /**
+     * @param confirmVo
+     * @param attributes
+     * @param userInfoTo
+     * @return
+     */
+    private CompletableFuture<List<Long>> getItemFuture(OrderConfirmVo confirmVo, ServletRequestAttributes attributes
+            , UserInfoTo userInfoTo) {
+
+        return CompletableFuture.supplyAsync(() -> {
+
+            // 现在是都进行设置了,但是为什么就是会有以及出现错误.
+            RequestContextHolder.setRequestAttributes(attributes);
+            // 远程查询购物车中选中的数据.
+            R checkedCartItems = cartServiceFeign.getCheckedCartItems();
+            // getData返回的应该是一个LinkedListMap
+            List<Map<String, Object>> items = (List<Map<String, Object>>) checkedCartItems.get("data");
+            List<OrderItemVo> itemVos = items.stream().map(item -> {
+
+                // TODO: 2020/9/27 思考为什么异步线程能访问this.convert(Map)方法?
+                /*
+                 * ？？？？
+                 * */
+                return this.convert(item);
+
+            }).collect(Collectors.toList());
+            confirmVo.setItems(itemVos);
+            List<Long> ids = itemVos.stream().map(OrderItemVo::getSkuId).collect(Collectors.toList());
+            return ids;
+
+        }, executor).whenCompleteAsync((data, e) -> {
+
+            // 通过上一个异步线程执行的结果对每个Sku的查询库存.
+            if (e != null) {
+
+                // 有异常发生了,终止往下执行.
+                throw new RuntimeException("远程查询SKU当前剩余库存出现异常: " + e.getMessage());
+
+            } else {
+
+                this.setItemStock(data, confirmVo, attributes);
+
+            }
+
+        }, executor);
+
+    }
+
+    /**
+     * 通过ids查出每一个SKU的库存数据,并且进行封装.
+     * <p>
+     * 直接进行远程查询就行,不需要再开启一个线程了. 因为当前就在一个空闲的线程中.
+     *
+     * @param ids       当前用户需要购买的所有商品的skus.
+     * @param confirmVo 当前需要返回的vo.
+     */
+    private void setItemStock(List<Long> ids, OrderConfirmVo confirmVo,
+                              ServletRequestAttributes attributes) {
+
+        // 当前线程也需要设置环境上下文.
+        RequestContextHolder.setRequestAttributes(attributes);
+        // 如果当前服务查询出错了怎么办.
+        String[] params = new String[ids.size()];
+        for (int i = 0; i < ids.size(); i++) {
+
+            params[i] = String.valueOf(ids.get(i));
+
+        }
+
+        R r = wareServiceFeign.getListStock(params);
+        // 强制类型转换应该是没有问题的.
+        if (StringUtils.isEmpty(r.get("data"))) {
+
+            confirmVo.getItems().forEach(item -> {
+
+                // 设置默认值.
+                item.setRepertory(0);
+
+            });
+
+        } else {
+
+            // List中的每一个都是一个Map.
+            List<LinkedHashMap<String, Object>> tos = (List<LinkedHashMap<String, Object>>) r.get("data");
+            List<SkuWareStockTo> wareStock = this.getWareStock(tos);
+            confirmVo.getItems().forEach(item -> {
+
+                for (SkuWareStockTo skuWareStockTo : wareStock) {
+
+                    // 现在是不知道这里会不会出现错误.
+                    if (skuWareStockTo.getSkuId().equals(item.getSkuId())) {
+
+                        // 现在需要将Long类型转换为Integer类型.
+                        item.setRepertory(Integer.valueOf(String.valueOf(skuWareStockTo.getStock())));
+
+                    }
+
+                }
+
+            });
+
+        }
+
+    }
+
+    private List<SkuWareStockTo> getWareStock(List<LinkedHashMap<String, Object>> tos) {
+
+        List<SkuWareStockTo> wares = new ArrayList<>();
+        tos.forEach(item -> {
+
+            Long stock = Long.valueOf(item.get("stock").toString());
+            Long wareId = Long.valueOf(item.get("wareId").toString());
+            Long skuId = Long.valueOf(item.get("skuId").toString());
+            SkuWareStockTo ware = new SkuWareStockTo(stock, wareId, skuId);
+            wares.add(ware);
+
+        });
+        return wares;
 
     }
 
