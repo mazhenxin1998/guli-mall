@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
+import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.dao.WareSkuDao;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
 import com.mzx.gulimall.ware.service.WareSkuService;
+import com.mzx.gulimall.ware.vo.SkuWareStockTo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -17,6 +20,9 @@ import java.util.Map;
 
 @Service("wareSkuService")
 public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> implements WareSkuService {
+
+    @Autowired
+    private WareSkuDao wareSkuDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -67,6 +73,23 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         }
 
         return flag;
+    }
+
+    @Override
+    public R getListStock(List<Long> ids) {
+
+        // 查询每个Sku对应的库存.
+        if (ids == null || ids.size() <= 0) {
+
+            return R.ok();
+
+        }else{
+
+            List<SkuWareStockTo> list = wareSkuDao.listFindStock(ids);
+            return R.ok().put("data",list);
+
+        }
+
     }
 
     private QueryWrapper<WareSkuEntity> getQueryWrapper(Map<String, Object> params) {

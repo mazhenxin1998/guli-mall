@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -22,6 +23,12 @@ public class OrderConfirmVo implements Serializable {
      * 封住了用户的所有可用地址列表.
      */
     List<MemberAddressVo> address;
+
+    /**
+     * 默认地址.
+     */
+    MemberAddressVo defaultAddress;
+
     /**
      * 封住了本次要提交订单的的货物.
      * 直接查询购物车中被选中的数据.
@@ -33,21 +40,27 @@ public class OrderConfirmVo implements Serializable {
      * 暂时只支持豆豆抵消优惠,或者没有优惠活动.
      * 优惠功能暂时不做了.
      */
-    private Integer integration;
+    Integer integration;
 
     /**
      * 订单幂等验证属性.
      */
-    private String token;
+    String token;
 
     /**
      * 没有抵消优惠券的前提下.
      */
-    private BigDecimal total = new BigDecimal(0);
+    BigDecimal total = new BigDecimal(0);
     /**
      * 抵消了优惠券情况下的实际支付的价格.
      */
-    private BigDecimal payPrice = new BigDecimal(0);
+    BigDecimal payPrice = new BigDecimal(0);
+
+    public void setDefaultAddress(MemberAddressVo memberAddressVo) {
+
+        this.defaultAddress = memberAddressVo;
+
+    }
 
     public String getToken() {
         return token;
@@ -83,6 +96,11 @@ public class OrderConfirmVo implements Serializable {
         System.out.println("订单优惠之后的价格是: " + this.payPrice);
         System.out.println("订单在没有进行优惠时的价格: : " + this.payPrice);
 
+    }
+
+
+    public MemberAddressVo getDefaultAddress() {
+        return defaultAddress;
     }
 
 

@@ -2,8 +2,10 @@ package com.mzx.gulimall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
+import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,5 +34,13 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * @return
      */
     boolean getStock(Long skuId);
+
+    /**
+     * 批量查询库存数量.
+     *
+     * @param ids
+     * @return
+     */
+    R getListStock(List<Long> ids);
 }
 

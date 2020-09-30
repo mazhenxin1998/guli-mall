@@ -32,7 +32,6 @@ public class OrderWebController implements IOrderWebController {
         OrderConfirmVo confirmVo = iOrderConfirmService.queryOrderConfirmSyn();
         if (confirmVo == null) {
 
-            // http://127.0.0.1:24000/oauth/login.html
             String originUrl = "http://localhost:26000" + request.getRequestURI();
             return "redirect:http://localhost:24000/oauth/login.html?origin_url=" + originUrl;
 

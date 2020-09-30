@@ -21,6 +21,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class FeignRequestInterceptor implements RequestInterceptor {
 
+
+    /**
+     * 其实可以通过共享HttpServletRequest来同步、异步解决Feign远程请求丢失数据问题.
+     * @param template
+     */
     @Override
     public void apply(RequestTemplate template) {
 

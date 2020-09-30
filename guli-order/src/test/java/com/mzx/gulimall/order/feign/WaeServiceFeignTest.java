@@ -1,6 +1,5 @@
 package com.mzx.gulimall.order.feign;
 
-import com.mzx.gulimall.common.model.CartItem;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.GuliMallOrderApplication;
 import org.junit.Test;
@@ -9,29 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 /**
  * @author ZhenXinMa.
  * @slogan 脚踏实地向前看.
- * @create 2020-09-27 15:16 周日.
+ * @create 2020-09-28 20:57 周一.
  */
-@SpringBootTest(classes = {GuliMallOrderApplication.class})
+@SpringBootTest(classes = GuliMallOrderApplication.class)
 @RunWith(SpringRunner.class)
-public class CartFeignServiceTest {
+public class WaeServiceFeignTest {
 
     @Autowired
-    private CartServiceFeign cartServiceFeign;
+    private WareServiceFeign wareServiceFeign;
 
     @Test
     public void t1() {
 
-        // 这里调用会丢失请求头.
-        R checkedCartItems = cartServiceFeign.getCheckedCartItems();
-        List<CartItem> items = (List<CartItem>) checkedCartItems.get("data");
+        // TODO 这里是有问题的 .
+        String[] ids = new String[]{"14", "15", "16"};
+        R r = wareServiceFeign.getListStock(ids);
+        Object data = r.get("data");
         System.out.println(1);
 
     }
 
 
 }
+
+

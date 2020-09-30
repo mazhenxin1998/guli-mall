@@ -3,7 +3,7 @@
 
 <mapper namespace="com.mzx.gulimall.ware.dao.WareSkuDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.mzx.gulimall.ware.entity.WareSkuEntity" id="wareSkuMap">
         <result property="id" column="id"/>
         <result property="skuId" column="sku_id"/>
@@ -12,6 +12,29 @@
         <result property="skuName" column="sku_name"/>
         <result property="stockLocked" column="stock_locked"/>
     </resultMap>
+
+    <!--
+    <select id="selectPostIn" resultType="domain.blog.Post">
+      SELECT *
+      FROM POST P
+      WHERE ID in
+      <foreach item="item" index="index" collection="list"
+          open="(" separator="," close=")">
+            #{item}
+      </foreach>
+    </select>
+
+    -->
+    <select id="listFindStock" resultType="com.mzx.gulimall.ware.vo.SkuWareStockTo">
+
+        SELECT (ware.`stock`-ware.`stock_locked`) AS stock, ware.`ware_id` AS wareId, ware.`sku_id`
+        FROM wms_ware_sku AS ware
+        WHERE ware.`sku_id` IN
+        <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+        #{item}
+        </foreach>
+
+    </select>
 
 
 </mapper>

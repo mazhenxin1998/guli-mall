@@ -18,7 +18,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -72,6 +71,7 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
                 itemVo.setPrice(new BigDecimal(item.get("price").toString()));
                 List<String> list = (List<String>) item.get("skuAttr");
                 itemVo.setSkuAttr(list);
+                // 给attr进行赋值.
                 itemVo.setTotalPrice(new BigDecimal(item.get("totalPrice").toString()));
                 return itemVo;
 
@@ -97,13 +97,12 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
 
         }
 
-        // Java中是值传递,而confirmVo是一个对象的引用,其在方法之间传递,传递的是confirmVo对象地址的值,方法中对confirmVo做的修改能同步到当前
+        // Java中是值传递,而confirmVo是一个对象的引用,其在方法之间传递,传递的是confirmVo对象地址的值,方法中对confirmVo做的修改能同步到当前.
         // 方法中.
         this.remoteQuery(confirmVo, attributes, userInfoTo);
         // 优惠额度暂时没有写.
         confirmVo.setIntegration(0);
         confirmVo.setTotal();
-        System.out.println(1);
         return confirmVo;
 
     }
@@ -115,8 +114,9 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
         // 1. 远程查询订单确认页面需要的收货地址.
         CompletableFuture<Void> addressFuture = CompletableFuture.runAsync(() -> {
 
+            // 解决Feign异步丢失请求头的问题.
+            // 在当前线程中进行ThreadLocal的重新设置,这样每个异步请求线程中的ThreadLocal都会有一个RequestContextHolder中的一副本.
             RequestContextHolder.setRequestAttributes(attributes);
-            System.out.println("addressFuture" + Thread.currentThread().getId());
             R addr = memberServiceFeign.getAddr(userInfoTo.getUserId());
             List<MemberAddressVo> listAddr = (List<MemberAddressVo>) addr.get("data");
             confirmVo.setAddress(listAddr);
@@ -135,13 +135,16 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
                 /*
                  * ？？？？
                  * */
-
                 return this.convert(item);
 
             }).collect(Collectors.toList());
             confirmVo.setItems(itemVos);
 
         }, executor);
+
+        // 异步查询库存服务.
+
+
         try {
 
             // 只要上面两个异步任务完成,那么当前方法就执行完毕.
@@ -173,6 +176,33 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
         itemVo.setSkuAttr(list);
         itemVo.setTotalPrice(new BigDecimal(item.get("totalPrice").toString()));
         return itemVo;
+
+    }
+
+    /**
+     * 转换.
+     *
+     * @param addressVo
+     * @param item
+     */
+    private void adapter(MemberAddressVo addressVo, MemberAddressVo item) {
+
+        addressVo.setRegion(item.getRegion());
+        addressVo.setProvince(item.getProvince());
+        if (item.getPostCode() != null) {
+
+            addressVo.setPostCode(item.getPostCode());
+
+        }
+
+        addressVo.setPhone(item.getPhone());
+        addressVo.setName(item.getPhone());
+        addressVo.setMemberId(item.getMemberId());
+        addressVo.setId(item.getId());
+        addressVo.setDetailAddress(item.getDetailAddress());
+        addressVo.setDefaultStatus(item.getDefaultStatus());
+        addressVo.setCity(item.getCity());
+        addressVo.setAreacode(item.getAreacode());
 
     }
 
