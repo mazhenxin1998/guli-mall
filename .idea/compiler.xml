@@ -14,6 +14,7 @@
         <module name="guli-cart" />
         <module name="guli-common" />
         <module name="guli-ware" />
+        <module name="guli-query-ip" />
         <module name="renren-generator" />
         <module name="guli-order" />
         <module name="guli-three-server" />
@@ -39,6 +40,7 @@
       <module name="guli-order" target="1.8" />
       <module name="guli-payment" target="1.8" />
       <module name="guli-product" target="1.8" />
+      <module name="guli-query-ip" target="1.8" />
       <module name="guli-searcher" target="1.8" />
       <module name="guli-three-server" target="1.8" />
       <module name="guli-util" target="1.8" />

@@ -80,11 +80,15 @@ public class OrderInterceptor implements HandlerInterceptor {
     private String getUserKey(HttpServletRequest request, HttpServletResponse response) {
 
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
+        if (cookies != null && cookies.length > 0) {
 
-            if (SessionConstant.USER_KEY.equals(cookie.getName())) {
+            for (Cookie cookie : cookies) {
 
-                return cookie.getValue();
+                if (SessionConstant.USER_KEY.equals(cookie.getName())) {
+
+                    return cookie.getValue();
+
+                }
 
             }
 

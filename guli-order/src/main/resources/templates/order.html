@@ -349,9 +349,16 @@
         <span>新增收货地址</span>
     </div>
 
-    <!--地址-->
-    <div class="top-3" th:each=" addres : ${confirm.getAddress()}">
-        <p th:text="${addres.region}">家里</p><span th:text="${session.user.username} + '  '  +  ${addres.province} + '  '
+    <!--地址  ZhenXinMa 河南省 河南省安阳县马家乡马家村 18822038494
+       寄送至： 北京 朝阳区 三环到四环之间 朝阳北路复兴国际大厦23层麦田房产 IT-中心研发二部 收货人：赵存权 188****5052
+       -->
+    <div class="top-3 add-item" th:each=" addres : ${confirm.getAddress()}">
+        <input th:if="${addres.defaultStatus == 1}" type="hidden" id="address"
+               th:value=" '寄送至:    ' + ${addres.province} + '      ' + ${addres.detailAddress}
+        + ' 收货人     ' + ${session.user.username} + '    ' + ${addres.phone}">
+
+        <p th:attr="def=${addres.defaultStatus}" th:text="${addres.region}">家里</p><span
+            th:text="${session.user.username} + '  '  +  ${addres.province} + '  '
         + ${addres.detailAddress} + '  ' + ${addres.phone}">马振鑫  北京市  昌平区城区晨曦小区-16号楼 吉利大学
         150****2245</span>
     </div>
@@ -516,7 +523,9 @@
     <div class="yfze">
         <p class="yfze_a"><span class="z">应付总额：</span><span class="hq" th:text=" '￥' + ${confirm.getPayPrice()}">
             ￥28.90</span></p>
-        <p class="yfze_b">寄送至： 北京 朝阳区 三环到四环之间 朝阳北路复兴国际大厦23层麦田房产 IT-中心研发二部 收货人：赵存权 188****5052</p>
+        <p id="target-person" class="yfze_b">
+            寄送至： 北京 朝阳区 三环到四环之间 朝阳北路复兴国际大厦23层麦田房产 IT-中心研发二部 收货人：赵存权 188****5052
+        </p>
     </div>
     <input type="text" th:value="${confirm.getToken()}">
     <button class="tijiao">提交订单</button>
@@ -752,6 +761,38 @@
         }, function () {
             $('.h-r-1').css('display', 'none')
         })
+
+        highlighted();
+        target()
+
+    })
+
+    function target(){
+
+        // 默认第一次进来拿ID为address的value.
+        let a = $("#address").val()
+        $("#target-person").html(a)
+
+    }
+
+    function highlighted(){
+
+        // border: 2px solid red
+        // 先弄成默认的值.
+        $(".add-item p").css({"border":"2px solid gray"})
+        $(".add-item p[def='1']").css({"border":"2px solid red"})
+
+    }
+
+    $(".add-item p").click(function (){
+
+        $(".add-item p").attr("def",0)
+        $(this).attr("def","1")
+        // 获取到this.
+        highlighted()
+        // 当我点击修改的时候,也应该对收件人进行修改.
+
+
     })
 
 </script>

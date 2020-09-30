@@ -179,5 +179,6 @@
     <orderEntry type="library" name="Maven: com.github.xiaoymin:knife4j-spring-ui:2.0.4" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.10.3" level="project" />
     <orderEntry type="module" module-name="guli-util" />
+    <orderEntry type="library" name="Maven: org.lionsoul:ip2region:1.7.2" level="project" />
   </component>
 </module>

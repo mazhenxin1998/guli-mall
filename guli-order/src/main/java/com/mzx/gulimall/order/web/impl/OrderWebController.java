@@ -37,6 +37,7 @@ public class OrderWebController implements IOrderWebController {
 
         }
 
+        // TODO: 2020/9/30 这个uuid需要保存到redis中.
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         confirmVo.setToken(uuid);
         long end = System.currentTimeMillis();
