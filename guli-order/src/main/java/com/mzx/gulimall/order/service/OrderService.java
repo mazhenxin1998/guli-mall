@@ -1,7 +1,6 @@
 package com.mzx.gulimall.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.order.entity.OrderEntity;
 
@@ -16,6 +15,12 @@ import java.util.Map;
  */
 public interface OrderService extends IService<OrderEntity> {
 
+    /**
+     * 查询案例.
+     *
+     * @param params
+     * @return
+     */
     PageUtils queryPage(Map<String, Object> params);
 }
 

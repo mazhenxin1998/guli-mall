@@ -71,4 +71,6 @@ public class CategoryEntity implements Serializable {
 	@JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 	private List<CategoryEntity> children;
 
+
+
 }

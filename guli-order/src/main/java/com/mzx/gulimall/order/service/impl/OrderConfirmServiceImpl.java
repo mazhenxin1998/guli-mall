@@ -1,24 +1,27 @@
 package com.mzx.gulimall.order.service.impl;
 
 import com.mzx.gulimall.common.utils.R;
+import com.mzx.gulimall.order.constant.RedisConstant;
 import com.mzx.gulimall.order.feign.CartServiceFeign;
 import com.mzx.gulimall.order.feign.MemberServiceFeign;
 import com.mzx.gulimall.order.feign.WareServiceFeign;
 import com.mzx.gulimall.order.interceptor.OrderInterceptor;
 import com.mzx.gulimall.order.service.IOrderConfirmService;
 import com.mzx.gulimall.order.vo.*;
+import com.mzx.gulimall.util.CurrentStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -40,6 +43,9 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
 
     @Autowired
     private WareServiceFeign wareServiceFeign;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @Autowired
     @Qualifier(value = "threadPoolExecutor")
@@ -111,12 +117,43 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
 
     }
 
+    @Override
+    public String order(HttpServletRequest request, Model model) {
+
+        OrderConfirmVo confirmVo = this.queryOrderConfirmSyn();
+        if (confirmVo == null) {
+
+            String originUrl = "http://localhost:26000" + request.getRequestURI();
+            return "redirect:http://localhost:24000/oauth/login.html?origin_url=" + originUrl;
+
+        }
+
+        // TODO: 2020/9/30 这个uuid需要保存到redis中, 如果在向Redis中存入数据的时候,如果存入失败的时候怎么办？
+        // TODO: 2020/10/2 如果存入失败的话,那么就提示用户页面生成失败.
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        if (this.saveToken(uuid)) {
+
+            // 保存成功.
+            confirmVo.setToken(uuid);
+            model.addAttribute("confirm", confirmVo);
+            return "order";
+
+        }else{
+
+            // 返回到那个页面呢？
+            // 重新返回到购物车?
+            // 但是怎么提示用户UUID生成失败呢?
+            // 之后在说吧.
+            return "redirect:http://localhost:25000/cart/cartlist.html";
+
+        }
+
+    }
+
     private void remoteQuery(OrderConfirmVo confirmVo, ServletRequestAttributes attributes,
                              UserInfoTo userInfoTo) {
 
-
         long start = System.currentTimeMillis();
-
         // 远程查询住址.
         CompletableFuture<Void> addressFuture = this.getAddressFuture(confirmVo, attributes, userInfoTo);
         // 远程查询购物车和库存服务.
@@ -324,6 +361,35 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
         addressVo.setDefaultStatus(item.getDefaultStatus());
         addressVo.setCity(item.getCity());
         addressVo.setAreacode(item.getAreacode());
+
+    }
+
+    /**
+     * 向Redis中存入当前页面生成的Token.
+     * <p>
+     * 在Key中添加用户ID是为了Redis快速进行查找？
+     * Redis中token保存的形式: GULI:TOKEN:userId:UUID.
+     *
+     * @param token
+     * @return
+     */
+    private boolean saveToken(String token) {
+
+        UserInfoTo userInfoTo = OrderInterceptor.THREAD_LOCAL.get();
+        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
+        try {
+
+            ops.set(CurrentStringUtils.append(new StringBuilder(), RedisConstant.TOKEN_UUID,
+                    userInfoTo.getUserId().toString(), ":", token)
+                    , "1");
+            return true;
+
+        } catch (Exception e) {
+
+            // 应该将异常记录下.
+            return false;
+
+        }
 
     }
 

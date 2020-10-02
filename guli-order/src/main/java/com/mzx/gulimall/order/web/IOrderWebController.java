@@ -1,5 +1,6 @@
 package com.mzx.gulimall.order.web;
 
+import com.mzx.gulimall.order.vo.OrderSubmitVo;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,18 @@ public interface IOrderWebController {
      * <p>
      * 生成订单的详细信息等.
      *
+     * @param model   请求域.
+     * @param request 当前请求.
      * @return 返回订单页面.
      */
     String order(HttpServletRequest request, Model model);
+
+    /**
+     * 提交信息,生成订单.
+     *
+     * @param param 当前请求的所有信息.
+     * @return 返回下单成功的逻辑页面.
+     */
+    String submit(OrderSubmitVo param);
 
 }

@@ -9,4 +9,10 @@ public class RedisConstant {
 
     public static final String LIMIT_PREFIX_KEY = "LIMIT:";
 
+    /**
+     * 保存每一个订单页面的token.
+     * 生产环境中应该保存在独立的Redis服务中.
+     */
+    public static final String TOKEN_UUID = "GULI:TOKEN:";
+
 }
