@@ -357,7 +357,7 @@
                th:value=" '寄送至:    ' + ${addres.province} + '      ' + ${addres.detailAddress}
         + ' 收货人     ' + ${session.user.username} + '    ' + ${addres.phone}">
 
-        <p th:attr="def=${addres.defaultStatus}" th:text="${addres.region}">家里</p><span
+        <p th:id="${addres.id}" th:attr="def=${addres.defaultStatus}" th:text="${addres.region}">家里</p><span
             th:text="${session.user.username} + '  '  +  ${addres.province} + '  '
         + ${addres.detailAddress} + '  ' + ${addres.phone}">马振鑫  北京市  昌平区城区晨曦小区-16号楼 吉利大学
         150****2245</span>
@@ -521,14 +521,19 @@
     </div>
 
     <div class="yfze">
-        <p class="yfze_a"><span class="z">应付总额：</span><span class="hq" th:text=" '￥' + ${confirm.getPayPrice()}">
+        <p class="yfze_a"><span class="z">应付总额：</span><span class="hq" th:text=" '￥' + ${confirm.payPrice}">
             ￥28.90</span></p>
         <p id="target-person" class="yfze_b">
             寄送至： 北京 朝阳区 三环到四环之间 朝阳北路复兴国际大厦23层麦田房产 IT-中心研发二部 收货人：赵存权 188****5052
         </p>
     </div>
-    <input type="text" th:value="${confirm.getToken()}">
-    <button class="tijiao">提交订单</button>
+
+    <form action="http://localhost:26000/order/submit" method="post">
+        <input name="orderToken" type="text" th:value="${confirm.getToken()}">
+        <input name="payPrice" type="text" th:value="${confirm.payPrice}">
+        <input id="addrId" type="text" >
+        <button id="submitOrder" class="tijiao">提交订单</button>
+    </form>
 </div>
 </div>
 
@@ -735,6 +740,7 @@
     </p>
 </div>
 <script>
+
     $(document).ready(function () {
         $('.header-right li:nth-of-type(6)').hover(function () {
             $('.header-r-11').css('display', 'block')
@@ -764,6 +770,7 @@
 
         highlighted();
         target()
+        setAddr()
 
     })
 
@@ -790,10 +797,20 @@
         $(this).attr("def","1")
         // 获取到this.
         highlighted()
-        // 当我点击修改的时候,也应该对收件人进行修改.
-
+        // 修改地址的时候应该将form表单中的数据也进行修改.
+        let addrId = $(".add-item p[def = '1']").attr("id")
+        $("#addrId").attr("value",addrId)
 
     })
+
+    // 页面初始化完成之后应该将地址ID赋值给form表单.
+    function setAddr(){
+
+        let addrId = $(".add-item p[def = '1']").attr("id")
+        $("#addrId").attr("value",addrId)
+
+    }
+
 
 </script>
 </body>

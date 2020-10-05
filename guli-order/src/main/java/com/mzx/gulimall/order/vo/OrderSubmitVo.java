@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
@@ -21,26 +23,32 @@ public class OrderSubmitVo {
     /**
      * 收货人地址.
      */
-    private Long addrId;
+    @NotNull
+    Long addrId;
     /**
      * 支付类型. 在线支付. 也只有这一种类型.
+     * 0-表示线下支付.
+     * 1-表示线上支付.
+     * 默认是线上支付.
      */
-    private Integer payType;
+    Integer payType = 1;
     /**
      * 订单防重token.
      * 在订单页面生成的时候,将会生成一个.
      */
-    private String orderToken;
+    @NotEmpty
+    String orderToken;
     /**
      * 订单提交的时候提交的总的支付金额.
      * 实际支付的时候需要重新计算.
      * 重新从购物车计算.
      */
-    private BigDecimal payPrice;
+    @NotNull
+    BigDecimal payPrice;
 
     /**
      * 当前下订单的备注.
      */
-    private String note;
+    String note;
 
 }

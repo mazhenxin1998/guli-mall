@@ -25,6 +25,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -379,9 +380,10 @@ public class OrderConfirmServiceImpl implements IOrderConfirmService {
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
         try {
 
+            // GULI:TOKEN:ID = UUID
             ops.set(CurrentStringUtils.append(new StringBuilder(), RedisConstant.TOKEN_UUID,
-                    userInfoTo.getUserId().toString(), ":", token)
-                    , "1");
+                    userInfoTo.getUserId().toString())
+                    , token,30, TimeUnit.MINUTES);
             return true;
 
         } catch (Exception e) {

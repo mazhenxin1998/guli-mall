@@ -190,4 +190,17 @@ public class OrderEntity implements Serializable {
 	 */
 	private Date modifyTime;
 
+
+	public void init(){
+
+		// 设置订单装填为待付款状态.
+		this.status = 0;
+		this.payType = 1;
+		this.createTime = new Date();
+		// 0表示PC端.
+		this.sourceType = 0;
+
+	}
+
+
 }

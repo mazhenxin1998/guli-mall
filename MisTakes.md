@@ -13,3 +13,7 @@
     `Feign`远程调用参数不能是`List`否则`Feign`将会报出找不到`java.lang.List.init`方法.
 2. 解决办法: 
     `Feign`只能接受String[]类型,并且必须加上`@ReuqestBody`注解,这样`Feign`才能成功解析成功. 
+    
+##### 二、使用SpringBoot遇到的问题.
+###### 1. SpringBoot启动的时候找不到主启动类或者无法加载. 
+1. 解决办法: 出现这种情况可能就是jar包发生冲突，所以使用Maven的clear命令进行清除. 然后重新启动project即可. 

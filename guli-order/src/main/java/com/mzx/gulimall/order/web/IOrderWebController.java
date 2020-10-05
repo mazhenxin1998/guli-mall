@@ -29,9 +29,10 @@ public interface IOrderWebController {
     /**
      * 提交信息,生成订单.
      *
-     * @param param 当前请求的所有信息.
+     * @param param   当前请求的所有信息.
+     * @param request 当前请求.
      * @return 返回下单成功的逻辑页面.
      */
-    String submit(OrderSubmitVo param);
+    String submit(OrderSubmitVo param, HttpServletRequest request);
 
 }

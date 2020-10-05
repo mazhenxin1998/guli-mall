@@ -52,6 +52,12 @@ public class MemberReceiveAddressController {
 
     }
 
+    @GetMapping(value = "/get/memberAddress/{id}")
+    public MemberReceiveAddressEntity getById(@PathVariable(value = "id") Long id){
+
+        return memberReceiveAddressService.getById(id);
+
+    }
 
     /**
      * 信息

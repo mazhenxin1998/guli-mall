@@ -40,7 +40,6 @@ public class OrderInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        // TODO: 2020/9/28 不能再响应之前就创建一个Session?
         UserInfoTo userInfoTo = new UserInfoTo();
         Object o = request.getSession().getAttribute(SpringSessionConstant.PUBLIC_USER);
         // 感觉这个能自己进行封装.

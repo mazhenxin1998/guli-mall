@@ -3,7 +3,9 @@ package com.mzx.gulimall.order.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.order.entity.OrderEntity;
+import com.mzx.gulimall.order.vo.OrderSubmitVo;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -22,5 +24,13 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      */
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 订单数据提交并且生成订单.
+     *
+     * @param param
+     * @return
+     */
+    String submit(OrderSubmitVo param, HttpServletRequest request);
 }
 

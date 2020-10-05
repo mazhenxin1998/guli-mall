@@ -64,6 +64,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    private SpuInfoDao spuInfoDao;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<SpuInfoEntity> page = this.page(
@@ -193,6 +196,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
             log.error("SPU{} 上架失败由于调用ES服务出现错误", spuId);
         }
+
+    }
+
+    @Override
+    public SpuInfoEntity getSpuInfoEntityBySkuId(Long skuId) {
+
+        // 在进行远程调用的前提下一定要保障参数的准确性.
+        return spuInfoDao.getSpuInfoBySkuId(skuId);
 
     }
 

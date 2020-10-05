@@ -32,5 +32,13 @@ public class MemberFeignTest {
 
     }
 
+    @Test
+    public void t2() {
+
+        MemberAddressVo memberAddressVo = memberServiceFeign.getById(1L);
+        System.out.println(1);
+
+    }
+
 
 }

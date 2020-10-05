@@ -1,8 +1,8 @@
 package com.mzx.gulimall.order.web.impl;
 
+import com.mzx.gulimall.order.annotation.AccessLimit;
 import com.mzx.gulimall.order.service.IOrderConfirmService;
 import com.mzx.gulimall.order.service.OrderService;
-import com.mzx.gulimall.order.vo.OrderConfirmVo;
 import com.mzx.gulimall.order.vo.OrderSubmitVo;
 import com.mzx.gulimall.order.web.IOrderWebController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
+import javax.validation.Valid;
 
 /**
  * Order页面Controller.
@@ -43,15 +43,20 @@ public class OrderWebController implements IOrderWebController {
     /**
      * 提交信息,生成订单.
      *
+     * 当前接口一定需要保证接口的幂等.
+     * 1. 通过自定义注解@AccessLimit来进行接口防刷.
+     * 2. 通过使用token机制来保证当前接口的幂等性.
+     *
      * @return 返回下单成功的显示页面.
      */
     @Override
-    @PostMapping(value = "/order/submit")
-    public String submit(OrderSubmitVo param) {
+    @AccessLimit(seconds = 1,maxCount = 1,needLogin = false)
+    @GetMapping(value = "/order/submit")
+    public String submit(@Valid OrderSubmitVo param,HttpServletRequest request) {
 
-        // TODO: 2020/10/2 先假设OrderSubmitVo能提供.
+        // TODO: 2020/10/4 现在需要确定的是当前接口是否需要用户登录.
+        return orderService.submit(param, request);
 
-        return null;
     }
 
 

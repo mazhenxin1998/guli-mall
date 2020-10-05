@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 注解@EnableRabbit 用于开启注解式的AMQP.//开启基于注解的RabbitMQ模式
@@ -19,6 +20,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableRabbit
 @ComponentScan(basePackages = {"com.mzx.gulimall"})
 @EnableFeignClients
+@EnableTransactionManagement
 @EnableDiscoveryClient
 @EnableRedisHttpSession
 public class GuliMallOrderApplication {

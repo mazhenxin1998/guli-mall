@@ -3,7 +3,7 @@
 
 <mapper namespace="com.mzx.gulimall.product.dao.SpuInfoDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.mzx.gulimall.product.entity.SpuInfoEntity" id="spuInfoMap">
         <result property="id" column="id"/>
         <result property="spuName" column="spu_name"/>
@@ -15,6 +15,15 @@
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
     </resultMap>
+    <select id="getSpuInfoBySkuId" resultType="com.mzx.gulimall.product.entity.SpuInfoEntity">
+
+        SELECT spu.`catalog_id`, spu.`create_time`, spu.`id`, spu.`publish_status`,spu.`spu_description`,
+        spu.`spu_name`, spu.`update_time`, spu.`weight`, pms_brand.`name` AS brandName
+        FROM pms_spu_info AS spu
+        LEFT JOIN pms_brand ON pms_brand.`brand_id` = spu.`brand_id`
+        WHERE spu.`id` = (SELECT sku.`spu_id` FROM pms_sku_info AS sku WHERE sku.`sku_id` = #{skuId});
+
+    </select>
 
 
 </mapper>

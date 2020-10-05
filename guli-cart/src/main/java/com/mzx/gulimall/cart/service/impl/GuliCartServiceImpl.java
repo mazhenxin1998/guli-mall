@@ -30,7 +30,6 @@ public class GuliCartServiceImpl implements IGuliCartService {
     @Override
     public R getCheckedCartItems() {
 
-        // TODO: 2020/9/26 feign远程调用将会丢失请求头,也就是说这里获取到得userInfoTo将会使一个null.
         UserInfoTo userInfoTo = CartInterceptor.local.get();
         BoundHashOperations<String, Object, Object> ops = userInfoTo.getUserId() == null || userInfoTo.getUserId() <= 0 ?
                 this.getBoundHash(userInfoTo.getUserKey()) : this.getBoundHash(userInfoTo.getUserId().toString());
