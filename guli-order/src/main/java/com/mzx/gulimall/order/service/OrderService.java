@@ -29,6 +29,7 @@ public interface OrderService extends IService<OrderEntity> {
      * 订单数据提交并且生成订单.
      *
      * @param param
+     * @param request 当前请求.
      * @return
      */
     String submit(OrderSubmitVo param, HttpServletRequest request);

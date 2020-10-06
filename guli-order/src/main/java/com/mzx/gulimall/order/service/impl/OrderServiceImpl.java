@@ -92,6 +92,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 保证原子操作，可以使用lua脚本进行,也可以使用Redisson分布式锁来保证.
+     * <p>
+     * 如果要在当前对象的事务方法中调用当前对象的事务方法,那么就应该使用AopContext.currentProxy来获取到当前的代理对象,并且通过该方法来进行事务
+     * 方法之间的互相调用.
      *
      * @param param
      * @return

@@ -6,9 +6,7 @@ import com.mzx.gulimall.order.feign.MemberServiceFeign;
 import com.mzx.gulimall.order.mq.SendMessageMQ;
 import com.mzx.gulimall.order.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -91,5 +89,24 @@ public class TestController {
 
     }
 
+
+    /**
+     * 前台传输数组以","的形式发送, SpringBoot将会默认进行分割成参数对应的数组类型.
+     *
+     * @param attrs
+     * @return
+     */
+    @DeleteMapping(value = "/array/test/post")
+    public String array(String[] attrs) {
+
+        for (String attr : attrs) {
+
+            System.out.println(attr);
+
+        }
+
+        return attrs.toString();
+
+    }
 
 }
