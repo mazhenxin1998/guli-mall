@@ -36,8 +36,14 @@ public class SpuInfoController {
         return R.ok().put("page", page);
     }
 
+    /**
+     * 远程接口.
+     *
+     * @param skuId
+     * @return
+     */
     @GetMapping(value = "/get/spuinfo/{skuId}")
-    public SpuInfoEntity getSpuInfoEntityBySkuId(@PathVariable(value = "skuId") Long skuId){
+    public String getSpuInfoEntityBySkuId(@PathVariable(value = "skuId") Long skuId) {
 
         return spuInfoService.getSpuInfoEntityBySkuId(skuId);
 

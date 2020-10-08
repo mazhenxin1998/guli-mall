@@ -22,6 +22,7 @@ public class OrderSubmitVo {
 
     /**
      * 收货人地址.
+     * 这个值为什么是空值呢?
      */
     @NotNull
     Long addrId;

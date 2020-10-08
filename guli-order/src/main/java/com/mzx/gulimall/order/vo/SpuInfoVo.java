@@ -2,6 +2,7 @@ package com.mzx.gulimall.order.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @slogan 脚踏实地向前看.
  * @create 2020-10-04 21:42 周日.
  */
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class SpuInfoVo implements Serializable {

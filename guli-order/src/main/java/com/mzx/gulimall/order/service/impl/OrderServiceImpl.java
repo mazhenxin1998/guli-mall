@@ -1,5 +1,6 @@
 package com.mzx.gulimall.order.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
@@ -26,6 +27,7 @@ import com.mzx.gulimall.order.interceptor.OrderInterceptor;
 import com.mzx.gulimall.order.service.OrderService;
 import com.mzx.gulimall.order.vo.*;
 import com.mzx.gulimall.util.CurrentStringUtils;
+import com.sun.xml.internal.bind.v2.TODO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -139,10 +141,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         String token = param.getOrderToken();
         String tokenKey = CurrentStringUtils.append(new StringBuilder(), RedisConstant.TOKEN_UUID,
                 userInfoTo.getUserId().toString());
+        // TODO: 2020/10/8 原子验证令牌出现问题.使用lua脚本出现问题. 
         String script =
-                "if redis.call('get',KYES[1]) == ARGV[1] then return redis.call('del',KYES[2]) else return 0 end";
+                "if redis.call('get',KEYS[1]) == ARGV[1] then return redis.call('del',KEYS[2]) else return 0 end";
+        String command = "if redis.call('get',KEYS[1])==ARGV[1] then return redis.call('del',KEYS[1]) else return 0 " +
+                "end";
         //  原子验证令牌通过lua脚本，并且需要先删除在进行验证.
-        Long result = stringRedisTemplate.execute(new DefaultRedisScript<Long>(script, Long.class),
+        Long result = stringRedisTemplate.execute(new DefaultRedisScript<Long>(command, Long.class),
                 Arrays.asList(tokenKey), token);
         // 0-原子验证失败  1-原子验证成功.
         if (result == 1) {
@@ -177,9 +182,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     private boolean save(OrderCreateTo orderCreateTo) {
 
-        // TODO: 2020/10/6 订单数据构造成功.
         // 保存订单.
         OrderEntity order = orderCreateTo.getOrder();
+        System.out.println(1);
         // 不需要自己捕获异常, 如果在增加的时候捕获到了异常, Spring会自捕捉到并且事务自动回滚.
         this.saveOrder(order);
         List<OrderItemEntity> orderItems = orderCreateTo.getOrderItems();
@@ -232,8 +237,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
             // 同步等待其他线程执行任务完毕.
             CompletableFuture.allOf(receiveFuture, buildItemsFuture).get();
-            // 设置OrdreCreateTo
-            // TODO: 2020/10/4 当前还存在Feign远程调用丢失请求头问题.
             orderCreateTo.setOrder(order);
 
         } catch (InterruptedException e) {
@@ -259,6 +262,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         return CompletableFuture.runAsync(() -> {
 
+            // TODO: 2020/10/8 反序列化是有问题的.
             // 解决异步丢失请求问题.
             RequestContextHolder.setRequestAttributes(attributes);
             // 现在需要通过该List来获取到当前需要支付的总价格.
@@ -279,8 +283,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
             }
 
-            // 设置实际支付的金额.
-            // 该金额可能会和提交上来的价格会有所变动.
+            // 设置实际支付的金额,该金额可能会和提交上来的价格会有所变动.
             orderCreateTo.setPayPrice(total);
 
         }, executor);
@@ -288,8 +291,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     private OrderItemEntity getOrderItem(CartItem item) {
 
-        // TODO: 2020/10/4 存在Feign远程请求丢失请求头的问题.
-
+        // TODO: 2020/10/8 存在反序列化问题.
         OrderItemEntity orderItemEntity = new OrderItemEntity();
         // 为每一个OrderItemEntity设置其相关属性.
         orderItemEntity.setOrderSn(OrderSn.get());
@@ -299,10 +301,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         orderItemEntity.setSkuPrice(item.getPrice());
         // 设置商品的数量.
         orderItemEntity.setSkuQuantity(item.getCount());
+        // 将String数组转换成一个字符串.
         String attrs = StringUtils.arrayToDelimitedString(item.getSkuAttr().toArray(), ";");
         orderItemEntity.setSkuAttrsVals(attrs);
         // 现在需要根据SKU查询出其属于哪一个SPU.
-        SpuInfoVo spuInfoVo = productServiceFeign.getSpuInfoEntityBySkuId(item.getSkuId());
+        // 反序列化是有问题的.
+        String spuInfoVoJsonString = productServiceFeign.getSpuInfoEntityBySkuId(item.getSkuId());
+        SpuInfoVo spuInfoVo = JSON.parseObject(spuInfoVoJsonString, SpuInfoVo.class);
         orderItemEntity.setSpuId(spuInfoVo.getId());
         orderItemEntity.setSpuBrand(spuInfoVo.getBrandName());
         orderItemEntity.setSpuName(spuInfoVo.getSpuName());
@@ -333,7 +338,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     private List<CartItem> getCartItems() {
 
-        // TODO: 2020/10/4 该方法需要进行调试.
         R data = cartServiceFeign.getCheckedCartItems();
         List<LinkedHashMap<String, Object>> items = (List<LinkedHashMap<String, Object>>) data.get("data");
         return items.stream().map(item -> {

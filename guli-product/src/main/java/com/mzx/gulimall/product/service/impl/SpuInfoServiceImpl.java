@@ -1,5 +1,6 @@
 package com.mzx.gulimall.product.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -200,10 +201,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     }
 
     @Override
-    public SpuInfoEntity getSpuInfoEntityBySkuId(Long skuId) {
+    public String getSpuInfoEntityBySkuId(Long skuId) {
 
+        System.out.println("Product服务中的getSpuInfoEntityBySkuId方法发生了. ");
         // 在进行远程调用的前提下一定要保障参数的准确性.
-        return spuInfoDao.getSpuInfoBySkuId(skuId);
+        SpuInfoEntity info = spuInfoDao.getSpuInfoBySkuId(skuId);
+        // 转换成JSON发送过去吧.
+        System.out.println(1);
+        return JSON.toJSONString(info);
 
     }
 

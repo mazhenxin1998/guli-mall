@@ -14,6 +14,12 @@
 2. 解决办法: 
     `Feign`只能接受String[]类型,并且必须加上`@ReuqestBody`注解,这样`Feign`才能成功解析成功. 
     
+###### 4. Feign远程请求出现JSON反序列化出现错误. 
+1. 问题概述: 出现的问题是: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse Data. 
+    也就是JSON反序列化日期时间格式转换的时候出现问题. 
+2. 解决问题: 我的思路是在`product`服务中将返回结果直接以JSON形式的返回，也就是我的JSON序列化不直接通过Spring提供的序列化和反序列化来进行序列化,
+    也就是绕过Spring的序列化,在当前服务中将JsonString转换成对应的对象.
+    
 ##### 二、使用SpringBoot遇到的问题.
 ###### 1. SpringBoot启动的时候找不到主启动类或者无法加载. 
 1. 解决办法: 出现这种情况可能就是jar包发生冲突，所以使用Maven的clear命令进行清除. 然后重新启动project即可. 

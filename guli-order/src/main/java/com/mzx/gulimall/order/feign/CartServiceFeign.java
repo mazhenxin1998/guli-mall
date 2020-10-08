@@ -20,5 +20,4 @@ public interface CartServiceFeign {
     @GetMapping(value = "/cart/get/checked/items")
     R getCheckedCartItems();
 
-
 }

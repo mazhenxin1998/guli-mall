@@ -531,8 +531,8 @@
     <form action="http://localhost:26000/order/submit" method="post">
         <input name="orderToken" type="text" th:value="${confirm.getToken()}">
         <input name="payPrice" type="text" th:value="${confirm.payPrice}">
-        <input id="addrId" type="text" >
-        <button id="submitOrder" class="tijiao">提交订单</button>
+        <input name="addrId" id="addrId" type="text" >
+        <button type="submit" id="submitOrder" class="tijiao">提交订单</button>
     </form>
 </div>
 </div>

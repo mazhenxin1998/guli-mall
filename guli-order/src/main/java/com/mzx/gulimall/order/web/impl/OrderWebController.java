@@ -50,8 +50,8 @@ public class OrderWebController implements IOrderWebController {
      * @return 返回下单成功的显示页面.
      */
     @Override
-    @AccessLimit(seconds = 1,maxCount = 1,needLogin = false)
-    @GetMapping(value = "/order/submit")
+    @AccessLimit(seconds = 1,maxCount = 1,needLogin = true)
+    @PostMapping(value = "/order/submit")
     public String submit(@Valid OrderSubmitVo param,HttpServletRequest request) {
 
         // TODO: 2020/10/4 现在需要确定的是当前接口是否需要用户登录.

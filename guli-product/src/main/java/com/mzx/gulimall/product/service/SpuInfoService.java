@@ -50,6 +50,6 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
      * @param skuId
      * @return
      */
-    SpuInfoEntity getSpuInfoEntityBySkuId(Long skuId);
+    String getSpuInfoEntityBySkuId(Long skuId);
 }
 

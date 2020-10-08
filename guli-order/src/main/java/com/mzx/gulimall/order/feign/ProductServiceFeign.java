@@ -20,7 +20,7 @@ public interface ProductServiceFeign {
      * @return
      */
     @GetMapping(value = "/product/spuinfo/get/spuinfo/{skuId}")
-    SpuInfoVo getSpuInfoEntityBySkuId(@PathVariable(value = "skuId") Long skuId);
+    String getSpuInfoEntityBySkuId(@PathVariable(value = "skuId") Long skuId);
 
 
 }
