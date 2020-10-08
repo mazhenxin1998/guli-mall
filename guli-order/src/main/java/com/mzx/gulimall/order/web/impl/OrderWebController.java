@@ -52,10 +52,9 @@ public class OrderWebController implements IOrderWebController {
     @Override
     @AccessLimit(seconds = 1,maxCount = 1,needLogin = true)
     @PostMapping(value = "/order/submit")
-    public String submit(@Valid OrderSubmitVo param,HttpServletRequest request) {
+    public String submit(@Valid OrderSubmitVo param,HttpServletRequest request,Model model) {
 
-        // TODO: 2020/10/4 现在需要确定的是当前接口是否需要用户登录.
-        return orderService.submit(param, request);
+        return orderService.submit(param, request,model);
 
     }
 

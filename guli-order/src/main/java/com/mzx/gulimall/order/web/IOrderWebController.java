@@ -31,8 +31,9 @@ public interface IOrderWebController {
      *
      * @param param   当前请求的所有信息.
      * @param request 当前请求.
+     * @param model 返回到支付页面中携带的数据.
      * @return 返回下单成功的逻辑页面.
      */
-    String submit(OrderSubmitVo param, HttpServletRequest request);
+    String submit(OrderSubmitVo param, HttpServletRequest request, Model model);
 
 }

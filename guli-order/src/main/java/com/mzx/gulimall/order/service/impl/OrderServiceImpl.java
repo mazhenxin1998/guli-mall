@@ -27,7 +27,6 @@ import com.mzx.gulimall.order.interceptor.OrderInterceptor;
 import com.mzx.gulimall.order.service.OrderService;
 import com.mzx.gulimall.order.vo.*;
 import com.mzx.gulimall.util.CurrentStringUtils;
-import com.sun.xml.internal.bind.v2.TODO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,6 +36,7 @@ import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -97,6 +97,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @Qualifier(value = "threadPoolExecutor")
     private ThreadPoolExecutor executor;
 
+    private int count = 0;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
 
@@ -120,14 +122,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public String submit(OrderSubmitVo param, HttpServletRequest request) {
+    public String submit(OrderSubmitVo param, HttpServletRequest request, Model model) {
 
         // TODO: 2020/10/8 该出保证订单幂等性最后使用分布式锁来实现一下.
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
-        // 先不管用户是否登录, 先保证当前接口的幂等.
-        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-        // GULI:TOKEN:ID:UUID.
-        // 如果当前用户没有进行登录,那么直接返回false.
         UserInfoTo userInfoTo = OrderInterceptor.THREAD_LOCAL.get();
         if (userInfoTo.getUserId() == null || userInfoTo.getUserId() <= 0) {
 
@@ -135,35 +133,37 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         }
 
-
         MemberResultVo user = (MemberResultVo) request.getSession().getAttribute("user");
         username.set(user.getUsername());
         String token = param.getOrderToken();
         String tokenKey = CurrentStringUtils.append(new StringBuilder(), RedisConstant.TOKEN_UUID,
                 userInfoTo.getUserId().toString());
-        // TODO: 2020/10/8 原子验证令牌出现问题.使用lua脚本出现问题. 
-        String script =
-                "if redis.call('get',KEYS[1]) == ARGV[1] then return redis.call('del',KEYS[2]) else return 0 end";
+        System.out.println("当前是第" + (++count) + "次通过同一个token" + token + "进行下单.");
         String command = "if redis.call('get',KEYS[1])==ARGV[1] then return redis.call('del',KEYS[1]) else return 0 " +
                 "end";
+        System.out.println("第" + count + "次访问token结束.");
         //  原子验证令牌通过lua脚本，并且需要先删除在进行验证.
         Long result = stringRedisTemplate.execute(new DefaultRedisScript<Long>(command, Long.class),
                 Arrays.asList(tokenKey), token);
         // 0-原子验证失败  1-原子验证成功.
         if (result == 1) {
 
+            System.out.println("第" + count + "次下单成功.");
             // 业务逻辑正常处理.
-            // 如果方法createOrder方法没有完成, 那么当前方法就会阻塞.
+            // 如果方法createOrder方法没有完成,那么当前方法就会阻塞.
             OrderCreateTo orderCreateTo = this.createOrder(param, attributes);
             boolean success = this.save(orderCreateTo);
             if (success) {
 
+                model.addAttribute("orders",orderCreateTo);
                 return "topay";
 
             }
 
         }
 
+        System.out.println("第" + count + "次下单失败.");
+        // TODO: 2020/10/8 原子验证token测试.
         return "order";
 
     }
@@ -231,12 +231,18 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         order.setOrderSn(orderSn);
         // 远程查询获取收获地址信息.
         CompletableFuture receiveFuture = buildReceiverInfo(param, order, attributes);
-        // 设置金额相关. 需要重新从购物车中获取.
+        // 远程查询购物车设置订单项,并且设置相关金额.
         CompletableFuture buildItemsFuture = buildOrderItem(orderCreateTo, attributes);
         try {
 
             // 同步等待其他线程执行任务完毕.
             CompletableFuture.allOf(receiveFuture, buildItemsFuture).get();
+            // 同步结束之后,应该在这里对订单总额和应付总额.payAmount表示应付金额.total_amount表示订单总额.
+            // TODO: 2020/10/8 不知道这样做对不对?
+            // Order订单中的Payment应该表示的就是当前订单要支付的选项.
+            order.setTotalAmount(orderCreateTo.getPayPrice());
+            // payAmount的值应该是将订单总额减去运费还有优惠券减去的金额,但是由于在前面没有整合, 所以这里的订单总额和应付总额是相等.
+            order.setPayAmount(orderCreateTo.getPayPrice());
             orderCreateTo.setOrder(order);
 
         } catch (InterruptedException e) {
@@ -262,7 +268,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         return CompletableFuture.runAsync(() -> {
 
-            // TODO: 2020/10/8 反序列化是有问题的.
             // 解决异步丢失请求问题.
             RequestContextHolder.setRequestAttributes(attributes);
             // 现在需要通过该List来获取到当前需要支付的总价格.
@@ -275,7 +280,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
             }).collect(Collectors.toList());
             orderCreateTo.setOrderItems(orderItemEntities);
-            // TODO: 2020/10/5 还需要再次遍历下?
             BigDecimal total = new BigDecimal(0);
             for (CartItem item : items) {
 
@@ -291,7 +295,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     private OrderItemEntity getOrderItem(CartItem item) {
 
-        // TODO: 2020/10/8 存在反序列化问题.
         OrderItemEntity orderItemEntity = new OrderItemEntity();
         // 为每一个OrderItemEntity设置其相关属性.
         orderItemEntity.setOrderSn(OrderSn.get());
