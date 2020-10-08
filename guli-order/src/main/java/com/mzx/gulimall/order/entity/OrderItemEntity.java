@@ -18,88 +18,89 @@ import lombok.Data;
 @Data
 @TableName("oms_order_item")
 public class OrderItemEntity implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * id
+	 * id数据库自增.
 	 */
 	@TableId
-	private Long id;
+	Long id;
 	/**
 	 * order_id
 	 */
-	private Long orderId;
+	Long orderId;
 	/**
 	 * order_sn
 	 */
-	private String orderSn;
+	String orderSn;
 	/**
 	 * spu_id
 	 */
-	private Long spuId;
+	Long spuId;
 	/**
 	 * spu_name
 	 */
-	private String spuName;
+	String spuName;
 	/**
 	 * spu_pic
 	 */
-	private String spuPic;
+	String spuPic;
 	/**
 	 * 品牌
 	 */
-	private String spuBrand;
+	String spuBrand;
 	/**
 	 * 商品分类id
 	 */
-	private Long categoryId;
+	Long categoryId;
 	/**
 	 * 商品sku编号
 	 */
-	private Long skuId;
+	Long skuId;
 	/**
 	 * 商品sku名字
 	 */
-	private String skuName;
+	String skuName;
 	/**
 	 * 商品sku图片
 	 */
-	private String skuPic;
+	String skuPic;
 	/**
 	 * 商品sku价格
 	 */
-	private BigDecimal skuPrice;
+	BigDecimal skuPrice;
 	/**
 	 * 商品购买的数量
 	 */
-	private Integer skuQuantity;
+	Integer skuQuantity;
 	/**
 	 * 商品销售属性组合（JSON）
 	 */
-	private String skuAttrsVals;
+	String skuAttrsVals;
 	/**
 	 * 商品促销分解金额
 	 */
-	private BigDecimal promotionAmount;
+	BigDecimal promotionAmount;
 	/**
 	 * 优惠券优惠分解金额
 	 */
-	private BigDecimal couponAmount;
+	BigDecimal couponAmount;
 	/**
 	 * 积分优惠分解金额
 	 */
-	private BigDecimal integrationAmount;
+	BigDecimal integrationAmount;
 	/**
 	 * 该商品经过优惠后的分解金额
 	 */
-	private BigDecimal realAmount;
+	BigDecimal realAmount;
 	/**
 	 * 赠送积分
 	 */
-	private Integer giftIntegration;
+	Integer giftIntegration;
 	/**
 	 * 赠送成长值
 	 */
-	private Integer giftGrowth;
+	Integer giftGrowth;
 
 }

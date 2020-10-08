@@ -3,7 +3,7 @@
 
 <mapper namespace="com.mzx.gulimall.order.dao.OrderItemDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.mzx.gulimall.order.entity.OrderItemEntity" id="orderItemMap">
         <result property="id" column="id"/>
         <result property="orderId" column="order_id"/>
@@ -26,6 +26,7 @@
         <result property="giftIntegration" column="gift_integration"/>
         <result property="giftGrowth" column="gift_growth"/>
     </resultMap>
+    <!--使用mybatis的for循环完成批量增加.-->
 
 
 </mapper>

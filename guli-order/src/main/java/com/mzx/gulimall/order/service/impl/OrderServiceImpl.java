@@ -28,10 +28,12 @@ import com.mzx.gulimall.order.service.OrderService;
 import com.mzx.gulimall.order.vo.*;
 import com.mzx.gulimall.util.CurrentStringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -88,10 +90,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     private OrderDao orderDao;
 
     @Autowired
-    private OrderItemDao orderItemDao;
+    private TestDao testDao;
 
     @Autowired
-    private TestDao testDao;
+    private SqlSessionTemplate sqlSessionTemplate;
 
     @Autowired
     @Qualifier(value = "threadPoolExecutor")
@@ -152,11 +154,20 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             // 业务逻辑正常处理.
             // 如果方法createOrder方法没有完成,那么当前方法就会阻塞.
             OrderCreateTo orderCreateTo = this.createOrder(param, attributes);
+            // TODO: 2020/10/8 如果this.save方法中出现异常,那么当前方法的事务捕获器是能捕获到this.save方法中的异常的.
             boolean success = this.save(orderCreateTo);
             if (success) {
 
-                model.addAttribute("orders",orderCreateTo);
-                return "topay";
+                // 下单成功之后,还需要远程锁定库存.
+                // TODO: 2020/10/8 远程库存锁定没有完成.
+                // 远程库存锁定需要使用数据库悲观锁今星期对行数据的锁定.
+                boolean lock = this.lockStock(orderCreateTo);
+                if (lock) {
+
+                    model.addAttribute("orders", orderCreateTo);
+                    return "topay";
+
+                }
 
             }
 
@@ -164,7 +175,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         System.out.println("第" + count + "次下单失败.");
         // TODO: 2020/10/8 原子验证token测试.
-        return "order";
+        return "redirect:http://localhost:26000/toTrade.html";
+
+    }
+
+    /**
+     * 远程查询库存服务,进行Sku订单的锁定.
+     *
+     * @param orderCreateTo
+     * @return
+     */
+    private boolean lockStock(OrderCreateTo orderCreateTo) {
+
+        return true;
 
     }
 
@@ -184,7 +207,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         // 保存订单.
         OrderEntity order = orderCreateTo.getOrder();
-        System.out.println(1);
         // 不需要自己捕获异常, 如果在增加的时候捕获到了异常, Spring会自捕捉到并且事务自动回滚.
         this.saveOrder(order);
         List<OrderItemEntity> orderItems = orderCreateTo.getOrderItems();
@@ -200,6 +222,18 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     private void saveOrderItems(List<OrderItemEntity> orderItems) {
 
+        // 肯定不能循环增加啊.
+        SqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH, false);
+        OrderItemDao mapper = sqlSession.getMapper(OrderItemDao.class);
+        for (OrderItemEntity orderItem : orderItems) {
+
+            mapper.insert(orderItem);
+
+        }
+
+        // 执行SQL语句提交.
+        sqlSession.commit();
+
 
     }
 
@@ -209,6 +243,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @param order 要保存的订单.
      */
     private void saveOrder(OrderEntity order) {
+
+        orderDao.insert(order);
+        System.out.println("向数据库增加Order成功.");
+
     }
 
     /**
@@ -238,7 +276,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             // 同步等待其他线程执行任务完毕.
             CompletableFuture.allOf(receiveFuture, buildItemsFuture).get();
             // 同步结束之后,应该在这里对订单总额和应付总额.payAmount表示应付金额.total_amount表示订单总额.
-            // TODO: 2020/10/8 不知道这样做对不对?
             // Order订单中的Payment应该表示的就是当前订单要支付的选项.
             order.setTotalAmount(orderCreateTo.getPayPrice());
             // payAmount的值应该是将订单总额减去运费还有优惠券减去的金额,但是由于在前面没有整合, 所以这里的订单总额和应付总额是相等.
@@ -302,13 +339,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         orderItemEntity.setSkuName(item.getTitle());
         orderItemEntity.setSkuPic(item.getImage());
         orderItemEntity.setSkuPrice(item.getPrice());
-        // 设置商品的数量.
         orderItemEntity.setSkuQuantity(item.getCount());
         // 将String数组转换成一个字符串.
         String attrs = StringUtils.arrayToDelimitedString(item.getSkuAttr().toArray(), ";");
         orderItemEntity.setSkuAttrsVals(attrs);
         // 现在需要根据SKU查询出其属于哪一个SPU.
-        // 反序列化是有问题的.
         String spuInfoVoJsonString = productServiceFeign.getSpuInfoEntityBySkuId(item.getSkuId());
         SpuInfoVo spuInfoVo = JSON.parseObject(spuInfoVoJsonString, SpuInfoVo.class);
         orderItemEntity.setSpuId(spuInfoVo.getId());
