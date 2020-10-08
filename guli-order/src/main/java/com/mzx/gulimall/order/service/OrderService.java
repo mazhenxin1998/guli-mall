@@ -33,5 +33,7 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      */
     String submit(OrderSubmitVo param, HttpServletRequest request);
+
+    String testTransactional();
 }
 

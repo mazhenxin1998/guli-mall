@@ -4,6 +4,7 @@ import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.annotation.AccessLimit;
 import com.mzx.gulimall.order.feign.MemberServiceFeign;
 import com.mzx.gulimall.order.mq.SendMessageMQ;
+import com.mzx.gulimall.order.service.OrderService;
 import com.mzx.gulimall.order.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,9 @@ public class TestController {
 
     @Autowired
     private MemberServiceFeign memberServiceFeign;
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping(value = "/feign/{id}")
     public Object testFeign(@PathVariable(value = "id") Long id) {
@@ -106,6 +110,14 @@ public class TestController {
         }
 
         return attrs.toString();
+
+    }
+
+    @GetMapping(value = "/test/tran")
+    public Object testTransactional(){
+
+        orderService.testTransactional();
+        return "测试成功. ";
 
     }
 

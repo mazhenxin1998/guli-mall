@@ -25,7 +25,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableRabbit
 @ComponentScan(basePackages = {"com.mzx.gulimall"})
 @EnableFeignClients
-@EnableAspectJAutoProxy(exposeProxy = true)
 @EnableTransactionManagement
 @EnableDiscoveryClient
 @EnableRedisHttpSession

@@ -11,8 +11,13 @@ import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.constant.RedisConstant;
 import com.mzx.gulimall.order.dao.OrderDao;
+import com.mzx.gulimall.order.dao.OrderItemDao;
+import com.mzx.gulimall.order.dao.TestDao;
 import com.mzx.gulimall.order.entity.OrderEntity;
 import com.mzx.gulimall.order.entity.OrderItemEntity;
+import com.mzx.gulimall.order.entity.Test;
+import com.mzx.gulimall.order.exception.TransactionalException;
+import com.mzx.gulimall.order.exception.TransactionalExceptionParent;
 import com.mzx.gulimall.order.feign.CartServiceFeign;
 import com.mzx.gulimall.order.feign.MemberServiceFeign;
 import com.mzx.gulimall.order.feign.ProductServiceFeign;
@@ -55,6 +60,9 @@ import java.util.stream.Collectors;
 @Service("orderService")
 public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> implements OrderService {
 
+    /**
+     * ThreadLocal每个线程都会在自己的工作内存中保留一份,起到了线程隔离作用.
+     */
     private ThreadLocal<String> username = new ThreadLocal<>();
 
     private ThreadLocal<String> OrderSn = new ThreadLocal<>();
@@ -73,6 +81,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     @Autowired
     private MemberServiceFeign memberServiceFeign;
+
+    @Autowired
+    private OrderDao orderDao;
+
+    @Autowired
+    private OrderItemDao orderItemDao;
+
+    @Autowired
+    private TestDao testDao;
 
     @Autowired
     @Qualifier(value = "threadPoolExecutor")
@@ -103,6 +120,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     public String submit(OrderSubmitVo param, HttpServletRequest request) {
 
+        // TODO: 2020/10/8 该出保证订单幂等性最后使用分布式锁来实现一下.
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
         // 先不管用户是否登录, 先保证当前接口的幂等.
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
@@ -115,7 +133,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         }
 
-        // 全局用户名.
+
         MemberResultVo user = (MemberResultVo) request.getSession().getAttribute("user");
         username.set(user.getUsername());
         String token = param.getOrderToken();
@@ -141,7 +159,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         }
 
-        // 还是订单确认页面.
         return "order";
 
     }
@@ -178,6 +195,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     private void saveOrderItems(List<OrderItemEntity> orderItems) {
 
+
     }
 
     /**
@@ -186,7 +204,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @param order 要保存的订单.
      */
     private void saveOrder(OrderEntity order) {
-
     }
 
     /**
@@ -199,16 +216,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     private OrderCreateTo createOrder(OrderSubmitVo param, RequestAttributes attributes) {
 
         OrderCreateTo orderCreateTo = new OrderCreateTo();
-        // 订单ID默认使用数据库自增主键.
-        // 异步进行操作.
         OrderEntity order = new OrderEntity();
-        // 设置订单的初始状态.
         order.init();
+        UserInfoTo userInfoTo = OrderInterceptor.THREAD_LOCAL.get();
+        order.setMemberId(userInfoTo.getUserId());
         order.setMemberUsername(username.get());
         String orderSn = IdWorker.getTimeId();
         OrderSn.set(orderSn);
         order.setOrderSn(orderSn);
-        // TODO: 2020/10/4 订单总额还没有进行设置.
         // 远程查询获取收获地址信息.
         CompletableFuture receiveFuture = buildReceiverInfo(param, order, attributes);
         // 设置金额相关. 需要重新从购物车中获取.
@@ -271,7 +286,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         }, executor);
     }
 
-
     private OrderItemEntity getOrderItem(CartItem item) {
 
         // TODO: 2020/10/4 存在Feign远程请求丢失请求头的问题.
@@ -317,7 +331,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     }
 
-
     private List<CartItem> getCartItems() {
 
         // TODO: 2020/10/4 该方法需要进行调试.
@@ -338,6 +351,41 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             return cartItem;
 
         }).collect(Collectors.toList());
+
+    }
+
+    /**
+     * 测试事务的方法.
+     * 注解中指定的rollbackFor到底管用吗?
+     *
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = TransactionalExceptionParent.class, propagation = Propagation.REQUIRED)
+    public String testTransactional() {
+
+        Test test = new Test(1L, "111");
+        testDao.insert(test);
+        // 在这里通过AOP暴露出来的代理对象进行当前对象的方法调用.
+        // 在这里可以放心的强制类型转换.
+        // 如果这样的话, 就造成了当前方法执行的对象和o这个对象不是一个.
+        // 如果第二个方法的数据还能插进去, 那么就说明这个坑是真的.
+        return "x  ";
+
+    }
+
+    /**
+     * 既然是为测试SpringBoot中在使用Transactional的坑, 那么在第二个事务中传播行为就设置为REQUIRED.
+     */
+    @Transactional(rollbackFor = TransactionalException.class, propagation = Propagation.REQUIRES_NEW)
+    public void transactional2() {
+
+        Test test = new Test(2L, "222");
+        testDao.insert(test);
+        // 假如当前事务执行过程中发生了异常.
+        // 如果一个对象的事务方法调用当前对象的事务方法的话，第二个事务不起作用的话, 那么下面抛出的这个异常件不会起作用.
+        // 这个事务回滚了.... 这个是什么操作. ?
+//        throw new TransactionalException("我是被调用方法的异常发生了. ");
 
     }
 

@@ -3,6 +3,7 @@ package com.mzx.gulimall.order.dao;
 import com.mzx.gulimall.order.entity.OrderItemEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * 订单项信息
@@ -12,6 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2020-07-10 16:44:36
  */
 @Mapper
+@Repository
 public interface OrderItemDao extends BaseMapper<OrderItemEntity> {
 	
 }
