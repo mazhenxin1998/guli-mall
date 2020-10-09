@@ -9,11 +9,17 @@ import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.dao.WareSkuDao;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
 import com.mzx.gulimall.ware.service.WareSkuService;
+import com.mzx.gulimall.ware.vo.LockStockResult;
 import com.mzx.gulimall.ware.vo.SkuWareStockTo;
+import com.mzx.gulimall.ware.vo.WareSkuLockVo;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +29,9 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
     @Autowired
     private WareSkuDao wareSkuDao;
+
+    @Autowired
+    private SqlSessionTemplate sqlSessionTemplate;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -83,12 +92,70 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
             return R.ok();
 
-        }else{
+        } else {
 
             List<SkuWareStockTo> list = wareSkuDao.listFindStock(ids);
-            return R.ok().put("data",list);
+            return R.ok().put("data", list);
 
         }
+
+    }
+
+    @Override
+    public List<LockStockResult> lockStock(WareSkuLockVo wareSkuLockVo) {
+
+        // 现在是通过sqlSession来做批量. ?
+        // TODO: 2020/10/9 以后再说.???
+        SqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH,
+                false);
+        WareSkuDao mapper = sqlSession.getMapper(WareSkuDao.class);
+        ArrayList<LockStockResult> results = new ArrayList<>();
+        try {
+
+            // TODO: 为什么lambada表达式只能引用'final'语义的变量.
+            wareSkuLockVo.getLocks().stream().forEach(item -> {
+
+                // TODO: 2020/10/9 根据仓库查询不做了.SQL如果是一次性的话就没有必要的.
+                LockStockResult lockStockResult = new LockStockResult();
+                // 远程锁定的时候还需要确定锁定那个仓库的.
+                // 返回一个就行.
+                // 能一次性就查询出来吗?
+                mapper.lockStock(item);
+                lockStockResult.setLocked(true);
+                lockStockResult.setNum(item.getNum());
+                lockStockResult.setSkuId(item.getSkuId());
+                results.add(lockStockResult);
+
+            });
+            sqlSession.commit();
+
+        } catch (Exception e) {
+
+            // 清空返回列表中的所有元素.
+            // 如果有一个出现错误,那么就重新全部设置下值.
+            results.clear();
+            wareSkuLockVo.getLocks().stream().forEach(item -> {
+
+                LockStockResult lockStockResult = new LockStockResult();
+                lockStockResult.setLocked(false);
+                lockStockResult.setNum(item.getNum());
+                lockStockResult.setSkuId(item.getSkuId());
+                results.add(lockStockResult);
+
+            });
+            log.error("批量更新锁定库存的出现error: {}", e);
+            e.printStackTrace();
+            // 这里返回的和上面进行返回的构造的数据是不一样的.
+
+        } finally {
+
+            // 不管修改成功还是失败,都应该将创建出来的对象进行关闭.
+            // 其实这里应该是不用对其进行null值设置的,因为方法执行完毕,对象将不会存在GcRoots上.JVM会自动进行GC.
+            sqlSession = null;
+
+        }
+
+        return results;
 
     }
 
@@ -128,6 +195,5 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
         return wrapper;
     }
-
 
 }

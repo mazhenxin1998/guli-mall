@@ -1,12 +1,11 @@
 package com.mzx.gulimall.order.feign;
 
 import com.mzx.gulimall.common.utils.R;
-import com.mzx.gulimall.order.vo.WareRequestParamTo;
+import com.mzx.gulimall.order.vo.WareSkuLockVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 订单服务远程查询库存服务.
@@ -27,5 +26,12 @@ public interface WareServiceFeign {
     @PostMapping(value = "/ware/waresku/get/list")
     R getListStock(@RequestBody String[] ids);
 
+    /**
+     * 远程锁定库存.
+     * @param wareSkuLockVo
+     * @return
+     */
+    @PostMapping(value = "/ware/waresku/post/lock/stock")
+    R lockStock(@RequestBody WareSkuLockVo wareSkuLockVo);
 
 }

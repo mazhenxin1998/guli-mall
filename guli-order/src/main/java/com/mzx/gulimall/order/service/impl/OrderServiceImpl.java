@@ -1,6 +1,7 @@
 package com.mzx.gulimall.order.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
@@ -45,10 +46,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -151,19 +149,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         if (result == 1) {
 
             System.out.println("第" + count + "次下单成功.");
-            // 业务逻辑正常处理.
-            // 如果方法createOrder方法没有完成,那么当前方法就会阻塞.
             OrderCreateTo orderCreateTo = this.createOrder(param, attributes);
             // TODO: 2020/10/8 如果this.save方法中出现异常,那么当前方法的事务捕获器是能捕获到this.save方法中的异常的.
             boolean success = this.save(orderCreateTo);
             if (success) {
 
-                // 下单成功之后,还需要远程锁定库存.
-                // TODO: 2020/10/8 远程库存锁定没有完成.
-                // 远程库存锁定需要使用数据库悲观锁今星期对行数据的锁定.
                 boolean lock = this.lockStock(orderCreateTo);
                 if (lock) {
 
+                    // TODO: 2020/10/9 锁定库存之后,还需要删除购物车中的内容.
                     model.addAttribute("orders", orderCreateTo);
                     return "topay";
 
@@ -174,7 +168,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         }
 
         System.out.println("第" + count + "次下单失败.");
-        // TODO: 2020/10/8 原子验证token测试.
         return "redirect:http://localhost:26000/toTrade.html";
 
     }
@@ -187,7 +180,46 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     private boolean lockStock(OrderCreateTo orderCreateTo) {
 
-        return true;
+        // 远程请求.
+        WareSkuLockVo wareSkuLockVo = new WareSkuLockVo();
+        wareSkuLockVo.setOrderSn(orderCreateTo.getOrder().getOrderSn());
+        LinkedList<WareSkuLockVo.Item> items = new LinkedList<>();
+        orderCreateTo.getOrderItems().forEach(item -> {
+
+            WareSkuLockVo.Item o = new WareSkuLockVo.Item();
+            o.setSkuId(item.getSkuId());
+            o.setNum(item.getSkuQuantity());
+            // 这个Name其实设置不设置我感觉都一样.
+            o.setTitle(item.getSpuName());
+            items.add(o);
+
+        });
+        wareSkuLockVo.setLocks(items);
+        // 为什么我数据传输不过去呢？ 这个wareSkuLockVo是有值的啊.
+        R r = wareServiceFeign.lockStock(wareSkuLockVo);
+        // 这个data是空值.
+        Object data = r.get("data");
+        boolean flag = true;
+        // 可能这个data值获取不到.
+        if (!StringUtils.isEmpty(data)) {
+
+            List<Item> itemList = JSONObject.parseArray(data.toString(), Item.class);
+            for (Item item : itemList) {
+
+                // 只要发现有一个库存锁定没有锁定成功, 那么就break.
+                if (!item.getLocked()) {
+
+                    flag = false;
+                    // break将会推出for循环.
+                    break;
+
+                }
+
+            }
+
+        }
+
+        return flag;
 
     }
 
@@ -234,7 +266,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         // 执行SQL语句提交.
         sqlSession.commit();
 
-
     }
 
     /**
@@ -267,10 +298,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         String orderSn = IdWorker.getTimeId();
         OrderSn.set(orderSn);
         order.setOrderSn(orderSn);
+        // 还需要为每一个OrderItem设置其所属的订单号.
         // 远程查询获取收获地址信息.
         CompletableFuture receiveFuture = buildReceiverInfo(param, order, attributes);
         // 远程查询购物车设置订单项,并且设置相关金额.
-        CompletableFuture buildItemsFuture = buildOrderItem(orderCreateTo, attributes);
+        CompletableFuture buildItemsFuture = buildOrderItem(orderCreateTo, attributes, orderSn);
         try {
 
             // 同步等待其他线程执行任务完毕.
@@ -301,7 +333,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      *
      * @return
      */
-    private CompletableFuture buildOrderItem(OrderCreateTo orderCreateTo, RequestAttributes attributes) {
+    private CompletableFuture buildOrderItem(OrderCreateTo orderCreateTo, RequestAttributes attributes,
+                                             String orderSn) {
 
         return CompletableFuture.runAsync(() -> {
 
@@ -313,7 +346,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             // 需要将下面的lIst存放在OrderCreateVo中.
             List<OrderItemEntity> orderItemEntities = items.stream().map(item -> {
 
-                return getOrderItem(item);
+                return getOrderItem(item,orderSn);
 
             }).collect(Collectors.toList());
             orderCreateTo.setOrderItems(orderItemEntities);
@@ -330,11 +363,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         }, executor);
     }
 
-    private OrderItemEntity getOrderItem(CartItem item) {
+    private OrderItemEntity getOrderItem(CartItem item, String orderSn) {
 
         OrderItemEntity orderItemEntity = new OrderItemEntity();
         // 为每一个OrderItemEntity设置其相关属性.
-        orderItemEntity.setOrderSn(OrderSn.get());
+        orderItemEntity.setOrderSn(orderSn);
         orderItemEntity.setSkuId(item.getSkuId());
         orderItemEntity.setSkuName(item.getTitle());
         orderItemEntity.setSkuPic(item.getImage());

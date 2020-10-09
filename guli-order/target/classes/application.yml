@@ -98,4 +98,13 @@ feign:
       connectTimeout: 10000
       readTimeout: 10000
       loggerLevel: basic
+  # 开启Feign指针压缩.
+  compression:
+    request:
+      enabled: true
+      # 配置压缩类型最小压缩标准.
+      # 如果要对触发压缩的大小进行配置,那么就使用feign.compression.request.min-request-size来配置.
+      mime-types: text/xml,application/xml,application/json
+    response:
+      enabled: true
 

@@ -1,32 +1,34 @@
-package com.mzx.gulimall.order.vo;
+package com.mzx.gulimall.ware.vo;
 
+import lombok.ToString;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * 远程查询库存封装的实体类.
- *
  * @author ZhenXinMa.
  * @slogan 脚踏实地向前看.
- * @create 2020-10-06 16:39 周二.
+ * @create 2020-10-09 16:42 周五.
  */
+@ToString
 public class WareSkuLockVo {
 
     /**
      * 订单序列化.
      */
-    String orderSn;
+    @NotEmpty(message = "订单号不能为空.")
+    private String orderSn;
 
     /**
      * 需要锁定的库存.
      * 根据每一个SkuId的count数量进行SKU库存锁定.
      */
-    List<Item> locks;
+    @NotNull
+    private List<Item> locks;
 
-    /**
-     * 我不需要设定WareId.
-     */
     public String getOrderSn() {
-        return this.orderSn;
+        return orderSn;
     }
 
     public void setOrderSn(String orderSn) {
@@ -34,7 +36,7 @@ public class WareSkuLockVo {
     }
 
     public List<Item> getLocks() {
-        return this.locks;
+        return locks;
     }
 
     public void setLocks(List<Item> locks) {
@@ -51,6 +53,16 @@ public class WareSkuLockVo {
          * 锁定sku库存的数量.
          */
         Integer num;
+
+        Long wareId;
+
+        public Long getWareId() {
+            return wareId;
+        }
+
+        public void setWareId(Long wareId) {
+            this.wareId = wareId;
+        }
 
         String title;
 

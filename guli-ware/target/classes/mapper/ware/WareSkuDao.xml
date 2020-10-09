@@ -12,6 +12,16 @@
         <result property="skuName" column="sku_name"/>
         <result property="stockLocked" column="stock_locked"/>
     </resultMap>
+    <update id="lockStock">
+        UPDATE
+        `wms_ware_sku`
+        SET
+        stock_locked = (stock_locked + #{item.num})
+        WHERE
+        sku_id = #{item.skuId}
+        AND
+        (stock - stock_locked) > #{item.num}
+    </update>
 
     <!--
     <select id="selectPostIn" resultType="domain.blog.Post">
@@ -31,9 +41,17 @@
         FROM wms_ware_sku AS ware
         WHERE ware.`sku_id` IN
         <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
-        #{item}
+            #{item}
         </foreach>
 
+    </select>
+    <select id="findWhereWareHaveStocks" resultType="java.lang.Integer">
+        SELECT
+        ware_id
+        FROM
+        `wms_ware_sku`
+        WHERE sku_id = #{skuId}
+        AND (stock - stock_locked) > 0;
     </select>
 
 

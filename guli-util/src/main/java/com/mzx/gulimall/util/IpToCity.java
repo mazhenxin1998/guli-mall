@@ -30,7 +30,13 @@ public class IpToCity {
         // 本机是: 111.164.196.240
         //System.out.println(getCityInfo(getV4IP()));
         //System.out.println(getInnetIp());
-        System.out.println(getV4IP());
+        System.out.println(getCityInfo("111.164.196.1"));
+        System.out.println(getCityInfo("117.8.157.53"));
+        System.out.println(getCityInfo("117.8.222.213"));
+        System.out.println(getCityInfo("219.158.7.217"));
+        System.out.println(getCityInfo("123.126.0.218"));
+        System.out.println(getCityInfo("61.49.142.146"));
+        System.out.println(getCityInfo("192.144.198.148"));
 
     }
 

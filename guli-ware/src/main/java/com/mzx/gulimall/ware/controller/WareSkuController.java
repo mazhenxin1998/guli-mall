@@ -1,12 +1,16 @@
 package com.mzx.gulimall.ware.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
 import com.mzx.gulimall.ware.service.WareSkuService;
+import com.mzx.gulimall.ware.vo.LockStockResult;
+import com.mzx.gulimall.ware.vo.WareSkuLockVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +41,21 @@ public class WareSkuController {
         return R.ok().put("page", page);
     }
 
+    /**
+     * 参数校验注解还是有问题的.
+     *
+     * @param wareSkuLockVo
+     * @return
+     */
+    @PostMapping(value = "/post/lock/stock")
+    public R lockStock(@RequestBody WareSkuLockVo wareSkuLockVo) {
+
+        List<LockStockResult> stockResults = wareSkuService.lockStock(wareSkuLockVo);
+        String jsonString = JSON.toJSONString(stockResults);
+        // 远程查询返回的结果是json里面保存的List集合.
+        return R.ok().put("data", jsonString);
+
+    }
 
     /**
      * 报错找不到List初始化函数.
