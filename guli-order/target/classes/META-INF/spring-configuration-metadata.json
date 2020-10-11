@@ -4,6 +4,11 @@
       "name": "guli.pool",
       "type": "com.mzx.gulimall.order.config.ThreadPoolProperties",
       "sourceType": "com.mzx.gulimall.order.config.ThreadPoolProperties"
+    },
+    {
+      "name": "guli.rabbit",
+      "type": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties"
     }
   ],
   "properties": [
@@ -30,6 +35,76 @@
       "type": "java.lang.Integer",
       "sourceType": "com.mzx.gulimall.order.config.ThreadPoolProperties",
       "defaultValue": 100000
+    },
+    {
+      "name": "guli.rabbit.order-event-exchange-auto-delete",
+      "type": "java.lang.Boolean",
+      "description": "用户订单交换机是否开启自动删除配置. <p> 默认为false.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "guli.rabbit.order-event-exchange-durable",
+      "type": "java.lang.Boolean",
+      "description": "用户订单交换机是否开始持久化配置. <p> 默认为true.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "guli.rabbit.order-event-exchange-name",
+      "type": "java.lang.String",
+      "description": "订单服务需要绑定的交换机. <p> 该交换机既作为延时队列的交换机也作为消息处理队列的交换机,其交换机的类型是Topic.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": "order.event.exchange"
+    },
+    {
+      "name": "guli.rabbit.user-order-delay-queue-auto-delete",
+      "type": "java.lang.Boolean",
+      "description": "消息是否自动删除.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "guli.rabbit.user-order-delay-queue-durable",
+      "type": "java.lang.Boolean",
+      "description": "订单自动关闭订单延时队列是否开启持久化的配置.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "guli.rabbit.user-order-delay-queue-exclusive",
+      "type": "java.lang.Boolean",
+      "description": "订单自动关闭订单延时队列是否对消费之进行排他. 也就是同一个时刻只能允许一个消费者进行消费.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "guli.rabbit.user-order-delay-queue-name",
+      "type": "java.lang.String",
+      "description": "订单定时关闭订单的延时队列. 该队列一定不能有任何消费者进行监听.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": "user.order.delay.queue"
+    },
+    {
+      "name": "guli.rabbit.user-order-delay-queue-x-dead-letter-exchange",
+      "type": "java.lang.String",
+      "description": "消息发生死信的情况下应该将该条消息发送到那个交换机上. <p> 就是有一个消息在变成了死信之后路由到指定的交换机上,而该配置项就是配置的那个交换机的名称.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": "user.order.delay.exchange"
+    },
+    {
+      "name": "guli.rabbit.user-order-delay-queue-x-dead-letter-routing-key",
+      "type": "java.lang.String",
+      "description": "消息发生死信之后路由到死信交换机之后需要根据当前指定的routing-key来发送到指定的队列.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": "order"
+    },
+    {
+      "name": "guli.rabbit.user-order-delay-queue-x-message-ttl",
+      "type": "java.lang.String",
+      "description": "消息过期时间的单位是毫秒. <p> 该值默认是60000,需要自行改变的.",
+      "sourceType": "com.mzx.gulimall.order.config.CurrentRabbitProperties",
+      "defaultValue": "60000"
     }
   ],
   "hints": []

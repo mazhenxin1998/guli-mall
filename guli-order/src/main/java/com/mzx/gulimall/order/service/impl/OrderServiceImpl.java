@@ -195,12 +195,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         });
         wareSkuLockVo.setLocks(items);
-        // 为什么我数据传输不过去呢？ 这个wareSkuLockVo是有值的啊.
         R r = wareServiceFeign.lockStock(wareSkuLockVo);
-        // 这个data是空值.
+        // 模拟当刚好远程请求结束, 那么当前订单服务就宕机的情况, 这里用一个异常来模拟.
+        int i = 10 / 0;
         Object data = r.get("data");
         boolean flag = true;
-        // 可能这个data值获取不到.
         if (!StringUtils.isEmpty(data)) {
 
             List<Item> itemList = JSONObject.parseArray(data.toString(), Item.class);
@@ -346,7 +345,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             // 需要将下面的lIst存放在OrderCreateVo中.
             List<OrderItemEntity> orderItemEntities = items.stream().map(item -> {
 
-                return getOrderItem(item,orderSn);
+                return getOrderItem(item, orderSn);
 
             }).collect(Collectors.toList());
             orderCreateTo.setOrderItems(orderItemEntities);

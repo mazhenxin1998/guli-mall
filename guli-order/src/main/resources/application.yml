@@ -107,4 +107,3 @@ feign:
       mime-types: text/xml,application/xml,application/json
     response:
       enabled: true
-
