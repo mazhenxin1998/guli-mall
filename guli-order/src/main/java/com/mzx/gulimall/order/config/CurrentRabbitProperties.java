@@ -22,7 +22,7 @@ public class CurrentRabbitProperties {
     /**
      * 订单定时关闭订单的延时队列. 该队列一定不能有任何消费者进行监听.
      */
-    private String userOrderDelayQueueName = "user.order.delay.queue";
+    private String userOrderDelayQueueName = "order.delay.queue";
 
     /**
      * 订单自动关闭订单延时队列是否开启持久化的配置.
@@ -44,19 +44,19 @@ public class CurrentRabbitProperties {
      * <p>
      * 就是有一个消息在变成了死信之后路由到指定的交换机上,而该配置项就是配置的那个交换机的名称.
      */
-    private String userOrderDelayQueueXDeadLetterExchange = "user.order.delay.exchange";
+    private String userOrderDelayQueueXDeadLetterExchange = "order.event.exchange";
 
     /**
      * 消息发生死信之后路由到死信交换机之后需要根据当前指定的routing-key来发送到指定的队列.
      */
-    private String userOrderDelayQueueXDeadLetterRoutingKey = "order";
+    private String userOrderDelayQueueXDeadLetterRoutingKey = "order.release.order";
 
     /**
      * 消息过期时间的单位是毫秒.
      * <p>
      * 该值默认是60000,需要自行改变的.
      */
-    private String userOrderDelayQueueXMessageTtl = "60000";
+    private Integer userOrderDelayQueueXMessageTtl = 60000;
 
     /**
      * ---------------------开始设置交换机--------------------------------------
@@ -83,5 +83,55 @@ public class CurrentRabbitProperties {
      */
     private boolean orderEventExchangeAutoDelete = false;
 
+    /*-----------------------------------下面是orderReleaseOrderQueue的相关配置.*/
+
+    /**
+     * 订单自动删除队列的名字.
+     */
+    private String orderReleaseOrderQueueName = "order.release.order.queue";
+
+    /**
+     * 订单自动删除队列首付开启持久化.
+     * <p>
+     * 默认开启.
+     */
+    private boolean orderReleaseOrderQueueDurable = true;
+
+    /**
+     * 订单自动删除队列是否开启自动删除消息功能. ?
+     * <p>
+     * 默认为false.
+     */
+    private boolean orderReleaseOrderQueueAutoDelete = false;
+
+    /**
+     * 订单自动删除队列是否对消费者有排他的限制.
+     * <p>
+     * 有则说明消息只能被串行消费，否则能被多个消费者一起消费.
+     */
+    private boolean orderReleaseOrderQueueExclusive = false;
+
+    /*---------------------------绑定关系配置------------------------*/
+
+    /**
+     * 配置交换机和队列的绑定关系.
+     */
+    private String orderCreatorOrderBindingDestination = "order.delay.queue";
+
+    /**
+     * 由哪个交换机和队列进行绑定.
+     */
+    private String orderCreatorOrderBindingExchangeName = "order.event.exchange";
+
+    private String orderCreatorOrderBindingRoutingKey = "order.create.order";
+
+    /**
+     * 订单自动解除队列和交换机进行绑定.
+     */
+    private String orderReleaseOrderBindingDestination = "order.release.order.queue";
+
+    private String orderReleaseOrderBindingExchangeName = "order.event.exchange";
+
+    private String orderReleaseOrderBindingRoutingKey = "order.release.order";
 
 }

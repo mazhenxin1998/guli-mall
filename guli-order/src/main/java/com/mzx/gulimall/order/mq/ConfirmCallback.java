@@ -22,18 +22,18 @@ public class ConfirmCallback implements RabbitTemplate.ConfirmCallback {
      *
      * @param correlationData 生产消息时携带的消息唯一ID. 可以是UUID.
      * @param ack             消息确认的ack，如果broker收到了消息,那么就返回true.
-     * @param s
+     * @param s               不管ack是什么状态,该参数s一直是null......
      */
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String s) {
 
-        if (ack) {
+        if (!ack) {
 
-            System.out.println("当前消息已经被Broker接收到了: " + correlationData.getId());
-
-        }else{
-
-            System.err.println("当前消息没有被Broker接收到: " + correlationData.getId());
+            // TODO: 2020/10/12 这里有可能会出现消息丢失的情况.
+            // 如果订单没有成功发送到Broker,那么应该怎么办?
+            // 一般不会出现不可路由的消息.
+            // correlationData中存储的就是没有发送到Broker中的消息.
+            System.out.println("订单号: " + correlationData.getId() + "在创建好订单之后给MQ发送消息的出现了故障,导致MQ没能接受到该消息.");
 
         }
 

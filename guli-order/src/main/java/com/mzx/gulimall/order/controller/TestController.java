@@ -3,11 +3,15 @@ package com.mzx.gulimall.order.controller;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.annotation.AccessLimit;
 import com.mzx.gulimall.order.feign.MemberServiceFeign;
+import com.mzx.gulimall.order.mq.OrderDelayQueueTemplate;
 import com.mzx.gulimall.order.mq.SendMessageMQ;
 import com.mzx.gulimall.order.service.OrderService;
 import com.mzx.gulimall.order.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -24,6 +28,9 @@ public class TestController {
 
     @Autowired
     private MemberServiceFeign memberServiceFeign;
+
+    @Autowired
+    private OrderDelayQueueTemplate orderDelayQueueTemplate;
 
     @Autowired
     private OrderService orderService;
@@ -50,6 +57,23 @@ public class TestController {
         }
 
         return "OK";
+
+    }
+
+    @GetMapping(value = "/add/order")
+    public String addOrder() {
+
+        String orderSn = "2222222222222222222";
+        boolean b = orderDelayQueueTemplate.orderSubmit(orderSn);
+        if (b) {
+
+            return "订单下单之后消息发送成功. ";
+
+        }else{
+
+            return "订单下单之后消息发送失败.";
+
+        }
 
     }
 
@@ -114,7 +138,7 @@ public class TestController {
     }
 
     @GetMapping(value = "/test/tran")
-    public Object testTransactional(){
+    public Object testTransactional() {
 
         orderService.testTransactional();
         return "测试成功. ";

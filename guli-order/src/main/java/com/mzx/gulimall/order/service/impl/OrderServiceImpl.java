@@ -25,6 +25,7 @@ import com.mzx.gulimall.order.feign.MemberServiceFeign;
 import com.mzx.gulimall.order.feign.ProductServiceFeign;
 import com.mzx.gulimall.order.feign.WareServiceFeign;
 import com.mzx.gulimall.order.interceptor.OrderInterceptor;
+import com.mzx.gulimall.order.mq.OrderDelayQueueTemplate;
 import com.mzx.gulimall.order.service.OrderService;
 import com.mzx.gulimall.order.vo.*;
 import com.mzx.gulimall.util.CurrentStringUtils;
@@ -94,6 +95,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     private SqlSessionTemplate sqlSessionTemplate;
 
     @Autowired
+    private OrderDelayQueueTemplate orderDelayQueueTemplate;
+
+    @Autowired
     @Qualifier(value = "threadPoolExecutor")
     private ThreadPoolExecutor executor;
 
@@ -138,17 +142,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         String token = param.getOrderToken();
         String tokenKey = CurrentStringUtils.append(new StringBuilder(), RedisConstant.TOKEN_UUID,
                 userInfoTo.getUserId().toString());
-        System.out.println("当前是第" + (++count) + "次通过同一个token" + token + "进行下单.");
         String command = "if redis.call('get',KEYS[1])==ARGV[1] then return redis.call('del',KEYS[1]) else return 0 " +
                 "end";
-        System.out.println("第" + count + "次访问token结束.");
         //  原子验证令牌通过lua脚本，并且需要先删除在进行验证.
         Long result = stringRedisTemplate.execute(new DefaultRedisScript<Long>(command, Long.class),
                 Arrays.asList(tokenKey), token);
         // 0-原子验证失败  1-原子验证成功.
         if (result == 1) {
 
-            System.out.println("第" + count + "次下单成功.");
             OrderCreateTo orderCreateTo = this.createOrder(param, attributes);
             // TODO: 2020/10/8 如果this.save方法中出现异常,那么当前方法的事务捕获器是能捕获到this.save方法中的异常的.
             boolean success = this.save(orderCreateTo);
@@ -157,9 +158,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
                 boolean lock = this.lockStock(orderCreateTo);
                 if (lock) {
 
-                    // TODO: 2020/10/9 锁定库存之后,还需要删除购物车中的内容.
-                    model.addAttribute("orders", orderCreateTo);
-                    return "topay";
+                    //  应该设置该订单在指定时间内进行消费.
+                    boolean flag = this.closeOrder(orderCreateTo.getOrder().getOrderSn());
+                    if (flag) {
+
+                        // TODO: 2020/10/9 锁定库存之后,还需要删除购物车中的内容.
+                        model.addAttribute("orders", orderCreateTo);
+                        return "topay";
+
+                    }
 
                 }
 
@@ -167,8 +174,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         }
 
-        System.out.println("第" + count + "次下单失败.");
         return "redirect:http://localhost:26000/toTrade.html";
+
+    }
+
+    /**
+     * 向MQ发送消息, 告诉MQ我要在指定时间内解锁该订单.
+     *
+     * @param orderSn
+     * @return
+     */
+    private boolean closeOrder(String orderSn) {
+
+        return orderDelayQueueTemplate.orderSubmit(orderSn);
 
     }
 
@@ -196,8 +214,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         });
         wareSkuLockVo.setLocks(items);
         R r = wareServiceFeign.lockStock(wareSkuLockVo);
-        // 模拟当刚好远程请求结束, 那么当前订单服务就宕机的情况, 这里用一个异常来模拟.
-        int i = 10 / 0;
         Object data = r.get("data");
         boolean flag = true;
         if (!StringUtils.isEmpty(data)) {
@@ -275,7 +291,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     private void saveOrder(OrderEntity order) {
 
         orderDao.insert(order);
-        System.out.println("向数据库增加Order成功.");
 
     }
 
