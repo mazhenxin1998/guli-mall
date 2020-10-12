@@ -2,9 +2,10 @@ package com.mzx.gulimall.order.config;
 
 import com.mzx.gulimall.order.mq.ConfirmCallback;
 import com.mzx.gulimall.order.mq.ReturnCallback;
-import com.rabbitmq.client.Channel;
-import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.Exchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -57,7 +58,7 @@ public class RabbitConfig {
     }
 
     /**
-     * 创建订单自动解锁的延时队列.
+     * 创建订单自动解锁的延时队列. 切记:  延时队列是不能够被消费者进行监听的.
      * <p>
      * 只要是注入到容器中的Queue 、 Exchange 、 Binding 都会在容器启动的时候将其加入在RabbitMQ中进行创建.
      * 但是其不会覆盖创建已经存在的,就比如说在创建的时候某个属性指定了错了，仅仅修改了属性就又重新启动了当前容器，

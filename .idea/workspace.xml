@@ -270,16 +270,11 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/config/CurrentRabbitProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/config/CurrentRabbitProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/config/RabbitConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/mq/ConfirmCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/mq/ConfirmCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/mq/impl/SendMessageMQImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/mq/impl/SendMessageMQImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/OrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/CurrentRabbitProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/CurrentRabbitProperties.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/RabbitConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/config/RabbitConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/mq/ConfirmCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/mq/ConfirmCallback.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/mq/impl/SendMessageMQImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/mq/impl/SendMessageMQImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/OrderServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/mq/listener/impl/OrderReleaseOrderListenerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/mq/listener/impl/OrderReleaseOrderListenerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -847,7 +842,7 @@
       <workItem from="1602383480870" duration="19000" />
       <workItem from="1602397547161" duration="7024000" />
       <workItem from="1602424719067" duration="623000" />
-      <workItem from="1602485760787" duration="7701000" />
+      <workItem from="1602485760787" duration="13128000" />
     </task>
     <servers />
   </component>
@@ -906,10 +901,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="496" y="218" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1601469152465" />
-    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1602491996568">
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1602494928127">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1602491996568" />
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1602494928127" />
     <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600762772068">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -938,38 +933,38 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1601223550014" />
-    <state width="1159" height="317" key="GridCell.Tab.0.bottom" timestamp="1602494320134">
+    <state width="1159" height="317" key="GridCell.Tab.0.bottom" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602494320134" />
-    <state width="1159" height="317" key="GridCell.Tab.0.center" timestamp="1602494320134">
+    <state width="1159" height="317" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
+    <state width="1159" height="317" key="GridCell.Tab.0.center" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602494320134" />
-    <state width="1159" height="317" key="GridCell.Tab.0.left" timestamp="1602494320134">
+    <state width="1159" height="317" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
+    <state width="1159" height="317" key="GridCell.Tab.0.left" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602494320134" />
-    <state width="1159" height="317" key="GridCell.Tab.0.right" timestamp="1602494320134">
+    <state width="1159" height="317" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
+    <state width="1159" height="317" key="GridCell.Tab.0.right" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602494320134" />
-    <state width="1159" height="317" key="GridCell.Tab.1.bottom" timestamp="1602494320135">
+    <state width="1159" height="317" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
+    <state width="1159" height="317" key="GridCell.Tab.1.bottom" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602494320135" />
-    <state width="1159" height="317" key="GridCell.Tab.1.center" timestamp="1602494320135">
+    <state width="1159" height="317" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
+    <state width="1159" height="317" key="GridCell.Tab.1.center" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602494320135" />
-    <state width="1159" height="317" key="GridCell.Tab.1.left" timestamp="1602494320134">
+    <state width="1159" height="317" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
+    <state width="1159" height="317" key="GridCell.Tab.1.left" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602494320134" />
-    <state width="1159" height="317" key="GridCell.Tab.1.right" timestamp="1602494320135">
+    <state width="1159" height="317" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
+    <state width="1159" height="317" key="GridCell.Tab.1.right" timestamp="1602494533121">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="317" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602494320135" />
+    <state width="1159" height="317" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602494533121" />
     <state width="1159" height="306" key="GridCell.Tab.2.bottom" timestamp="1602250581149">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
