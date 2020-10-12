@@ -28,6 +28,9 @@ public interface OrderService extends IService<OrderEntity> {
 
     /**
      * 订单数据提交并且生成订单.
+     * <p>
+     * 使用RabbitMQ保证订单的最终数据一致性.
+     * 1)、 远程锁定库存成功,但是订单这一块在远程查询后面出现了异常. 这个时候库存需要进行回滚.
      *
      * @param param
      * @param model

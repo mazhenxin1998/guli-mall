@@ -52,5 +52,6 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * @return
      */
     List<LockStockResult> lockStock(WareSkuLockVo wareSkuLockVo);
+
 }
 

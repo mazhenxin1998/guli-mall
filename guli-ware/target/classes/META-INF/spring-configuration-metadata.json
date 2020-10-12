@@ -72,6 +72,31 @@
       "defaultValue": true
     },
     {
+      "name": "guli.rabbit.stock-locked-binding-destination",
+      "type": "java.lang.String",
+      "sourceType": "com.mzx.gulimall.ware.config.CurrentRabbitConfigProperties",
+      "defaultValue": "stock.delay.queue"
+    },
+    {
+      "name": "guli.rabbit.stock-locked-binding-routing-key",
+      "type": "java.lang.String",
+      "sourceType": "com.mzx.gulimall.ware.config.CurrentRabbitConfigProperties",
+      "defaultValue": "stock.locked"
+    },
+    {
+      "name": "guli.rabbit.stock-release-binding-destination",
+      "type": "java.lang.String",
+      "description": "目的队列. 真正释放库存的队列.",
+      "sourceType": "com.mzx.gulimall.ware.config.CurrentRabbitConfigProperties",
+      "defaultValue": "stock.release.stock.queue"
+    },
+    {
+      "name": "guli.rabbit.stock-release-binding-routing-key",
+      "type": "java.lang.String",
+      "sourceType": "com.mzx.gulimall.ware.config.CurrentRabbitConfigProperties",
+      "defaultValue": "stock.release.#"
+    },
+    {
       "name": "guli.rabbit.stock-release-stock-queue-auto-delete",
       "type": "java.lang.Boolean",
       "description": "自动删除.",

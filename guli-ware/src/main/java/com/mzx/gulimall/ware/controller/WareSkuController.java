@@ -39,6 +39,7 @@ public class WareSkuController {
 
         PageUtils page = wareSkuService.queryPageDetails(params);
         return R.ok().put("page", page);
+
     }
 
     /**

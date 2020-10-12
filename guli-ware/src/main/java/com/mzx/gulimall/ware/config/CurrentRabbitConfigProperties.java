@@ -79,7 +79,17 @@ public class CurrentRabbitConfigProperties {
 
     private Integer stockDelayQueueXMessageTtl = 120000;
 
+    /*----------------------------------------------库存队列和交换机绑定的信息.*/
 
+    /**
+     * 目的队列. 真正释放库存的队列.
+     */
+    private String stockReleaseBindingDestination = "stock.release.stock.queue";
 
+    private String stockReleaseBindingRoutingKey = "stock.release.#";
+
+    private String stockLockedBindingDestination = "stock.delay.queue";
+
+    private String stockLockedBindingRoutingKey = "stock.locked";
 
 }

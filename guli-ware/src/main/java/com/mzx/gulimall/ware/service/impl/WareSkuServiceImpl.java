@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.common.utils.R;
+import com.mzx.gulimall.ware.dao.WareOrderTaskDao;
+import com.mzx.gulimall.ware.dao.WareOrderTaskDetailDao;
 import com.mzx.gulimall.ware.dao.WareSkuDao;
+import com.mzx.gulimall.ware.entity.WareOrderTaskEntity;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
 import com.mzx.gulimall.ware.service.WareSkuService;
 import com.mzx.gulimall.ware.vo.LockStockResult;
@@ -29,6 +32,12 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
     @Autowired
     private WareSkuDao wareSkuDao;
+
+    @Autowired
+    private WareOrderTaskDao wareOrderTaskDao;
+
+    @Autowired
+    private WareOrderTaskDetailDao wareOrderTaskDetailDao;
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
@@ -69,7 +78,6 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         // 考虑到由于不同仓库存有相同的货物，所以说根据SKU查询的结果为一个集合
         // 现在要做的就是但凡一个仓库有存货就返回true.
         boolean flag = false;
-        // TODO: 按道理来说，这里是不需要这个flag的.
         for (int i = 0; i < entities.size(); i++) {
 
             if (entities.get(i).getStock() > 0) {
@@ -104,8 +112,10 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     @Override
     public List<LockStockResult> lockStock(WareSkuLockVo wareSkuLockVo) {
 
-        // 现在是通过sqlSession来做批量. ?
-        // TODO: 2020/10/9 以后再说.???
+        // 一个订单对应着一个taskEntity.
+        WareOrderTaskEntity taskEntity = new WareOrderTaskEntity();
+        taskEntity.setOrderSn(wareSkuLockVo.getOrderSn());
+        wareOrderTaskDao.insert(taskEntity);
         SqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH,
                 false);
         WareSkuDao mapper = sqlSession.getMapper(WareSkuDao.class);
@@ -119,8 +129,9 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
                 LockStockResult lockStockResult = new LockStockResult();
                 // 远程锁定的时候还需要确定锁定那个仓库的.
                 // 返回一个就行.
-                // 能一次性就查询出来吗?
                 mapper.lockStock(item);
+                // TODO: 2020/10/12 每次对一个SKU的库存进行锁定,那么应该对锁定工作单详情来进行增加.
+                // 顺便在发送给MQ进行库存自动解锁的队列.
                 lockStockResult.setLocked(true);
                 lockStockResult.setNum(item.getNum());
                 lockStockResult.setSkuId(item.getSkuId());

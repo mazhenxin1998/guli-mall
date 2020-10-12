@@ -128,7 +128,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     public String submit(OrderSubmitVo param, HttpServletRequest request, Model model) {
 
-        // TODO: 2020/10/8 该出保证订单幂等性最后使用分布式锁来实现一下.
+        // TODO: 2020/10/8 该处保证订单幂等性最后使用分布式锁来实现一下.
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
         UserInfoTo userInfoTo = OrderInterceptor.THREAD_LOCAL.get();
         if (userInfoTo.getUserId() == null || userInfoTo.getUserId() <= 0) {
@@ -155,7 +155,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             boolean success = this.save(orderCreateTo);
             if (success) {
 
+                // 远程锁定库存.
                 boolean lock = this.lockStock(orderCreateTo);
+                // 假如远程锁定库存成功,但是接下来的执行中出现错误.
                 if (lock) {
 
                     //  应该设置该订单在指定时间内进行消费.

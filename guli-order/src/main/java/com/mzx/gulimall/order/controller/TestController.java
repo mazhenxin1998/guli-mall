@@ -2,12 +2,15 @@ package com.mzx.gulimall.order.controller;
 
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.annotation.AccessLimit;
+import com.mzx.gulimall.order.dao.TestDao;
+import com.mzx.gulimall.order.entity.Test;
 import com.mzx.gulimall.order.feign.MemberServiceFeign;
 import com.mzx.gulimall.order.mq.OrderDelayQueueTemplate;
 import com.mzx.gulimall.order.mq.SendMessageMQ;
 import com.mzx.gulimall.order.service.OrderService;
 import com.mzx.gulimall.order.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +37,9 @@ public class TestController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private TestDao testDao;
 
     @GetMapping(value = "/feign/{id}")
     public Object testFeign(@PathVariable(value = "id") Long id) {
@@ -69,7 +75,7 @@ public class TestController {
 
             return "订单下单之后消息发送成功. ";
 
-        }else{
+        } else {
 
             return "订单下单之后消息发送失败.";
 
@@ -142,6 +148,24 @@ public class TestController {
 
         orderService.testTransactional();
         return "测试成功. ";
+
+    }
+
+    /**
+     * 1. 如果主动进行捕获异常,那么Transactional是不会进行回滚的.
+     * 2. 如果在方法上抛出异常，那么Transactional才是可以进行回滚的.
+     *
+     * @return
+     */
+    @Transactional
+    @GetMapping(value = "/t2")
+    public String t2() throws Exception {
+
+        // 现在我在方法里面主动捕获异常. 看看数据库会不会滚.
+        Test test = new Test(6L, "你好哦!");
+        testDao.insert(test);
+        int n = 10 / 0;
+        return "ok";
 
     }
 
