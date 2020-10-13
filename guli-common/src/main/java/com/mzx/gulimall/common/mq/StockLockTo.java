@@ -20,6 +20,6 @@ public class StockLockTo {
     /**
      * 工作详情ID.
      */
-    private Long detailId;
+    private StockDetailTo detail;
 
 }

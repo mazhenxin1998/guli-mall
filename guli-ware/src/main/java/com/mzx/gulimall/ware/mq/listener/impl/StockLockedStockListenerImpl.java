@@ -1,5 +1,6 @@
 package com.mzx.gulimall.ware.mq.listener.impl;
 
+import com.mzx.gulimall.common.mq.StockLockTo;
 import com.mzx.gulimall.ware.mq.listener.StockLockedStockListener;
 import org.springframework.stereotype.Component;
 
@@ -10,4 +11,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class StockLockedStockListenerImpl implements StockLockedStockListener {
+
+
+
+    @Override
+    public boolean lock(StockLockTo stockLockTo) {
+        return false;
+    }
 }

@@ -115,6 +115,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         // 一个订单对应着一个taskEntity.
         WareOrderTaskEntity taskEntity = new WareOrderTaskEntity();
         taskEntity.setOrderSn(wareSkuLockVo.getOrderSn());
+        // 保存库存工作单.
         wareOrderTaskDao.insert(taskEntity);
         SqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH,
                 false);
@@ -136,6 +137,8 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
                 lockStockResult.setNum(item.getNum());
                 lockStockResult.setSkuId(item.getSkuId());
                 results.add(lockStockResult);
+                // 每次锁定一次, 应该保存库存锁定单详情.
+                //
 
             });
             sqlSession.commit();
