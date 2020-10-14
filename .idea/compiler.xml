@@ -13,6 +13,7 @@
         <module name="guli-product" />
         <module name="guli-cart" />
         <module name="guli-common" />
+        <module name="guli-custom-starter" />
         <module name="guli-ware" />
         <module name="guli-query-ip" />
         <module name="renren-generator" />
@@ -32,6 +33,7 @@
       <module name="guli-cart" target="1.8" />
       <module name="guli-common" target="1.8" />
       <module name="guli-coupon" target="1.8" />
+      <module name="guli-custom-starter" target="1.8" />
       <module name="guli-customer-ervice" target="1.8" />
       <module name="guli-gateway" target="1.8" />
       <module name="guli-mall" target="1.8" />

@@ -41,6 +41,9 @@ spring:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
+  # 不要让SpringBoot为什么工程中的资源文件建立映射.
+  resources:
+    add-mappings: false
   redis:
     host: 127.0.0.1
     port: 6379

@@ -269,9 +269,58 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-common/src/main/java/com/mzx/gulimall/common/mq/StockLockTo.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-common/src/main/java/com/mzx/gulimall/common/mq/StockLockTo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/StockLockedStockListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/StockLockedStockListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/impl/StockLockedStockListenerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/impl/StockLockedStockListenerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/mq/StockLockTo.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/mq/StockLockTo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/src/main/resources/mapper/order/OrderDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/src/main/resources/mapper/order/OrderDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/controller/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/dao/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/dao/OrderDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/service/impl/OrderServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-order/target/classes/mapper/order/OrderDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-order/target/classes/mapper/order/OrderDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-product/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-product/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/config/RabbitConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/controller/WareSkuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/controller/WareSkuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/PurchaseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/PurchaseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/PurchaseDetailDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/PurchaseDetailDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/WareOrderTaskDetailDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/WareOrderTaskDetailDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/WareSkuDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/dao/WareSkuDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/callback/ConfirmCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/callback/ConfirmCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/impl/StockRabbitTemplateImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/impl/StockRabbitTemplateImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/StockLockedStockListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/StockReleasesStockListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/StockReleasesStockListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/impl/StockLockedStockListenerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/impl/StockReleaseStockListenerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/mq/listener/impl/StockReleaseStockListenerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/WareOrderTaskDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/WareOrderTaskDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/WareSkuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/WareSkuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/impl/WareOrderTaskDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/impl/WareOrderTaskDetailServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/impl/WareSkuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/java/com/mzx/gulimall/ware/service/impl/WareSkuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/resources/mapper/ware/WareOrderTaskDetailDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/resources/mapper/ware/WareOrderTaskDetailDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/src/main/resources/mapper/ware/WareSkuDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/src/main/resources/mapper/ware/WareSkuDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/config/RabbitConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/config/RabbitConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/controller/WareSkuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/controller/WareSkuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/PurchaseDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/PurchaseDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/PurchaseDetailDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/PurchaseDetailDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/WareOrderTaskDetailDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/WareOrderTaskDetailDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/WareSkuDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/dao/WareSkuDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/callback/ConfirmCallBack.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/callback/ConfirmCallBack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/impl/StockRabbitTemplateImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/impl/StockRabbitTemplateImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/listener/StockLockedStockListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/listener/StockReleasesStockListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/listener/StockReleasesStockListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/listener/impl/StockLockedStockListenerImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/listener/impl/StockReleaseStockListenerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/mq/listener/impl/StockReleaseStockListenerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/WareOrderTaskDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/WareOrderTaskDetailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/WareSkuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/WareSkuService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/impl/WareOrderTaskDetailServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/impl/WareOrderTaskDetailServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/impl/WareSkuServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/com/mzx/gulimall/ware/service/impl/WareSkuServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/mapper/ware/WareOrderTaskDetailDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/mapper/ware/WareOrderTaskDetailDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-ware/target/classes/mapper/ware/WareSkuDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-ware/target/classes/mapper/ware/WareSkuDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,8 +337,8 @@
         <option value="Enum" />
         <option value="AnnotationType" />
         <option value="HTML File" />
-        <option value="Mybatis Mapper" />
         <option value="Interface" />
+        <option value="Mybatis Mapper" />
         <option value="Class" />
       </list>
     </option>
@@ -416,7 +465,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GuliMallOrderApplication">
+  <component name="RunManager" selected="Application.User">
     <configuration name="IpToCity" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.util.IpToCity" />
       <module name="guli-util" />
@@ -430,25 +479,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainTest (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.cart.controller.MainTest" />
-      <module name="guli-cart" />
+    <configuration name="User" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.ware.vo.User" />
+      <module name="guli-ware" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.mzx.gulimall.cart.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.main.MainTest" />
-      <module name="guli-cart" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.mzx.gulimall.main.*" />
+          <option name="PATTERN" value="com.mzx.gulimall.ware.vo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -469,12 +505,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="guli-custom-starter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mzx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mzx" />
+      <option name="MAIN_CLASS_NAME" value="com.mzx.AppTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -611,10 +664,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MainTest" />
-      <item itemvalue="Application.MainTest (1)" />
       <item itemvalue="Application.IpToCity" />
       <item itemvalue="Application.WareSkuServiceImpl" />
+      <item itemvalue="JUnit.AppTest" />
       <item itemvalue="Spring Boot.GuliMallOrderApplication" />
       <item itemvalue="Spring Boot.GuliMallThreeServerApplication" />
       <item itemvalue="Spring Boot.RenrenApplication" />
@@ -629,14 +681,15 @@
       <item itemvalue="Spring Boot.GuliMallPaymentApplication" />
       <item itemvalue="Spring Boot.GuliMallQueryIpApplication" />
       <item itemvalue="Spring Boot.GuliMallCartApplication" />
+      <item itemvalue="Application.User" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GuliMallCartApplication" />
+        <item itemvalue="Application.User" />
+        <item itemvalue="JUnit.AppTest" />
         <item itemvalue="Application.WareSkuServiceImpl" />
         <item itemvalue="Application.IpToCity" />
-        <item itemvalue="Application.MainTest (1)" />
-        <item itemvalue="Application.MainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -842,7 +895,10 @@
       <workItem from="1602485760787" duration="18724000" />
       <workItem from="1602516376611" duration="19000" />
       <workItem from="1602576871286" duration="1109000" />
-      <workItem from="1602594510708" duration="3471000" />
+      <workItem from="1602594510708" duration="4137000" />
+      <workItem from="1602599917467" duration="156000" />
+      <workItem from="1602600119942" duration="2847000" />
+      <workItem from="1602658102175" duration="19490000" />
     </task>
     <servers />
   </component>
@@ -901,10 +957,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="496" y="218" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1601469152465" />
-    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1602597005979">
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1602682741901">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1602597005979" />
+    <state x="574" y="127" width="621" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1602682741901" />
     <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600762772068">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -925,62 +981,62 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="256" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1595408932332" />
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600092633944">
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602667588489">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1600092633944" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1602577031754">
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1602667588489" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1602600539037">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602577031754" />
-    <state width="1159" height="424" key="GridCell.Tab.0.bottom" timestamp="1602516282491">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602600539037" />
+    <state width="1159" height="360" key="GridCell.Tab.0.bottom" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602516282491" />
-    <state width="1159" height="424" key="GridCell.Tab.0.center" timestamp="1602516282491">
+    <state width="1159" height="360" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.0.center" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602516282491" />
-    <state width="1159" height="424" key="GridCell.Tab.0.left" timestamp="1602516282490">
+    <state width="1159" height="360" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.0.left" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602516282490" />
-    <state width="1159" height="424" key="GridCell.Tab.0.right" timestamp="1602516282491">
+    <state width="1159" height="360" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.0.right" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602516282491" />
-    <state width="1159" height="424" key="GridCell.Tab.1.bottom" timestamp="1602516282491">
+    <state width="1159" height="360" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.1.bottom" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602516282491" />
-    <state width="1159" height="424" key="GridCell.Tab.1.center" timestamp="1602516282491">
+    <state width="1159" height="360" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.1.center" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602516282491" />
-    <state width="1159" height="424" key="GridCell.Tab.1.left" timestamp="1602516282491">
+    <state width="1159" height="360" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.1.left" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602516282491" />
-    <state width="1159" height="424" key="GridCell.Tab.1.right" timestamp="1602516282491">
+    <state width="1159" height="360" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.1.right" timestamp="1602694418164">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="424" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602516282491" />
-    <state width="1159" height="306" key="GridCell.Tab.2.bottom" timestamp="1602250581149">
+    <state width="1159" height="360" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602694418164" />
+    <state width="1159" height="360" key="GridCell.Tab.2.bottom" timestamp="1602693211908">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="306" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602250581149" />
-    <state width="1159" height="306" key="GridCell.Tab.2.center" timestamp="1602250581149">
+    <state width="1159" height="360" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602693211908" />
+    <state width="1159" height="360" key="GridCell.Tab.2.center" timestamp="1602693211908">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="306" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1602250581149" />
-    <state width="1159" height="306" key="GridCell.Tab.2.left" timestamp="1602250581149">
+    <state width="1159" height="360" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1602693211908" />
+    <state width="1159" height="360" key="GridCell.Tab.2.left" timestamp="1602693211908">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="306" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1602250581149" />
-    <state width="1159" height="306" key="GridCell.Tab.2.right" timestamp="1602250581149">
+    <state width="1159" height="360" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1602693211908" />
+    <state width="1159" height="360" key="GridCell.Tab.2.right" timestamp="1602693211908">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1159" height="306" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1602250581149" />
+    <state width="1159" height="360" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1602693211908" />
     <state x="349" y="152" key="IDE.errors.dialog" timestamp="1600870843165">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1037,10 +1093,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="543" y="190" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1601820142558" />
-    <state x="294" y="94" width="985" height="678" key="new project wizard" timestamp="1602577047446">
+    <state x="294" y="94" width="985" height="678" key="new project wizard" timestamp="1602603080146">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="294" y="94" width="985" height="678" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1602577047446" />
+    <state x="294" y="94" width="985" height="678" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1602603080146" />
     <state x="516" y="204" width="715" height="306" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1600764425854">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

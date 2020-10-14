@@ -10,7 +10,6 @@ import com.mzx.gulimall.ware.vo.WareSkuLockVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +53,8 @@ public class WareSkuController {
         List<LockStockResult> stockResults = wareSkuService.lockStock(wareSkuLockVo);
         String jsonString = JSON.toJSONString(stockResults);
         // 远程查询返回的结果是json里面保存的List集合.
+        // 如果锁定失败, 那么这里将不会进行返回. 不会进行返回那么在订单服务中, 判断返回值将会是空, 如果是空可以直接响应用户下单失败.
+        // 并且在订单服务中，应该从R中获取到code状态码来进行判断.
         return R.ok().put("data", jsonString);
 
     }

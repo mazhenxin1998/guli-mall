@@ -3,6 +3,7 @@ package com.mzx.gulimall.ware.dao;
 import com.mzx.gulimall.ware.entity.PurchaseEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * 采购信息
@@ -12,6 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2020-07-25 14:15:39
  */
 @Mapper
+@Repository
 public interface PurchaseDao extends BaseMapper<PurchaseEntity> {
 	
 }

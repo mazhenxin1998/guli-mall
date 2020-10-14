@@ -9,8 +9,9 @@ import lombok.ToString;
  * @create 2020-10-12 21:15 周一.
  */
 @Data
-@ToString
 public class StockLockTo {
+
+    private String orderSn;
 
     /**
      * 工作单的ID.
@@ -22,4 +23,12 @@ public class StockLockTo {
      */
     private StockDetailTo detail;
 
+    @Override
+    public String toString() {
+        return "StockLockTo{" +
+                "orderSn='" + orderSn + '\'' +
+                ", id=" + id +
+                ", detail=" + detail +
+                '}';
+    }
 }

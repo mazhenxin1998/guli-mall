@@ -39,6 +39,7 @@ public class RabbitConfig {
     @PostConstruct
     public void init() {
 
+        System.out.println("@PostConstruct注解标注的方法发生了.");
         // 这里对rabbitTemplate进行下设置.
         rabbitTemplate.setConfirmCallback(confirmCallBack);
         rabbitTemplate.setReturnCallback(returnCallBack);

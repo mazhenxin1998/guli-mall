@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.ware.entity.WareOrderTaskDetailEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,13 @@ import java.util.Map;
 public interface WareOrderTaskDetailService extends IService<WareOrderTaskDetailEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 根据库存工作单查询该工作单所关联的所有库存工作单详情.
+     *
+     * @param stockId
+     * @return
+     */
+    List<WareOrderTaskDetailEntity> getOrderTaskDetailsByStockId(Long stockId);
 }
 

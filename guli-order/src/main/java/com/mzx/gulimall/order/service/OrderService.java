@@ -40,5 +40,13 @@ public interface OrderService extends IService<OrderEntity> {
     String submit(OrderSubmitVo param, HttpServletRequest request, Model model);
 
     String testTransactional();
+
+    /**
+     * 根据订单号获取订单.
+     *
+     * @param orderSn
+     * @return
+     */
+    OrderEntity getOrderByOrderSn(String orderSn);
 }
 

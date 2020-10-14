@@ -43,4 +43,13 @@ public interface WareSkuDao extends BaseMapper<WareSkuEntity> {
      * @return
      */
     List<Integer> findWhereWareHaveStocks(@Param("skuId") Long skuId);
+
+    /**
+     * 修改SKU锁定的库存.
+     *
+     * @param skuId  要解锁的SKU.
+     * @param skuNum 要解锁的数量.
+     * @param wareId 在那个仓库进行解锁. 我写的项目中没有这一说.
+     */
+    void releaseLockStocks(@Param("skuId") Long skuId, @Param("skuNum") Integer skuNum, @Param("wareId") Long wareId);
 }

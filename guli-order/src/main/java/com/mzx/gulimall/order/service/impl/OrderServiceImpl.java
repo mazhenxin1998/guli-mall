@@ -160,6 +160,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
                 // 假如远程锁定库存成功,但是接下来的执行中出现错误.
                 if (lock) {
 
+                    // 模拟远程锁定库存成功,订单创建失败情况.
+                    int i = 10 / 0;
                     //  应该设置该订单在指定时间内进行消费.
                     boolean flag = this.closeOrder(orderCreateTo.getOrder().getOrderSn());
                     if (flag) {
@@ -462,6 +464,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         // 如果这样的话, 就造成了当前方法执行的对象和o这个对象不是一个.
         // 如果第二个方法的数据还能插进去, 那么就说明这个坑是真的.
         return "x  ";
+
+    }
+
+    @Override
+    public OrderEntity getOrderByOrderSn(String orderSn) {
+
+        return orderDao.getOrderByOrderSn(orderSn);
 
     }
 

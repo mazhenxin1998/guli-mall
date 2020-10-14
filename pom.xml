@@ -27,6 +27,7 @@
         <module>guli-payment</module>
         <module>guli-annotation</module>
         <module>guli-query-ip</module>
+        <module>guli-custom-starter</module>
 
     </modules>
 

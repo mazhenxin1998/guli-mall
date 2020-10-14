@@ -22,15 +22,15 @@ public class FeignConfig {
      *
      * @return
      */
-    @Bean
-    public Request.Options options() {
-
-        /*
-        * 第一个参数是: 连接超时时间.
-        * 第二个参数是: 取超时时间.
-        * */
-        return new Request.Options(5000, 10000);
-    }
+//    @Bean
+//    public Request.Options options() {
+//
+//        /*
+//        * 第一个参数是: 连接超时时间.
+//        * 第二个参数是: 取超时时间.
+//        * */
+//        return new Request.Options(5000, 10000);
+//    }
 
 
 }

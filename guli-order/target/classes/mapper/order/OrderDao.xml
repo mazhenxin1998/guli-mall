@@ -3,7 +3,7 @@
 
 <mapper namespace="com.mzx.gulimall.order.dao.OrderDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.mzx.gulimall.order.entity.OrderEntity" id="orderMap">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
@@ -48,6 +48,11 @@
         <result property="commentTime" column="comment_time"/>
         <result property="modifyTime" column="modify_time"/>
     </resultMap>
+
+    <!--根据orderSn查询order.-->
+    <select id="getOrderByOrderSn" resultType="com.mzx.gulimall.order.entity.OrderEntity">
+        SELECT * FROM `oms_order` WHERE order_sn = #{orderSn};
+    </select>
 
 
 </mapper>

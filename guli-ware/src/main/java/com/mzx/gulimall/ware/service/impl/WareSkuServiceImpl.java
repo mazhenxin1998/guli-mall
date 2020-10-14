@@ -3,14 +3,18 @@ package com.mzx.gulimall.ware.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mzx.gulimall.common.mq.StockDetailTo;
+import com.mzx.gulimall.common.mq.StockLockTo;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.dao.WareOrderTaskDao;
 import com.mzx.gulimall.ware.dao.WareOrderTaskDetailDao;
 import com.mzx.gulimall.ware.dao.WareSkuDao;
+import com.mzx.gulimall.ware.entity.WareOrderTaskDetailEntity;
 import com.mzx.gulimall.ware.entity.WareOrderTaskEntity;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
+import com.mzx.gulimall.ware.mq.StockRabbitTemplate;
 import com.mzx.gulimall.ware.service.WareSkuService;
 import com.mzx.gulimall.ware.vo.LockStockResult;
 import com.mzx.gulimall.ware.vo.SkuWareStockTo;
@@ -20,6 +24,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -41,6 +46,9 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
+
+    @Autowired
+    private StockRabbitTemplate stockRabbitTemplate;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -109,6 +117,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public List<LockStockResult> lockStock(WareSkuLockVo wareSkuLockVo) {
 
@@ -120,25 +129,22 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         SqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH,
                 false);
         WareSkuDao mapper = sqlSession.getMapper(WareSkuDao.class);
+        WareOrderTaskDetailDao taskDetailDao = sqlSession.getMapper(WareOrderTaskDetailDao.class);
         ArrayList<LockStockResult> results = new ArrayList<>();
         try {
 
-            // TODO: 为什么lambada表达式只能引用'final'语义的变量.
             wareSkuLockVo.getLocks().stream().forEach(item -> {
 
-                // TODO: 2020/10/9 根据仓库查询不做了.SQL如果是一次性的话就没有必要的.
                 LockStockResult lockStockResult = new LockStockResult();
                 // 远程锁定的时候还需要确定锁定那个仓库的.
-                // 返回一个就行.
                 mapper.lockStock(item);
-                // TODO: 2020/10/12 每次对一个SKU的库存进行锁定,那么应该对锁定工作单详情来进行增加.
                 // 顺便在发送给MQ进行库存自动解锁的队列.
                 lockStockResult.setLocked(true);
                 lockStockResult.setNum(item.getNum());
                 lockStockResult.setSkuId(item.getSkuId());
                 results.add(lockStockResult);
-                // 每次锁定一次, 应该保存库存锁定单详情.
-                //
+                // 如果该方法出现异常整体回滚.
+                this.saveOrderTaskDetail(taskDetailDao, item, taskEntity.getId(), wareSkuLockVo.getOrderSn());
 
             });
             sqlSession.commit();
@@ -159,7 +165,6 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
             });
             log.error("批量更新锁定库存的出现error: {}", e);
             e.printStackTrace();
-            // 这里返回的和上面进行返回的构造的数据是不一样的.
 
         } finally {
 
@@ -170,6 +175,81 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         }
 
         return results;
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void listReleaseStocks(List<WareOrderTaskDetailEntity> detailEntities) {
+
+        // TODO: 2020/10/15 如果对库存锁定进行释放和对库存工作详情单状态修改出现了异常,放心直接抛出即可.
+        // 从该SqlSession中获取的dao是批量操作，手动进行commit.
+        SqlSession session = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH, false);
+        WareSkuDao mapper = session.getMapper(WareSkuDao.class);
+        WareOrderTaskDetailDao taskDetailDao = session.getMapper(WareOrderTaskDetailDao.class);
+        // item.lockStatus==1 为true表示当前当前库存工作详情单没有解锁过.
+        // 那么我现在就可以对其进行解锁.
+        // 解锁之后需要改变库存工作单的锁定状态.
+        // 出现异常将会进行回滚.而在StockReleaseStockListenerImpl中对异常进行捕获,如果在外面捕获到异常,那么MQ就回滚.
+        detailEntities.stream().filter(item -> item.getLockStatus() == 1).forEach(item -> {
+
+            // 对SKU的库存进行解锁.
+            mapper.releaseLockStocks(item.getSkuId(), item.getSkuNum(), item.getWareId());
+            // 对库存工作单详情的锁定状态修改为已解锁.
+            item.getLockStatus();
+            // 这里修改的时候必须以库存工作详情单的ID进行修改.
+            taskDetailDao.updateLockStatus(item.getId(), 2L);
+
+        });
+
+        // 将当前事务进行提交.
+        session.commit();
+
+    }
+
+    private void saveOrderTaskDetail(WareOrderTaskDetailDao wareOrderTaskDetailDao, WareSkuLockVo.Item item,
+                                     Long taskId, String orderSn) {
+
+        // 每次锁定一次, 应该保存库存锁定单详情.
+        // 要进行保存的库存工作单详情.
+        WareOrderTaskDetailEntity taskDetailEntity = new WareOrderTaskDetailEntity();
+        taskDetailEntity.setSkuId(item.getSkuId());
+        taskDetailEntity.setSkuNum(item.getNum());
+        taskDetailEntity.setTaskId(taskId);
+        // 库存工作单详情里面可以不用保存库存. 因为本来也就没有做.
+        taskDetailEntity.setWareId(item.getWareId());
+        wareOrderTaskDetailDao.insert(taskDetailEntity);
+        // 最后每次增加了库存工作单详情,应该做库存自动解锁的保底方法.
+        this.autoUnlocking(item, taskId, orderSn);
+
+    }
+
+    /**
+     * 库存自动解锁.
+     * <p>
+     * 该方法解决的是当订单服务调用库存服务成功之后，但是订单服务之后的代码出现了异常导致订单回滚, 而这里向MQ发送消息则保证就算订单服务出现异常，那么
+     * 当前系统在一定时间之后仍然可以保证数据的最终一致性.
+     */
+    private void autoUnlocking(WareSkuLockVo.Item item, Long taskId, String orderSn) {
+
+        StockLockTo lockTo = new StockLockTo();
+        // 保存该库存工作单详情的订单号.
+        lockTo.setOrderSn(orderSn);
+        // 保存的是库存工作单的ID.
+        lockTo.setId(taskId);
+        StockDetailTo stockDetailTo = new StockDetailTo();
+        // 初始化的时候应该设置为已解锁.
+        stockDetailTo.setLockStatus(1);
+        stockDetailTo.setSkuId(item.getSkuId());
+        stockDetailTo.setSkuName(item.getTitle());
+        stockDetailTo.setSkuNum(item.getNum());
+        stockDetailTo.setTaskId(taskId);
+        stockDetailTo.setWareId(item.getWareId());
+        lockTo.setDetail(stockDetailTo);
+        // 为了实现库存服务自动解锁,现在需要将lockTo方法发送到MQ的延时队列中.
+        // 只要用户来下单, 那么都会向MQ发送消息记录下本次下单所关联的SKU库存信息.
+        // 并且在解锁哪里,会对订单或者库存详情单的状态来进行解锁.
+        this.stockRabbitTemplate.lockStock(lockTo);
 
     }
 

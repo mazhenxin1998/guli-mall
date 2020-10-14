@@ -23,6 +23,15 @@
         (stock - stock_locked) > #{item.num}
     </update>
 
+    <!--解除对库存的锁定就是对字段stock_locked进行回放. 也就是-的操作.-->
+    <update id="releaseLockStocks">
+
+        UPDATE `wms_ware_sku`
+        SET stock_locked = stock_locked - #{skuNum}
+        WHERE sku_id = #{skuId};
+
+    </update>
+
     <!--
     <select id="selectPostIn" resultType="domain.blog.Post">
       SELECT *

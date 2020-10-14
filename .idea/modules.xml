@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/guli-cart/guli-cart.iml" filepath="$PROJECT_DIR$/guli-cart/guli-cart.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-common/guli-common.iml" filepath="$PROJECT_DIR$/guli-common/guli-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-coupon/guli-coupon.iml" filepath="$PROJECT_DIR$/guli-coupon/guli-coupon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guli-custom-starter/guli-custom-starter.iml" filepath="$PROJECT_DIR$/guli-custom-starter/guli-custom-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-customer-ervice/guli-customer-ervice.iml" filepath="$PROJECT_DIR$/guli-customer-ervice/guli-customer-ervice.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-gateway/guli-gateway.iml" filepath="$PROJECT_DIR$/guli-gateway/guli-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-mall.iml" filepath="$PROJECT_DIR$/guli-mall.iml" />
