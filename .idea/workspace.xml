@@ -103,6 +103,10 @@
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimeDialog.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../file-formate-conversion/target/classes/com/mzx/conversion/view/TimerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-common/src/main/java/com/mzx/gulimall/common/order/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-common/target/classes/com/mzx/gulimall/common/order/Result.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-order/src/main/java/com/mzx/gulimall/order/constant/RabbitConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guli-order/target/classes/com/mzx/gulimall/order/constant/RabbitConstant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/axis.log" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/axis.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04MyprojectScw/src/main/java/com/mzx/bean/Page.java" afterDir="false" />
@@ -896,7 +900,7 @@
       <workItem from="1602600119942" duration="2847000" />
       <workItem from="1602658102175" duration="19904000" />
       <workItem from="1602720276535" duration="194000" />
-      <workItem from="1602749168149" duration="19241000" />
+      <workItem from="1602749168149" duration="19667000" />
     </task>
     <servers />
   </component>
@@ -987,38 +991,38 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602600539037" />
-    <state width="965" height="233" key="GridCell.Tab.0.bottom" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.0.bottom" timestamp="1602773784492">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
-    <state width="965" height="233" key="GridCell.Tab.0.center" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602773784492" />
+    <state width="1141" height="333" key="GridCell.Tab.0.center" timestamp="1602773784491">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
-    <state width="965" height="233" key="GridCell.Tab.0.left" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602773784491" />
+    <state width="1141" height="333" key="GridCell.Tab.0.left" timestamp="1602773784491">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
-    <state width="965" height="233" key="GridCell.Tab.0.right" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602773784491" />
+    <state width="1141" height="333" key="GridCell.Tab.0.right" timestamp="1602773784491">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
-    <state width="965" height="233" key="GridCell.Tab.1.bottom" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602773784491" />
+    <state width="1141" height="333" key="GridCell.Tab.1.bottom" timestamp="1602773784492">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
-    <state width="965" height="233" key="GridCell.Tab.1.center" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602773784492" />
+    <state width="1141" height="333" key="GridCell.Tab.1.center" timestamp="1602773784492">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
-    <state width="965" height="233" key="GridCell.Tab.1.left" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602773784492" />
+    <state width="1141" height="333" key="GridCell.Tab.1.left" timestamp="1602773784492">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
-    <state width="965" height="233" key="GridCell.Tab.1.right" timestamp="1602773457651">
+    <state width="1141" height="333" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602773784492" />
+    <state width="1141" height="333" key="GridCell.Tab.1.right" timestamp="1602773784492">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="965" height="233" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602773457651" />
+    <state width="1141" height="333" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602773784492" />
     <state width="1095" height="283" key="GridCell.Tab.2.bottom" timestamp="1602772207841">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
