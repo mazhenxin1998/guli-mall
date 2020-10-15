@@ -8,7 +8,10 @@ import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.ware.dao.WareOrderTaskDao;
 import com.mzx.gulimall.ware.entity.WareOrderTaskEntity;
 import com.mzx.gulimall.ware.service.WareOrderTaskService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;
@@ -16,6 +19,9 @@ import java.util.Map;
 
 @Service("wareOrderTaskService")
 public class WareOrderTaskServiceImpl extends ServiceImpl<WareOrderTaskDao, WareOrderTaskEntity> implements WareOrderTaskService {
+
+    @Autowired
+    private WareOrderTaskDao wareOrderTaskDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -42,6 +48,14 @@ public class WareOrderTaskServiceImpl extends ServiceImpl<WareOrderTaskDao, Ware
         pageUtils.setTotalCount(count);
 
         return pageUtils;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
+    public WareOrderTaskEntity getOrderTaskByOrderSn(String orderSn) {
+
+        return wareOrderTaskDao.getOrderTaskByOrderSn(orderSn);
+
     }
 
     private QueryWrapper<WareOrderTaskEntity> getQueryWrapper(Map<String, Object> params) {

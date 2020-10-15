@@ -22,7 +22,7 @@ public interface WareOrderTaskDetailDao extends BaseMapper<WareOrderTaskDetailEn
     /**
      * 根据库存工作单查询该库存工作单所关联的所有库存工作详情。
      *
-     * @param stockId
+     * @param stockId 库存工作单的ID.
      * @return
      */
     List<WareOrderTaskDetailEntity> getOrderTaskDetailsByStockId(@Param("stockId") Long stockId);

@@ -1,6 +1,7 @@
 package com.mzx.gulimall.ware.mq.listener;
 
 import com.mzx.gulimall.common.mq.StockLockTo;
+import com.mzx.gulimall.common.order.OrderTo;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -27,8 +28,23 @@ public interface StockReleasesStockListener {
      * @param stockLockTo 要自动释放库存的订单、库存工作单、库存详情工作单.
      * @param message
      * @param channel
+     * @throws IOException
      */
     void handlerAutoReleaseStockLock(StockLockTo stockLockTo, Message message, Channel channel) throws IOException;
+
+    /**
+     * 针对订单超时问题.
+     * <p>
+     * MQ消息能执行到这里,说明该消息有两种情况:
+     * 1. 超时订单未支付.
+     * 2. 用户手动取消订单.
+     *
+     * @param order
+     * @param message
+     * @param channel
+     * @throws IOException
+     */
+    void handlerAutoReleaseOrder(OrderTo order, Message message, Channel channel) throws IOException;
 
 
 }

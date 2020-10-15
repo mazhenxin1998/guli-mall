@@ -46,6 +46,9 @@ public class WareOrderTaskDetailEntity implements Serializable {
 	private Long wareId;
 	/**
 	 * 1-已锁定  2-已解锁  3-扣减
+	 * 1是已锁定未解锁.
+	 * 2是已经解锁 其不需要再次对库存回滚.
+	 * 3已扣减状态不需要在对库存回滚.
 	 */
 	private Integer lockStatus;
 

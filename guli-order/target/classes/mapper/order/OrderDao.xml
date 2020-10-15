@@ -49,10 +49,15 @@
         <result property="modifyTime" column="modify_time"/>
     </resultMap>
 
+    <update id="updateOrderStatusByOrderSn">
+        UPDATE `oms_order`
+        SET `status` = #{status}
+        WHERE order_sn = #{orderSn} LIMIT 1;
+    </update>
+
     <!--根据orderSn查询order.-->
     <select id="getOrderByOrderSn" resultType="com.mzx.gulimall.order.entity.OrderEntity">
         SELECT * FROM `oms_order` WHERE order_sn = #{orderSn};
     </select>
-
 
 </mapper>

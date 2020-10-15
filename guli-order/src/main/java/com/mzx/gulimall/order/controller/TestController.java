@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.management.MBeanServer;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.management.*;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author ZhenXinMa
@@ -66,22 +69,7 @@ public class TestController {
 
     }
 
-    @GetMapping(value = "/add/order")
-    public String addOrder() {
 
-        String orderSn = "2222222222222222222";
-        boolean b = orderDelayQueueTemplate.orderSubmit(orderSn);
-        if (b) {
-
-            return "订单下单之后消息发送成功. ";
-
-        } else {
-
-            return "订单下单之后消息发送失败.";
-
-        }
-
-    }
 
 
     @GetMapping(value = "/ip")

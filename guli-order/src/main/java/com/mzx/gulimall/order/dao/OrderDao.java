@@ -24,4 +24,12 @@ public interface OrderDao extends BaseMapper<OrderEntity> {
      * @return
      */
     OrderEntity getOrderByOrderSn(@Param("orderSn") String orderSn);
+
+    /**
+     * 根据订单号将该订单的状态修改为status.
+     *
+     * @param orderSn 订单号.
+     * @param status  要修改之后的订单状态.
+     */
+    void updateOrderStatusByOrderSn(@Param("orderSn") String orderSn, @Param("status") int status);
 }

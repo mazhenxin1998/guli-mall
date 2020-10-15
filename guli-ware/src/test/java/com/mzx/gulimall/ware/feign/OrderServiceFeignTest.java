@@ -1,5 +1,6 @@
 package com.mzx.gulimall.ware.feign;
 
+import com.mzx.gulimall.common.order.Result;
 import com.mzx.gulimall.ware.GuliMallWareApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,14 @@ public class OrderServiceFeignTest {
 
         String sn = "202010150026063531316414991141781505";
         orderServiceFeign.getOrderByOrderSn(sn);
+
+    }
+
+    @Test
+    public void t2(){
+
+        String sn = "202010152234274511316749281780150273";
+        Result result = orderServiceFeign.getOrderByOrderSn(sn);
 
     }
 

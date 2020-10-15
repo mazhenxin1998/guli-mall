@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.model.CartItem;
 import com.mzx.gulimall.common.model.MemberResultVo;
+import com.mzx.gulimall.common.order.OrderTo;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.common.utils.R;
@@ -147,7 +148,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         //  原子验证令牌通过lua脚本，并且需要先删除在进行验证.
         Long result = stringRedisTemplate.execute(new DefaultRedisScript<Long>(command, Long.class),
                 Arrays.asList(tokenKey), token);
-        // 0-原子验证失败  1-原子验证成功.
         if (result == 1) {
 
             OrderCreateTo orderCreateTo = this.createOrder(param, attributes);
@@ -157,16 +157,16 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
                 // 远程锁定库存.
                 boolean lock = this.lockStock(orderCreateTo);
-                // 假如远程锁定库存成功,但是接下来的执行中出现错误.
                 if (lock) {
 
                     // 模拟远程锁定库存成功,订单创建失败情况.
                     int i = 10 / 0;
-                    //  应该设置该订单在指定时间内进行消费.
-                    boolean flag = this.closeOrder(orderCreateTo.getOrder().getOrderSn());
+                    // 订单创建成功之后需要将当前订单的信息发送到MQ队列: order.delay.queue解决自动关单.
+                    boolean flag = this.closeOrder(orderCreateTo.getOrder());
                     if (flag) {
 
                         // TODO: 2020/10/9 锁定库存之后,还需要删除购物车中的内容.
+                        this.deleteCartOrderItems(orderCreateTo);
                         model.addAttribute("orders", orderCreateTo);
                         return "topay";
 
@@ -183,14 +183,33 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     }
 
     /**
+     * 根据OrderCreateTo将本次购物车中相关联的SKU进行删除.
+     *
+     * @param orderCreateTo
+     */
+    private void deleteCartOrderItems(OrderCreateTo orderCreateTo) {
+
+        // 购物车中的内容进行删除可以在订单生成的时候进行删除,也可以在支付完成将购物车中的内容进行删除.
+        // 采取: 采取在订单支付的时候将购物车中相对应SKU内容进行删除.
+        //      如果订单取消了那么应该重新将此次订单中相关联的数据放回到购物车中.
+
+        // 远程调用cart服务.
+
+        // 该方法成不成功对订单都是无所谓的.
+
+        // 但是需要保证购物车中的数据要求保证最终一致性.
+
+    }
+
+    /**
      * 向MQ发送消息, 告诉MQ我要在指定时间内解锁该订单.
      *
-     * @param orderSn
+     * @param order
      * @return
      */
-    private boolean closeOrder(String orderSn) {
+    private boolean closeOrder(OrderEntity order) {
 
-        return orderDelayQueueTemplate.orderSubmit(orderSn);
+        return orderDelayQueueTemplate.orderSubmit(order);
 
     }
 
@@ -471,6 +490,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     public OrderEntity getOrderByOrderSn(String orderSn) {
 
         return orderDao.getOrderByOrderSn(orderSn);
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateOrderStatusToClose(OrderTo orderTo) {
+
+        // 修改订单状态为无效状态.
+        orderDao.updateOrderStatusByOrderSn(orderTo.getOrderSn(),4);
 
     }
 

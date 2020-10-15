@@ -1,6 +1,7 @@
 package com.mzx.gulimall.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mzx.gulimall.common.order.OrderTo;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.order.entity.OrderEntity;
 import com.mzx.gulimall.order.vo.OrderSubmitVo;
@@ -48,5 +49,12 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      */
     OrderEntity getOrderByOrderSn(String orderSn);
+
+    /**
+     * 修改订单的状态.
+     *
+     * @param orderTo
+     */
+    void updateOrderStatusToClose(OrderTo orderTo);
 }
 

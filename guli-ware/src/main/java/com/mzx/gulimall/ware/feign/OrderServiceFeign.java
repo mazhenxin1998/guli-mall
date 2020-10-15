@@ -1,5 +1,6 @@
 package com.mzx.gulimall.ware.feign;
 
+import com.mzx.gulimall.common.order.Result;
 import com.mzx.gulimall.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,6 @@ public interface OrderServiceFeign {
      * @return
      */
     @GetMapping(value = "/order/order/get/{orderSn}")
-    R getOrderByOrderSn(@PathVariable(value = "orderSn") String orderSn);
+    Result getOrderByOrderSn(@PathVariable(value = "orderSn") String orderSn);
 
 }

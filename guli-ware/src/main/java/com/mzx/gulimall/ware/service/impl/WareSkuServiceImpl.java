@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mzx.gulimall.common.mq.StockDetailTo;
 import com.mzx.gulimall.common.mq.StockLockTo;
+import com.mzx.gulimall.common.order.OrderTo;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.Query;
 import com.mzx.gulimall.common.utils.R;
@@ -14,7 +15,9 @@ import com.mzx.gulimall.ware.dao.WareSkuDao;
 import com.mzx.gulimall.ware.entity.WareOrderTaskDetailEntity;
 import com.mzx.gulimall.ware.entity.WareOrderTaskEntity;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
+import com.mzx.gulimall.ware.feign.OrderServiceFeign;
 import com.mzx.gulimall.ware.mq.StockRabbitTemplate;
+import com.mzx.gulimall.ware.service.WareOrderTaskService;
 import com.mzx.gulimall.ware.service.WareSkuService;
 import com.mzx.gulimall.ware.vo.LockStockResult;
 import com.mzx.gulimall.ware.vo.SkuWareStockTo;
@@ -43,6 +46,12 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
     @Autowired
     private WareOrderTaskDetailDao wareOrderTaskDetailDao;
+
+    @Autowired
+    private WareOrderTaskService wareOrderTaskService;
+
+    @Autowired
+    private OrderServiceFeign orderServiceFeign;
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
@@ -193,10 +202,10 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         // 出现异常将会进行回滚.而在StockReleaseStockListenerImpl中对异常进行捕获,如果在外面捕获到异常,那么MQ就回滚.
         detailEntities.stream().filter(item -> item.getLockStatus() == 1).forEach(item -> {
 
+            System.out.println("对库存" + item.getSkuId() + "解锁成功");
             // 对SKU的库存进行解锁.
             mapper.releaseLockStocks(item.getSkuId(), item.getSkuNum(), item.getWareId());
             // 对库存工作单详情的锁定状态修改为已解锁.
-            item.getLockStatus();
             // 这里修改的时候必须以库存工作详情单的ID进行修改.
             taskDetailDao.updateLockStatus(item.getId(), 2L);
 
@@ -204,6 +213,26 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
         // 将当前事务进行提交.
         session.commit();
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void listReleaseStocks(OrderTo order) {
+
+        // 有任何异常向外抛出即可 上层方法捕捉到异常将会对当前的消息打向日志和拒绝签收.
+        WareOrderTaskEntity entity = wareOrderTaskService.getOrderTaskByOrderSn(order.getOrderSn());
+        if (entity != null) {
+
+            List<WareOrderTaskDetailEntity> detailEntities = wareOrderTaskDetailDao
+                    .getOrderTaskDetailsByStockId(entity.getId());
+            this.listReleaseStocks(detailEntities);
+
+        } else {
+
+            throw new RuntimeException("订单超时库存自动解锁 查询到WareOrderTaskEntity为null.");
+
+        }
 
     }
 

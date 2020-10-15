@@ -2,6 +2,7 @@ package com.mzx.gulimall.ware.mq.listener.impl;
 
 import com.mzx.gulimall.common.mq.StockLockTo;
 import com.mzx.gulimall.common.order.OrderTo;
+import com.mzx.gulimall.common.order.Result;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.entity.WareOrderTaskDetailEntity;
 import com.mzx.gulimall.ware.entity.WareOrderTaskEntity;
@@ -16,8 +17,11 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -44,6 +48,10 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
     private WareOrderTaskDetailService wareOrderTaskDetailService;
 
     /**
+     * 库存自动解锁逻辑.
+     * <p>
+     * 这个是自动解锁,但是订单服务在用户取消订单或者是时间超时了将会直接向当前队列中发送消息,但是RabbitMQ接受方法支持重载来接受一个队列中的不同消息.
+     * <p>
      * 下面的情况下需要解锁:
      * 1. 订单服务远程锁库存成功,但是订单创建失败-> 需要库存自动解锁.
      * 2. 用户自行取消订单->需要库存解锁. 用户自行取消订单那么order服务将会向队列stock.release.stock.queue发送消息进行解锁.
@@ -57,8 +65,10 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
      */
     @Override
     @RabbitHandler
-    public void handlerAutoReleaseStockLock(StockLockTo stockLockTo, Message message, Channel channel) throws IOException {
+    public void handlerAutoReleaseStockLock(StockLockTo stockLockTo, Message message, Channel channel)
+            throws IOException {
 
+        System.out.println(1);
         try {
 
             // 1. 先解决第四种情况: 库存服务本地锁定库存失败.
@@ -72,25 +82,28 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
                 // 远程查询订单.
                 // TODO:  这里出现问题.
                 // 现在有这么一种情况: 订单没有创建成功, 那么远程查询根据路径匹配将不会匹配到.
-                R result = orderServiceFeign.getOrderByOrderSn(stockLockTo.getOrderSn());
+                Result result = orderServiceFeign.getOrderByOrderSn(stockLockTo.getOrderSn());
+                // order为null表示订单在解锁库存之后创建订单失败.
+                // order的状态为取消状态说明是订单超时为支付,因此需要解锁库存.
+                // 在订单服务中如果订单超时未支付那么在队列order.release.order.queue中进行消息的发送.
+                // 将消息直接发送到stock.release.stock.queue并进行解锁,并且还需要将订单的状态改为取消状态或者无效状态.
+                // 如果用户自己手动取消了状态,那么应该解锁.
                 if (result.getCode() == 0) {
 
-                    OrderTo order = (OrderTo) result.get("data");
-                    // order为null表示订单在解锁库存之后创建订单失败.
-                    // order的状态为取消状态说明是订单超时为支付,因此需要解锁库存.
-                    // 在订单服务中如果订单超时未支付那么在队列order.release.order.queue中进行消息的发送.
-                    // 将消息直接发送到stock.release.stock.queue并进行解锁,并且还需要将订单的状态改为取消状态或者无效状态.
-                    // 如果用户自己手动取消了状态,那么应该解锁.
+                    //OrderTo order = mapTransformOrderTo(result);
+                    OrderTo order = result.getOrder();
+                    // 如果这样判断 order一定不为空.
                     if (order == null || order.getStatus() == 4) {
 
+                        // TODO: 2020/10/15 这里需要明白为什么直接根据stockId就可以直接查询详情.
                         List<WareOrderTaskDetailEntity> detailEntities =
                                 wareOrderTaskDetailService.getOrderTaskDetailsByStockId(stockId);
                         wareSkuService.listReleaseStocks(detailEntities);
-                        System.out.println("库存解锁成功 : " + stockId);
                         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 
                     }
 
+                    //System.out.println("要去解锁库存,但是发现库存已经被解锁了: " + order.getOrderSn());
                     // TODO: 2020/10/15 如果订单是超时未付款咋弄.
                     // TODO: 2020/10/15 这里是不用做任何处理的.
                     // 如果用户主动关闭订单,应该另写一个监听队列的方法,并且参数不一样那么队列接受的消息类型就不一样.
@@ -101,6 +114,7 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
                 } else {
 
                     // feign远程请求出现异常,order服务出现异常，那么将该条消息重新入队.
+                    Thread.sleep(1000);
                     channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
 
                 }
@@ -117,8 +131,131 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
             // 如果出现异常,可能是由于网路原因导致Feign远程请求失败.
             // 也可能是库存服务对库存释放过程出现DB问题.
             // 这个时候需要对MQ进行回滚.
+            // 能捕捉到异常 要么就是网路异常导致MQ发送消息失败 要么就是DB失败.
             channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
             e.printStackTrace();
+
+        }
+
+    }
+
+    private OrderTo mapTransformOrderTo(R result) {
+
+        LinkedHashMap<String, Object> map = (LinkedHashMap<String, Object>) result.get("data");
+        if (map == null) {
+
+            return null;
+
+        }
+
+        OrderTo order = new OrderTo();
+        if (map.get("id") == null) {
+
+            //如果id为空 那么返回Null表示在下订单的时候远程锁定库存成功但是创建订单失败.
+            return null;
+
+        }
+        order.setOrderSn(map.get("orderSn").toString());
+        order.setId(Long.valueOf(map.get("id").toString()));
+        if (!StringUtils.isEmpty(map.get("memberId"))) {
+
+            order.setMemberId(Long.valueOf(map.get("memberId").toString()));
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("memberUsername"))) {
+
+            order.setMemberUsername(map.get("memberUsername").toString());
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("totalAmount"))) {
+
+            order.setTotalAmount(new BigDecimal(map.get("totalAmount").toString()));
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("payAmount"))) {
+
+            order.setPayAmount(new BigDecimal(map.get("payAmount").toString()));
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("payType"))) {
+
+            order.setPayType(Integer.valueOf(map.get("payType").toString()));
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("sourceType"))) {
+
+            order.setSourceType(Integer.valueOf(map.get("sourceType").toString()));
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("status"))) {
+
+            order.setStatus(Integer.valueOf(map.get("status").toString()));
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("receiverName"))) {
+
+            order.setReceiverName(map.get("receiverName").toString());
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("receiverPhone"))) {
+
+            order.setReceiverPhone(map.get("receiverPhone").toString());
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("receiverProvince"))) {
+
+            order.setReceiverProvince(map.get("receiverProvince").toString());
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("receiverCity"))) {
+
+            order.setReceiverCity(map.get("receiverCity").toString());
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("receiverRegion"))) {
+
+            order.setReceiverRegion(map.get("receiverRegion").toString());
+
+        }
+
+        if (!StringUtils.isEmpty(map.get("receiverDetailAddress"))) {
+
+            order.setReceiverDetailAddress(map.get("receiverDetailAddress").toString());
+
+        }
+        return order;
+
+    }
+
+
+    @Override
+    @RabbitHandler
+    public void handlerAutoReleaseOrder(OrderTo order, Message message, Channel channel) throws IOException {
+
+        System.out.println(2);
+        // 处理订单超时未支付的情况 但是库存已经扣减成功.
+        try {
+
+            // 解锁库存, 该方法要么成功,要么失败.
+            wareSkuService.listReleaseStocks(order);
+            // 释放库存成功, 那么就接受消息.
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
 
         }
 

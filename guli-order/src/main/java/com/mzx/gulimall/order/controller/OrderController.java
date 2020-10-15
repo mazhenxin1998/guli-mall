@@ -1,9 +1,12 @@
 package com.mzx.gulimall.order.controller;
 
+import com.mzx.gulimall.common.order.OrderTo;
+import com.mzx.gulimall.common.order.Result;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.entity.OrderEntity;
 import com.mzx.gulimall.order.service.OrderService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,17 +39,35 @@ public class OrderController {
     }
 
     @GetMapping(value = "/get/{orderSn}")
-    public R getOrderByOrderSn(@PathVariable(value = "orderSn") String orderSn) {
+    public Result getOrderByOrderSn(@PathVariable(value = "orderSn") String orderSn) {
 
+        Result result = new Result();
         try {
 
             OrderEntity entity = orderService.getOrderByOrderSn(orderSn);
-            return R.ok().put("data", entity);
+            result.setCode(0);
+            result.setMsg("成功.");
+            if (entity == null) {
+
+                result.setOrder(null);
+
+            } else {
+
+                OrderTo orderTo = new OrderTo();
+                BeanUtils.copyProperties(entity, orderTo);
+                result.setOrder(orderTo);
+
+            }
+
+            return result;
 
         } catch (Exception e) {
 
             e.printStackTrace();
-            return R.error();
+            result.setCode(500);
+            result.setMsg("服务出现异常.");
+            result.setOrder(null);
+            return result;
 
         }
 

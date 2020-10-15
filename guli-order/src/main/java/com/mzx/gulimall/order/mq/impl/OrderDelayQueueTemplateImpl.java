@@ -1,13 +1,16 @@
 package com.mzx.gulimall.order.mq.impl;
 
-import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.mzx.gulimall.common.order.OrderTo;
+import com.mzx.gulimall.order.entity.OrderEntity;
 import com.mzx.gulimall.order.mq.OrderDelayQueueTemplate;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
+import java.lang.management.ManagementFactory;
 
 /**
  * @author ZhenXinMa.
@@ -30,20 +33,21 @@ public class OrderDelayQueueTemplateImpl implements OrderDelayQueueTemplate {
      * 1. 在发送的时候由于网路异常导致发送失败.
      * 2. MQ发送到了Broker，但是由于还没有进行持久化,MQ就宕机了,导致MQ发送失败,该情况可以在发送者确认模式下得到可靠的解决.
      *
-     * @param orderSn 要解锁的订单号.
+     * @param order 要解锁的订单号.
      * @return
      */
     @Override
-    public boolean orderSubmit(String orderSn) {
+    public boolean orderSubmit(OrderEntity order) {
 
         try {
 
-            // 当前方法仅仅只给order.delay.queue发送消息.
-            // 1. 交换机是固定的.
-            // 2. 路由Key也是固定的.
-            // 消息的ID.
-            CorrelationData id = new CorrelationData(orderSn);
-            rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, orderSn, id);
+            System.out.println("订单创建成功 订单向MQ order.event.exchange发送订单创建成功的消息.");
+            // 消息的唯一ID和订单号的ID一样.
+            CorrelationData id = new CorrelationData(order.getOrderSn());
+            OrderTo orderTo = new OrderTo();
+            // 使用common服务中orderTo.
+            BeanUtils.copyProperties(order, orderTo);
+            rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, orderTo, id);
             return true;
 
         } catch (Exception e) {

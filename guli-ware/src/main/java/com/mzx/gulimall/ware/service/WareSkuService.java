@@ -1,6 +1,7 @@
 package com.mzx.gulimall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mzx.gulimall.common.order.OrderTo;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.ware.entity.WareOrderTaskDetailEntity;
@@ -64,5 +65,11 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      */
     void listReleaseStocks(List<WareOrderTaskDetailEntity> detailEntities);
 
+    /**
+     * 对库存进行回滚.
+     *
+     * @param order
+     */
+    void listReleaseStocks(OrderTo order);
 }
 

@@ -60,6 +60,8 @@ spring:
     view:
       prefix: /templates/
       suffix: .html
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 # mybatis-plus的配置文件.
 # classpath* 表示的是不仅仅是
 mybatis-plus:

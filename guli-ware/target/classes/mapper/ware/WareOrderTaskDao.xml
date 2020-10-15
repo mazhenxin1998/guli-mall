@@ -20,6 +20,9 @@
         <result property="wareId" column="ware_id"/>
         <result property="taskComment" column="task_comment"/>
     </resultMap>
+    <select id="getOrderTaskByOrderSn" resultType="com.mzx.gulimall.ware.entity.WareOrderTaskEntity">
+        SELECT * FROM `wms_ware_order_task` WHERE order_sn = #{orderSn} LIMIT 1;
+    </select>
 
 
 </mapper>

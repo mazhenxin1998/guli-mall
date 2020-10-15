@@ -1,5 +1,7 @@
 package com.mzx.gulimall.order.mq;
 
+import com.mzx.gulimall.order.entity.OrderEntity;
+
 /**
  * @author ZhenXinMa.
  * @slogan 脚踏实地向前看.
@@ -14,10 +16,10 @@ public interface OrderDelayQueueTemplate {
     /**
      * 需要传的参数: 那个订单号需要解除锁定.
      *
-     * @param orderSn 要解锁的订单号.
+     * @param order 要解锁的订单号.
      * @return
      */
-    boolean orderSubmit(String orderSn);
+    boolean orderSubmit(OrderEntity order);
 
 
 }
