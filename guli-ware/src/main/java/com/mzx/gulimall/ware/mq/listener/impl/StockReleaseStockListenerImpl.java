@@ -72,33 +72,31 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
                 // 远程查询订单.
                 // TODO:  这里出现问题.
                 // 现在有这么一种情况: 订单没有创建成功, 那么远程查询根据路径匹配将不会匹配到.
-                // ...
                 R result = orderServiceFeign.getOrderByOrderSn(stockLockTo.getOrderSn());
                 if (result.getCode() == 0) {
 
-                    // 如果远程请求成功, 那么就
                     OrderTo order = (OrderTo) result.get("data");
                     // order为null表示订单在解锁库存之后创建订单失败.
                     // order的状态为取消状态说明是订单超时为支付,因此需要解锁库存.
+                    // 在订单服务中如果订单超时未支付那么在队列order.release.order.queue中进行消息的发送.
+                    // 将消息直接发送到stock.release.stock.queue并进行解锁,并且还需要将订单的状态改为取消状态或者无效状态.
                     // 如果用户自己手动取消了状态,那么应该解锁.
                     if (order == null || order.getStatus() == 4) {
 
                         List<WareOrderTaskDetailEntity> detailEntities =
                                 wareOrderTaskDetailService.getOrderTaskDetailsByStockId(stockId);
-                        // 批量对SKU的库存进行回放..
                         wareSkuService.listReleaseStocks(detailEntities);
-                        // 消息确认.第二个参数为是否为批量操作.
+                        System.out.println("库存解锁成功 : " + stockId);
                         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 
-                    } else {
-
-                        // TODO: 2020/10/15 这里是不用做任何处理的.
-                        // 如果用户主动关闭订单,应该另写一个监听队列的方法,并且参数不一样那么队列接受的消息类型就不一样.
-                        // 如果用户主动关闭订单,那么订单的状态应该为取消状态.
-                        // 代码能执行到这里就说明订单不为空, 并且订单的状态不为以取消状态.
-                        // 那么订单的状态就有可能是完成状态、待付款状态、新建状态.
-
                     }
+
+                    // TODO: 2020/10/15 如果订单是超时未付款咋弄.
+                    // TODO: 2020/10/15 这里是不用做任何处理的.
+                    // 如果用户主动关闭订单,应该另写一个监听队列的方法,并且参数不一样那么队列接受的消息类型就不一样.
+                    // 如果用户主动关闭订单,那么订单的状态应该为取消状态.
+                    // 代码能执行到这里就说明订单不为空, 并且订单的状态不为以取消状态.
+                    // 那么订单的状态就有可能是完成状态、待付款状态、新建状态.
 
                 } else {
 

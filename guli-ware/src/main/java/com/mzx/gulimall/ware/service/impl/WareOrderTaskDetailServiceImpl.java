@@ -35,7 +35,7 @@ public class WareOrderTaskDetailServiceImpl extends ServiceImpl<WareOrderTaskDet
     public List<WareOrderTaskDetailEntity> getOrderTaskDetailsByStockId(Long stockId) {
 
         //  可能会出现空.
-        if (stockId == null || stockId <= 0) {
+        if (stockId != null || stockId > 0) {
 
             return wareOrderTaskDetailDao.getOrderTaskDetailsByStockId(stockId);
 
