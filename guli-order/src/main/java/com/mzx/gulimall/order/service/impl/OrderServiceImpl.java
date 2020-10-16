@@ -160,8 +160,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
                 if (lock) {
 
                     // 模拟远程锁定库存成功,订单创建失败情况.
-                    int i = 10 / 0;
+                    // int i = 10 / 0;
                     // 订单创建成功之后需要将当前订单的信息发送到MQ队列: order.delay.queue解决自动关单.
+                    // 方法名字起得不好 这里为什么需要关闭订单? .
                     boolean flag = this.closeOrder(orderCreateTo.getOrder());
                     if (flag) {
 

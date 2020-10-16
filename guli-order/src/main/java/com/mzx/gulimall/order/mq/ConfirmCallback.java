@@ -1,7 +1,9 @@
 package com.mzx.gulimall.order.mq;
 
+import com.mzx.gulimall.order.feign.WareServiceFeign;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ConfirmCallback implements RabbitTemplate.ConfirmCallback {
+
+    @Autowired
+    private WareServiceFeign wareServiceFeign;
 
     /**
      * 消息确认机制.
@@ -30,10 +35,19 @@ public class ConfirmCallback implements RabbitTemplate.ConfirmCallback {
         if (!ack) {
 
             // TODO: 2020/10/12 这里有可能会出现消息丢失的情况.
+            // 日志回滚.
             // 如果订单没有成功发送到Broker,那么应该怎么办?
-            // 一般不会出现不可路由的消息.
-            // correlationData中存储的就是没有发送到Broker中的消息.
             System.out.println("订单号: " + correlationData.getId() + "在创建好订单之后给MQ发送消息的出现了故障,导致MQ没能接受到该消息.");
+            try {
+
+                wareServiceFeign.rollBack(correlationData.getId());
+
+            } catch (Exception e) {
+
+                // Feign远程请求出现错误.
+                System.out.println("以IO流输入日志文件中.");
+
+            }
 
         }
 

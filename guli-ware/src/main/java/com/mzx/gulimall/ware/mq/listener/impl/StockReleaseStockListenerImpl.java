@@ -74,14 +74,11 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
             // 1. 先解决第四种情况: 库存服务本地锁定库存失败.
             Long stockId = stockLockTo.getId();
             // 这里应该从DB中查询下库存工作单是否存在: 解决库存服务在锁定库存的时候出现异常,导致库存没有锁，但是MQ中有释放库存的消息.
-            // // TODO: 2020/10/15 下面的SQL语句会一直执行.
             WareOrderTaskEntity taskEntity = wareOrderTaskService.getById(stockId);
             if (taskEntity != null) {
 
                 // 2. 对应第一种情况: order服务远程锁定库存成功，但是其创建订单失败.
                 // 远程查询订单.
-                // TODO:  这里出现问题.
-                // 现在有这么一种情况: 订单没有创建成功, 那么远程查询根据路径匹配将不会匹配到.
                 Result result = orderServiceFeign.getOrderByOrderSn(stockLockTo.getOrderSn());
                 // order为null表示订单在解锁库存之后创建订单失败.
                 // order的状态为取消状态说明是订单超时为支付,因此需要解锁库存.
@@ -95,7 +92,6 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
                     // 如果这样判断 order一定不为空.
                     if (order == null || order.getStatus() == 4) {
 
-                        // TODO: 2020/10/15 这里需要明白为什么直接根据stockId就可以直接查询详情.
                         List<WareOrderTaskDetailEntity> detailEntities =
                                 wareOrderTaskDetailService.getOrderTaskDetailsByStockId(stockId);
                         wareSkuService.listReleaseStocks(detailEntities);
@@ -113,7 +109,6 @@ public class StockReleaseStockListenerImpl implements StockReleasesStockListener
 
                 } else {
 
-                    // feign远程请求出现异常,order服务出现异常，那么将该条消息重新入队.
                     Thread.sleep(1000);
                     channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
 

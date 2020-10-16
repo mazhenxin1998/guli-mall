@@ -26,6 +26,7 @@ public class ReturnCallBack implements RabbitTemplate.ReturnCallback {
     @Override
     public void returnedMessage(Message message, int code, String s, String s1, String s2) {
 
+        // TODO: 2020/10/16 这里需要打向日志库吗？
         String body = message.getBody().toString();
         System.out.println("Message : " + body + "指定的路由Key不可达," + s2);
 

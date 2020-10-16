@@ -3,9 +3,9 @@ package com.mzx.gulimall.order.feign;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.vo.WareSkuLockVo;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 订单服务远程查询库存服务.
@@ -28,10 +28,21 @@ public interface WareServiceFeign {
 
     /**
      * 远程锁定库存.
+     *
      * @param wareSkuLockVo
      * @return
      */
     @PostMapping(value = "/ware/waresku/post/lock/stock")
     R lockStock(@RequestBody WareSkuLockVo wareSkuLockVo);
+
+    /**
+     * 远程请求库存服务回滚日志.
+     *
+     * @param messageId
+     * @return
+     */
+    @PostMapping(value = "/post/{messageId}")
+    R rollBack(@PathVariable(value = "messageId") String messageId);
+
 
 }

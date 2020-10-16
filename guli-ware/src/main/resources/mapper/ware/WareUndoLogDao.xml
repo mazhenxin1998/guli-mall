@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzx.gulimall.ware.dao.WareUndoLogDao">
+
+    <insert id="rollBackLog">
+        INSERT INTO
+        `wms_undo_log`(messageId,context,rollback_info,log_status,log_created,log_modified,orderSn)
+        VALUES(#{undoLogEntity.messageId},#{undoLogEntity.context},#{undoLogEntity.rollbackInfo},
+        #{undoLogEntity.logStatus},#{undoLogEntity.logCreated},#{undoLogEntity.logModified},#{undoLogEntity.orderSn});
+    </insert>
+
+</mapper>
