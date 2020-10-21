@@ -2,8 +2,16 @@ server:
   port: 27000
 spring:
   application:
-    name: gulimall-payment
+    name: gulimall-pay
   cloud:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+feign:
+  client:
+    default:
+      connectTimeout: 10000
+      readTimeout: 10000
+      loggerLevel: basic

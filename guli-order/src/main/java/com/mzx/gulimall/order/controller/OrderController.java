@@ -33,9 +33,10 @@ public class OrderController {
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = orderService.queryPage(params);
 
+        PageUtils page = orderService.queryPage(params);
         return R.ok().put("page", page);
+
     }
 
     @GetMapping(value = "/get/{orderSn}")

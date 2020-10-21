@@ -58,5 +58,12 @@ public class OrderWebController implements IOrderWebController {
 
     }
 
+    @Override
+    @GetMapping(value = "/get/orderList")
+    public String orderList() {
+
+        return "orderList";
+    }
+
 
 }

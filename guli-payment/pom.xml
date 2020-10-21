@@ -27,7 +27,30 @@
             <groupId>com.mzx</groupId>
             <artifactId>guli-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <!--第三方服务不需要一下数据库相关的包-->
+                <exclusion>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>druid-spring-boot-starter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.10.140.ALL</version>
+        </dependency>
+
 
     </dependencies>
 
