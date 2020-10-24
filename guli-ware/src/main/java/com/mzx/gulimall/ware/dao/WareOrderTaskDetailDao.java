@@ -34,4 +34,10 @@ public interface WareOrderTaskDetailDao extends BaseMapper<WareOrderTaskDetailEn
      * @param orderTaskDetailId
      */
     void updateLockStatus(@Param("orderTaskDetailId") Long orderTaskDetailId, @Param("status") Long status);
+
+    /**
+     * 批量修改库存详情单的锁定状态为已扣减状态--->3.
+     * @param list
+     */
+    void updateTaskDetails(@Param("list") List<Long> list);
 }

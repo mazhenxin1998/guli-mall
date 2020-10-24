@@ -31,6 +31,19 @@
         WHERE sku_id = #{skuId};
 
     </update>
+    <update id="updateSkuWare">
+        UPDATE `wms_ware_sku` SET stock = (stock - stock_locked), stock_locked = 0
+        WHERE sku_id = #{skuId};
+    </update>
+    <!--批量修改.-->
+    <update id="updateSkusWare" parameterType="list">
+        UPDATE `wms_ware_sku` SET stock = (stock - stock_locked), stock_locked = 0
+        WHERE sku_id in
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
 
     <!--
     <select id="selectPostIn" resultType="domain.blog.Post">

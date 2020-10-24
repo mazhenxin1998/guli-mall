@@ -3,6 +3,7 @@ package com.mzx.gulimall.order.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.order.OrderTo;
 import com.mzx.gulimall.common.utils.PageUtils;
+import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.order.entity.OrderEntity;
 import com.mzx.gulimall.order.vo.OrderSubmitVo;
 import org.springframework.ui.Model;
@@ -56,5 +57,14 @@ public interface OrderService extends IService<OrderEntity> {
      * @param orderTo
      */
     void updateOrderStatusToClose(OrderTo orderTo);
+
+    /**
+     * 修改订单的状态.
+     *
+     * @param orderSn
+     * @param status
+     * @return
+     */
+    R updateOrderStatus(String orderSn, String status);
 }
 

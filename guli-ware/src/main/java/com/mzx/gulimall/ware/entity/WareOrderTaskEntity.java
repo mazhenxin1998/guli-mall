@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * 库存工作单
@@ -15,6 +16,7 @@ import lombok.Data;
  * @date 2020-07-25 14:15:39
  */
 @Data
+@ToString
 @TableName("wms_ware_order_task")
 public class WareOrderTaskEntity implements Serializable {
 	private static final long serialVersionUID = 1L;

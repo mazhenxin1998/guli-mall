@@ -25,5 +25,11 @@ public interface WareOrderTaskDetailService extends IService<WareOrderTaskDetail
      * @return
      */
     List<WareOrderTaskDetailEntity> getOrderTaskDetailsByStockId(Long stockId);
+
+    /**
+     * 对库存锁定详情单进行修改.
+     * @param collect
+     */
+    void updateTaskDetails(List<Long> collect);
 }
 

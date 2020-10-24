@@ -104,6 +104,14 @@ public class OrderController {
         return R.ok();
     }
 
+    @PostMapping(value = "/post/update/order/status")
+    public R updateOrderStatus(String orderSn, String status) {
+
+        System.out.println("updateOrderStatus method start...");
+        return orderService.updateOrderStatus(orderSn,status);
+
+    }
+
     /**
      * 删除
      */

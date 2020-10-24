@@ -71,5 +71,15 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * @param order
      */
     void listReleaseStocks(OrderTo order);
+
+    /**
+     * 修改SKU锁定的库存. 真正的减少库存的接口.
+     * <p>
+     * 由支付宝在支付完成之后的异步通知中进行调用.
+     *
+     * @param orderSn
+     * @return
+     */
+    R updateSkuWare(String orderSn);
 }
 

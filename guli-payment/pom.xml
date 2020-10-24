@@ -50,6 +50,10 @@
             <artifactId>alipay-sdk-java</artifactId>
             <version>4.10.140.ALL</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
 
 
     </dependencies>

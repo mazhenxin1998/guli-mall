@@ -17,6 +17,7 @@ import com.mzx.gulimall.ware.entity.WareOrderTaskEntity;
 import com.mzx.gulimall.ware.entity.WareSkuEntity;
 import com.mzx.gulimall.ware.feign.OrderServiceFeign;
 import com.mzx.gulimall.ware.mq.StockRabbitTemplate;
+import com.mzx.gulimall.ware.service.WareOrderTaskDetailService;
 import com.mzx.gulimall.ware.service.WareOrderTaskService;
 import com.mzx.gulimall.ware.service.WareSkuService;
 import com.mzx.gulimall.ware.vo.LockStockResult;
@@ -33,6 +34,7 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service("wareSkuService")
@@ -46,6 +48,9 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
 
     @Autowired
     private WareOrderTaskDetailDao wareOrderTaskDetailDao;
+
+    @Autowired
+    private WareOrderTaskDetailService wareOrderTaskDetailService;
 
     @Autowired
     private WareOrderTaskService wareOrderTaskService;
@@ -233,6 +238,33 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
             throw new RuntimeException("订单超时库存自动解锁 查询到WareOrderTaskEntity为null.");
 
         }
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public R updateSkuWare(String orderSn) {
+
+        /*
+         * 1. 查询到该订单关联的所有SKU信息.
+         * 2. 该SKU的库存应该是让当前库存-锁定库存,然后锁定库存变为0.
+         * 一条SQL语句能完成吗？
+         * 不能. 还需要根据orderSn查询出该orderSn关联的SKU信息.
+         * 由于是电商系统,所以在以后数据量庞大得时候尽量避免使用join操作.
+         * */
+        // 通过订单号查询出该订单对应的订单ID.
+        WareOrderTaskEntity orderTaskByOrderSn = wareOrderTaskService.getOrderTaskByOrderSn(orderSn);
+        System.out.println(orderTaskByOrderSn.toString());
+        // 再根据订单ID查询出来该订单所关联的SKU信息.
+        // TODO: 2020/10/24 NPE.
+        List<WareOrderTaskDetailEntity> entityList = wareOrderTaskDetailService
+                .getOrderTaskDetailsByStockId(orderTaskByOrderSn.getId());
+        List<Long> collect = entityList.stream().map(WareOrderTaskDetailEntity::getSkuId).collect(Collectors.toList());
+        // 直接批量修改 不仅仅需要修改库存工作详情单, 库存容量不用修改.
+        // 库存容量就直接往上面添加就行.
+        wareOrderTaskDetailService.updateTaskDetails(collect);
+        System.out.println("修改库存成功.");
+        return R.ok();
 
     }
 

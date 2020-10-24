@@ -499,7 +499,32 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     public void updateOrderStatusToClose(OrderTo orderTo) {
 
         // 修改订单状态为无效状态.
-        orderDao.updateOrderStatusByOrderSn(orderTo.getOrderSn(),4);
+        orderDao.updateOrderStatusByOrderSn(orderTo.getOrderSn(), 4);
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public R updateOrderStatus(String orderSn, String status) {
+
+        // 修改订单的状态. 
+        try {
+
+            if (!StringUtils.isEmpty(status)) {
+
+                System.out.println("修改订单状态....");
+                orderDao.updateOrderStatusByOrderSn(orderSn, Integer.valueOf(status));
+                return R.ok();
+
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return R.error(10005,"参数status为空.");
 
     }
 

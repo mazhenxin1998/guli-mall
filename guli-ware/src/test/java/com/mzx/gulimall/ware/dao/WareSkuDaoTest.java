@@ -24,7 +24,7 @@ public class WareSkuDaoTest {
     private WareSkuDao wareSkuDao;
 
     @Test
-    public void t1(){
+    public void t1() {
 
         List<Long> ids = new ArrayList<>();
         ids.add(14L);
@@ -35,5 +35,17 @@ public class WareSkuDaoTest {
 
     }
 
+    /**
+     * 测试批量更新SQL.
+     */
+    @Test
+    public void t2() {
+
+        List<Long> list = new ArrayList<>();
+        list.add(6L);
+        list.add(7L);
+        wareSkuDao.updateSkusWare(list);
+
+    }
 
 }

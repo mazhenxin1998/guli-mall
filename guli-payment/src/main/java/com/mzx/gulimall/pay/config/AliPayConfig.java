@@ -42,12 +42,12 @@ public class AliPayConfig {
      * 并且该异步通知的连接必须是公网可以访问的.
      * 支付宝会悄悄的给我们发送一个请求，告诉我们支付成功的信息
      */
-    private String notify_url = "http://gulimall.utools.club/pay/post/pay/sync/result";
+    private String notify_url = "https://mall.utools.club/pay/post/pay/sync/result";
 
     /**
      * 支付宝支付成功之后要展示的页面.
      */
-    private String return_url = "http://gulimall.utools.club/get/orderList";
+    private String return_url = "https://mall.utools.club/get/orderList";
 
     /**
      * 签名方式.

@@ -49,9 +49,12 @@ public class PayTemplateImpl implements PayTemplate {
         String body = payVo.getBody();
         // 订单名称.
         String subject = payVo.getSubject();
+        // 添加一个订单能支付的过期时间为30分钟.
+        String time_out = "30m";
         request.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
                 + "\"total_amount\":\"" + total_amount + "\","
                 + "\"subject\":\"" + subject + "\","
+                + "\"timeout_express\":\"" + time_out + "\","
                 + "\"body\":\"" + body + "\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
         return client.pageExecute(request).getBody();

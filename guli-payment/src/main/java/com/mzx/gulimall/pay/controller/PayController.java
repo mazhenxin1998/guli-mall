@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author ZhenXinMa.
  * @slogan 脚踏实地向前看.
@@ -33,15 +35,18 @@ public class PayController {
 
     }
 
+    /**
+     * 这里的异常是需要被捕获到的. 
+     * @param vo
+     * @param request
+     * @return
+     * @throws AlipayApiException
+     */
     @PostMapping(value = "/post/pay/sync/result")
-    public String paySyncResult(PaySyncVo vo) {
+    public String paySyncResult(PaySyncVo vo, HttpServletRequest request) throws AlipayApiException {
 
-        // 这个没有起到作用.
-        // 当前系统订单状态修改成功,返回给支付宝一个确认信息.
-        // 支付宝使用到了消息最终一致性解决方案.
-        System.out.println(vo.toString());
-        System.out.println(1);
-        return "success";
+        System.out.println("pay sync result start...");
+        return service.doPaySyncResult(vo,request);
 
     }
 

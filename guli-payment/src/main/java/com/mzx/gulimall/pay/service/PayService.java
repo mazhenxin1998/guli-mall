@@ -1,6 +1,10 @@
 package com.mzx.gulimall.pay.service;
 
+import com.alipay.api.AlipayApiException;
+import com.mzx.gulimall.pay.vo.PaySyncVo;
 import com.mzx.gulimall.pay.vo.PayVo;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author ZhenXinMa.
@@ -24,4 +28,14 @@ public interface PayService {
      * @return
      */
     PayVo buildPayVo(String orderSn);
+
+    /**
+     * 应该先进行验签.
+     * 而后在进行订单操作.
+     * @param vo
+     * @param request
+     * @return
+     * @throws  AlipayApiException
+     */
+    String doPaySyncResult(PaySyncVo vo, HttpServletRequest request) throws AlipayApiException;
 }

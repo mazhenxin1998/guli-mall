@@ -1,8 +1,9 @@
 package com.mzx.gulimall.feign;
 
-import com.mzx.gulimall.common.order.Result;
+import com.alipay.api.domain.AntOcrVehiclelicenseIdentifyModel;
+import com.alipay.api.domain.PublicAuditStatus;
 import com.mzx.gulimall.pay.GuliMallPaymentApplication;
-import com.mzx.gulimall.pay.feign.OrderServiceFeign;
+import com.mzx.gulimall.pay.feign.WareServiceFeign;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,27 +13,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * @author ZhenXinMa.
  * @slogan 脚踏实地向前看.
- * @create 2020-10-21 19:37 周三.
+ * @create 2020-10-24 16:34 周六.
  */
 @SpringBootTest(classes = GuliMallPaymentApplication.class)
 @RunWith(SpringRunner.class)
-public class OrderServiceFeignTest {
+public class WareServiceFeignTest {
 
     @Autowired
-    private OrderServiceFeign orderServiceFeign;
+    private WareServiceFeign wareServiceFeign;
 
     @Test
     public void t1(){
 
-        Result result = orderServiceFeign.getOrderByOrderSn("202010191509592061318086978515853314");
-        System.out.println(1);
-
-    }
-
-    @Test
-    public void t2(){
-
-        orderServiceFeign.updateOrderStatus("202010241553059541319909767447109634","1");
+        wareServiceFeign.updateSkuWare("202010241553059541319909767447109634");
 
     }
 

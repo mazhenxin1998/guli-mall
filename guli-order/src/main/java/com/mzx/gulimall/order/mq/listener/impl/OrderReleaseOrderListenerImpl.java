@@ -72,6 +72,8 @@ public class OrderReleaseOrderListenerImpl implements OrderReleaseOrderListener 
             CorrelationData messageId = new CorrelationData(orderTo.getOrderSn());
             rabbitTemplate.convertAndSend(RabbitConstant.STOCK_EVENT_EXCHANGE, RabbitConstant.ROUTING_KEY, orderTo,
                     messageId);
+            // TODO: 同时调用支付宝接口进行手动收单.
+            // 前提是怎么知道进行支付了没啊?
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 
         } catch (Exception e) {

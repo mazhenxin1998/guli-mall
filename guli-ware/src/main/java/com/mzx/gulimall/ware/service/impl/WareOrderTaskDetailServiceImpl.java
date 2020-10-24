@@ -44,4 +44,12 @@ public class WareOrderTaskDetailServiceImpl extends ServiceImpl<WareOrderTaskDet
         return null;
     }
 
+    @Override
+    public void updateTaskDetails(List<Long> collect) {
+
+        // 对库存详情单进行锁定状态的修改.
+        wareOrderTaskDetailDao.updateTaskDetails(collect);
+
+    }
+
 }

@@ -19,6 +19,16 @@
         SET lock_status = #{status}
         WHERE `id` = #{orderTaskDetailId};
     </update>
+    <!--foreach标签中的内容都不需要修改.-->
+    <update id="updateTaskDetails" parameterType="list">
+        UPDATE `wms_ware_order_task_detail` SET lock_status = '3'
+        WHERE sku_id IN
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </update>
 
     <select id="getOrderTaskDetailsByStockId"
             resultType="com.mzx.gulimall.ware.entity.WareOrderTaskDetailEntity">

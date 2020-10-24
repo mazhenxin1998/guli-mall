@@ -49,7 +49,21 @@ public interface WareSkuDao extends BaseMapper<WareSkuEntity> {
      *
      * @param skuId  要解锁的SKU.
      * @param skuNum 要解锁的数量.
-     * @param wareId 在那个仓库进行解锁. 我写的项目中没有这一说.
+     * @param wareId 在那个仓库进行解锁. 我写的项目中没有这一说.  -_-~.
      */
     void releaseLockStocks(@Param("skuId") Long skuId, @Param("skuNum") Integer skuNum, @Param("wareId") Long wareId);
+
+    /**
+     * 根据订单的ID来修改库存.
+     *
+     * @param skuId
+     */
+    void updateSkuWare(@Param("skuId") Long skuId);
+
+    /**
+     * 批量修改库存容量.
+     *
+     * @param collect
+     */
+    void updateSkusWare(@Param("list") List<Long> list);
 }

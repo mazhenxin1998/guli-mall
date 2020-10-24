@@ -119,6 +119,14 @@ public class WareSkuController {
         return R.ok();
     }
 
+    @PostMapping(value = "/post/update/order/ware")
+    public R updateSkuWare(@RequestParam(value = "orderSn") String orderSn) {
+
+        // orderSn一直是空值.
+        return wareSkuService.updateSkuWare(orderSn);
+
+    }
+
     /**
      * 删除
      */
