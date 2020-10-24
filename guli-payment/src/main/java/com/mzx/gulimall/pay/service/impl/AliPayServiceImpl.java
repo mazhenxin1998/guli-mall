@@ -80,30 +80,35 @@ public class AliPayServiceImpl implements PayService {
     public String doPaySyncResult(PaySyncVo vo, HttpServletRequest request) throws AlipayApiException {
 
         System.out.println(vo.toString());
-        System.out.println( "本次成功交易之后的订单号: " + vo.getOut_trade_no());
+        System.out.println("本次成功交易之后的订单号: " + vo.getOut_trade_no());
         boolean verifySign = this.verifySign(request);
         if (verifySign) {
 
             // 验证成功.
             System.out.println("验证签名成功.");
-            // 第一步 首先需要修改订单状态为已付款状态.
-            // 订单在自动释放订单的时候，会手动向支付宝发送一个收单请求.
-            // 1表示已付款. 也表示代发货.
-            // TODO: 这里又的使用分布式事务. 自己实现一下.
-            // TODO: 2020/10/24 这里是有问题的. 
-            // 必须保证订单状态的改变和库存的扣减要么都成功,要么都失败.
-            // 谷粒商城好像没有做这个.
-            R result = orderServiceFeign.updateOrderStatus(vo.getOut_trade_no(), "1");
-            if (result.getCode() == 0) {
+            if ("TRADE_SUCCESS".equals(vo.getTrade_status())) {
 
-                // TODO: 2020/10/24 上面调用order服务正常,但是下面调用ware服务出现异常.
-                // 这个时候需要回滚订单的状态.
-                // 修改库存.
-                System.out.println("Pay Server 开始扣减库存.");
-                // 为什么传进
-                wareServiceFeign.updateSkuWare(vo.getOut_trade_no());
-                //修改成功.
-                return "success";
+                System.out.println("支付宝支付成功.");
+                // 第一步 首先需要修改订单状态为已付款状态.
+                // 订单在自动释放订单的时候，会手动向支付宝发送一个收单请求.
+                // 1表示已付款. 也表示代发货.
+                // TODO: 这里又的使用分布式事务. 自己实现一下.
+                // TODO: 2020/10/24 这里是有问题的.
+                // 必须保证订单状态的改变和库存的扣减要么都成功,要么都失败.
+                // 谷粒商城好像没有做这个.
+                R result = orderServiceFeign.updateOrderStatus(vo.getOut_trade_no(), "1");
+                if (result.getCode() == 0) {
+
+                    // TODO 如果支付服务在此时此刻突然宕机了,该怎么办?
+                    // 这个时候需要回滚订单的状态.
+                    // 修改库存.
+                    System.out.println("Pay Server 开始扣减库存.");
+                    // 如果下面订单出现异常.
+                    wareServiceFeign.updateSkuWare(vo.getOut_trade_no());
+                    //修改成功.
+                    return "success";
+
+                }
 
             }
 
