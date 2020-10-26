@@ -25,7 +25,7 @@ import com.mzx.gulimall.common.utils.R;
  * @date 2020-07-10 17:45:21
  */
 @RestController
-@RequestMapping("coupon/smsseckillskunotice")
+@RequestMapping("coupon/seckillskunotice")
 public class SmsSeckillSkuNoticeController {
     @Autowired
     private SmsSeckillSkuNoticeService smsSeckillSkuNoticeService;

@@ -3,7 +3,7 @@
 
 <mapper namespace="com.mzx.gulimall.coupon.dao.SmsSeckillPromotionDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.mzx.gulimall.coupon.entity.SmsSeckillPromotionEntity" id="smsSeckillPromotionMap">
         <result property="id" column="id"/>
         <result property="title" column="title"/>
@@ -13,6 +13,11 @@
         <result property="createTime" column="create_time"/>
         <result property="userId" column="user_id"/>
     </resultMap>
+    <select id="listSeckillPromotions" resultType="com.mzx.gulimall.coupon.entity.SmsSeckillSkuRelationEntity">
+        SELECT * FROM `sms_seckill_sku_relation`
+        WHERE
+        promotion_id = #{promotion};
+    </select>
 
 
 </mapper>

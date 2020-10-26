@@ -268,13 +268,34 @@
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/MD5Test0.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../04MyprojectScw/target/test-classes/com/mzx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsCouponController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsCouponController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsCouponController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-gateway/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-payment/src/main/java/com/mzx/gulimall/pay/service/impl/AliPayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-payment/src/main/java/com/mzx/gulimall/pay/service/impl/AliPayServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guli-payment/target/classes/com/mzx/gulimall/pay/service/impl/AliPayServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-payment/target/classes/com/mzx/gulimall/pay/service/impl/AliPayServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillPromotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillPromotionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillSessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillSkuNoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillSkuNoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillSkuRelationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/controller/SmsSeckillSkuRelationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/dao/SmsSeckillPromotionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/dao/SmsSeckillPromotionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/dao/SmsSeckillSessionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/dao/SmsSeckillSessionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/entity/SmsSeckillSessionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/entity/SmsSeckillSessionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/SmsSeckillPromotionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/SmsSeckillPromotionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/SmsSeckillSessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/SmsSeckillSessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/impl/SmsSeckillPromotionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/impl/SmsSeckillPromotionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/impl/SmsSeckillSessionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/impl/SmsSeckillSessionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/resources/mapper/coupon/SmsSeckillPromotionDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/resources/mapper/coupon/SmsSeckillPromotionDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/main/resources/mapper/coupon/SmsSeckillSessionDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/src/main/resources/mapper/coupon/SmsSeckillSessionDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/src/test/java/com/mzx/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillPromotionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillPromotionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillSessionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillSessionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillSkuNoticeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillSkuNoticeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillSkuRelationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/controller/SmsSeckillSkuRelationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/dao/SmsSeckillPromotionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/dao/SmsSeckillPromotionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/dao/SmsSeckillSessionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/dao/SmsSeckillSessionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/entity/SmsSeckillSessionEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/entity/SmsSeckillSessionEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/SmsSeckillPromotionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/SmsSeckillPromotionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/SmsSeckillSessionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/SmsSeckillSessionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/impl/SmsSeckillPromotionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/impl/SmsSeckillPromotionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/impl/SmsSeckillSessionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/com/mzx/gulimall/coupon/service/impl/SmsSeckillSessionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/mapper/coupon/SmsSeckillPromotionDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/mapper/coupon/SmsSeckillPromotionDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/classes/mapper/coupon/SmsSeckillSessionDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guli-coupon/target/classes/mapper/coupon/SmsSeckillSessionDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guli-coupon/target/test-classes/com/mzx/AppTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -419,7 +440,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GuliMallSecKillApplication">
+  <component name="RunManager" selected="JUnit.SmsSecKillSessionDaoTest.t1">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -427,22 +448,6 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrderServiceFeignTest.t1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="guli-payment" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.mzx.gulimall.feign.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.mzx.gulimall.feign" />
-      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.feign.OrderServiceFeignTest" />
-      <option name="METHOD_NAME" value="t1" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -458,6 +463,22 @@
       <option name="PACKAGE_NAME" value="com.mzx.gulimall.feign" />
       <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.feign.OrderServiceFeignTest" />
       <option name="METHOD_NAME" value="t2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SmsSecKillSessionDaoTest.t1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="guli-coupon" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mzx.gulimall.coupon.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mzx.gulimall.coupon.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.mzx.gulimall.coupon.dao.SmsSecKillSessionDaoTest" />
+      <option name="METHOD_NAME" value="t1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -633,14 +654,13 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.OrderServiceFeignTest.t1" />
       <item itemvalue="JUnit.WareSkuDaoTest.t2" />
       <item itemvalue="JUnit.OrderServiceFeignTest.t2 (1)" />
       <item itemvalue="JUnit.WareServiceFeignTest.t1" />
+      <item itemvalue="Spring Boot.SpringApplicationCouponApp" />
       <item itemvalue="Spring Boot.GuliMallOrderApplication" />
       <item itemvalue="Spring Boot.GuliMallThreeServerApplication" />
       <item itemvalue="Spring Boot.RenrenApplication" />
-      <item itemvalue="Spring Boot.SpringApplicationCouponApp" />
       <item itemvalue="Spring Boot.SpringApplicationMemberApp" />
       <item itemvalue="Spring Boot.SpringApplicationProductApp" />
       <item itemvalue="Spring Boot.GuliMallWareApplication" />
@@ -650,16 +670,17 @@
       <item itemvalue="Spring Boot.GuliMallOauthApplication" />
       <item itemvalue="Spring Boot.GuliMallPaymentApplication" />
       <item itemvalue="Spring Boot.GuliMallQueryIpApplication" />
-      <item itemvalue="Spring Boot.GuliMallCartApplication" />
       <item itemvalue="Spring Boot.GuliMallSecKillApplication" />
+      <item itemvalue="Spring Boot.GuliMallCartApplication" />
+      <item itemvalue="JUnit.SmsSecKillSessionDaoTest.t1" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SmsSecKillSessionDaoTest.t1" />
         <item itemvalue="Spring Boot.GuliMallCartApplication" />
         <item itemvalue="JUnit.WareServiceFeignTest.t1" />
         <item itemvalue="JUnit.OrderServiceFeignTest.t2 (1)" />
         <item itemvalue="JUnit.WareSkuDaoTest.t2" />
-        <item itemvalue="JUnit.OrderServiceFeignTest.t1" />
       </list>
     </recent_temporary>
   </component>
@@ -882,7 +903,7 @@
       <workItem from="1603297076257" duration="30000" />
       <workItem from="1603518756259" duration="9920000" />
       <workItem from="1603528713421" duration="2473000" />
-      <workItem from="1603692080680" duration="4283000" />
+      <workItem from="1603692080680" duration="13434000" />
     </task>
     <servers />
   </component>
@@ -969,54 +990,54 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1603297121348" />
-    <state width="1492" height="213" key="GridCell.Tab.0.bottom" timestamp="1603693828469">
+    <state width="1095" height="373" key="GridCell.Tab.0.bottom" timestamp="1603721825523">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1603693828469" />
-    <state width="1492" height="213" key="GridCell.Tab.0.center" timestamp="1603693828469">
+    <state width="1095" height="373" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1603721825523" />
+    <state width="1095" height="373" key="GridCell.Tab.0.center" timestamp="1603721825522">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1603693828469" />
-    <state width="1492" height="213" key="GridCell.Tab.0.left" timestamp="1603693828468">
+    <state width="1095" height="373" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1603721825522" />
+    <state width="1095" height="373" key="GridCell.Tab.0.left" timestamp="1603721825522">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1603693828468" />
-    <state width="1492" height="213" key="GridCell.Tab.0.right" timestamp="1603693828469">
+    <state width="1095" height="373" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1603721825522" />
+    <state width="1095" height="373" key="GridCell.Tab.0.right" timestamp="1603721825522">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1492" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1603693828469" />
-    <state width="1140" height="288" key="GridCell.Tab.1.bottom" timestamp="1603693709061">
+    <state width="1095" height="373" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1603721825522" />
+    <state width="1095" height="373" key="GridCell.Tab.1.bottom" timestamp="1603721825523">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="288" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1603693709061" />
-    <state width="1140" height="288" key="GridCell.Tab.1.center" timestamp="1603693709061">
+    <state width="1095" height="373" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1603721825523" />
+    <state width="1095" height="373" key="GridCell.Tab.1.center" timestamp="1603721825523">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="288" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1603693709061" />
-    <state width="1140" height="288" key="GridCell.Tab.1.left" timestamp="1603693709061">
+    <state width="1095" height="373" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1603721825523" />
+    <state width="1095" height="373" key="GridCell.Tab.1.left" timestamp="1603721825523">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="288" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1603693709061" />
-    <state width="1140" height="288" key="GridCell.Tab.1.right" timestamp="1603693709061">
+    <state width="1095" height="373" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1603721825523" />
+    <state width="1095" height="373" key="GridCell.Tab.1.right" timestamp="1603721825523">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="288" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1603693709061" />
-    <state width="1140" height="450" key="GridCell.Tab.2.bottom" timestamp="1603526650670">
+    <state width="1095" height="373" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1603721825523" />
+    <state width="1143" height="339" key="GridCell.Tab.2.bottom" timestamp="1603717767674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="450" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1603526650670" />
-    <state width="1140" height="450" key="GridCell.Tab.2.center" timestamp="1603526650670">
+    <state width="1143" height="339" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1603717767674" />
+    <state width="1143" height="339" key="GridCell.Tab.2.center" timestamp="1603717767674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="450" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1603526650670" />
-    <state width="1140" height="450" key="GridCell.Tab.2.left" timestamp="1603526650670">
+    <state width="1143" height="339" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1603717767674" />
+    <state width="1143" height="339" key="GridCell.Tab.2.left" timestamp="1603717767674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="450" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1603526650670" />
-    <state width="1140" height="450" key="GridCell.Tab.2.right" timestamp="1603526650670">
+    <state width="1143" height="339" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1603717767674" />
+    <state width="1143" height="339" key="GridCell.Tab.2.right" timestamp="1603717767674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1140" height="450" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1603526650670" />
+    <state width="1143" height="339" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1603717767674" />
     <state x="349" y="152" key="IDE.errors.dialog" timestamp="1600870843165">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1049,10 +1070,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="599" y="286" key="VCS.EditChangelistDialog/0.0.1536.834@0.0.1536.834" timestamp="1600956795100" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1602490164791">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1603716663225">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1602490164791" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1603716663225" />
     <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1601194344250">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1108,6 +1129,11 @@
           <url>file://$PROJECT_DIR$/guli-cart/src/main/java/com/mzx/gulimall/cart/service/impl/GuliCartServiceImpl.java</url>
           <line>32</line>
           <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/guli-coupon/src/main/java/com/mzx/gulimall/coupon/service/impl/SmsSeckillPromotionServiceImpl.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
