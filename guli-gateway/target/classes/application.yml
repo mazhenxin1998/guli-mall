@@ -42,6 +42,13 @@ spring:
             - Path=/api/search/**
           filters:
             - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+        # 配置优惠券、秒杀服务.
+        - id: nacos-gulimall-coupon
+          uri: lb://gulimall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
         # 配置库存服务
         - id: nacos-gulimall-ware
           uri: lb://gulimall-ware

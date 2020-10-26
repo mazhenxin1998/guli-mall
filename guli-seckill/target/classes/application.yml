@@ -1,0 +1,22 @@
+server:
+  port: 28000
+spring:
+  application:
+    name: gulimall-seckill
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.144.198.148:8848
+  # 配置环境出口和入口的日期(只针对Controller).
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  # 切换SpringSession的数据源为Redis.
+  session:
+    store-type: redis
+  main:
+    allow-bean-definition-overriding: true

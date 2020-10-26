@@ -118,7 +118,6 @@ public class AliPayServiceImpl implements PayService {
 
             // 验签失败.
             System.out.println("验证签名失败.");
-
             // 只要是不成功的字段随便返回什么都行.
             return "error";
 

@@ -17,6 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/guli-product/guli-product.iml" filepath="$PROJECT_DIR$/guli-product/guli-product.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-query-ip/guli-query-ip.iml" filepath="$PROJECT_DIR$/guli-query-ip/guli-query-ip.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-searcher/guli-searcher.iml" filepath="$PROJECT_DIR$/guli-searcher/guli-searcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guli-seckill/guli-seckill.iml" filepath="$PROJECT_DIR$/guli-seckill/guli-seckill.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-three-server/guli-three-server.iml" filepath="$PROJECT_DIR$/guli-three-server/guli-three-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-util/guli-util.iml" filepath="$PROJECT_DIR$/guli-util/guli-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli-ware/guli-ware.iml" filepath="$PROJECT_DIR$/guli-ware/guli-ware.iml" />
