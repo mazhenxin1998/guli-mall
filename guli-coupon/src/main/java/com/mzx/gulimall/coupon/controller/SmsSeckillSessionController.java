@@ -1,9 +1,9 @@
 package com.mzx.gulimall.coupon.controller;
 
-import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.coupon.entity.SmsSeckillSessionEntity;
 import com.mzx.gulimall.coupon.service.SmsSeckillSessionService;
+import com.mzx.gulimall.coupon.vo.ResultVo;
 import com.mzx.gulimall.coupon.vo.SecKillResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,23 +20,21 @@ import java.util.Map;
 @RestController
 @RequestMapping("coupon/seckillsession")
 public class SmsSeckillSessionController {
+
     @Autowired
     private SmsSeckillSessionService smsSeckillSessionService;
 
     /**
-     * 查询.
-     * http://localhost:88/api/coupon/seckillsession/list?t=1603716079503&page=1&limit=10&key=
+     * 获取最近三天内要上架的秒杀商品.
+     *
+     * @return
      */
-//    @RequestMapping("/list")
-//    public R list(@RequestParam Map<String, Object> params) {
-//
-//        PageUtils page = smsSeckillSessionService.queryPage(params);
-//        // 分页查询.
-//        // 将日期进行格式化返回.
-//        smsSeckillSessionService.listSecKillsPage(params);
-//        return R.ok().put("page", page);
-//
-//    }
+    @GetMapping(value = "/get/lates/three/days/session")
+    public ResultVo<SmsSeckillSessionEntity> getLatesSession() {
+
+        return smsSeckillSessionService.getLatesSession();
+
+    }
 
 
     @RequestMapping("/list")

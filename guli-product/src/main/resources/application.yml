@@ -1,5 +1,8 @@
 server:
   port: 10000
+  tomcat:
+    max-threads: 300
+    accept-count: 300
 spring:
   application:
     name: gulimall-product
@@ -50,10 +53,13 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
   thymeleaf:
-    cache: false
+    cache: true
   redis:
     host: 127.0.0.1
     port: 6379
+    jedis:
+      pool:
+        max-active: 16
   mvc:
     static-path-pattern: /static/**
     view:

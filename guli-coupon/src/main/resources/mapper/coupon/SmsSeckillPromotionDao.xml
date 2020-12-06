@@ -16,7 +16,7 @@
     <select id="listSeckillPromotions" resultType="com.mzx.gulimall.coupon.entity.SmsSeckillSkuRelationEntity">
         SELECT * FROM `sms_seckill_sku_relation`
         WHERE
-        promotion_id = #{promotion};
+        promotion_session_id = #{promotion};
     </select>
 
 

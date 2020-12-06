@@ -26,19 +26,18 @@ public class SmsSeckillPromotionServiceImpl extends ServiceImpl<SmsSeckillPromot
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+
         IPage<SmsSeckillPromotionEntity> page = this.page(
                 new Query<SmsSeckillPromotionEntity>().getPage(params),
                 new QueryWrapper<SmsSeckillPromotionEntity>()
         );
-
         return new PageUtils(page);
+
     }
 
     @Override
     public SecKillResultVo listSeckillPromotion(Map<String, Object> params) {
 
-        // TODO: 2020/10/26 BUG:就只有ID有值?
-        System.out.println("listSeckillPromotion Service 方法发生了. ");
         Integer promotion = Integer.valueOf(params.get("promotionSessionId").toString());
         List<SmsSeckillSkuRelationEntity> entities = smsSeckillPromotionDao.listSeckillPromotions(promotion);
         SecKillResultVo resultVo = new SecKillResultVo();

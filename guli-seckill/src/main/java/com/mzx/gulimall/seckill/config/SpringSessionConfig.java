@@ -36,6 +36,8 @@ public class SpringSessionConfig {
 
     /**
      * 配置SpringSession存储SpringSession信息的时候以JSON格式进行存储.
+     * <p>
+     * 其实在这里进行了配置,已经默认是JSON.
      *
      * @return
      */
@@ -45,6 +47,5 @@ public class SpringSessionConfig {
         return new GenericFastJsonRedisSerializer();
 
     }
-
 
 }

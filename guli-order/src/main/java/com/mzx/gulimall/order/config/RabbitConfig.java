@@ -2,10 +2,7 @@ package com.mzx.gulimall.order.config;
 
 import com.mzx.gulimall.order.mq.ConfirmCallback;
 import com.mzx.gulimall.order.mq.ReturnCallback;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.Exchange;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;

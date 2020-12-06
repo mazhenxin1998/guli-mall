@@ -29,6 +29,7 @@
         <module>guli-query-ip</module>
         <module>guli-custom-starter</module>
         <module>guli-seckill</module>
+        <module>guli-sentinel-test</module>
 
     </modules>
 

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -84,7 +87,7 @@ public class OssController {
             ossClient.shutdown();
         }
 
-        return R.ok().put("data",respMap);
+        return R.ok().put("data", respMap);
     }
 
 }

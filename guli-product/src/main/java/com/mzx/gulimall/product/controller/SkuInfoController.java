@@ -4,6 +4,7 @@ import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.common.utils.R;
 import com.mzx.gulimall.product.entity.SkuInfoEntity;
 import com.mzx.gulimall.product.service.SkuInfoService;
+import com.mzx.gulimall.product.vo.ProductResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,13 @@ public class SkuInfoController {
 
         SkuInfoEntity skuInfo = skuInfoService.getById(skuId);
         return R.ok().put("skuInfo", skuInfo);
+
+    }
+
+    @GetMapping(value = "/get/{id}")
+    public ProductResultVo<SkuInfoEntity> getSkuInfo(@PathVariable(value = "id") Long id) {
+
+        return skuInfoService.getSkuInfo(id);
 
     }
 

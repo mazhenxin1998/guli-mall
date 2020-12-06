@@ -7,6 +7,12 @@ spring:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
+#    sentinel:
+#      transport:
+#        # transport.port表示sentinel用于传输数据的端口.
+#        port: 8719
+#        # 用于将SpringBoot中的数据传入到Sentinel控制台中.
+#        dashboard: localhost:9999
   # 配置环境出口和入口的日期(只针对Controller).
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -20,3 +26,10 @@ spring:
     store-type: redis
   main:
     allow-bean-definition-overriding: true
+# 暴露出所有信息给actor.
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

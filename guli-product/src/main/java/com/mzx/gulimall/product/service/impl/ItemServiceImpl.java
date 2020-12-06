@@ -163,14 +163,14 @@ public class ItemServiceImpl implements ItemService {
 
     private SkuItemVo getSkuItemVoFromDB(Long skuId) {
 
-        System.out.println("缓存未命中,从DB中查询数据 方法getSkuItemVoFromDB执行了。。。");
+        // System.out.println("缓存未命中,从DB中查询数据 方法getSkuItemVoFromDB执行了。。。");
         // skuID不需要进行判断 上一步已经判断了出来.
         // TODO: 在这里我们需要解决的是缓存击穿问题 同一时刻大量用户来访问DB.
         // 我们对其添加分布式锁,本地锁仅仅能锁住当前进程锁不住其他进程.
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
         // 直接通过getLock获取的锁是可重入锁.
         RLock lock = redissonClient.getLock(RedisConstant.LOCK_REENTRANT);
-        // 使用默认的事件以及续期.
+        // 使用默认的时间以及续期.
         lock.lock();
         try {
 
@@ -197,7 +197,7 @@ public class ItemServiceImpl implements ItemService {
 
         } catch (Exception e) {
 
-            log.error("getSkuItemVoFromDB方法内发生了异常: {}",e.getMessage());
+            // log.error("getSkuItemVoFromDB方法内发生了异常: {}",e.getMessage());
             return null;
 
         } finally {
@@ -211,7 +211,7 @@ public class ItemServiceImpl implements ItemService {
 
     private SkuItemVo Db(Long skuId){
 
-        System.out.println("线程: " + Thread.currentThread().getId() + "查询了一次DB》 ");
+        // System.out.println("线程: " + Thread.currentThread().getId() + "查询了一次DB》 ");
         // 这里采用异步编排对其进行优化.
         SkuItemVo itemVo = new SkuItemVo();
         // 第一步设置 skuInfo

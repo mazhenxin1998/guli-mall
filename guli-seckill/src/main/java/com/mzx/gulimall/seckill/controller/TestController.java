@@ -18,5 +18,12 @@ public class TestController {
 
     }
 
+    @GetMapping(value = "/get")
+    public String get(){
+
+        return "seckill";
+
+    }
+
 
 }

@@ -1,0 +1,24 @@
+server:
+  port: 29000
+spring:
+  application:
+    name: gulimall-sentinel-test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.144.198.148:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:9999
+# 将当前服务的信息暴露给Sentinel.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+feign:
+  sentinel:
+    # 开启feign对sentinel的支持.
+    # 开启之后对feign的远程调用链路也能检测到.
+    enabled: true

@@ -3,6 +3,7 @@ package com.mzx.gulimall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mzx.gulimall.common.utils.PageUtils;
 import com.mzx.gulimall.product.entity.SkuInfoEntity;
+import com.mzx.gulimall.product.vo.ProductResultVo;
 import com.mzx.gulimall.product.vo.SpuSaveVo;
 
 import java.util.List;
@@ -50,5 +51,13 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
      * @return
      */
     List<SkuInfoEntity> findAllBySpuId(Long spuId);
+
+    /**
+     * 根据ID查询SKU的详细信息.
+     *
+     * @param id SkuID.
+     * @return
+     */
+    ProductResultVo<SkuInfoEntity> getSkuInfo(Long id);
 }
 

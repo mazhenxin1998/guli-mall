@@ -36,6 +36,9 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     @Autowired
     private ICouponServiceFeign iCouponServiceFeign;
 
+    @Autowired
+    private SkuInfoDao skuInfoDao;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<SkuInfoEntity> page = this.page(
@@ -47,7 +50,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     public void saveSkuBaseInfo(Long spuId, SpuSaveVo vo) {
 
         /*
@@ -179,6 +182,16 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
                 new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId));
 
         return infoEntityList;
+    }
+
+    @Override
+    public ProductResultVo<SkuInfoEntity> getSkuInfo(Long id) {
+
+        ProductResultVo<SkuInfoEntity> resultVo = new ProductResultVo<>();
+        resultVo.setData(skuInfoDao.getById(id));
+        resultVo.setCode(0);
+        return resultVo;
+
     }
 
     private QueryWrapper<SkuInfoEntity> getWrapper(Map<String, Object> params) {

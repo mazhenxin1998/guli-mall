@@ -3,7 +3,7 @@
 
 <mapper namespace="com.mzx.gulimall.coupon.dao.SmsSeckillSkuRelationDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.mzx.gulimall.coupon.entity.SmsSeckillSkuRelationEntity" id="smsSeckillSkuRelationMap">
         <result property="id" column="id"/>
         <result property="promotionId" column="promotion_id"/>
@@ -14,6 +14,10 @@
         <result property="seckillLimit" column="seckill_limit"/>
         <result property="seckillSort" column="seckill_sort"/>
     </resultMap>
+    <select id="getById" resultType="com.mzx.gulimall.coupon.entity.SmsSeckillSkuRelationEntity">
+        SELECT * FROM sms_seckill_sku_relation
+        WHERE promotion_session_id = #{id};
+    </select>
 
 
 </mapper>

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
+
 /**
  * @author ZhenXinMa.
  * @slogan 脚踏实地向前看.
@@ -21,6 +23,9 @@ public class SmsSecKillSessionDaoTest {
     @Autowired
     private SmsSeckillSessionService smsSeckillSessionService;
 
+    @Resource
+    private SmsSeckillSessionDao smsSeckillSessionDao;
+
     @Test
     public void t1(){
 
@@ -28,5 +33,13 @@ public class SmsSecKillSessionDaoTest {
         System.out.println(entity.toString());
 
     }
+
+    @Test
+    public void t2(){
+
+        smsSeckillSessionService.getLatesSession();
+
+    }
+
 
 }

@@ -38,4 +38,5 @@ public class SendMessageMQImpl implements SendMessageMQ {
         log.info("发送了一个消息: " + jsonString);
 
     }
+
 }

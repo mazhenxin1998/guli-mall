@@ -23,7 +23,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(value = {"com.mzx"})
 public class SpringApplicationProductApp {
     public static void main(String[] args) {
-        
-        SpringApplication.run(SpringApplicationProductApp.class,args);
+
+        SpringApplication.run(SpringApplicationProductApp.class, args);
+
     }
 }

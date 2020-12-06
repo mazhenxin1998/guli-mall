@@ -12,6 +12,7 @@
         <module name="guli-customer-ervice" />
         <module name="guli-coupon" />
         <module name="guli-product" />
+        <module name="guli-sentinel-test" />
         <module name="guli-cart" />
         <module name="guli-common" />
         <module name="guli-custom-starter" />
@@ -46,6 +47,7 @@
       <module name="guli-query-ip" target="1.8" />
       <module name="guli-searcher" target="1.8" />
       <module name="guli-seckill" target="1.8" />
+      <module name="guli-sentinel-test" target="1.8" />
       <module name="guli-three-server" target="1.8" />
       <module name="guli-util" target="1.8" />
       <module name="guli-ware" target="1.8" />

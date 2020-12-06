@@ -39,6 +39,8 @@ spring:
     nacos:
       discovery:
         server-addr: 192.144.198.148:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 # mybatis-plus的配置文件.
 # classpath* 表示的是不仅仅是
 mybatis-plus:
